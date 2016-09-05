@@ -1,0 +1,38 @@
+# Mac OS X
+.DS_Store
+
+# Xcode
+*.xcworkspace
+xcuserdata/
+project.xcworkspace/
+C.gitignore & Swift.gitignore
+
+# Cocoapods
+Pods/
+
+## Build generated
+build/
+DerivedData/
+
+## Various settings
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+
+## Other
+*.moved-aside
+*.xcuserstate
+
+# Swift Package Manager
+Packages/
+.build/
+
+# Carthage
+Carthage/Checkouts
+Carthage/Build

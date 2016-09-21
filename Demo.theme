@@ -1,0 +1,12 @@
+// ************************* Theme Info ************************* //
+displayName = Sample User Theme
+identifier = com.luckymarmot.ThemeKit.DemoUserTheme
+darkTheme = true
+
+// ********************* Colors & Gradients ********************* //
+brandColor = $blue
+brandGradient = linear-gradient($orange.sky, rgba(200, 140, 60, 1.0))
+
+// ************************** Variables ************************* //
+blue = rgb(0, 170, 255)
+orange.sky = rgb(160, 90, 45, .5)

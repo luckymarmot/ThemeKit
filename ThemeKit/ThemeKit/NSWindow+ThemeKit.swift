@@ -1,0 +1,126 @@
+//
+//  NSWindow+ThemeKit.swift
+//  CoreColor
+//
+//  Created by Nuno Grilo on 08/09/16.
+//  Copyright © 2016 Paw Inc. All rights reserved.
+//
+
+import Foundation
+
+public extension NSWindow {
+    
+    // MARK:- Public
+    
+    /// Theme all windows compliant to ThemeKit.windowThemePolicy (and if needed).
+    public static func themeAllWindows() {
+        for window in windowsCompliantWithWindowThemePolicy() {
+            window.theme()
+        }
+    }
+    
+    /// Theme window if needed.
+    public func theme() {
+        if appearance != ThemeKit.shared.effectiveThemeAppearance {
+            // Change window appearance
+            appearance = ThemeKit.shared.effectiveThemeAppearance
+            
+            // Invalidate shadow as sometimes it is incorrecty drawn or missing
+            invalidateShadow()
+            
+            // Trick to force update of all CALayers in deep & private views
+            titlebarAppearsTransparent = !titlebarAppearsTransparent
+            DispatchQueue.main.async {
+                self.titlebarAppearsTransparent = !self.titlebarAppearsTransparent
+            }
+        }
+    }
+    
+    /// Theme window if compliant to ThemeKit.windowThemePolicy (and if needed).
+    public func themeIfCompliantWithWindowThemePolicy() {
+        if isCompliantWithWindowThemePolicy() {
+            theme()
+        }
+    }
+    
+    
+    // MARK:- Internal & Private
+    
+    /// Check if window is compliant with ThemeKit.windowThemePolicy.
+    internal func isCompliantWithWindowThemePolicy() -> Bool {
+        switch ThemeKit.shared.windowThemePolicy {
+            
+        case .themeAllWindows:
+            return true
+            
+        case .themeSomeWindows(let windowClassNames):
+            for windowClassName in (windowClassNames as [String]) {
+                if self.className == windowClassName {
+                    return true
+                }
+            }
+            return false
+            
+        case .doNotThemeWindows:
+            return false
+        }
+    }
+    
+    /// List of all existing windows compliant to ThemeKit.windowThemePolicy.
+    internal static func windowsCompliantWithWindowThemePolicy() -> [NSWindow] {
+        var windows = [NSWindow]()
+        
+        switch ThemeKit.shared.windowThemePolicy {
+            
+        case .themeAllWindows:
+            windows = NSApplication.shared().windows
+            
+        case .themeSomeWindows(let windowClassNames):
+            let windowsMatchingClasses = NSApplication.shared().windows.filter({ (window) -> Bool in
+                for windowClassName in (windowClassNames as [String]) {
+                    if window.className == windowClassName {
+                        return true
+                    }
+                }
+                return false
+            })
+            windows.append(contentsOf: windowsMatchingClasses)
+            
+        case .doNotThemeWindows:
+            break
+        }
+        
+        return windows
+    }
+    
+    /// Take window screenshot.
+    internal func takeScreenshot() -> NSImage {
+        let cgImage = CGWindowListCreateImage(CGRect.null, .optionIncludingWindow, CGWindowID(windowNumber), .boundsIgnoreFraming)
+        let image = NSImage(cgImage: cgImage!, size: frame.size)
+        image.cacheMode = NSImageCacheMode.never
+        image.size = frame.size
+        return image
+    }
+    
+    /// Create a window with a screenshot of current window.
+    internal func makeScreenshotWindow() -> NSWindow {
+        // Take window screenshot
+        let screenshot = takeScreenshot()
+        
+        // Create "image-window"
+        let window = NSWindow(contentRect: frame, styleMask: NSWindowStyleMask.borderless, backing: NSBackingStoreType.buffered, defer: true)
+        window.isOpaque = false
+        window.backgroundColor = NSColor.clear
+        window.ignoresMouseEvents = true
+        window.collectionBehavior = NSWindowCollectionBehavior.stationary
+        window.titlebarAppearsTransparent = true
+        
+        // Add image view
+        let imageView = NSImageView(frame: NSMakeRect(0, 0, screenshot.size.width, screenshot.size.height))
+        imageView.image = screenshot
+        window.contentView?.addSubview(imageView)
+        
+        return window
+    }
+    
+}

@@ -15,49 +15,98 @@ private var _cachedThemeColors: NSCache<NSString, NSColor>!
  `ThemeColor` is a `NSColor` subclass that dynamically changes its colors whenever
  a new theme is make current.
  
- - Class Extensions on `LightTheme` and `DarkTheme` provide instance methods for each
- theme color class method defined on this class (or extension).
+ The recommended way of adding your own dynamic colors is as follows:
  
- - User theme files (`.theme` user theme files) specify properties for each of the
- class methods on this class (or extension).
+ 1. Add a `ThemeColor` class extension (or `TKThemeColor` category on Objective-C)
+ to add class methods for your colors. E.g.:
+     In Swift:
+     ```
+     extension ThemeColor {
+     
+       static var brandColor: ThemeColor { 
+         return ThemeColor.color(with: #function)
+       }
+     
+     }
+     ```
+     In Objective-C:
+     ```
+     @interface TKThemeColor (Demo)
+     
+     + (TKThemeColor*)brandColor;
+     
+     @end
+     
+     @implementation TKThemeColor (Demo)
+     
+     + (TKThemeColor*)brandColor {
+       return [TKThemeColor colorWithSelector:_cmd];
+     }
+     
+     @end
+     ```
+ 
+ 2. Add Class Extensions on `LightTheme` and `DarkTheme` (`TKLightTheme` and 
+ `TKDarkTheme` on Objective-C) to provide instance methods for each theme color 
+ class method defined on (1). E.g.:
+    In Swift:
+     ```
+     extension LightTheme {
+     
+       var brandColor: NSColor {
+         return NSColor.orange
+       }
+ 
+     }
+ 
+    extension DarkTheme {
+     
+      var brandColor: NSColor {
+        return NSColor.white
+      }
+ 
+    }
+     ```
+     In Objective-C:
+     ```
+     @interface TKLightTheme (Demo) @end
+     
+     @implementation TKLightTheme (Demo)
+
+        - (NSColor*)brandColor
+        {
+            return [NSColor orangeColor];
+        }
+ 
+     @end
+ 
+     @interface TKDarkTheme (Demo) @end
+     
+     @implementation TKDarkTheme (Demo)
+
+        - (NSColor*)brandColor
+        {
+            return [NSColor whiteColor];
+        }
+ 
+     @end
+     ```
+ 
+ 3. If using user theme files (`.theme` user theme files), also specify properties
+ for each theme color class method defined on (1). E.g.:
+    ```
+    displayName = Sample User Theme
+    identifier = com.luckymarmot.ThemeKit.SampleUserTheme
+    darkTheme = false
+ 
+    brandColor = rgba(96, 240, 12, 0.5)
+    ```
  
  Unimplemented properties/methods on target theme class will default to
  `fallbackForegroundColor` and `fallbackBackgroundColor`, for foreground and
- background colors respectively.
+ background colors respectively. These too, can be customized per theme.
  
  Please check `ThemeGradient` for theme-aware gradients.
- 
- The recommended implementation is:
- 
- ## 1. Extend this class and add class methods invoking this class with the same method name.
- E.g.:
- 
- In Swift:
- ```
- extension ThemeColor {
- 
-   static var brandColor: ThemeColor { 
-     return ThemeColor.color(with: #function)
-   }
- 
- }
- ```
- In Objective-C:
- ```
- @interface TKThemeColor (Demo)
- 
- + (TKThemeColor*)brandColor;
- 
- @end
- 
- @implementation TKThemeColor (Demo)
- 
- + (TKThemeColor*)brandColor {
-   return [TKThemeColor colorWithSelector:_cmd];
- }
- 
- @end
- ```
  */
 @objc(TKThemeColor)
 public class ThemeColor : NSColor {

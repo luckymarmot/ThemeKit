@@ -12,19 +12,101 @@ private var _cachedGradients: NSCache<NSString, NSGradient>!
 private var _cachedThemeGradients: NSCache<NSString, NSGradient>!
 
 /**
- * ThemeGradient is a NSGradient subclass that allows to have its colors
- * dynamically changed whenever a new theme is make current.
- *
- * - Extensions on LightTheme and DarkTheme provide instance methods for each
- * theme gradient class method defined on this class (or extension).
- *
- * - User theme files (`.theme` user theme files) specify properties for each of the
- * class methods on this class (or extension).
- *
- * Unimplemented properties/methods on target theme class will default to
- * `fallbackGradient`.
- *
- * @see ThemeColor for additional theming properties
+ `ThemeGradient` is a `NSGradient` subclass that dynamically changes its colors 
+ whenever a new theme is make current.
+ 
+ The recommended way of adding your own dynamic colors is as follows:
+ 
+ 1. Add a `ThemeGradient` class extension (or `TKThemeGradient` category on 
+ Objective-C) to add class methods for your gradients. E.g.:
+     In Swift:
+     ```
+     extension ThemeGradient {
+     
+         static var brandGradient: ThemeGradient {
+            return ThemeGradient.gradient(with: #function)
+         }
+     
+     }
+     ```
+     In Objective-C:
+     ```
+     @interface TKThemeGradient (Demo)
+     
+     + (TKThemeGradient*)brandGradient;
+     
+     @end
+     
+     @implementation TKThemeGradient (Demo)
+     
+     + (TKThemeGradient*)brandGradient {
+        return [TKThemeGradient gradientWithSelector:_cmd];
+     }
+     
+     @end
+     ```
+ 
+ 2. Add Class Extensions on `LightTheme` and `DarkTheme` (`TKLightTheme` and
+ `TKDarkTheme` on Objective-C) to provide instance methods for each theme gradient
+ class method defined on (1). E.g.:
+     In Swift:
+     ```
+     extension LightTheme {
+     
+         var brandGradient: NSGradient {
+            return NSGradient(starting: NSColor.white, ending: NSColor.black)
+         }
+         
+         }
+         
+         extension DarkTheme {
+         
+         var brandGradient: NSGradient {
+            return NSGradient(starting: NSColor.black, ending: NSColor.white)
+         }
+     
+     }
+     ```
+     In Objective-C:
+     ```
+     @interface TKLightTheme (Demo) @end
+     
+     @implementation TKLightTheme (Demo)
+     
+     - (NSGradient*)brandGradient
+     {
+        return [[NSGradient alloc] initWithStartingColor:[NSColor whiteColor] endingColor:[NSColor blackColor]];
+     }
+     
+     @end
+     
+     @interface TKDarkTheme (Demo) @end
+     
+     @implementation TKDarkTheme (Demo)
+     
+     - (NSGradient*)brandGradient
+     {
+        return [[NSGradient alloc] initWithStartingColor:[NSColor blackColor] endingColor:[NSColor whiteColor]];
+     }
+     
+     @end
+     ```
+ 
+ 3. If using user theme files (`.theme` user theme files), also specify properties
+ for each theme gradient class method defined on (1). E.g.:
+     ```
+     displayName = Sample User Theme
+     identifier = com.luckymarmot.ThemeKit.SampleUserTheme
+     darkTheme = false
+     
+     orangeSky = rgb(160, 90, 45, .5)
+     brandGradient = linear-gradient($orangeSky, rgb(200, 140, 60))
+     ```
+ 
+ Unimplemented properties/methods on target theme class will default to
+ `fallbackGradient`. This too, can be customized per theme.
+ 
+ Please check `ThemeColor` for theme-aware colors.
  */
 @objc(TKThemeGradient)
 public class ThemeGradient : NSGradient {
@@ -53,7 +135,7 @@ public class ThemeGradient : NSGradient {
     
     // MARK:- Internal
     
-    /** Color for a specific theme */
+    /** Gradient for a specific theme */
     class func gradient(for theme: Theme, selector: Selector) -> NSGradient {
         let cacheKey = "\(theme.identifier)\0\(selector)" as NSString
         var gradient = _cachedThemeGradients.object(forKey: cacheKey)

@@ -25,6 +25,9 @@ public extension NSWindow {
             // Change window appearance
             appearance = ThemeKit.shared.effectiveThemeAppearance
             
+            // Change window tab bar appearance
+            themeTabBar()
+            
             // Invalidate shadow as sometimes it is incorrecty drawn or missing
             invalidateShadow()
             
@@ -123,4 +126,76 @@ public extension NSWindow {
         return window
     }
     
+    /// Returns the tab bar view.
+    private var tabBar: NSView? {
+        // If we found before, return it
+        if windowTabBar != nil {
+            return windowTabBar
+        }
+        
+        var tabBar: NSView?
+        
+        // Search on titlebar accessory views if supported (will fail if tab bar is hidden)
+        let themeFrame = self.contentView?.superview
+        if (themeFrame?.responds(to: #selector(getter: titlebarAccessoryViewControllers)))! {
+            for controller: NSTitlebarAccessoryViewController in self.titlebarAccessoryViewControllers {
+                let possibleTabBar = controller.view.deepSubview(withClassName: "NSTabBar")
+                if possibleTabBar != nil {
+                    tabBar = possibleTabBar
+                    break
+                }
+            }
+        }
+        
+        // Search down the title bar view
+        if tabBar == nil {
+            let titlebarContainerView = themeFrame?.deepSubview(withClassName: "NSTitlebarContainerView")
+            let titlebarView = titlebarContainerView?.deepSubview(withClassName: "NSTitlebarView")
+            tabBar = titlebarView?.deepSubview(withClassName: "NSTabBar")
+        }
+        
+        // Remember it
+        if tabBar != nil {
+            windowTabBar = tabBar
+        }
+        
+        return tabBar
+    }
+    
+    /// Holds a reference to tabbar as associated object
+    private var windowTabBar: NSView? {
+        get {
+            return objc_getAssociatedObject(self, &tabbarAssociationKey) as? NSView
+        }
+        set(newValue) {
+            objc_setAssociatedObject(self, &tabbarAssociationKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+        }
+    }
+    
+    /// Returns the title bar view.
+    private var titlebarView: NSView? {
+        let themeFrame = self.contentView?.superview
+        let titlebarContainerView = themeFrame?.deepSubview(withClassName: "NSTitlebarContainerView")
+        return titlebarContainerView?.deepSubview(withClassName: "NSTitlebarView")
+    }
+    
+    /// Check if tab bar is visbile.
+    private var isTabBarVisible: Bool {
+        return tabBar?.superview != nil;
+    }
+    
+    /// Update tab bar appearance.
+    private func themeTabBar() {
+        if isTabBarVisible {
+            let _tabBar = tabBar
+            if _tabBar?.appearance != ThemeKit.shared.effectiveThemeAppearance {
+                _tabBar?.appearance = ThemeKit.shared.effectiveThemeAppearance
+                for tabBarSubview: NSView in (tabBar?.subviews)! {
+                    tabBarSubview.needsDisplay = true
+                }
+            }
+        }
+    }
 }
+
+private var tabbarAssociationKey: UInt8 = 0

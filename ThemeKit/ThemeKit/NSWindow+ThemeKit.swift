@@ -21,22 +21,11 @@ public extension NSWindow {
     
     /// Theme window if needed.
     public func theme() {
-        if appearance != ThemeKit.shared.effectiveThemeAppearance {
-            // Change window appearance
-            appearance = ThemeKit.shared.effectiveThemeAppearance
-            
-            // Change window tab bar appearance
-            themeTabBar()
-            
-            // Invalidate shadow as sometimes it is incorrecty drawn or missing
-            invalidateShadow()
-            
-            // Trick to force update of all CALayers in deep & private views
-            titlebarAppearsTransparent = !titlebarAppearsTransparent
-            DispatchQueue.main.async {
-                self.titlebarAppearsTransparent = !self.titlebarAppearsTransparent
-            }
-        }
+        // Change window tab bar appearance
+        themeTabBar()
+        
+        // Change window appearance
+        themeWindow()
     }
     
     /// Theme window if compliant to ThemeKit.windowThemePolicy (and if needed).
@@ -47,7 +36,8 @@ public extension NSWindow {
     }
     
     
-    // MARK:- Internal & Private
+    // MARK:- Private
+    // MARK:- Window theme policy compliance
     
     /// Check if window is compliant with ThemeKit.windowThemePolicy.
     internal func isCompliantWithWindowThemePolicy() -> Bool {
@@ -96,6 +86,9 @@ public extension NSWindow {
         return windows
     }
     
+    
+    // MARK:- Window screenshots
+    
     /// Take window screenshot.
     internal func takeScreenshot() -> NSImage {
         let cgImage = CGWindowListCreateImage(CGRect.null, .optionIncludingWindow, CGWindowID(windowNumber), .boundsIgnoreFraming)
@@ -125,6 +118,9 @@ public extension NSWindow {
         
         return window
     }
+    
+    
+    // MARK:- Tab bar view
     
     /// Returns the tab bar view.
     private var tabBar: NSView? {
@@ -172,19 +168,29 @@ public extension NSWindow {
         }
     }
     
-    /// Returns the title bar view.
-    private var titlebarView: NSView? {
-        let themeFrame = self.contentView?.superview
-        let titlebarContainerView = themeFrame?.deepSubview(withClassName: "NSTitlebarContainerView")
-        return titlebarContainerView?.deepSubview(withClassName: "NSTitlebarView")
-    }
-    
     /// Check if tab bar is visbile.
     private var isTabBarVisible: Bool {
         return tabBar?.superview != nil;
     }
     
-    /// Update tab bar appearance.
+    /// Update window appearance (if needed).
+    private func themeWindow() {
+        if appearance != ThemeKit.shared.effectiveThemeAppearance {
+            // Change window appearance
+            appearance = ThemeKit.shared.effectiveThemeAppearance
+            
+            // Invalidate shadow as sometimes it is incorrecty drawn or missing
+            invalidateShadow()
+            
+            // Trick to force update of all CALayers in deep & private views
+            titlebarAppearsTransparent = !titlebarAppearsTransparent
+            DispatchQueue.main.async {
+                self.titlebarAppearsTransparent = !self.titlebarAppearsTransparent
+            }
+        }
+    }
+    
+    /// Update tab bar appearance (if needed).
     private func themeTabBar() {
         if isTabBarVisible {
             let _tabBar = tabBar
@@ -195,6 +201,16 @@ public extension NSWindow {
                 }
             }
         }
+    }
+    
+    
+    // MARK:- Title bar view
+    
+    /// Returns the title bar view.
+    private var titlebarView: NSView? {
+        let themeFrame = self.contentView?.superview
+        let titlebarContainerView = themeFrame?.deepSubview(withClassName: "NSTitlebarContainerView")
+        return titlebarContainerView?.deepSubview(withClassName: "NSTitlebarView")
     }
 }
 

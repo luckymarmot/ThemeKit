@@ -17,19 +17,36 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func applicationWillFinishLaunching(_ notification: Notification) {
-        // Setup window theme policy
-        //ThemeKit.shared.windowThemePolicy = .themeAllWindows
+        
+        /* 1. Simpler usage: switch between light and dark theme */
+        
+        //ThemeKit.lightTheme.apply()
+        //ThemeKit.darkTheme.apply()
+        //ThemeKit.systemTheme.apply()
+        
+        
+        /* 2. Advacned usage: define window theme policy & enable user themes.
+         * Themes will be selected using popup bound to user defaults. */
+        
+        // 2.1 Setup window theme policy
+        ThemeKit.shared.windowThemePolicy = .themeAllWindows
         //ThemeKit.shared.windowThemePolicy = .themeSomeWindows(windowClassNames: [MyWindow.className()])
         //ThemeKit.shared.windowThemePolicy = .doNotThemeWindows
         
-        // User themes folder
+        // 2.2 User themes folder
         let workingDirectory = FileManager.default.currentDirectoryPath
         let projectRootURL = URL(fileURLWithPath: workingDirectory, isDirectory: true).deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
         ThemeKit.shared.userThemesFolderURL = projectRootURL
-        //ThemeKit.darkTheme.apply()
+        // Alternatively, could use "Application Support/{app_bundle_id}/Themes"
+        // ThemeKit.shared.userThemesFolderURL = ThemeKit.shared.applicationSupportUserThemesFolderURL
+        
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        
+    }
+    
+    @IBAction func newWindowForTab(_ sender: Any?) {
         
     }
     

@@ -153,7 +153,7 @@ public class ThemeKit: NSObject {
     // MARK:- Themes
     
     /// Current effective theme (read-only).
-    /// This can return a different result than `theme`, as is current theme is
+    /// This can return a different result than `theme`, as if current theme is
     /// set to `SystemTheme`, effective theme will be either `LightTheme` or `DarkTheme`.
     public var effectiveTheme: Theme {
         return _effectiveTheme ?? defaultTheme
@@ -171,8 +171,8 @@ public class ThemeKit: NSObject {
             // Store identifier on user defaults
             UserDefaults.standard.set(theme.identifier, forKey: ThemeKit.UserDefaultsThemeKey)
             
-            // Switch theme with animation
-            _changeCurrentThemeWithAnimation()
+            // Apply theme
+            applyTheme()
         }
     }
     private var _theme: Theme?
@@ -230,7 +230,7 @@ public class ThemeKit: NSObject {
     
     /// Apple Interface theme has changed.
     func systemThemeDidChange(_ notification: Notification) {
-        _changeCurrentThemeWithAnimation()
+        applyTheme()
     }
     
     
@@ -356,56 +356,60 @@ public class ThemeKit: NSObject {
         (userDefaultsTheme ?? defaultTheme).apply()
     }
     
-    private func _changeCurrentTheme() {
-        // Determine new theme
-        let oldTheme: Theme = effectiveTheme
-        var newTheme: Theme
-        if theme.isAutoTheme {
-            newTheme = theme.isDarkTheme ? ThemeKit.darkTheme : ThemeKit.lightTheme
-        }
-        else {
-            newTheme = theme
-        }
-        
-        // Apply & Propagate changes
-        func applyAndPropagate(_ theme: Theme) {
-            Thread.onMain {
-                // Will change...
-                self.willChangeValue(forKey: #keyPath(effectiveTheme))
-                NotificationCenter.default.post(name: .willChangeTheme, object: self.effectiveTheme)
-                
-                // ...change...
-                self._effectiveTheme = theme
-                
-                // ...did change!
-                NotificationCenter.default.post(name: .didChangeTheme, object: self.effectiveTheme)
-                self.didChangeValue(forKey: #keyPath(effectiveTheme))
-                
-                // Theme all windows compliant to current `windowThemePolicy`
-                NSWindow.themeAllWindows()
-            }
-        }
-        
-        // If we are switching light-to-light or dark-to-dark themes, macOS won't
-        // refresh appearance on controls => need to 'tilt' appearance to force refresh!
-        if oldTheme.isLightTheme == newTheme.isLightTheme {
-            // Switch to "inverted" theme (light -> dark, dark -> light)
-            applyAndPropagate(oldTheme.isLightTheme ? ThemeKit.darkTheme : ThemeKit.lightTheme)
-        }
-        
-        // Switch to new theme
-        applyAndPropagate(newTheme)
-    }
-    
     private var _currentTransitionWindows: Set<NSWindow> = Set()
     
-    private func _changeCurrentThemeWithAnimation() {
+    /// Apply current `theme`
+    private func applyTheme(animating: Bool = true) {
+        
+        // Make theme effective
+        func makeThemeEffective() {
+            // Determine new theme
+            let oldTheme: Theme = effectiveTheme
+            var newTheme: Theme
+            if theme.isAutoTheme {
+                newTheme = theme.isDarkTheme ? ThemeKit.darkTheme : ThemeKit.lightTheme
+            }
+            else {
+                newTheme = theme
+            }
+            
+            // Apply & Propagate changes
+            func applyAndPropagate(_ theme: Theme) {
+                Thread.onMain {
+                    // Will change...
+                    self.willChangeValue(forKey: #keyPath(effectiveTheme))
+                    NotificationCenter.default.post(name: .willChangeTheme, object: self.effectiveTheme)
+                    
+                    // ...change...
+                    self._effectiveTheme = theme
+                    
+                    // ...did change!
+                    NotificationCenter.default.post(name: .didChangeTheme, object: self.effectiveTheme)
+                    self.didChangeValue(forKey: #keyPath(effectiveTheme))
+                    
+                    // Theme all windows compliant to current `windowThemePolicy`
+                    NSWindow.themeAllWindows()
+                }
+            }
+            
+            // If we are switching light-to-light or dark-to-dark themes, macOS won't
+            // refresh appearance on controls => need to 'tilt' appearance to force refresh!
+            if oldTheme.isLightTheme == newTheme.isLightTheme {
+                // Switch to "inverted" theme (light -> dark, dark -> light)
+                applyAndPropagate(oldTheme.isLightTheme ? ThemeKit.darkTheme : ThemeKit.lightTheme)
+            }
+            
+            // Switch to new theme
+            applyAndPropagate(newTheme)
+        }
+        
+        // Animate theme transition
         Thread.onMain {
             // Find windows to animate
             let windows = NSWindow.windowsCompliantWithWindowThemePolicy()
-            guard windows.count > 0 else {
+            guard windows.count > 0 && animating else {
                 // Change theme without animation
-                self._changeCurrentTheme()
+                makeThemeEffective()
                 return
             }
             
@@ -453,7 +457,7 @@ public class ThemeKit: NSObject {
             }
 
             // Change theme
-            self._changeCurrentTheme()
+            makeThemeEffective()
         }
     }
     

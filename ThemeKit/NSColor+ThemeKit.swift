@@ -59,7 +59,7 @@ extension NSColor {
         // checks if NSColor `*Color` class methods are being overriden
         for colorMethod in themeColorMethods {
             if nsColorMethods.contains(colorMethod) {
-                print("Theme color `\(colorMethod)` is overriding an NSColor method -> swizzling needed.")
+                // theme color with `colorMethod` selector is overriding a `NSColor` method -> swizzling needed.
                 return true
             }
         }

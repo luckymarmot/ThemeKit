@@ -13,7 +13,6 @@
 		285D313D1D82BD6A001F4097 /* LightTheme+DemoSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285D313C1D82BD6A001F4097 /* LightTheme+DemoSwift.swift */; };
 		285D313F1D82BDCB001F4097 /* DarkTheme+DemoSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285D313E1D82BDCB001F4097 /* DarkTheme+DemoSwift.swift */; };
 		285D318D1D82F875001F4097 /* DefaultThemeValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285D318C1D82F875001F4097 /* DefaultThemeValueTransformer.swift */; };
-		286DE8181D92E67C00767E00 /* ThemeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 286DE8171D92E65A00767E00 /* ThemeKit.framework */; };
 		2892E6A71D80C0F700435903 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2892E6A61D80C0F700435903 /* AppDelegate.swift */; };
 		2892E6A91D80C0F700435903 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2892E6A81D80C0F700435903 /* ViewController.swift */; };
 		2892E6AB1D80C0F700435903 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2892E6AA1D80C0F700435903 /* Assets.xcassets */; };
@@ -21,18 +20,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		286DE8161D92E65A00767E00 /* PBXContainerItemProxy */ = {
+		289694471D99E5C00021C035 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 286DE8121D92E65A00767E00 /* ThemeKit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 286DE7C81D92DF8F00767E00;
-			remoteInfo = ThemeKit;
-		};
-		286DE8191D92E68300767E00 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 286DE8121D92E65A00767E00 /* ThemeKit.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 286DE7C71D92DF8F00767E00;
 			remoteInfo = ThemeKit;
 		};
 /* End PBXContainerItemProxy section */
@@ -44,7 +36,7 @@
 		285D313C1D82BD6A001F4097 /* LightTheme+DemoSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LightTheme+DemoSwift.swift"; sourceTree = "<group>"; };
 		285D313E1D82BDCB001F4097 /* DarkTheme+DemoSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DarkTheme+DemoSwift.swift"; sourceTree = "<group>"; };
 		285D318C1D82F875001F4097 /* DefaultThemeValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultThemeValueTransformer.swift; sourceTree = "<group>"; };
-		286DE8121D92E65A00767E00 /* ThemeKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ThemeKit.xcodeproj; path = ../ThemeKit/ThemeKit.xcodeproj; sourceTree = "<group>"; };
+		286DE8121D92E65A00767E00 /* ThemeKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ThemeKit.xcodeproj; path = ../ThemeKit.xcodeproj; sourceTree = "<group>"; };
 		2892E6A31D80C0F700435903 /* DemoSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2892E6A61D80C0F700435903 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2892E6A81D80C0F700435903 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -58,7 +50,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				286DE8181D92E67C00767E00 /* ThemeKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,14 +65,6 @@
 				285D313E1D82BDCB001F4097 /* DarkTheme+DemoSwift.swift */,
 			);
 			name = Theming;
-			sourceTree = "<group>";
-		};
-		286DE8131D92E65A00767E00 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				286DE8171D92E65A00767E00 /* ThemeKit.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		2892E69A1D80C0F700435903 = {
@@ -124,6 +107,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		289694441D99E5C00021C035 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				289694481D99E5C00021C035 /* ThemeKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -138,7 +129,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				286DE81A1D92E68300767E00 /* PBXTargetDependency */,
 			);
 			name = DemoSwift;
 			productName = DemoSwift;
@@ -174,7 +164,7 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 286DE8131D92E65A00767E00 /* Products */;
+					ProductGroup = 289694441D99E5C00021C035 /* Products */;
 					ProjectRef = 286DE8121D92E65A00767E00 /* ThemeKit.xcodeproj */;
 				},
 			);
@@ -186,11 +176,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		286DE8171D92E65A00767E00 /* ThemeKit.framework */ = {
+		289694481D99E5C00021C035 /* ThemeKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = ThemeKit.framework;
-			remoteRef = 286DE8161D92E65A00767E00 /* PBXContainerItemProxy */;
+			remoteRef = 289694471D99E5C00021C035 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -224,14 +214,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		286DE81A1D92E68300767E00 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ThemeKit;
-			targetProxy = 286DE8191D92E68300767E00 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2892E6AC1D80C0F700435903 /* Main.storyboard */ = {

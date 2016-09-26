@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ThemeKit  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a title="ThemeKit  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html">ThemeKit Docs</a></p>
+        <p class="header-right"><a href="https://github.com/luckymarmot/ThemeKit"><img src="img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right"><a href="dash-feed://https%3A%2F%2Fpaw%2Ecloud%2FThemeKit%2Fdocsets%2FThemeKit%2Exml"><img src="img/dash.png"/>Install in Dash</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html">ThemeKit Reference</a>
+        <img id="carat" src="img/carat.png" />
+        ThemeKit  Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="ThemeKit.html">ThemeKit</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/ThemeKit.html">ThemeKit</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/ThemeKit/WindowThemePolicy.html">– WindowThemePolicy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/Notification.html">Notification</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Themes.html">Themes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Protocols/Theme.html">Theme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/LightTheme.html">LightTheme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/DarkTheme.html">DarkTheme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/SystemTheme.html">SystemTheme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/UserTheme.html">UserTheme</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Theme Assets.html">Theme Assets</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/ThemeColor.html">ThemeColor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/ThemeGradient.html">ThemeGradient</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            
+            <a href='#themekit' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='themekit'>ThemeKit</h1>
+
+<p>ThemeKit is a drop-in Swift 3 library that provides theming capabilities to both Swift and Objective-C Mac applications.</p>
+<a href='#basic-usage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='basic-usage'>Basic Usage</h2>
+
+<p>At its simpler usage, applications can be themed with a single line command:</p>
+<pre class="highlight plaintext"><code>// Apply the dark theme
+ThemeKit.darkTheme.apply()
+
+// Apply the light theme
+ThemeKit.lightTheme.apply()
+
+// Apply the 'system' theme which dynamically changes to light or dark, 
+// respecting Preferences &gt; General setting
+ThemeKit.systemTheme.apply()
+</code></pre>
+<a href='#window-theme-policy' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='window-theme-policy'>Window Theme Policy</h2>
+
+<p>By default, all application windows will be themed, but this can be changed:</p>
+<pre class="highlight plaintext"><code>// Theme all application windows (default)
+ThemeKit.shared.windowThemePolicy = .themeAllWindows
+
+// Only theme windows of the specified class names
+ThemeKit.shared.windowThemePolicy = .themeSomeWindows(windowClassNames: [MyWindow.className()])
+
+/// Do not theme any window
+ThemeKit.shared.windowThemePolicy = .doNotThemeWindows
+</code></pre>
+
+<p>Note: despite of the configured policy, individual windows can be explictly themed with <code>aWindow.theme()</code> or <code>aWindow.themeIfCompliantWithWindowThemePolicy()</code>.</p>
+
+<p>Window theme policy must be configured on the <code>applicationWillFinishLaunching(_:)</code> method.</p>
+<a href='#theme-aware-assets' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='theme-aware-assets'>Theme-Aware Assets</h2>
+
+<p>Theme-aware colors and gradients dynamically change when the application theme  changes. For example, a <code>ThemeColor.brandColor</code> can be defined that resolves to blue for the light theme and to white for the dark theme.</p>
+
+<p>Please refer to <code>ThemeColor</code> and <code>ThemeGradient</code> for more information.</p>
+<a href='#user-themes' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='user-themes'>User Themes</h2>
+
+<p>Besides the theme-aware theme assets (colors and gradients) that can be specified with the light and dark themes, custom themes can be made with simple text files.</p>
+
+<p>You can check the sample <code>[Demo.theme](https://github.com/luckymarmot/ThemeKit/Demo.theme)</code> file on GitHub project page for an example.</p>
+
+<p>Just like other ThemeKit settings, user themes folder must be configured on 
+the <code>applicationWillFinishLaunching(_:)</code> method.</p>
+<pre class="highlight plaintext"><code>// Configure ThemeKit to use `Application Support/{bundle_id}/Themes` folder
+ThemeKit.shared.userThemesFolderURL = ThemeKit.shared.applicationSupportUserThemesFolderURL
+</code></pre>
+
+<p>Please refer to <code>UserTheme</code> for more information.</p>
+<a href='#notifications' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='notifications'>Notifications</h2>
+
+<p>ThemeKit provides the following notifications:</p>
+
+<ul>
+<li><code>Notification.Name.willChangeTheme</code> is sent when current theme is about to change</li>
+<li><code>Notification.Name.didChangeTheme</code> is sent when current theme did change</li>
+<li><code>Notification.Name.didChangeSystemTheme</code> is sent when system theme did change (System Preference &gt; General)</li>
+</ul>
+
+          </section>
+        </section>
+        <section id="footer">
+          <p>© 2016 <a class="link" href="https://paw.cloud" target="_blank" rel="external">Paw</a> under <a class="link" href="https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

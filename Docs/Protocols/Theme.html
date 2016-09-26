@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Theme Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Protocol/Theme" class="dashAnchor"></a>
+    <a title="Theme Protocol Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">ThemeKit Docs</a></p>
+        <p class="header-right"><a href="https://github.com/luckymarmot/ThemeKit"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right"><a href="dash-feed://https%3A%2F%2Fpaw%2Ecloud%2FThemeKit%2Fdocsets%2FThemeKit%2Exml"><img src="../img/dash.png"/>Install in Dash</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">ThemeKit Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        Theme Protocol Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../ThemeKit.html">ThemeKit</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/ThemeKit.html">ThemeKit</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ThemeKit/WindowThemePolicy.html">– WindowThemePolicy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Notification.html">Notification</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Themes.html">Themes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Theme.html">Theme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LightTheme.html">LightTheme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DarkTheme.html">DarkTheme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SystemTheme.html">SystemTheme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UserTheme.html">UserTheme</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Theme Assets.html">Theme Assets</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/ThemeColor.html">ThemeColor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ThemeGradient.html">ThemeGradient</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Theme</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Theme</span></code></pre>
+
+                </div>
+              </div>
+            <p>Theme protocol. All themes conforms to this.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Required"></a>
+                <a name="//apple_ref/swift/Section/Required" class="dashAnchor"></a>
+                <a href="#/Required">
+                  <h3 class="section-name">Required</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP8ThemeKit5Theme10identifierSS"></a>
+                    <a name="//apple_ref/swift/Property/identifier" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP8ThemeKit5Theme10identifierSS">identifier</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Unique theme identifier.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L17">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP8ThemeKit5Theme11displayNameSS"></a>
+                    <a name="//apple_ref/swift/Property/displayName" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP8ThemeKit5Theme11displayNameSS">displayName</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Theme display name.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">displayName</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L20">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP8ThemeKit5Theme16shortDisplayNameSS"></a>
+                    <a name="//apple_ref/swift/Property/shortDisplayName" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP8ThemeKit5Theme16shortDisplayNameSS">shortDisplayName</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Theme short display name.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">shortDisplayName</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L23">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP8ThemeKit5Theme11isDarkThemeSb"></a>
+                    <a name="//apple_ref/swift/Property/isDarkTheme" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP8ThemeKit5Theme11isDarkThemeSb">isDarkTheme</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Is this a dark theme?</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">isDarkTheme</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L26">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Optional"></a>
+                <a name="//apple_ref/swift/Section/Optional" class="dashAnchor"></a>
+                <a href="#/Optional">
+                  <h3 class="section-name">Optional</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP8ThemeKit5Theme10themeAssetFSSGSqP__"></a>
+                    <a name="//apple_ref/swift/Method/themeAsset(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP8ThemeKit5Theme10themeAssetFSSGSqP__">themeAsset(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Theme asset for the specified key.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">optional</span> <span class="kd">func</span> <span class="nf">themeAsset</span><span class="p">(</span><span class="n">_</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L32">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP8ThemeKit5Theme23fallbackForegroundColorGSqCSo7NSColor_"></a>
+                    <a name="//apple_ref/swift/Property/fallbackForegroundColor" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP8ThemeKit5Theme23fallbackForegroundColorGSqCSo7NSColor_">fallbackForegroundColor</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Foreground color to be used on fallback situations.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">optional</span> <span class="k">var</span> <span class="nv">fallbackForegroundColor</span> <span class="p">:</span> <span class="kt">NSColor</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L35">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP8ThemeKit5Theme23fallbackBackgroundColorGSqCSo7NSColor_"></a>
+                    <a name="//apple_ref/swift/Property/fallbackBackgroundColor" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP8ThemeKit5Theme23fallbackBackgroundColorGSqCSo7NSColor_">fallbackBackgroundColor</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Background color to be used on fallback situations.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">optional</span> <span class="k">var</span> <span class="nv">fallbackBackgroundColor</span> <span class="p">:</span> <span class="kt">NSColor</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L38">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP8ThemeKit5Theme16fallbackGradientGSqCSo10NSGradient_"></a>
+                    <a name="//apple_ref/swift/Property/fallbackGradient" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP8ThemeKit5Theme16fallbackGradientGSqCSo10NSGradient_">fallbackGradient</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Gradient to be used on fallback situations.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">optional</span> <span class="k">var</span> <span class="nv">fallbackGradient</span> <span class="p">:</span> <span class="kt">NSGradient</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L41">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vE8ThemeKitPS_5Theme12isLightThemeSb"></a>
+                    <a name="//apple_ref/swift/Property/isLightTheme" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vE8ThemeKitPS_5Theme12isLightThemeSb">isLightTheme</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Is this a light theme?</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isLightTheme</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L48-L50">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vE8ThemeKitPS_5Theme11isAutoThemeSb"></a>
+                    <a name="//apple_ref/swift/Property/isAutoTheme" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vE8ThemeKitPS_5Theme11isAutoThemeSb">isAutoTheme</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Does theme automatically resolve to LightTheme or DarkTheme,
+accordingly to System Preferences &gt; General?</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isAutoTheme</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L54-L56">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FE8ThemeKitPS_5Theme5applyFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/apply()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FE8ThemeKitPS_5Theme5applyFT_T_">apply()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Apply theme (make it the current one).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">apply</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L59-L61">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vE8ThemeKitPS_5Theme30defaultFallbackForegroundColorCSo7NSColor"></a>
+                    <a name="//apple_ref/swift/Property/defaultFallbackForegroundColor" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vE8ThemeKitPS_5Theme30defaultFallbackForegroundColorCSo7NSColor">defaultFallbackForegroundColor</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Default foreground color to be used on fallback situations when
+no <code><a href="../Protocols/Theme.html#/s:vP8ThemeKit5Theme23fallbackForegroundColorGSqCSo7NSColor_">fallbackForegroundColor</a></code> was specified by the theme.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">defaultFallbackForegroundColor</span><span class="p">:</span> <span class="kt">NSColor</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L65-L67">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vE8ThemeKitPS_5Theme30defaultFallbackBackgroundColorCSo7NSColor"></a>
+                    <a name="//apple_ref/swift/Property/defaultFallbackBackgroundColor" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vE8ThemeKitPS_5Theme30defaultFallbackBackgroundColorCSo7NSColor">defaultFallbackBackgroundColor</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Default background color to be used on fallback situations when
+no <code><a href="../Protocols/Theme.html#/s:vP8ThemeKit5Theme23fallbackBackgroundColorGSqCSo7NSColor_">fallbackBackgroundColor</a></code> was specified by the theme.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">defaultFallbackBackgroundColor</span><span class="p">:</span> <span class="kt">NSColor</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L71-L73">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vE8ThemeKitPS_5Theme23defaultFallbackGradientCSo10NSGradient"></a>
+                    <a name="//apple_ref/swift/Property/defaultFallbackGradient" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vE8ThemeKitPS_5Theme23defaultFallbackGradientCSo10NSGradient">defaultFallbackGradient</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Default gradient to be used on fallback situations when
+no <code><a href="../Protocols/Theme.html#/s:vP8ThemeKit5Theme23fallbackForegroundColorGSqCSo7NSColor_">fallbackForegroundColor</a></code> was specified by the theme.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">defaultFallbackGradient</span><span class="p">:</span> <span class="kt">NSGradient</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L77-L79">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vE8ThemeKitPS_5Theme14effectiveThemePS0__"></a>
+                    <a name="//apple_ref/swift/Property/effectiveTheme" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vE8ThemeKitPS_5Theme14effectiveThemePS0__">effectiveTheme</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Effective theme, which can be different from itself if it represents the 
+system theme (in that case it will be either <code><a href="../Classes/LightTheme.html">LightTheme</a></code> or <code><a href="../Classes/DarkTheme.html">DarkTheme</a></code>).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">effectiveTheme</span><span class="p">:</span> <span class="kt">Theme</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L83-L90">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FE8ThemeKitPS_5Theme16themeDescriptionFPS0__SS"></a>
+                    <a name="//apple_ref/swift/Method/themeDescription(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FE8ThemeKitPS_5Theme16themeDescriptionFPS0__SS">themeDescription(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Theme description.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">themeDescription</span><span class="p">(</span><span class="n">_</span> <span class="nv">theme</span><span class="p">:</span> <span class="kt">Theme</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L93-L95">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>© 2016 <a class="link" href="https://paw.cloud" target="_blank" rel="external">Paw</a> under <a class="link" href="https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

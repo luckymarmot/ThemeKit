@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ThemeColor Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/ThemeColor" class="dashAnchor"></a>
+    <a title="ThemeColor Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">ThemeKit Docs</a></p>
+        <p class="header-right"><a href="https://github.com/luckymarmot/ThemeKit"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right"><a href="dash-feed://https%3A%2F%2Fpaw%2Ecloud%2FThemeKit%2Fdocsets%2FThemeKit%2Exml"><img src="../img/dash.png"/>Install in Dash</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">ThemeKit Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        ThemeColor Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../ThemeKit.html">ThemeKit</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/ThemeKit.html">ThemeKit</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ThemeKit/WindowThemePolicy.html">– WindowThemePolicy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Notification.html">Notification</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Themes.html">Themes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Theme.html">Theme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LightTheme.html">LightTheme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DarkTheme.html">DarkTheme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SystemTheme.html">SystemTheme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UserTheme.html">UserTheme</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Theme Assets.html">Theme Assets</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/ThemeColor.html">ThemeColor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ThemeGradient.html">ThemeGradient</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>ThemeColor</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ThemeColor</span> <span class="p">:</span> <span class="kt">NSColor</span></code></pre>
+
+                </div>
+              </div>
+            <p><code>ThemeColor</code> is a <code>NSColor</code> subclass that dynamically changes its colors whenever
+a new theme is make current.</p>
+
+<p>The recommended way of adding your own dynamic colors is as follows:</p>
+
+<ol>
+<li><p>Add a <code>ThemeColor</code> class extension (or <code>TKThemeColor</code> category on Objective-C)
+to add class methods for your colors. E.g.:
+In Swift:
+&ldquo;`
+extension ThemeColor {</p>
+
+<p>static var brandColor: ThemeColor { 
+    return ThemeColor.color(with: #function)
+  }</p>
+
+<p>}
+<code>
+In Objective-C:
+</code>
+@interface TKThemeColor (Demo)</p>
+
+<ul>
+<li>(TKThemeColor*)brandColor;</li>
+</ul>
+
+<p>@end</p>
+
+<p>@implementation TKThemeColor (Demo)</p>
+
+<ul>
+<li>(TKThemeColor*)brandColor {
+return [TKThemeColor colorWithSelector:_cmd];
+}</li>
+</ul>
+
+<p>@end
+&rdquo;`</p></li>
+<li><p>Add Class Extensions on <code><a href="../Classes/LightTheme.html">LightTheme</a></code> and <code><a href="../Classes/DarkTheme.html">DarkTheme</a></code> (<code>TKLightTheme</code> and 
+<code>TKDarkTheme</code> on Objective-C) to provide instance methods for each theme color 
+class method defined on (1). E.g.:
+In Swift:
+&ldquo;`
+extension LightTheme {</p>
+
+<p>var brandColor: NSColor {
+    return NSColor.orange
+  }</p>
+
+<p>}</p></li>
+</ol>
+
+<p>extension DarkTheme {</p>
+
+<pre class="highlight plaintext"><code> var brandColor: NSColor {
+   return NSColor.white
+ }
+</code></pre>
+
+<p>}
+    <code>
+    In Objective-C:
+</code>
+    @interface TKLightTheme (Demo) @end</p>
+
+<pre class="highlight objective_c"><code><span class="k">@implementation</span> <span class="nc">TKLightTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
+
+   <span class="err">-</span> <span class="err">(</span><span class="nc">NSColor</span><span class="o">*</span><span class="p">)</span><span class="n">brandColor</span>
+   <span class="p">{</span>
+       <span class="k">return</span> <span class="p">[</span><span class="n">NSColor</span> <span class="nf">orangeColor</span><span class="p">];</span>
+   <span class="p">}</span>
+
+<span class="k">@end</span>
+
+<span class="k">@interface</span> <span class="nc">TKDarkTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span> <span class="err">@</span><span class="nc">end</span>
+
+<span class="k">@implementation</span> <span class="nc">TKDarkTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
+
+   <span class="err">-</span> <span class="err">(</span><span class="nc">NSColor</span><span class="o">*</span><span class="p">)</span><span class="n">brandColor</span>
+   <span class="p">{</span>
+       <span class="k">return</span> <span class="p">[</span><span class="n">NSColor</span> <span class="nf">whiteColor</span><span class="p">];</span>
+   <span class="p">}</span>
+
+<span class="k">@end</span>
+<span class="err">```</span>
+</code></pre>
+
+<ol>
+<li>If using user theme files (<code>.theme</code> user theme files), also specify properties
+for each theme color class method defined on (1). E.g.:
+&rdquo;`
+displayName = Sample User Theme
+identifier = com.luckymarmot.ThemeKit.SampleUserTheme
+darkTheme = false</li>
+</ol>
+
+<p>brandColor = rgba(96, 240, 12, 0.5)
+   &ldquo;`</p>
+
+<p>Unimplemented properties/methods on target theme class will default to
+<code>fallbackForegroundColor</code> and <code>fallbackBackgroundColor</code>, for foreground and
+background colors respectively. These too, can be customized per theme.</p>
+
+<p>Please check <code><a href="../Classes/ThemeGradient.html">ThemeGradient</a></code> for theme-aware gradients.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8ThemeKit10ThemeColor18themeColorSelectorV10ObjectiveC8Selector"></a>
+                    <a name="//apple_ref/swift/Property/themeColorSelector" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8ThemeKit10ThemeColor18themeColorSelectorV10ObjectiveC8Selector">themeColorSelector</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Color selector for the theme class.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">themeColorSelector</span><span class="p">:</span> <span class="kt">Selector</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift#L115">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8ThemeKit10ThemeColor18resolvedThemeColorCSo7NSColor"></a>
+                    <a name="//apple_ref/swift/Property/resolvedThemeColor" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8ThemeKit10ThemeColor18resolvedThemeColorCSo7NSColor">resolvedThemeColor</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Resolved color from current theme.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">lazy</span> <span class="k">var</span> <span class="nv">resolvedThemeColor</span><span class="p">:</span> <span class="kt">NSColor</span> <span class="o">=</span> <span class="kt">NSColor</span><span class="o">.</span><span class="n">clear</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift#L118">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/MARK:-%20Public"></a>
+                <a name="//apple_ref/swift/Section/MARK:- Public" class="dashAnchor"></a>
+                <a href="#/MARK:-%20Public">
+                  <h3 class="section-name">MARK:- Public</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC8ThemeKit10ThemeColor5colorFT4withV10ObjectiveC8Selector_S0_"></a>
+                    <a name="//apple_ref/swift/Method/color(with:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC8ThemeKit10ThemeColor5colorFT4withV10ObjectiveC8Selector_S0_">color(with:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a new ThemeColor instance for the specified selector.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">color</span><span class="p">(</span><span class="n">with</span> <span class="nv">selector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">ThemeColor</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift#L128-L130">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/MARK:-%20Internal"></a>
+                <a name="//apple_ref/swift/Section/MARK:- Internal" class="dashAnchor"></a>
+                <a href="#/MARK:-%20Internal">
+                  <h3 class="section-name">MARK:- Internal</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC8ThemeKit10ThemeColor5colorFT3forPS_5Theme_8selectorV10ObjectiveC8Selector_CSo7NSColor"></a>
+                    <a name="//apple_ref/swift/Method/color(for:selector:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC8ThemeKit10ThemeColor5colorFT3forPS_5Theme_8selectorV10ObjectiveC8Selector_CSo7NSColor">color(for:selector:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Color for a specific theme.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">color</span><span class="p">(</span><span class="k">for</span> <span class="nv">theme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">NSColor</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift#L143-L175">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC8ThemeKit10ThemeColor5colorFT3forCSo6NSView8selectorV10ObjectiveC8Selector_CSo7NSColor"></a>
+                    <a name="//apple_ref/swift/Method/color(for:selector:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC8ThemeKit10ThemeColor5colorFT3forCSo6NSView8selectorV10ObjectiveC8Selector_CSo7NSColor">color(for:selector:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Current theme color, but respecting view appearance.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">color</span><span class="p">(</span><span class="k">for</span> <span class="nv">view</span><span class="p">:</span> <span class="kt">NSView</span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">NSColor</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift#L179-L197">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/MARK:-%20Private%20Implementation"></a>
+                <a name="//apple_ref/swift/Section/MARK:- Private Implementation" class="dashAnchor"></a>
+                <a href="#/MARK:-%20Private%20Implementation">
+                  <h3 class="section-name">MARK:- Private Implementation</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC8ThemeKit10ThemeColor10initializeFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/initialize()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC8ThemeKit10ThemeColor10initializeFT_T_">initialize()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">override</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">initialize</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift#L202-L207">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>© 2016 <a class="link" href="https://paw.cloud" target="_blank" rel="external">Paw</a> under <a class="link" href="https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

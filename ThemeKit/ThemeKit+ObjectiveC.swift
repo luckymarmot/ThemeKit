@@ -8,9 +8,9 @@
 
 import Foundation
 
-extension ThemeKit {
+public extension ThemeKit {
     
-    /// Window theme policies that define which windows should be automatically themed, if any (Objective-C variant).
+    /// Window theme policies that define which windows should be automatically themed, if any (Objective-C variant, only).
     @objc(TKThemeKitWindowThemePolicy)
     public enum TKThemeKitWindowThemePolicy: Int {
         /// Theme all application windows (default).

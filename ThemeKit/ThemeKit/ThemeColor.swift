@@ -115,14 +115,10 @@ public class ThemeColor : NSColor {
     public var themeColorSelector: Selector
     
     /// Resolved color from current theme.
-    public var resolvedThemeColor: NSColor? {
-        if _colorSpace == nil {
-            return _resolvedThemeColor
-        }
-        else {
-            return _resolvedThemeColor?.usingColorSpace(_colorSpace!)
-        }
-    }
+    public lazy var resolvedThemeColor: NSColor = NSColor.clear
+    
+    /// Theme color space (if specified).
+    private var themeColorSpace: NSColorSpace?
     
     
     // MARK:- Public
@@ -203,9 +199,6 @@ public class ThemeColor : NSColor {
     
     // MARK:- Private Implementation
     
-    private var _colorSpace: NSColorSpace?
-    private var _resolvedThemeColor: NSColor?
-    
     open override class func initialize() {
         _cachedColors = NSCache.init()
         _cachedThemeColors = NSCache.init()
@@ -225,7 +218,7 @@ public class ThemeColor : NSColor {
     
     init(with selector: Selector, colorSpace: NSColorSpace!) {
         themeColorSelector = selector
-        _colorSpace = colorSpace
+        themeColorSpace = colorSpace
         super.init()
         recacheColor()
         NotificationCenter.default.addObserver(self, selector: #selector(recacheColor), name: .didChangeTheme, object: nil)
@@ -251,22 +244,29 @@ public class ThemeColor : NSColor {
         }
         
         // Recache resolved color
-        _resolvedThemeColor = ThemeColor.color(for: ThemeKit.shared.effectiveTheme, selector: themeColorSelector)
+        let newColor = ThemeColor.color(for: ThemeKit.shared.effectiveTheme, selector: themeColorSelector)
+        if themeColorSpace == nil {
+            resolvedThemeColor = newColor
+        }
+        else {
+            let convertedColor = newColor.usingColorSpace(themeColorSpace!)
+            resolvedThemeColor = convertedColor ?? newColor
+        }
     }
     
     
     // MARK:- NSColor Overrides
     
     override public func setFill() {
-        resolvedThemeColor?.setFill()
+        resolvedThemeColor.setFill()
     }
     
     override public func setStroke() {
-        resolvedThemeColor?.setStroke()
+        resolvedThemeColor.setStroke()
     }
     
     override public func set() {
-        resolvedThemeColor?.set()
+        resolvedThemeColor.set()
     }
     
     override public func usingColorSpace(_ space: NSColorSpace) -> NSColor? {
@@ -306,91 +306,91 @@ public class ThemeColor : NSColor {
     }
     
     override public var colorSpaceName: String {
-        return (resolvedThemeColor?.colorSpaceName)!
+        return resolvedThemeColor.colorSpaceName
     }
     
     override public var colorSpace: NSColorSpace {
-        return (resolvedThemeColor?.colorSpace)!
+        return resolvedThemeColor.colorSpace
     }
     
     override public var numberOfComponents: Int {
-        return (_resolvedThemeColor?.numberOfComponents)!
+        return resolvedThemeColor.numberOfComponents
     }
     
     override public func getComponents(_ components: UnsafeMutablePointer<CGFloat>) {
-        _resolvedThemeColor?.usingColorSpace(NSColorSpace.genericRGB)?.getComponents(components)
+        resolvedThemeColor.usingColorSpace(NSColorSpace.genericRGB)?.getComponents(components)
     }
     
     override public var redComponent: CGFloat {
-        return (_resolvedThemeColor?.usingColorSpace(NSColorSpace.genericRGB)?.redComponent)!
+        return (resolvedThemeColor.usingColorSpace(NSColorSpace.genericRGB)?.redComponent)!
     }
     
     override public var greenComponent: CGFloat {
-        return (_resolvedThemeColor?.usingColorSpace(NSColorSpace.genericRGB)?.greenComponent)!
+        return (resolvedThemeColor.usingColorSpace(NSColorSpace.genericRGB)?.greenComponent)!
     }
     
     override public var blueComponent: CGFloat {
-        return (_resolvedThemeColor?.usingColorSpace(NSColorSpace.genericRGB)?.blueComponent)!
+        return (resolvedThemeColor.usingColorSpace(NSColorSpace.genericRGB)?.blueComponent)!
     }
     
     override public func getRed(_ red: UnsafeMutablePointer<CGFloat>?, green: UnsafeMutablePointer<CGFloat>?, blue: UnsafeMutablePointer<CGFloat>?, alpha: UnsafeMutablePointer<CGFloat>?) {
-        _resolvedThemeColor?.usingColorSpace(NSColorSpace.genericRGB)?.getRed(red, green: green, blue: blue, alpha: alpha)
+        resolvedThemeColor.usingColorSpace(NSColorSpace.genericRGB)?.getRed(red, green: green, blue: blue, alpha: alpha)
     }
     
     override public var cyanComponent: CGFloat {
-        return (_resolvedThemeColor?.usingColorSpace(NSColorSpace.genericCMYK)?.cyanComponent)!
+        return (resolvedThemeColor.usingColorSpace(NSColorSpace.genericCMYK)?.cyanComponent)!
     }
     
     override public var magentaComponent: CGFloat {
-        return (_resolvedThemeColor?.usingColorSpace(NSColorSpace.genericCMYK)?.magentaComponent)!
+        return (resolvedThemeColor.usingColorSpace(NSColorSpace.genericCMYK)?.magentaComponent)!
     }
     
     override public var yellowComponent: CGFloat {
-        return (_resolvedThemeColor?.usingColorSpace(NSColorSpace.genericCMYK)?.yellowComponent)!
+        return (resolvedThemeColor.usingColorSpace(NSColorSpace.genericCMYK)?.yellowComponent)!
     }
     
     override public var blackComponent: CGFloat {
-        return (_resolvedThemeColor?.usingColorSpace(NSColorSpace.genericCMYK)?.blackComponent)!
+        return (resolvedThemeColor.usingColorSpace(NSColorSpace.genericCMYK)?.blackComponent)!
     }
     
     override public func getCyan(_ cyan: UnsafeMutablePointer<CGFloat>?, magenta: UnsafeMutablePointer<CGFloat>?, yellow: UnsafeMutablePointer<CGFloat>?, black: UnsafeMutablePointer<CGFloat>?, alpha: UnsafeMutablePointer<CGFloat>?) {
-        _resolvedThemeColor?.usingColorSpace(NSColorSpace.genericCMYK)?.getCyan(cyan, magenta: magenta, yellow: yellow, black: black, alpha: alpha)
+        resolvedThemeColor.usingColorSpace(NSColorSpace.genericCMYK)?.getCyan(cyan, magenta: magenta, yellow: yellow, black: black, alpha: alpha)
     }
     
     override public var whiteComponent: CGFloat {
-        return (_resolvedThemeColor?.usingColorSpace(NSColorSpace.genericGray)?.whiteComponent)!
+        return (resolvedThemeColor.usingColorSpace(NSColorSpace.genericGray)?.whiteComponent)!
     }
     
     override public func getWhite(_ white: UnsafeMutablePointer<CGFloat>?, alpha: UnsafeMutablePointer<CGFloat>?) {
-        _resolvedThemeColor?.usingColorSpace(NSColorSpace.genericGray)?.getWhite(white, alpha: alpha)
+        resolvedThemeColor.usingColorSpace(NSColorSpace.genericGray)?.getWhite(white, alpha: alpha)
     }
     
     override public var hueComponent: CGFloat {
-        return (_resolvedThemeColor?.usingColorSpace(NSColorSpace.genericRGB)?.hueComponent)!
+        return (resolvedThemeColor.usingColorSpace(NSColorSpace.genericRGB)?.hueComponent)!
     }
     
     override public var saturationComponent: CGFloat {
-        return (_resolvedThemeColor?.usingColorSpace(NSColorSpace.genericRGB)?.saturationComponent)!
+        return (resolvedThemeColor.usingColorSpace(NSColorSpace.genericRGB)?.saturationComponent)!
     }
     
     override public var brightnessComponent: CGFloat {
-        return (_resolvedThemeColor?.usingColorSpace(NSColorSpace.genericRGB)?.brightnessComponent)!
+        return (resolvedThemeColor.usingColorSpace(NSColorSpace.genericRGB)?.brightnessComponent)!
     }
     
     override public func getHue(_ hue: UnsafeMutablePointer<CGFloat>?, saturation: UnsafeMutablePointer<CGFloat>?, brightness: UnsafeMutablePointer<CGFloat>?, alpha: UnsafeMutablePointer<CGFloat>?) {
-        _resolvedThemeColor?.usingColorSpace(NSColorSpace.genericRGB)?.getHue(hue, saturation: saturation, brightness: brightness, alpha: alpha)
+        resolvedThemeColor.usingColorSpace(NSColorSpace.genericRGB)?.getHue(hue, saturation: saturation, brightness: brightness, alpha: alpha)
     }
     
     override public func highlight(withLevel val: CGFloat) -> NSColor? {
-        return resolvedThemeColor?.highlight(withLevel: val)
+        return resolvedThemeColor.highlight(withLevel: val)
     }
     
     override public func shadow(withLevel val: CGFloat) -> NSColor? {
-        return resolvedThemeColor?.shadow(withLevel: val)
+        return resolvedThemeColor.shadow(withLevel: val)
     }
     
     override public func withAlphaComponent(_ alpha: CGFloat) -> NSColor {
-        return (resolvedThemeColor?.withAlphaComponent(alpha))!
+        return resolvedThemeColor.withAlphaComponent(alpha)
     }
     
     override public var description: String {

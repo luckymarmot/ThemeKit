@@ -46,6 +46,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
     }
     
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+        return true
+    }
+    
     @IBAction func newWindowForTab(_ sender: Any?) {
         
     }

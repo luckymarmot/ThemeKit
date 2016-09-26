@@ -1,13 +1,9 @@
-//
-//  ThemeColor+DemoSwift.swift
-//  DemoSwift
-//
-//  Created by Nuno Grilo on 08/09/16.
-//  Copyright © 2016 Paw Inc. All rights reserved.
-//
+//: Playground - noun: a place where people can play
 
-import Foundation
+import Cocoa
 import ThemeKit
+
+var str = "Hello, playground"
 
 extension ThemeColor {
     
@@ -18,4 +14,8 @@ extension ThemeColor {
     public static override var labelColor: ThemeColor {
         return ThemeColor.color(with: #function)
     }
+    
 }
+
+
+ThemeColor.brandColor

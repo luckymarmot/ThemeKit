@@ -15,6 +15,10 @@ extension DarkTheme {
         return NSColor.lightGray
     }
     
+    var labelColor: NSColor {
+        return NSColor.brown
+    }
+    
     var brandGradient: NSGradient? {
         return NSGradient(starting: brandColor, ending: NSColor.blue)
     }

@@ -111,16 +111,16 @@ private var _cachedThemeGradients: NSCache<NSString, NSGradient>!
 @objc(TKThemeGradient)
 public class ThemeGradient : NSGradient {
     
-    /** Gradient selector for the theme class */
+    /// Gradient selector for the theme class.
     var themeGradientSelector: Selector
     
-    /** Resolved gradient from current theme */
+    /// Resolved gradient from current theme.
     var resolvedThemeGradient: NSGradient
     
     
     // MARK:- Public
     
-    /** Create a new ThemeGradient instance for the specified selector */
+    /// Create a new ThemeGradient instance for the specified selector.
     @objc(gradientWithSelector:)
     public class func gradient(with selector: Selector) -> ThemeGradient {
         let cacheKey = "\(selector)\0\(self)" as NSString
@@ -135,7 +135,7 @@ public class ThemeGradient : NSGradient {
     
     // MARK:- Internal
     
-    /** Gradient for a specific theme */
+    /// Gradient for a specific theme.
     class func gradient(for theme: Theme, selector: Selector) -> NSGradient {
         let cacheKey = "\(theme.identifier)\0\(selector)" as NSString
         var gradient = _cachedThemeGradients.object(forKey: cacheKey)

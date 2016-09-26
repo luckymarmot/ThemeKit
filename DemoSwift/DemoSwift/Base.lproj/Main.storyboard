@@ -1,8 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11198.2" systemVersion="15G1004" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A320" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11198.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -708,8 +707,8 @@
                                 </popUpButtonCell>
                                 <connections>
                                     <binding destination="XfG-lQ-9wD" name="content" keyPath="self.themes" id="Lq8-gF-Mmx"/>
-                                    <binding destination="XfG-lQ-9wD" name="contentObjects" keyPath="self.themes.identifier" previousBinding="Lq8-gF-Mmx" id="dQT-GF-qXC"/>
                                     <binding destination="XfG-lQ-9wD" name="contentValues" keyPath="self.themes.displayName" previousBinding="dQT-GF-qXC" id="nSq-Xm-rTY"/>
+                                    <binding destination="XfG-lQ-9wD" name="contentObjects" keyPath="self.themes.identifier" previousBinding="Lq8-gF-Mmx" id="dQT-GF-qXC"/>
                                     <binding destination="9zo-ZU-Lta" name="selectedObject" keyPath="values.ThemeKitTheme" previousBinding="nSq-Xm-rTY" id="EgX-Gf-HWT">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">DefaultThemeValueTransformer</string>
@@ -734,12 +733,21 @@
                                     <constraint firstAttribute="width" constant="100" id="ngf-Qo-C2q"/>
                                 </constraints>
                             </customView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LpI-ef-rFu">
+                                <rect key="frame" x="18" y="48" width="104" height="11"/>
+                                <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Secondary Label Color" id="WlW-G2-Rux">
+                                    <font key="font" metaFont="miniSystem"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="PXJ-vX-TW2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Vut-5v-gW1" secondAttribute="trailing" constant="20" id="05A-qh-37a"/>
                             <constraint firstItem="PXJ-vX-TW2" firstAttribute="top" secondItem="Vut-5v-gW1" secondAttribute="top" id="17g-4G-7PV"/>
                             <constraint firstAttribute="bottom" secondItem="Usw-Xv-h8X" secondAttribute="bottom" constant="20" id="7fS-Qu-F0M"/>
                             <constraint firstItem="9dY-pp-qLU" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="KMb-Sz-xc2"/>
+                            <constraint firstItem="LpI-ef-rFu" firstAttribute="top" secondItem="9dY-pp-qLU" secondAttribute="bottom" constant="5" id="Y33-T8-ilS"/>
                             <constraint firstItem="Usw-Xv-h8X" firstAttribute="leading" secondItem="Vut-5v-gW1" secondAttribute="leading" id="e7y-2o-Qc4"/>
                             <constraint firstItem="Vut-5v-gW1" firstAttribute="baseline" secondItem="9dY-pp-qLU" secondAttribute="baseline" id="f0H-df-jHO"/>
                             <constraint firstItem="PXJ-vX-TW2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Usw-Xv-h8X" secondAttribute="trailing" constant="20" id="iGD-x3-6oJ"/>
@@ -747,6 +755,7 @@
                             <constraint firstItem="Usw-Xv-h8X" firstAttribute="top" secondItem="Vut-5v-gW1" secondAttribute="bottom" constant="20" id="nhR-kk-bWL"/>
                             <constraint firstItem="9dY-pp-qLU" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="nxG-Z6-N22"/>
                             <constraint firstItem="Vut-5v-gW1" firstAttribute="leading" secondItem="9dY-pp-qLU" secondAttribute="trailing" constant="8" id="oaT-t0-aXW"/>
+                            <constraint firstItem="LpI-ef-rFu" firstAttribute="leading" secondItem="9dY-pp-qLU" secondAttribute="leading" id="rcC-PU-Vuz"/>
                             <constraint firstAttribute="trailing" secondItem="PXJ-vX-TW2" secondAttribute="trailing" constant="20" id="xOR-hQ-zUv"/>
                         </constraints>
                     </view>

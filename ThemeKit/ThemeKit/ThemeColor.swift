@@ -111,10 +111,10 @@ private var _cachedThemeColors: NSCache<NSString, NSColor>!
 @objc(TKThemeColor)
 public class ThemeColor : NSColor {
     
-    /** Color selector for the theme class */
+    /// Color selector for the theme class.
     var themeColorSelector: Selector
     
-    /** Resolved color from current theme */
+    /// Resolved color from current theme.
     var resolvedThemeColor: NSColor? {
         if _colorSpace == nil {
             return _resolvedThemeColor
@@ -127,16 +127,22 @@ public class ThemeColor : NSColor {
     
     // MARK:- Public
     
-    /** Create a new ThemeColor instance for the specified selector */
+    /// Create a new ThemeColor instance for the specified selector.
     @objc(colorWithSelector:)
     public class func color(with selector: Selector) -> ThemeColor {
         return color(with: selector, colorSpace: nil)
     }
     
+    /// Create a new ThemeColor instance for the specified color name component (usually, a string selector).
+    @objc(colorWithColorNameComponent:)
+    internal class func color(with colorNameComponent: String) -> ThemeColor {
+        return color(with: Selector(colorNameComponent), colorSpace: nil)
+    }
+    
     
     // MARK:- Internal
     
-    /** Color for a specific theme */
+    /// Color for a specific theme.
     @objc(colorForTheme:selector:)
     class func color(for theme: Theme, selector: Selector) -> NSColor {
         let cacheKey = "\(theme.identifier)\0\(selector)" as NSString
@@ -172,7 +178,7 @@ public class ThemeColor : NSColor {
         return color!
     }
     
-    /** Current theme color, but respecting view appearance */
+    /// Current theme color, but respecting view appearance.
     @objc(colorForView:selector:)
     class func color(for view: NSView, selector: Selector) -> NSColor? {
         let viewAppearance = view.appearance

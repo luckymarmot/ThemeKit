@@ -21,7 +21,7 @@ class DefaultThemeValueTransformer: ValueTransformer {
     }
     
     override func transformedValue(_ value: Any?) -> Any? {
-        return value ?? ThemeKit.shared.defaultTheme.identifier
+        return value ?? ThemeKit.defaultTheme.identifier
     }
     
     override func reverseTransformedValue(_ value: Any?) -> Any? {

@@ -16,8 +16,9 @@ class ViewController: NSViewController {
         
         ThemeKit.shared.addObserver(self, forKeyPath: #keyPath(themes), options: NSKeyValueObservingOptions.init(rawValue: 0), context: nil)
         
-        let userDefaultsTheme = UserDefaults.standard.string(forKey: "ThemeKitTheme")
-        print("userDefaultsTheme: \(userDefaultsTheme)")
+        ThemeKit.shared.addObserver(self, forKeyPath: "theme", options: NSKeyValueObservingOptions.init(rawValue: 0), context: nil)
+        ThemeKit.shared.addObserver(self, forKeyPath: "effectiveTheme", options: NSKeyValueObservingOptions.init(rawValue: 0), context: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(changedTheme(_:)), name: .didChangeTheme, object: nil)
     }
 
     var themes: [Theme] {
@@ -25,10 +26,22 @@ class ViewController: NSViewController {
     }
     
     public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        guard keyPath == #keyPath(themes) else { return }
         
-        willChangeValue(forKey: #keyPath(themes))
-        didChangeValue(forKey: #keyPath(themes))
+        if keyPath == #keyPath(themes) {
+            willChangeValue(forKey: #keyPath(themes))
+            didChangeValue(forKey: #keyPath(themes))
+        }
+        else if keyPath == "theme" {
+//            print("KVO  : theme: \(ThemeKit.shared.theme.identifier)")
+        }
+        else if keyPath == "effectiveTheme" {
+//            print("KVO  : effective theme: \(ThemeKit.shared.effectiveTheme.identifier)")
+        }
+    }
+    
+    @objc private func changedTheme(_ notification: Notification) {
+//        print("NOTIF: theme: \(ThemeKit.shared.theme.identifier)")
+//        print("       effective theme: \(ThemeKit.shared.effectiveTheme.identifier)")
     }
     
 }

@@ -78,6 +78,17 @@ public extension Theme {
         return NSGradient.init(starting: defaultFallbackBackgroundColor, ending: defaultFallbackBackgroundColor)!
     }
     
+    /// Effective theme, which can be different from itself if it represents the 
+    /// system theme (in that case it will be either `LightTheme` or `DarkTheme`).
+    var effectiveTheme: Theme {
+        if isAutoTheme {
+            return isDarkTheme ? ThemeKit.darkTheme : ThemeKit.lightTheme
+        }
+        else {
+            return self
+        }
+    }
+    
     /// Theme description.
     public func themeDescription(_ theme: Theme) -> String {
         return "\"\(displayName)\" [\(identifier)]\(isDarkTheme ? " (Dark)" : "")"

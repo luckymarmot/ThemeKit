@@ -257,7 +257,6 @@ public class ThemeColor : NSColor {
     
     // MARK:- NSColor Overrides
     
-    
     override public func setFill() {
         resolvedThemeColor?.setFill()
     }

@@ -223,8 +223,10 @@ public class ThemeKit: NSObject {
     /// *System Preferences > General > Appearance*.
     public static let systemTheme = SystemTheme()
     
-    /// Default theme to be used when none configured.
-    public static var defaultTheme: Theme = ThemeKit.lightTheme
+    /// Returns default theme to be used for the first time (`systemTheme`).
+    public static var defaultTheme: Theme {
+        return ThemeKit.lightTheme
+    }
     
     /// Get theme with specified identifier.
     public func theme(_ identifier: String?) -> Theme? {

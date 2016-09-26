@@ -39,7 +39,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         ThemeKit.shared.userThemesFolderURL = projectRootURL
         // Alternatively, could use "Application Support/{app_bundle_id}/Themes"
         // ThemeKit.shared.userThemesFolderURL = ThemeKit.shared.applicationSupportUserThemesFolderURL
-        
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {

@@ -112,10 +112,10 @@ private var _cachedThemeColors: NSCache<NSString, NSColor>!
 public class ThemeColor : NSColor {
     
     /// Color selector for the theme class.
-    var themeColorSelector: Selector
+    public var themeColorSelector: Selector
     
     /// Resolved color from current theme.
-    var resolvedThemeColor: NSColor? {
+    public var resolvedThemeColor: NSColor? {
         if _colorSpace == nil {
             return _resolvedThemeColor
         }
@@ -144,7 +144,7 @@ public class ThemeColor : NSColor {
     
     /// Color for a specific theme.
     @objc(colorForTheme:selector:)
-    class func color(for theme: Theme, selector: Selector) -> NSColor {
+    public class func color(for theme: Theme, selector: Selector) -> NSColor {
         let cacheKey = "\(theme.identifier)\0\(selector)" as NSString
         var color = _cachedThemeColors.object(forKey: cacheKey)
         
@@ -180,7 +180,7 @@ public class ThemeColor : NSColor {
     
     /// Current theme color, but respecting view appearance.
     @objc(colorForView:selector:)
-    class func color(for view: NSView, selector: Selector) -> NSColor? {
+    public class func color(for view: NSView, selector: Selector) -> NSColor {
         let viewAppearance = view.appearance
         let aquaAppearance = NSAppearance.init(named: NSAppearanceNameAqua)
         let lightAppearance = NSAppearance.init(named: NSAppearanceNameVibrantLight)

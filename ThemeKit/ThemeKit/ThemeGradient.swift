@@ -112,10 +112,10 @@ private var _cachedThemeGradients: NSCache<NSString, NSGradient>!
 public class ThemeGradient : NSGradient {
     
     /// Gradient selector for the theme class.
-    var themeGradientSelector: Selector
+    public var themeGradientSelector: Selector
     
     /// Resolved gradient from current theme.
-    var resolvedThemeGradient: NSGradient
+    public var resolvedThemeGradient: NSGradient
     
     
     // MARK:- Public
@@ -132,11 +132,9 @@ public class ThemeGradient : NSGradient {
         return gradient as! ThemeGradient
     }
     
-    
-    // MARK:- Internal
-    
     /// Gradient for a specific theme.
-    class func gradient(for theme: Theme, selector: Selector) -> NSGradient {
+    @objc(gradientForTheme:selector:)
+    public class func gradient(for theme: Theme, selector: Selector) -> NSGradient {
         let cacheKey = "\(theme.identifier)\0\(selector)" as NSString
         var gradient = _cachedThemeGradients.object(forKey: cacheKey)
         
@@ -162,10 +160,30 @@ public class ThemeGradient : NSGradient {
         return gradient!
     }
     
+    /// Current theme color, but respecting view appearance.
+    @objc(gradientForView:selector:)
+    public class func gradient(for view: NSView, selector: Selector) -> NSGradient {
+        let viewAppearance = view.appearance
+        let aquaAppearance = NSAppearance.init(named: NSAppearanceNameAqua)
+        let lightAppearance = NSAppearance.init(named: NSAppearanceNameVibrantLight)
+        let darkAppearance = NSAppearance.init(named: NSAppearanceNameVibrantDark)
+        let windowIsNSVBAccessoryWindow = view.window?.isKind(of: NSClassFromString("NSVBAccessoryWindow")!) ?? false
+        
+        // using a dark theme but control is on a light surface => use light theme instead
+        if ThemeKit.shared.effectiveTheme.isDarkTheme &&
+            (viewAppearance == lightAppearance || viewAppearance == aquaAppearance || windowIsNSVBAccessoryWindow) {
+            return ThemeGradient.gradient(for: ThemeKit.lightTheme, selector: selector)
+        }
+        else if ThemeKit.shared.effectiveTheme.isLightTheme && viewAppearance == darkAppearance {
+            return ThemeGradient.gradient(for: ThemeKit.darkTheme, selector: selector)
+        }
+        
+        // any other case => current theme gradient
+        return ThemeGradient.gradient(with: selector)
+    }
+    
     
     // MARK:- Private Implementation
-    
-    private var _resolvedThemeGradient: NSGradient?
     
     open override class func initialize() {
         _cachedGradients = NSCache.init()

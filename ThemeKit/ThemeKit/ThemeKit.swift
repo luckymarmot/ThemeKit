@@ -348,8 +348,10 @@ public class ThemeKit: NSObject {
     
     // MARK:- NSUserDefaultsController KVO
     
+    /// Keypath for string `values.ThemeKitTheme`.
     private var themeChangeKVOKeyPath: String = "values.\(ThemeKit.UserDefaultsThemeKey)"
     
+    /// Called when theme is changed on `NSUserDefaults`.
     public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard keyPath == themeChangeKVOKeyPath else { return }
         
@@ -365,13 +367,14 @@ public class ThemeKit: NSObject {
     
     // MARK:- Theme Switching
     
-    /// Apply theme stored on user defaults (or default one).
+    /// Apply theme stored on user defaults (or default `ThemeKit.defaultTheme`).
     public func applyStoredTheme() {
         let userDefaultsTheme = theme(UserDefaults.standard.string(forKey: ThemeKit.UserDefaultsThemeKey))
         (userDefaultsTheme ?? ThemeKit.defaultTheme).apply()
     }
     
-    private var _currentTransitionWindows: Set<NSWindow> = Set()
+    /// Screenshot-windows used during theme animated transition.
+    private var themeTransitionWindows: Set<NSWindow> = Set()
     
     /// Apply a new `theme`
     private func applyTheme(_ newTheme: Theme) {
@@ -435,10 +438,10 @@ public class ThemeKit: NSObject {
                 let windowNumber = window.windowNumber
                 /* Make sure the window has a number, and that it's not one of our
                  * existing transition windows */
-                if windowNumber > 0 && !self._currentTransitionWindows.contains(window) {
+                if windowNumber > 0 && !self.themeTransitionWindows.contains(window) {
                     let transitionWindow = window.makeScreenshotWindow()
                     transitionWindows[windowNumber] = transitionWindow
-                    self._currentTransitionWindows.insert(transitionWindow)
+                    self.themeTransitionWindows.insert(transitionWindow)
                 }
             }
             
@@ -459,7 +462,7 @@ public class ThemeKit: NSObject {
                 ctx.completionHandler = {() -> Void in
                     for transitionWindow in transitionWindows.values {
                         transitionWindow.orderOut(self)
-                        self._currentTransitionWindows.remove(transitionWindow)
+                        self.themeTransitionWindows.remove(transitionWindow)
                     }
                 }
 

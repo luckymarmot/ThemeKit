@@ -94,7 +94,7 @@ a new theme is make current.</p>
 <p>The recommended way of adding your own dynamic colors is as follows:</p>
 
 <ol>
-<li><p>Add a <code>ThemeColor</code> class extension (or <code>TKThemeColor</code> category on Objective-C)
+<li><p><strong>Add a <code>ThemeColor</code> class extension</strong> (or <code>TKThemeColor</code> category on Objective-C)
 to add class methods for your colors. E.g.:</p>
 
 <p>In Swift:</p>
@@ -122,7 +122,7 @@ to add class methods for your colors. E.g.:</p>
 
 <span class="k">@end</span>
 </code></pre></li>
-<li><p>Add Class Extensions on <code><a href="../Classes/LightTheme.html">LightTheme</a></code> and <code><a href="../Classes/DarkTheme.html">DarkTheme</a></code> (<code>TKLightTheme</code> and 
+<li><p><strong>Add Class Extensions on <code><a href="../Classes/LightTheme.html">LightTheme</a></code> and <code><a href="../Classes/DarkTheme.html">DarkTheme</a></code></strong> (<code>TKLightTheme</code> and
 <code>TKDarkTheme</code> on Objective-C) to provide instance methods for each theme color 
 class method defined on (1). E.g.:</p>
 
@@ -167,7 +167,7 @@ class method defined on (1). E.g.:</p>
 
 <span class="k">@end</span>
 </code></pre></li>
-<li><p>If using user theme files (<code>.theme</code> user theme files), also specify properties
+<li><p><strong>Define properties on user theme files</strong> (<code>.theme</code>)
 for each theme color class method defined on (1). E.g.:</p>
 <pre class="highlight swift"><code><span class="n">displayName</span> <span class="o">=</span> <span class="kt">Sample</span> <span class="kt">User</span> <span class="kt">Theme</span>
 <span class="n">identifier</span> <span class="o">=</span> <span class="n">com</span><span class="o">.</span><span class="n">luckymarmot</span><span class="o">.</span><span class="kt">ThemeKit</span><span class="o">.</span><span class="kt">SampleUserTheme</span>
@@ -202,6 +202,13 @@ background colors respectively. These too, can be customized per theme.</p>
           </section>
           <section class="section task-group-section">
             <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Properties"></a>
+                <a name="//apple_ref/swift/Section/Properties" class="dashAnchor"></a>
+                <a href="#/Properties">
+                  <h3 class="section-name">Properties</h3>
+                </a>
+              </div>
               <ul>
                 <li class="item">
                   <div>
@@ -216,7 +223,8 @@ background colors respectively. These too, can be customized per theme.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Color selector for the theme class.</p>
+                        <p><code>ThemeColor</code> color selector used as theme instance method for same selector
+or, if inexistent, as argument in the theme instance method <code>themeAsset(_:)</code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -228,7 +236,7 @@ background colors respectively. These too, can be customized per theme.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift#L142">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift#L146">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -246,7 +254,7 @@ background colors respectively. These too, can be customized per theme.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Resolved color from current theme.</p>
+                        <p>Resolved color from current theme (dynamically changes with the current theme).</p>
 
                       </div>
                       <div class="declaration">
@@ -258,7 +266,7 @@ background colors respectively. These too, can be customized per theme.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift#L145">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift#L149">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -267,10 +275,10 @@ background colors respectively. These too, can be customized per theme.</p>
             </div>
             <div class="task-group">
               <div class="task-name-container">
-                <a name="/MARK:-%20Public"></a>
-                <a name="//apple_ref/swift/Section/MARK:- Public" class="dashAnchor"></a>
-                <a href="#/MARK:-%20Public">
-                  <h3 class="section-name">MARK:- Public</h3>
+                <a name="/Creating%20Colors"></a>
+                <a name="//apple_ref/swift/Section/Creating Colors" class="dashAnchor"></a>
+                <a href="#/Creating%20Colors">
+                  <h3 class="section-name">Creating Colors</h3>
                 </a>
               </div>
               <ul>
@@ -289,6 +297,9 @@ background colors respectively. These too, can be customized per theme.</p>
                       <div class="abstract">
                         <p>Create a new ThemeColor instance for the specified selector.</p>
 
+<p>Returns a color returned by calling <code>selector</code> on current theme as an instance method or,
+if unavailable, the result of calling <code>themeAsset(_:)</code> on the current theme.</p>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -298,23 +309,37 @@ background colors respectively. These too, can be customized per theme.</p>
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>selector</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Selector for color method.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code>ThemeColor</code> instance for the specified selector.</p>
+
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift#L155-L157">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift#L167-L169">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/MARK:-%20Internal"></a>
-                <a name="//apple_ref/swift/Section/MARK:- Internal" class="dashAnchor"></a>
-                <a href="#/MARK:-%20Internal">
-                  <h3 class="section-name">MARK:- Internal</h3>
-                </a>
-              </div>
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -339,8 +364,46 @@ background colors respectively. These too, can be customized per theme.</p>
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>theme</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A <code>Theme</code> instance.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>selector</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A color selector.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Resolved color for specified selector on given theme.</p>
+
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift#L170-L202">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift#L193-L225">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -369,23 +432,50 @@ background colors respectively. These too, can be customized per theme.</p>
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>view</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A <code>NSView</code> instance.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>selector</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A color selector.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Resolved color for specified selector on given view.</p>
+
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift#L206-L224">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift#L234-L252">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/MARK:-%20Private%20Implementation"></a>
-                <a name="//apple_ref/swift/Section/MARK:- Private Implementation" class="dashAnchor"></a>
-                <a href="#/MARK:-%20Private%20Implementation">
-                  <h3 class="section-name">MARK:- Private Implementation</h3>
-                </a>
-              </div>
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -399,7 +489,8 @@ background colors respectively. These too, can be customized per theme.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>Static initialization.</p>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -410,7 +501,7 @@ background colors respectively. These too, can be customized per theme.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift#L229-L234">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift#L255-L260">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

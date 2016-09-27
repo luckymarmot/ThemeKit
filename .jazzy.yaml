@@ -40,7 +40,7 @@ custom_categories:
     children:    
     - ThemeColor
     - ThemeGradient
-  - name: Extensions
-    children:
-    - NSWindow
-    - NSColor
+#   - name: Extensions
+#     children:
+#     - NSWindow
+#     - NSColor

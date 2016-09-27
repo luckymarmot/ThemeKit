@@ -20,8 +20,9 @@ private var _cachedThemeGradients: NSCache<NSString, NSGradient>!
  
  The recommended way of adding your own dynamic colors is as follows:
  
- 1. Add a `ThemeGradient` class extension (or `TKThemeGradient` category on 
+ 1. **Add a `ThemeGradient` class extension** (or `TKThemeGradient` category on
  Objective-C) to add class methods for your gradients. E.g.:
+ 
      In Swift:
  
      ```
@@ -36,7 +37,7 @@ private var _cachedThemeGradients: NSCache<NSString, NSGradient>!
  
      In Objective-C:
  
-    ```
+     ```
      @interface TKThemeGradient (Demo)
      
      + (TKThemeGradient*)brandGradient;
@@ -52,9 +53,10 @@ private var _cachedThemeGradients: NSCache<NSString, NSGradient>!
      @end
      ```
  
- 2. Add Class Extensions on `LightTheme` and `DarkTheme` (`TKLightTheme` and
+ 2. **Add Class Extensions on `LightTheme` and `DarkTheme`** (`TKLightTheme` and
  `TKDarkTheme` on Objective-C) to provide instance methods for each theme gradient
  class method defined on (1). E.g.:
+ 
      In Swift:
  
      ```
@@ -101,7 +103,7 @@ private var _cachedThemeGradients: NSCache<NSString, NSGradient>!
      @end
      ```
  
- 3. If using user theme files (`.theme` user theme files), also specify properties
+ 3.  **Define properties on user theme files** (`.theme`)
  for each theme gradient class method defined on (1). E.g.:
  
      ```
@@ -113,6 +115,8 @@ private var _cachedThemeGradients: NSCache<NSString, NSGradient>!
      brandGradient = linear-gradient($orangeSky, rgb(200, 140, 60))
      ```
  
+ Fallback colors
+ ---------------
  Unimplemented properties/methods on target theme class will default to
  `fallbackGradient`. This too, can be customized per theme.
  
@@ -121,16 +125,25 @@ private var _cachedThemeGradients: NSCache<NSString, NSGradient>!
 @objc(TKThemeGradient)
 public class ThemeGradient : NSGradient {
     
-    /// Gradient selector for the theme class.
+    // MARK: -
+    // MARK: Properties
+    
+    /// `ThemeGradient` gradient selector used as theme instance method for same
+    /// selector or, if inexistent, as argument in the theme instance method `themeAsset(_:)`.
     public var themeGradientSelector: Selector
     
-    /// Resolved gradient from current theme.
+    /// Resolved gradient from current theme (dynamically changes with the current theme).
     public var resolvedThemeGradient: NSGradient
     
     
-    // MARK:- Public
+    // MARK: -
+    // MARK: Creating Gradients
     
     /// Create a new ThemeGradient instance for the specified selector.
+    ///
+    /// - parameter selector: Selector for color method.
+    ///
+    /// - returns: A `ThemeGradient` instance for the specified selector.
     @objc(gradientWithSelector:)
     public class func gradient(with selector: Selector) -> ThemeGradient {
         let cacheKey = "\(selector)\0\(self)" as NSString
@@ -143,6 +156,11 @@ public class ThemeGradient : NSGradient {
     }
     
     /// Gradient for a specific theme.
+    ///
+    /// - parameter theme:    A `Theme` instance.
+    /// - parameter selector: A gradient selector.
+    ///
+    /// - returns: Resolved gradient for specified selector on given theme.
     @objc(gradientForTheme:selector:)
     public class func gradient(for theme: Theme, selector: Selector) -> NSGradient {
         let cacheKey = "\(theme.identifier)\0\(selector)" as NSString
@@ -171,6 +189,11 @@ public class ThemeGradient : NSGradient {
     }
     
     /// Current theme color, but respecting view appearance.
+    ///
+    /// - parameter view:    A `NSView` instance.
+    /// - parameter selector: A gradient selector.
+    ///
+    /// - returns: Resolved gradient for specified selector on given view.
     @objc(gradientForView:selector:)
     public class func gradient(for view: NSView, selector: Selector) -> NSGradient {
         let viewAppearance = view.appearance
@@ -192,9 +215,6 @@ public class ThemeGradient : NSGradient {
         return ThemeGradient.gradient(with: selector)
     }
     
-    
-    // MARK:- Private Implementation
-    
     open override class func initialize() {
         _cachedGradients = NSCache.init()
         _cachedThemeGradients = NSCache.init()
@@ -202,6 +222,12 @@ public class ThemeGradient : NSGradient {
         _cachedThemeGradients.name = "com.luckymarmot.ThemeGradient.cachedThemeGradients"
     }
     
+    /// Returns a new `ThemeGradient` for the fiven selector in the specified colorspace.
+    ///
+    /// - parameter selector:   A gradient selector.
+    /// - parameter colorSpace: An optional `NSColorSpace`.
+    ///
+    /// - returns: A `ThemeGradient` instance in the specified colorspace.
     init(with selector: Selector) {
         themeGradientSelector = selector
         let defaultColor = ThemeKit.shared.effectiveTheme.defaultFallbackBackgroundColor
@@ -223,7 +249,6 @@ public class ThemeGradient : NSGradient {
         }
         
         // Recache resolved color
-        
         resolvedThemeGradient = ThemeGradient.gradient(for: ThemeKit.shared.effectiveTheme, selector: themeGradientSelector)
     }
     

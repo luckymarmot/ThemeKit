@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ Notifications defined by `ThemeKit`.
+ */
 public extension Notification.Name {
     
     /// ThemeKit notification sent when current theme is about to change.
@@ -16,11 +19,8 @@ public extension Notification.Name {
     /// ThemeKit notification sent when current theme did change.
     public static let didChangeTheme = Notification.Name("ThemeKitDidChangeThemeNotification")
     
-    /// ThemeKit notification sent when system theme did change (System Preference > General).
+    /// ThemeKit notification sent when system theme did change (System Preference > General > Appearance).
     public static let didChangeSystemTheme = Notification.Name("ThemeKitDidChangeSystemThemeNotification")
-    
-    /// ThemeKit notification sent when an NSWindow is about to be shown.
-    public static let willShowWindow = Notification.Name("ThemeKitWindowWillShowNotification")
     
     /// System notification sent when System Preference for dark mode changes.
     static let didChangeAppleInterfaceTheme = Notification.Name("AppleInterfaceThemeChangedNotification")

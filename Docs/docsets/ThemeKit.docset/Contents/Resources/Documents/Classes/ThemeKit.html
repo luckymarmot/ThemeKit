@@ -86,14 +86,14 @@
 
                 </div>
               </div>
-            <p>Use the <code>ThemeKit</code> shared instance to perform app-wide theming related 
-operations, such as:</p>
+            <p>Use <code>ThemeKit</code> shared instance to perform app-wide theming related operations, 
+such as:</p>
 
 <ul>
 <li>Get information about current theme/appearance</li>
-<li>List available themes</li>
 <li>Change current <code>theme</code> (can also be changed from <code>NSUserDefaults</code>)</li>
-<li>Define a window theming policy</li>
+<li>List available themes</li>
+<li>Define <code>ThemeKit</code> behaviour</li>
 </ul>
 
           </section>
@@ -157,7 +157,7 @@ operations, such as:</p>
                         <p>Returns the current theme.</p>
 
 <p>This property is KVO compliant. Value is stored on user defaults under key
-<code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit20userDefaultsThemeKeySS">userDefaultsThemeKey</a></code> (= <q>ThemeKitTheme</q>).</p>
+<code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit20userDefaultsThemeKeySS">userDefaultsThemeKey</a></code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -191,7 +191,7 @@ operations, such as:</p>
 
 <p>This property is KVO compliant. This can return a different result than
 <code><a href="../Classes/ThemeKit.html#/s:vC8ThemeKit8ThemeKit5themePS_5Theme_">theme</a></code>, as if current theme is set to <code><a href="../Classes/SystemTheme.html">SystemTheme</a></code>, effective theme
-will be either <code><a href="../Classes/LightTheme.html">LightTheme</a></code> or <code><a href="../Classes/DarkTheme.html">DarkTheme</a></code>, respecting user preference at
+will be either <code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit10lightThemeCS_10LightTheme">lightTheme</a></code> or <code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit9darkThemeCS_9DarkTheme">darkTheme</a></code>, respecting user preference at
 <strong>System Preferences &gt; General &gt; Appearance</strong>.</p>
 
                       </div>
@@ -244,7 +244,7 @@ themes folder.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L106-L126">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L106-L125">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -274,7 +274,7 @@ themes folder.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L132">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L131">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -304,7 +304,7 @@ themes folder.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L135">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L134">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -336,7 +336,7 @@ themes folder.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L140">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L139">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -366,7 +366,7 @@ themes folder.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L143-L145">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L142-L144">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -421,7 +421,7 @@ themes folder.</p>
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L152-L162">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L151-L160">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -453,7 +453,7 @@ themes folder.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L167">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L165">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -507,7 +507,7 @@ don&rsquo;t want them to be changed.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L202-L206">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L201-L241">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -548,7 +548,7 @@ don&rsquo;t want them to be changed.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L284-L286">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L279-L281">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -578,7 +578,7 @@ don&rsquo;t want them to be changed.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L289-L291">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L284-L286">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -608,7 +608,7 @@ don&rsquo;t want them to be changed.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L294-L296">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L289-L291">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -695,7 +695,7 @@ is set, themable window class names can then be defined using
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L343-L350">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L338-L345">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -725,7 +725,7 @@ is set, themable window class names can then be defined using
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L353">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L348">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

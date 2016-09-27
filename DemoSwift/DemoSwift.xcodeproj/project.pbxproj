@@ -27,6 +27,13 @@
 			remoteGlobalIDString = 286DE7C81D92DF8F00767E00;
 			remoteInfo = ThemeKit;
 		};
+		28F2DCA11D9AC3F8005D66EB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 286DE8121D92E65A00767E00 /* ThemeKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 286DE7C71D92DF8F00767E00;
+			remoteInfo = ThemeKit;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -129,6 +136,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				28F2DCA21D9AC3F8005D66EB /* PBXTargetDependency */,
 			);
 			name = DemoSwift;
 			productName = DemoSwift;
@@ -214,6 +222,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		28F2DCA21D9AC3F8005D66EB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ThemeKit;
+			targetProxy = 28F2DCA11D9AC3F8005D66EB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2892E6AC1D80C0F700435903 /* Main.storyboard */ = {

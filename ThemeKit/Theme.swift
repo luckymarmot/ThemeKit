@@ -8,10 +8,10 @@
 
 import Foundation
 
-/// Theme protocol. All themes conforms to this.
+/// Theme protocol. The base of all themes.
 @objc(TKTheme)
 public protocol Theme {
-    // MARK: Required
+    // MARK: Required Properties
     
     /// Unique theme identifier.
     var identifier: String { get }
@@ -26,31 +26,38 @@ public protocol Theme {
     var isDarkTheme: Bool { get }
     
     
-    // MARK: Optional
+    // MARK: Optional Methods/Properties
     
-    /// Theme asset for the specified key.
+    /// Theme asset for the specified key (`ThemeColor`, `ThemeGradient` and 
+    /// for `UserTheme`s only, also `String`).
     @objc optional func themeAsset(_ key: String) -> Any?
     
-    /// Foreground color to be used on fallback situations.
+    /// Foreground color to be used on when a foreground color is not provided 
+    /// by the theme.
     @objc optional var fallbackForegroundColor : NSColor? { get }
     
-    /// Background color to be used on fallback situations.
+    /// Background color to be used on when a background color (a color which 
+    /// contains `Background` in its name) is not provided by the theme.
     @objc optional var fallbackBackgroundColor : NSColor? { get }
     
-    /// Gradient to be used on fallback situations.
+    /// Gradient to be used on when a gradient is not provided by the theme.
     @objc optional var fallbackGradient : NSGradient? { get }
 }
 
 /// Theme protocol extension.
+///
+/// These functions are available for all `Theme`s.
 public extension Theme {
+    
+    // MARK: Convenient Methods/Properties
     
     /// Is this a light theme?
     public var isLightTheme: Bool {
         return !isDarkTheme
     }
     
-    /// Does theme automatically resolve to LightTheme or DarkTheme,
-    /// accordingly to System Preferences > General?
+    /// Does theme automatically resolve to `ThemeKit.lightTheme` or 
+    /// `ThemeKit.darkTheme`, accordingly to **System Preferences > General > Appearance**?
     public var isAutoTheme: Bool {
         return identifier == SystemTheme.identifier
     }
@@ -67,7 +74,8 @@ public extension Theme {
     }
     
     /// Default background color to be used on fallback situations when
-    /// no `fallbackBackgroundColor` was specified by the theme.
+    /// no `fallbackBackgroundColor` was specified by the theme (background color
+    /// is a color method that contains `Background` in its name).
     var defaultFallbackBackgroundColor: NSColor {
         return isLightTheme ? NSColor.white : NSColor.black
     }
@@ -79,7 +87,8 @@ public extension Theme {
     }
     
     /// Effective theme, which can be different from itself if it represents the 
-    /// system theme (in that case it will be either `LightTheme` or `DarkTheme`).
+    /// system theme, respecting **System Preferences > General > Appearance** 
+    /// (in that case it will be either `ThemeKit.lightTheme` or `ThemeKit.darkTheme`).
     var effectiveTheme: Theme {
         if isAutoTheme {
             return isDarkTheme ? ThemeKit.darkTheme : ThemeKit.lightTheme

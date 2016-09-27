@@ -8,8 +8,10 @@
 
 import Foundation
 
-/// System theme. Will dynamically resolve to either LMLightTheme or LMDarkTheme,
-/// depending on the macOS preference at System Preferences > General.
+/// System theme. 
+///
+/// Will dynamically resolve to either `ThemeKit.lightTheme` or `ThemeKit.darkTheme`,
+/// depending on the macOS preference at **System Preferences > General > Appearance**.
 @objc(TKSystemTheme)
 public class SystemTheme: NSObject, Theme {
     
@@ -33,7 +35,7 @@ public class SystemTheme: NSObject, Theme {
     /// Is this a dark theme?
     public var isDarkTheme: Bool = SystemTheme.isAppleInterfaceThemeDark
     
-    /// Apple UI theme, as set on System Preferences > General.
+    /// Checks if Apple UI theme is set to dark, as set on **System Preferences > General > Appearance**.
     public static var isAppleInterfaceThemeDark: Bool = SystemTheme.isAppleInterfaceThemeDarkOnUserDefaults()
     
     /// Calling `init()` is not allowed outside this library.

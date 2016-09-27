@@ -86,16 +86,16 @@
 
                 </div>
               </div>
-            <p>Theme protocol. All themes conforms to this.</p>
+            <p>Theme protocol. The base of all themes.</p>
 
           </section>
           <section class="section task-group-section">
             <div class="task-group">
               <div class="task-name-container">
-                <a name="/Required"></a>
-                <a name="//apple_ref/swift/Section/Required" class="dashAnchor"></a>
-                <a href="#/Required">
-                  <h3 class="section-name">Required</h3>
+                <a name="/Required%20Properties"></a>
+                <a name="//apple_ref/swift/Section/Required Properties" class="dashAnchor"></a>
+                <a href="#/Required%20Properties">
+                  <h3 class="section-name">Required Properties</h3>
                 </a>
               </div>
               <ul>
@@ -223,10 +223,10 @@
             </div>
             <div class="task-group">
               <div class="task-name-container">
-                <a name="/Optional"></a>
-                <a name="//apple_ref/swift/Section/Optional" class="dashAnchor"></a>
-                <a href="#/Optional">
-                  <h3 class="section-name">Optional</h3>
+                <a name="/Optional%20Methods/Properties"></a>
+                <a name="//apple_ref/swift/Section/Optional Methods/Properties" class="dashAnchor"></a>
+                <a href="#/Optional%20Methods/Properties">
+                  <h3 class="section-name">Optional Methods/Properties</h3>
                 </a>
               </div>
               <ul>
@@ -243,7 +243,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Theme asset for the specified key.</p>
+                        <p>Theme asset for the specified key (<code><a href="../Classes/ThemeColor.html">ThemeColor</a></code>, <code><a href="../Classes/ThemeGradient.html">ThemeGradient</a></code> and 
+for <code><a href="../Classes/UserTheme.html">UserTheme</a></code>s only, also <code>String</code>).</p>
 
                       </div>
                       <div class="declaration">
@@ -255,7 +256,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L32">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L33">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -273,7 +274,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Foreground color to be used on fallback situations.</p>
+                        <p>Foreground color to be used on when a foreground color is not provided 
+by the theme.</p>
 
                       </div>
                       <div class="declaration">
@@ -285,7 +287,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L35">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L37">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -303,7 +305,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Background color to be used on fallback situations.</p>
+                        <p>Background color to be used on when a background color (a color which 
+contains <code>Background</code> in its name) is not provided by the theme.</p>
 
                       </div>
                       <div class="declaration">
@@ -315,7 +318,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L38">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L41">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -333,7 +336,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Gradient to be used on fallback situations.</p>
+                        <p>Gradient to be used on when a gradient is not provided by the theme.</p>
 
                       </div>
                       <div class="declaration">
@@ -345,7 +348,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L41">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L44">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -353,6 +356,13 @@
               </ul>
             </div>
             <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Convenient%20Methods/Properties"></a>
+                <a name="//apple_ref/swift/Section/Convenient Methods/Properties" class="dashAnchor"></a>
+                <a href="#/Convenient%20Methods/Properties">
+                  <h3 class="section-name">Convenient Methods/Properties</h3>
+                </a>
+              </div>
               <ul>
                 <li class="item">
                   <div>
@@ -382,7 +392,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L48-L50">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L55-L57">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -403,8 +413,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Does theme automatically resolve to LightTheme or DarkTheme,
-accordingly to System Preferences &gt; General?</p>
+                        <p>Does theme automatically resolve to <code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit10lightThemeCS_10LightTheme">ThemeKit.lightTheme</a></code> or 
+<code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit9darkThemeCS_9DarkTheme">ThemeKit.darkTheme</a></code>, accordingly to <strong>System Preferences &gt; General &gt; Appearance</strong>?</p>
 
                       </div>
                       <div class="declaration">
@@ -416,7 +426,7 @@ accordingly to System Preferences &gt; General?</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L54-L56">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L61-L63">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -449,7 +459,7 @@ accordingly to System Preferences &gt; General?</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L59-L61">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L66-L68">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -483,7 +493,7 @@ no <code><a href="../Protocols/Theme.html#/s:vP8ThemeKit5Theme23fallbackForegrou
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L65-L67">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L72-L74">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -505,7 +515,8 @@ no <code><a href="../Protocols/Theme.html#/s:vP8ThemeKit5Theme23fallbackForegrou
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Default background color to be used on fallback situations when
-no <code><a href="../Protocols/Theme.html#/s:vP8ThemeKit5Theme23fallbackBackgroundColorGSqCSo7NSColor_">fallbackBackgroundColor</a></code> was specified by the theme.</p>
+no <code><a href="../Protocols/Theme.html#/s:vP8ThemeKit5Theme23fallbackBackgroundColorGSqCSo7NSColor_">fallbackBackgroundColor</a></code> was specified by the theme (background color
+is a color method that contains <code>Background</code> in its name).</p>
 
                       </div>
                       <div class="declaration">
@@ -517,7 +528,7 @@ no <code><a href="../Protocols/Theme.html#/s:vP8ThemeKit5Theme23fallbackBackgrou
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L71-L73">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L79-L81">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -551,7 +562,7 @@ no <code><a href="../Protocols/Theme.html#/s:vP8ThemeKit5Theme23fallbackForegrou
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L77-L79">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L85-L87">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -573,7 +584,8 @@ no <code><a href="../Protocols/Theme.html#/s:vP8ThemeKit5Theme23fallbackForegrou
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Effective theme, which can be different from itself if it represents the 
-system theme (in that case it will be either <code><a href="../Classes/LightTheme.html">LightTheme</a></code> or <code><a href="../Classes/DarkTheme.html">DarkTheme</a></code>).</p>
+system theme, respecting <strong>System Preferences &gt; General &gt; Appearance</strong> 
+(in that case it will be either <code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit10lightThemeCS_10LightTheme">ThemeKit.lightTheme</a></code> or <code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit9darkThemeCS_9DarkTheme">ThemeKit.darkTheme</a></code>).</p>
 
                       </div>
                       <div class="declaration">
@@ -585,7 +597,7 @@ system theme (in that case it will be either <code><a href="../Classes/LightThem
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L83-L90">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L92-L99">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -618,7 +630,7 @@ system theme (in that case it will be either <code><a href="../Classes/LightThem
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L93-L95">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L102-L104">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

@@ -10,13 +10,13 @@ import Foundation
 import QuartzCore
 
 /**
- Use the `ThemeKit` shared instance to perform app-wide theming related 
- operations, such as:
+ Use `ThemeKit` shared instance to perform app-wide theming related operations, 
+ such as:
  
  - Get information about current theme/appearance
- - List available themes
  - Change current `theme` (can also be changed from `NSUserDefaults`)
- - Define a window theming policy 
+ - List available themes
+ - Define `ThemeKit` behaviour 
  
  */
 @objc(TKThemeKit)
@@ -76,7 +76,7 @@ public class ThemeKit: NSObject {
             }
             
             // Apply theme
-            if _theme == nil || newTheme != _theme! {
+            if _theme == nil || newTheme != _theme! || newTheme is UserTheme {
                 applyTheme(newTheme)
             }
         }
@@ -114,9 +114,8 @@ public class ThemeKit: NSObject {
             
             // User provided themes
             for filename in userThemesFileNames {
-                let themeFileURL = userThemesFolderURL?.appendingPathComponent(filename)
-                if themeFileURL != nil {
-                    available.append(UserTheme.init(themeFileURL!))
+                if let themeFileURL = userThemesFolderURL?.appendingPathComponent(filename) {
+                    available.append(UserTheme.init(themeFileURL))
                 }
             }
             
@@ -150,12 +149,11 @@ public class ThemeKit: NSObject {
     ///
     /// - returns: The `Theme` instance with the given identifier.
     public func theme(withIdentifier identifier: String?) -> Theme? {
-        guard identifier != nil else {
-            return nil
-        }
-        for theme in themes {
-            if theme.identifier == identifier {
-                return theme
+        if let themeIdentifier: String = identifier {
+            for theme in themes {
+                if theme.identifier == themeIdentifier {
+                    return theme
+                }
             }
         }
         return nil
@@ -182,6 +180,7 @@ public class ThemeKit: NSObject {
     }
     
     
+    // MARK: -
     // MARK: User Themes (`.theme` files)
     
     /// Location of user provided themes (.theme files).
@@ -200,17 +199,53 @@ public class ThemeKit: NSObject {
     /// You can also bundle these files with your application bundle, if you 
     /// don't want them to be changed.
     public var userThemesFolderURL: URL? {
-        didSet(url) {
-            setUserThemesFolderURL(url!)
+        didSet {
+            // Clean up previous
+            _userThemesFolderSource?.cancel()
+            
+            // Observe User Themes folder via CGD dispatch sources
+            if userThemesFolderURL != nil && userThemesFolderURL! != oldValue {
+                // Create folder if needed
+                try! FileManager.default.createDirectory(at: userThemesFolderURL!, withIntermediateDirectories: true, attributes: nil)
+                
+                // Initialize file descriptor
+                let fileDescriptor = open((userThemesFolderURL!.path as NSString).fileSystemRepresentation, O_EVTONLY)
+                guard fileDescriptor >= 0 else { return }
+                
+                // Initialize dispatch queue
+                _userThemesFolderQueue = DispatchQueue(label: "com.luckymarmot.ThemeKit.UserThemesFolderQueue")
+                
+                // Watch file descriptor for writes
+                _userThemesFolderSource = DispatchSource.makeFileSystemObjectSource(fileDescriptor: fileDescriptor, eventMask: DispatchSource.FileSystemEvent.write)
+                _userThemesFolderSource?.setEventHandler(handler: {
+                    self.userThemesFolderChangedContent()
+                })
+                
+                // Clean up when dispatch source is cancelled
+                _userThemesFolderSource?.setCancelHandler {
+                    close(fileDescriptor)
+                }
+                
+                // Start watching
+                willChangeValue(forKey: #keyPath(themes))
+                cachedThemes = nil
+                _userThemesFolderSource?.resume()
+                didChangeValue(forKey: #keyPath(themes))
+                
+                // Re-apply current theme if user theme
+                if theme is UserTheme {
+                    applyUserDefaultsTheme()
+                }
+            }
         }
     }
     
     /// List of user themes file names.
     private var userThemesFileNames: [String] {
-        guard userThemesFolderURL != nil && FileManager.default.fileExists(atPath: (userThemesFolderURL?.path)!, isDirectory: nil) else {
+        guard userThemesFolderURL != nil && FileManager.default.fileExists(atPath: userThemesFolderURL!.path, isDirectory: nil) else {
             return []
         }
-        let folderFiles = try! FileManager.default.contentsOfDirectory(atPath: (userThemesFolderURL?.path)!) as NSArray
+        let folderFiles = try! FileManager.default.contentsOfDirectory(atPath: userThemesFolderURL!.path) as NSArray
         let themeFileNames = folderFiles.filtered(using: NSPredicate.init(format: "self ENDSWITH '.theme'", argumentArray: nil))
         return themeFileNames.map({ (fileName: Any) -> String in
             return fileName as! String
@@ -223,52 +258,12 @@ public class ThemeKit: NSObject {
     /// Filesustem dispatch source for monitoring the user themes folder.
     private var _userThemesFolderSource: DispatchSourceFileSystemObject?
     
-    /// Observe User Themes folder via CGD dispatch sources
-    private func setUserThemesFolderURL(_ url: URL) {
-        if url != userThemesFolderURL {
-            // Clean up previous
-            _userThemesFolderSource?.cancel()
-            
-            // Create folder if needed
-            try! FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
-            
-            // Initialize file descriptor
-            let fileDescriptor = open((url.path as NSString).fileSystemRepresentation, O_EVTONLY)
-            guard fileDescriptor >= 0 else {
-                return
-            }
-            userThemesFolderURL = url
-            
-            // Initialize dispatch queue
-            _userThemesFolderQueue = DispatchQueue(label: "com.luckymarmot.ThemeKit.UserThemesFolderQueue")
-            
-            // Watch file descriptor for writes
-            _userThemesFolderSource = DispatchSource.makeFileSystemObjectSource(fileDescriptor: fileDescriptor, eventMask: DispatchSource.FileSystemEvent.write)
-            _userThemesFolderSource?.setEventHandler(handler: { 
-                self.userThemesFolderChangedContent()
-            })
-            
-            // Clean up when dispatch source is cancelled
-            _userThemesFolderSource?.setCancelHandler {
-                close(fileDescriptor)
-            }
-            
-            // Start watching
-            willChangeValue(forKey: #keyPath(themes))
-            cachedThemes = nil
-            _userThemesFolderSource?.resume()
-            didChangeValue(forKey: #keyPath(themes))
-            
-            // Re-apply current theme as current theme may be an user provided theme)
-            applyUserDefaultsTheme()
-        }
-    }
-    
     /// Called when themes folder has file changes --> refresh modified user theme (if current).
     private func userThemesFolderChangedContent() {
         willChangeValue(forKey: #keyPath(themes))
         cachedThemes = nil
         
+        print("effectiveTheme: \(effectiveTheme) user? \(effectiveTheme is UserTheme)")
         if effectiveTheme is UserTheme {
             applyUserDefaultsTheme()
         }
@@ -397,6 +392,7 @@ public class ThemeKit: NSObject {
                     
                     // Change effective theme
                     self._theme = newTheme
+                    print("Applied \(newTheme)")
                     
                     // Did change!
                     self.didChangeValue(forKey: #keyPath(theme))

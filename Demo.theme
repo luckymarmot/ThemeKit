@@ -1,12 +1,13 @@
 // ************************* Theme Info ************************* //
-displayName = Sample User Theme
-identifier = com.luckymarmot.ThemeKit.DemoUserTheme
+displayName = Custom User Theme 1
+identifier = com.luckymarmot.ThemeKit.CustomTheme1
 darkTheme = true
 
 // ********************* Colors & Gradients ********************* //
 brandColor = $blue
+labelColor = rgb(11, 220, 111) // overriding `NSColor.labelColor`!
 brandGradient = linear-gradient($orange.sky, rgba(200, 140, 60, 1.0))
 
-// ************************** Variables ************************* //
+// *******************+*** Common Colors ************************ //
 blue = rgb(0, 170, 255)
 orange.sky = rgb(160, 90, 45, .5)

@@ -36,6 +36,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // 2.2 User themes folder
         let workingDirectory = FileManager.default.currentDirectoryPath
         let projectRootURL = URL(fileURLWithPath: workingDirectory, isDirectory: true).deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+        print("projectRootURL: \(projectRootURL)")
         ThemeKit.shared.userThemesFolderURL = projectRootURL
         // Alternatively, could use "Application Support/{app_bundle_id}/Themes"
         // ThemeKit.shared.userThemesFolderURL = ThemeKit.shared.applicationSupportUserThemesFolderURL

@@ -97,7 +97,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Theme protocol. All themes conforms to this.</p>
+                        <p>Theme protocol. The base of all themes.</p>
 
                         <a href="Protocols/Theme.html" class="slightly-smaller">See more</a>
                       </div>
@@ -110,7 +110,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L13-L42">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/Theme.swift#L13-L45">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -202,8 +202,10 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>System theme. Will dynamically resolve to either LMLightTheme or LMDarkTheme,
-depending on the macOS preference at System Preferences &gt; General.</p>
+                        <p>System theme. </p>
+
+<p>Will dynamically resolve to either <code><a href="Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit10lightThemeCS_10LightTheme">ThemeKit.lightTheme</a></code> or <code><a href="Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit9darkThemeCS_9DarkTheme">ThemeKit.darkTheme</a></code>,
+depending on the macOS preference at <strong>System Preferences &gt; General &gt; Appearance</strong>.</p>
 
                         <a href="Classes/SystemTheme.html" class="slightly-smaller">See more</a>
                       </div>
@@ -216,7 +218,7 @@ depending on the macOS preference at System Preferences &gt; General.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/SystemTheme.swift#L14-L63">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/SystemTheme.swift#L16-L65">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -238,20 +240,39 @@ depending on the macOS preference at System Preferences &gt; General.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A <code><a href="Protocols/Theme.html">Theme</a></code> class that wraps a user provided theme file (<code>.theme</code>).
-Theme folder is configured on <code>ThemeKit.shared.userThemesFolderURL</code>.</p>
+                        <p>A <code><a href="Protocols/Theme.html">Theme</a></code> class wrapping a user provided theme file (<code>.theme</code>).</p>
 
-<p>Theme file format:</p>
+<p>To enable user themes, set theme folder on <code><a href="Classes/ThemeKit.html#/s:vC8ThemeKit8ThemeKit19userThemesFolderURLGSqV10Foundation3URL_">ThemeKit.userThemesFolderURL</a></code>.</p>
+
+<p>Notes about <code>.theme</code> files:</p>
 
 <ul>
-<li>lines starting with <code>#</code> or <code>//</code> will be treated as comments, thus, ignored</li>
-<li>remaining lines are simple variable/value assignments (eg, <code>variable = value</code>)</li>
-<li>custom variables can be specified (eg, <code>myVar1 = ...</code>)</li>
-<li>theming properties match the class methods of <code><a href="Classes/ThemeColor.html">ThemeColor</a></code> and <code><a href="Classes/ThemeGradient.html">ThemeGradient</a></code> (eg, <code>mainBorderColor</code>)</li>
-<li>variables can be reused by prefixing them with <code>$</code> (eg, <code>mainBorderColor = $lineNumberTextColor</code>)</li>
-<li>colors are defined using <code>rgb(255, 255, 255)</code> or <code>rgba(255, 255, 255, 1.0)</code> (case insensitive)</li>
-<li>gradients are defined using <code>linear-gradient(color1, color2)</code> (where colors are defined as above; case insensitive)</li>
+<li>lines starting with <code>#</code> or <code>//</code> will be treated as comments, thus, ignored;</li>
+<li>non-comment lines consists on simple variable/value assignments (eg, <code>variable = value</code>);</li>
+<li><code>variable</code> name can contain characters <code>[a-zA-Z0-9_-.]+</code>;</li>
+<li>custom variables can be specified (eg, <code>myBackgroundColor = ...</code>);</li>
+<li>theming properties match the class methods of <code><a href="Classes/ThemeColor.html">ThemeColor</a></code> and <code><a href="Classes/ThemeGradient.html">ThemeGradient</a></code> (eg, <code>labelColor</code>);</li>
+<li>variables can be referenced by prefixing them with <code>$</code> (eg, <code>mainBorderColor = $commonBorderColor</code>);</li>
+<li>colors are defined using <code>rgb(255, 255, 255)</code> or <code>rgba(255, 255, 255, 1.0)</code> (case insensitive);</li>
+<li>gradients are defined using <code>linear-gradient(color1, color2)</code> (where colors are defined as above; case insensitive).</li>
 </ul>
+
+<p>Example <code>.theme</code> file:</p>
+
+<pre class="highlight ruby"><code><span class="sr">//</span> <span class="o">*************************</span> <span class="no">Theme</span> <span class="no">Info</span> <span class="o">*************************</span> <span class="sr">//</span>
+<span class="n">displayName</span> <span class="o">=</span> <span class="no">Custom</span> <span class="no">User</span> <span class="no">Theme</span> <span class="mi">1</span>
+<span class="n">identifier</span> <span class="o">=</span> <span class="n">com</span><span class="p">.</span><span class="nf">luckymarmot</span><span class="o">.</span><span class="no">ThemeKit</span><span class="o">.</span><span class="no">CustomTheme1</span>
+<span class="n">darkTheme</span> <span class="o">=</span> <span class="kp">true</span>
+
+<span class="sr">//</span> <span class="o">*********************</span> <span class="no">Colors</span> <span class="o">&amp;</span> <span class="no">Gradients</span> <span class="o">*********************</span> <span class="sr">//</span>
+<span class="n">brandColor</span> <span class="o">=</span> <span class="vg">$blue</span>
+<span class="n">labelColor</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mi">111</span><span class="p">)</span> <span class="o">/</span><span class="sr">/ overriding `NSColor.labelColor`!
+brandGradient = linear-gradient($orange.sky, rgba(200, 140, 60, 1.0))
+
+/</span><span class="o">/</span> <span class="o">*******************+***</span> <span class="no">Common</span> <span class="no">Colors</span> <span class="o">************************</span> <span class="sr">//</span>
+<span class="n">blue</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">170</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+<span class="n">orange</span><span class="p">.</span><span class="nf">sky</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="o">.</span><span class="mi">5</span><span class="p">)</span>
+</code></pre>
 
 <p>Unimplemented properties on theme file will default to <code>-fallbackForegroundColor</code>, 
 <code>-fallbackBackgroundColor</code> and  <code>-fallbackGradient</code>, for foreground color, 
@@ -268,7 +289,7 @@ background color and gradients, respectively.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/UserTheme.swift#L30-L132">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/UserTheme.swift#L50-L163">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

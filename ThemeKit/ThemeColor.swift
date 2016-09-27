@@ -19,7 +19,7 @@ private var _cachedThemeColors: NSCache<NSString, NSColor>!
  ---------------------------
  The recommended way of adding your own dynamic colors is as follows:
  
- 1. Add a `ThemeColor` class extension (or `TKThemeColor` category on Objective-C)
+ 1. **Add a `ThemeColor` class extension** (or `TKThemeColor` category on Objective-C)
  to add class methods for your colors. E.g.:
  
      In Swift:
@@ -52,7 +52,7 @@ private var _cachedThemeColors: NSCache<NSString, NSColor>!
      @end
      ```
  
- 2. Add Class Extensions on `LightTheme` and `DarkTheme` (`TKLightTheme` and 
+ 2. **Add Class Extensions on `LightTheme` and `DarkTheme`** (`TKLightTheme` and
  `TKDarkTheme` on Objective-C) to provide instance methods for each theme color 
  class method defined on (1). E.g.:
     
@@ -102,7 +102,7 @@ private var _cachedThemeColors: NSCache<NSString, NSColor>!
      @end
      ```
  
- 3. If using user theme files (`.theme` user theme files), also specify properties
+ 3. **Define properties on user theme files** (`.theme`)
  for each theme color class method defined on (1). E.g.:
  
      ```swift
@@ -138,34 +138,57 @@ private var _cachedThemeColors: NSCache<NSString, NSColor>!
 @objc(TKThemeColor)
 public class ThemeColor : NSColor {
     
-    /// Color selector for the theme class.
+    // MARK: -
+    // MARK: Properties
+    
+    /// `ThemeColor` color selector used as theme instance method for same selector
+    /// or, if inexistent, as argument in the theme instance method `themeAsset(_:)`.
     public var themeColorSelector: Selector
     
-    /// Resolved color from current theme.
+    /// Resolved color from current theme (dynamically changes with the current theme).
     public lazy var resolvedThemeColor: NSColor = NSColor.clear
     
     /// Theme color space (if specified).
     private var themeColorSpace: NSColorSpace?
     
     
-    // MARK:- Public
+    // MARK: -
+    // MARK: Creating Colors
     
     /// Create a new ThemeColor instance for the specified selector.
+    ///
+    /// Returns a color returned by calling `selector` on current theme as an instance method or,
+    /// if unavailable, the result of calling `themeAsset(_:)` on the current theme.
+    ///
+    /// - parameter selector: Selector for color method.
+    ///
+    /// - returns: A `ThemeColor` instance for the specified selector.
     @objc(colorWithSelector:)
     public class func color(with selector: Selector) -> ThemeColor {
         return color(with: selector, colorSpace: nil)
     }
     
-    /// Create a new ThemeColor instance for the specified color name component (usually, a string selector).
+    /// Create a new ThemeColor instance for the specified color name component 
+    /// (usually, a string selector).
+    ///
+    /// Color name component will then be called as a selector on current theme 
+    /// as an instance method or, if unavailable, the result of calling 
+    /// `themeAsset(_:)` on the current theme.
+    ///
+    /// - parameter selector: Selector for color method.
+    ///
+    /// - returns: A `ThemeColor` instance for the specified selector.
     @objc(colorWithColorNameComponent:)
     internal class func color(with colorNameComponent: String) -> ThemeColor {
         return color(with: Selector(colorNameComponent), colorSpace: nil)
     }
     
-    
-    // MARK:- Internal
-    
     /// Color for a specific theme.
+    ///
+    /// - parameter theme:    A `Theme` instance.
+    /// - parameter selector: A color selector.
+    ///
+    /// - returns: Resolved color for specified selector on given theme.
     @objc(colorForTheme:selector:)
     public class func color(for theme: Theme, selector: Selector) -> NSColor {
         let cacheKey = "\(theme.identifier)\0\(selector)" as NSString
@@ -202,6 +225,11 @@ public class ThemeColor : NSColor {
     }
     
     /// Current theme color, but respecting view appearance.
+    ///
+    /// - parameter view:    A `NSView` instance.
+    /// - parameter selector: A color selector.
+    ///
+    /// - returns: Resolved color for specified selector on given view.
     @objc(colorForView:selector:)
     public class func color(for view: NSView, selector: Selector) -> NSColor {
         let viewAppearance = view.appearance
@@ -223,9 +251,7 @@ public class ThemeColor : NSColor {
         return ThemeColor.color(with: selector)
     }
     
-    
-    // MARK:- Private Implementation
-    
+    /// Static initialization.
     open override class func initialize() {
         _cachedColors = NSCache.init()
         _cachedThemeColors = NSCache.init()
@@ -233,6 +259,12 @@ public class ThemeColor : NSColor {
         _cachedThemeColors.name = "com.luckymarmot.ThemeColor.cachedThemeColors"
     }
     
+    /// Returns a new `ThemeColor` for the fiven selector in the specified colorspace.
+    ///
+    /// - parameter selector:   A color selector.
+    /// - parameter colorSpace: An optional `NSColorSpace`.
+    ///
+    /// - returns: A `ThemeColor` instance in the specified colorspace.
     class func color(with selector: Selector, colorSpace: NSColorSpace?) -> ThemeColor {
         let cacheKey = "\(selector)\0\(colorSpace)\0\(self)" as NSString
         var color = _cachedColors.object(forKey: cacheKey)
@@ -243,6 +275,12 @@ public class ThemeColor : NSColor {
         return color as! ThemeColor
     }
     
+    /// Returns a new `ThemeColor` for the fiven selector in the specified colorpsace.
+    ///
+    /// - parameter selector:   A color selector.
+    /// - parameter colorSpace: An optional `NSColorSpace`.
+    ///
+    /// - returns: A `ThemeColor` instance in the specified colorspace.
     init(with selector: Selector, colorSpace: NSColorSpace!) {
         themeColorSelector = selector
         themeColorSpace = colorSpace
@@ -265,6 +303,7 @@ public class ThemeColor : NSColor {
     }
     
     func recacheColor() {
+        print("recacheColor: theme = \(ThemeKit.shared.theme)")
         // If it is a UserTheme we actually want to discard theme cached values
         if ThemeKit.shared.effectiveTheme is UserTheme {
             _cachedThemeColors.removeAllObjects()

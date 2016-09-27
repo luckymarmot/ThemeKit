@@ -323,7 +323,7 @@ public class ThemeKit: NSObject {
     ///
     /// ```
     /// [TKThemeKit sharedInstance].windowThemePolicy = TKThemeKitWindowThemePolicyThemeSomeWindowClasses;
-    /// [TKThemeKit sharedInstance].themableWindowClassNames = @[CustomWindow.class];
+    /// [TKThemeKit sharedInstance].themableWindowClassNames = @[[CustomWindow class]];
     /// ```
     ///
     /// NSWindow Extension

@@ -20,7 +20,7 @@
 }
 
 - (id)transformedValue:(id)value {
-    return value ?: [TKThemeKit sharedInstance].defaultTheme.identifier;
+    return value ?: [TKThemeKit defaultTheme].identifier;
 }
 
 @end

@@ -17,18 +17,18 @@
 		285D31821D82EC5C001F4097 /* TKLightTheme+Demo.m in Sources */ = {isa = PBXBuildFile; fileRef = 285D31811D82EC5C001F4097 /* TKLightTheme+Demo.m */; };
 		285D31881D82ECE1001F4097 /* TKDarkTheme+Demo.m in Sources */ = {isa = PBXBuildFile; fileRef = 285D31871D82ECE1001F4097 /* TKDarkTheme+Demo.m */; };
 		285D318B1D82F24D001F4097 /* TKDefaultThemeTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 285D318A1D82F24D001F4097 /* TKDefaultThemeTransformer.m */; };
-		286DE8221D92E7BB00767E00 /* ThemeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 286DE8211D92E7B500767E00 /* ThemeKit.framework */; };
+		28F2DCAE1D9AEEEB005D66EB /* ThemeKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 28F2DCAA1D9AEE52005D66EB /* ThemeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		286DE8201D92E7B500767E00 /* PBXContainerItemProxy */ = {
+		28F2DCA91D9AEE52005D66EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 286DE81C1D92E7B500767E00 /* ThemeKit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 286DE7C81D92DF8F00767E00;
 			remoteInfo = ThemeKit;
 		};
-		286DE8231D92E7C400767E00 /* PBXContainerItemProxy */ = {
+		28F2DCAB1D9AEE5D005D66EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 286DE81C1D92E7B500767E00 /* ThemeKit.xcodeproj */;
 			proxyType = 1;
@@ -44,6 +44,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				28F2DCAE1D9AEEEB005D66EB /* ThemeKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -70,7 +71,7 @@
 		285D31871D82ECE1001F4097 /* TKDarkTheme+Demo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TKDarkTheme+Demo.m"; sourceTree = "<group>"; };
 		285D31891D82F24D001F4097 /* TKDefaultThemeTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKDefaultThemeTransformer.h; sourceTree = "<group>"; };
 		285D318A1D82F24D001F4097 /* TKDefaultThemeTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKDefaultThemeTransformer.m; sourceTree = "<group>"; };
-		286DE81C1D92E7B500767E00 /* ThemeKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ThemeKit.xcodeproj; path = ../ThemeKit/ThemeKit.xcodeproj; sourceTree = "<group>"; };
+		286DE81C1D92E7B500767E00 /* ThemeKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ThemeKit.xcodeproj; path = ../ThemeKit.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +79,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				286DE8221D92E7BB00767E00 /* ThemeKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,10 +151,10 @@
 			name = Theming;
 			sourceTree = "<group>";
 		};
-		286DE81D1D92E7B500767E00 /* Products */ = {
+		28F2DCA61D9AEE52005D66EB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				286DE8211D92E7B500767E00 /* ThemeKit.framework */,
+				28F2DCAA1D9AEE52005D66EB /* ThemeKit.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -174,7 +174,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				286DE8241D92E7C400767E00 /* PBXTargetDependency */,
+				28F2DCAC1D9AEE5D005D66EB /* PBXTargetDependency */,
 			);
 			name = DemoObjectiveC;
 			productName = DemoObjectiveC;
@@ -209,7 +209,7 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 286DE81D1D92E7B500767E00 /* Products */;
+					ProductGroup = 28F2DCA61D9AEE52005D66EB /* Products */;
 					ProjectRef = 286DE81C1D92E7B500767E00 /* ThemeKit.xcodeproj */;
 				},
 			);
@@ -221,11 +221,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		286DE8211D92E7B500767E00 /* ThemeKit.framework */ = {
+		28F2DCAA1D9AEE52005D66EB /* ThemeKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = ThemeKit.framework;
-			remoteRef = 286DE8201D92E7B500767E00 /* PBXContainerItemProxy */;
+			remoteRef = 28F2DCA91D9AEE52005D66EB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -261,10 +261,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		286DE8241D92E7C400767E00 /* PBXTargetDependency */ = {
+		28F2DCAC1D9AEE5D005D66EB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ThemeKit;
-			targetProxy = 286DE8231D92E7C400767E00 /* PBXContainerItemProxy */;
+			targetProxy = 28F2DCAB1D9AEE5D005D66EB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

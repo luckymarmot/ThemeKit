@@ -20,7 +20,7 @@
     // Setup window theme policy
     [TKThemeKit sharedInstance].windowThemePolicy = TKThemeKitWindowThemePolicyThemeAllWindows;
     //[TKThemeKit sharedInstance].windowThemePolicy = TKThemeKitWindowThemePolicyThemeSomeWindowClasses;
-    //[TKThemeKit sharedInstance].themableWindowClassNames = @[CustomWindow.className];
+    //[TKThemeKit sharedInstance].themableWindowClasses = @[[CustomWindow class]];
     //[TKThemeKit sharedInstance].windowThemePolicy = TKThemeKitWindowThemePolicyDoNotThemeWindows;
     
     // User themes folder

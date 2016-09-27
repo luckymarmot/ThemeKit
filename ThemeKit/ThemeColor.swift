@@ -303,7 +303,6 @@ public class ThemeColor : NSColor {
     }
     
     func recacheColor() {
-        print("recacheColor: theme = \(ThemeKit.shared.theme)")
         // If it is a UserTheme we actually want to discard theme cached values
         if ThemeKit.shared.effectiveTheme is UserTheme {
             _cachedThemeColors.removeAllObjects()

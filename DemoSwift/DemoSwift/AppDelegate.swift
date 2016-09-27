@@ -29,8 +29,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
          * Themes will be selected using popup bound to user defaults. */
         
         // 2.1 Setup window theme policy
-        ThemeKit.shared.windowThemePolicy = .themeAllWindows
-        //ThemeKit.shared.windowThemePolicy = .themeSomeWindows(windowClassNames: [MyWindow.className()])
+//        ThemeKit.shared.windowThemePolicy = .themeAllWindows
+        ThemeKit.shared.windowThemePolicy = .themeSomeWindows(windowClasses: [MyWindow.self])
         //ThemeKit.shared.windowThemePolicy = .doNotThemeWindows
         
         // 2.2 User themes folder

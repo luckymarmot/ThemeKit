@@ -300,15 +300,21 @@ public class ThemeKit: NSObject {
     /// By default, all application windows will be themed (`.themeAllWindows`).
     ///
     /// - themeAllWindows:   Theme all application windows (default).
-    /// - themeSomeWindows:  Only theme windows of the specified class names.
-    /// - doNotThemeWindows: Do not theme any window.
+    /// - themeSomeWindows:  Only theme windows of the specified classes.
+    /// - doNotThemeWindows: Do not theme any window.E.g.:
+    ///
+    /// E.g.:
+    ///
+    /// ```
+    /// ThemeKit.shared.windowThemePolicy = .themeSomeWindows(windowClasses: [CustomWindow.self])
+    /// ```
     ///
     /// Objective-C
     /// -----------
     /// By default, all application windows will be themed (`.TKThemeKitWindowThemePolicyThemeAllWindows`).
     ///
     /// - TKThemeKitWindowThemePolicyThemeAllWindows:   Theme all application windows (default).
-    /// - TKThemeKitWindowThemePolicyThemeSomeWindowClasses:  Only theme windows of the specified class names.
+    /// - TKThemeKitWindowThemePolicyThemeSomeWindowClasses:  Only theme windows of the specified classes.
     /// - TKThemeKitWindowThemePolicyDoNotThemeWindows: Do not theme any window.
     ///
     /// If `.windowThemePolicy = TKThemeKitWindowThemePolicyThemeSomeWindowClasses`
@@ -317,7 +323,7 @@ public class ThemeKit: NSObject {
     ///
     /// ```
     /// [TKThemeKit sharedInstance].windowThemePolicy = TKThemeKitWindowThemePolicyThemeSomeWindowClasses;
-    /// [TKThemeKit sharedInstance].themableWindowClassNames = @[CustomWindow.className];
+    /// [TKThemeKit sharedInstance].themableWindowClassNames = @[CustomWindow.class];
     /// ```
     ///
     /// NSWindow Extension
@@ -338,8 +344,8 @@ public class ThemeKit: NSObject {
     public enum WindowThemePolicy {
         /// Theme all application windows (default).
         case themeAllWindows
-        /// Only theme windows of the specified class names.
-        case themeSomeWindows(windowClassNames: [String])
+        /// Only theme windows of the specified classes.
+        case themeSomeWindows(windowClasses: [AnyClass])
         /// Do not theme any window.
         case doNotThemeWindows
     }
@@ -392,7 +398,6 @@ public class ThemeKit: NSObject {
                     
                     // Change effective theme
                     self._theme = newTheme
-                    print("Applied \(newTheme)")
                     
                     // Did change!
                     self.didChangeValue(forKey: #keyPath(theme))

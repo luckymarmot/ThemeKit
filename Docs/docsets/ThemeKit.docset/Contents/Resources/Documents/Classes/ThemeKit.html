@@ -645,9 +645,14 @@ don&rsquo;t want them to be changed.</p>
 
 <ul>
 <li>themeAllWindows:   Theme all application windows (default).</li>
-<li>themeSomeWindows:  Only theme windows of the specified class names.</li>
-<li>doNotThemeWindows: Do not theme any window.</li>
+<li>themeSomeWindows:  Only theme windows of the specified classes.</li>
+<li>doNotThemeWindows: Do not theme any window.E.g.:</li>
 </ul>
+
+<p>E.g.:
+<code>
+ThemeKit.shared.windowThemePolicy = .themeSomeWindows(windowClasses: [CustomWindow.self])
+</code></p>
 
 <p><a href='#objective-c' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='objective-c'>Objective-C</h2></p>
 
@@ -655,7 +660,7 @@ don&rsquo;t want them to be changed.</p>
 
 <ul>
 <li>TKThemeKitWindowThemePolicyThemeAllWindows:   Theme all application windows (default).</li>
-<li>TKThemeKitWindowThemePolicyThemeSomeWindowClasses:  Only theme windows of the specified class names.</li>
+<li>TKThemeKitWindowThemePolicyThemeSomeWindowClasses:  Only theme windows of the specified classes.</li>
 <li>TKThemeKitWindowThemePolicyDoNotThemeWindows: Do not theme any window.</li>
 </ul>
 
@@ -664,7 +669,7 @@ is set, themable window class names can then be defined using
 <code>NSArray&lt;NSString*&gt;* themableWindowClassNames</code> property. E.g.:</p>
 
 <pre class="highlight plaintext"><code>[TKThemeKit sharedInstance].windowThemePolicy = TKThemeKitWindowThemePolicyThemeSomeWindowClasses;
-[TKThemeKit sharedInstance].themableWindowClassNames = @[CustomWindow.className];
+[TKThemeKit sharedInstance].themableWindowClassNames = @[CustomWindow.class];
 </code></pre>
 
 <p><a href='#nswindow-extension' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='nswindow-extension'>NSWindow Extension</h2></p>
@@ -695,7 +700,7 @@ is set, themable window class names can then be defined using
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L338-L345">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L343-L350">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -725,7 +730,7 @@ is set, themable window class names can then be defined using
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L348">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L353">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

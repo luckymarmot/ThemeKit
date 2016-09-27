@@ -42,24 +42,24 @@ public extension ThemeKit {
             case .themeAllWindows:
                 windowThemePolicy = .themeAllWindows
             case .themeSomeWindows:
-                windowThemePolicy = .themeSomeWindows(windowClassNames: objc_themableWindowClassNames ?? [])
+                windowThemePolicy = .themeSomeWindows(windowClasses: objc_themableWindowClasses ?? [])
             case .doNotThemeWindows:
                 windowThemePolicy = .doNotThemeWindows
             }
         }
     }
     
-    /// Windows class names to be themed with the `TKThemeKitWindowThemePolicyThemeSomeWindows` (Objective-C only).
-    @objc(themableWindowClassNames)
-    public var objc_themableWindowClassNames: [String]? {
+    /// Windows classes to be themed with the `TKThemeKitWindowThemePolicyThemeSomeWindows` (Objective-C only).
+    @objc(themableWindowClasses)
+    public var objc_themableWindowClasses: [AnyClass]? {
         get {
             switch windowThemePolicy {
                 
             case .themeAllWindows:
                 return nil
                 
-            case .themeSomeWindows(let windowClassNames):
-                return windowClassNames
+            case .themeSomeWindows(let windowClasses):
+                return windowClasses
                 
             case .doNotThemeWindows:
                 return []
@@ -70,7 +70,7 @@ public extension ThemeKit {
                 windowThemePolicy = .themeAllWindows
             }
             else if value!.count > 0 {
-                windowThemePolicy = .themeSomeWindows(windowClassNames: value!)
+                windowThemePolicy = .themeSomeWindows(windowClasses: value!)
             }
             else {
                 windowThemePolicy = .doNotThemeWindows

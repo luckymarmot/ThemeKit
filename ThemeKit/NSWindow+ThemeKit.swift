@@ -51,9 +51,9 @@ public extension NSWindow {
         case .themeAllWindows:
             return true
             
-        case .themeSomeWindows(let windowClassNames):
-            for windowClassName in (windowClassNames as [String]) {
-                if self.className == windowClassName {
+        case .themeSomeWindows(let windowClasses):
+            for windowClass in windowClasses {
+                if object_getClass(self) === windowClass.self {
                     return true
                 }
             }
@@ -73,10 +73,10 @@ public extension NSWindow {
         case .themeAllWindows:
             windows = NSApplication.shared().windows
             
-        case .themeSomeWindows(let windowClassNames):
+        case .themeSomeWindows(let windowClasses):
             let windowsMatchingClasses = NSApplication.shared().windows.filter({ (window) -> Bool in
-                for windowClassName in (windowClassNames as [String]) {
-                    if window.className == windowClassName {
+                for windowClass in windowClasses {
+                    if object_getClass(self) === windowClass.self {
                         return true
                     }
                 }

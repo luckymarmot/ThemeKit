@@ -26,8 +26,8 @@ By default, all application windows will be themed, but this can be changed:
 // Theme all application windows (default)
 ThemeKit.shared.windowThemePolicy = .themeAllWindows
 
-// Only theme windows of the specified class names
-ThemeKit.shared.windowThemePolicy = .themeSomeWindows(windowClassNames: [MyWindow.className()])
+// Only theme windows of the specified classes
+ThemeKit.shared.windowThemePolicy = .themeSomeWindows(windowClasses: [CustomWindow.self])
 
 /// Do not theme any window
 ThemeKit.shared.windowThemePolicy = .doNotThemeWindows

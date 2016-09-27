@@ -94,9 +94,14 @@
 
 <ul>
 <li>themeAllWindows:   Theme all application windows (default).</li>
-<li>themeSomeWindows:  Only theme windows of the specified class names.</li>
-<li>doNotThemeWindows: Do not theme any window.</li>
+<li>themeSomeWindows:  Only theme windows of the specified classes.</li>
+<li>doNotThemeWindows: Do not theme any window.E.g.:</li>
 </ul>
+
+<p>E.g.:
+<code>
+ThemeKit.shared.windowThemePolicy = .themeSomeWindows(windowClasses: [CustomWindow.self])
+</code></p>
 
 <p><a href='#objective-c' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='objective-c'>Objective-C</h2></p>
 
@@ -104,7 +109,7 @@
 
 <ul>
 <li>TKThemeKitWindowThemePolicyThemeAllWindows:   Theme all application windows (default).</li>
-<li>TKThemeKitWindowThemePolicyThemeSomeWindowClasses:  Only theme windows of the specified class names.</li>
+<li>TKThemeKitWindowThemePolicyThemeSomeWindowClasses:  Only theme windows of the specified classes.</li>
 <li>TKThemeKitWindowThemePolicyDoNotThemeWindows: Do not theme any window.</li>
 </ul>
 
@@ -113,7 +118,7 @@ is set, themable window class names can then be defined using
 <code>NSArray&lt;NSString*&gt;* themableWindowClassNames</code> property. E.g.:</p>
 
 <pre class="highlight plaintext"><code>[TKThemeKit sharedInstance].windowThemePolicy = TKThemeKitWindowThemePolicyThemeSomeWindowClasses;
-[TKThemeKit sharedInstance].themableWindowClassNames = @[CustomWindow.className];
+[TKThemeKit sharedInstance].themableWindowClassNames = @[CustomWindow.class];
 </code></pre>
 
 <p><a href='#nswindow-extension' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='nswindow-extension'>NSWindow Extension</h2></p>
@@ -162,7 +167,7 @@ is set, themable window class names can then be defined using
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L340">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L345">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -174,9 +179,9 @@ is set, themable window class names can then be defined using
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FOC8ThemeKit8ThemeKit17WindowThemePolicy16themeSomeWindowsFMS1_FT16windowClassNamesGSaSS__S1_"></a>
+                    <a name="/s:FOC8ThemeKit8ThemeKit17WindowThemePolicy16themeSomeWindowsFMS1_FT13windowClassesGSaPMPs9AnyObject___S1_"></a>
                     <a name="//apple_ref/swift/Element/themeSomeWindows" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FOC8ThemeKit8ThemeKit17WindowThemePolicy16themeSomeWindowsFMS1_FT16windowClassNamesGSaSS__S1_">themeSomeWindows</a>
+                    <a class="token" href="#/s:FOC8ThemeKit8ThemeKit17WindowThemePolicy16themeSomeWindowsFMS1_FT13windowClassesGSaPMPs9AnyObject___S1_">themeSomeWindows</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -184,19 +189,19 @@ is set, themable window class names can then be defined using
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Only theme windows of the specified class names.</p>
+                        <p>Only theme windows of the specified classes.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">themeSomeWindows</span><span class="p">(</span><span class="nv">windowClassNames</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">])</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">themeSomeWindows</span><span class="p">(</span><span class="nv">windowClasses</span><span class="p">:</span> <span class="p">[</span><span class="kt">AnyClass</span><span class="p">])</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L342">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L347">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -230,7 +235,7 @@ is set, themable window class names can then be defined using
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L344">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L349">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

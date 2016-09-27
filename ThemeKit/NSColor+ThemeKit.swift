@@ -8,6 +8,11 @@
 
 import Foundation
 
+/**
+ `NSColor` extensions.
+ Jazzy will fail to generate documentation for this extension.
+ Check https://github.com/realm/jazzy/pull/508 and https://github.com/realm/jazzy/issues/502
+ */
 extension NSColor {
     
     /// Initialize
@@ -67,7 +72,7 @@ extension NSColor {
         return false
     }
     
-    /// ThemeKit.set() replacement to use theme-aware color
+    // ThemeKit.set() replacement to use theme-aware color
     public func themeKitSet() {
         // check if the user provides an alternative color
         if isThemeOverriden {
@@ -80,7 +85,7 @@ extension NSColor {
         }
     }
     
-    /// ThemeKit.setFill() replacement to use theme-aware color
+    // ThemeKit.setFill() replacement to use theme-aware color
     public func themeKitSetFill() {
         // check if the user provides an alternative color
         if isThemeOverriden {
@@ -93,7 +98,7 @@ extension NSColor {
         }
     }
     
-    /// ThemeKit.setStroke() replacement to use theme-aware color
+    // ThemeKit.setStroke() replacement to use theme-aware color
     public func themeKitSetStroke() {
         // check if the user provides an alternative color
         if isThemeOverriden {

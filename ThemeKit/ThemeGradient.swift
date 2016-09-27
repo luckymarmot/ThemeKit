@@ -15,11 +15,15 @@ private var _cachedThemeGradients: NSCache<NSString, NSGradient>!
  `ThemeGradient` is a `NSGradient` subclass that dynamically changes its colors 
  whenever a new theme is make current.
  
+ Defining theme-aware gradients
+ ------------------------------
+ 
  The recommended way of adding your own dynamic colors is as follows:
  
  1. Add a `ThemeGradient` class extension (or `TKThemeGradient` category on 
  Objective-C) to add class methods for your gradients. E.g.:
      In Swift:
+ 
      ```
      extension ThemeGradient {
      
@@ -29,8 +33,10 @@ private var _cachedThemeGradients: NSCache<NSString, NSGradient>!
      
      }
      ```
+ 
      In Objective-C:
-     ```
+ 
+    ```
      @interface TKThemeGradient (Demo)
      
      + (TKThemeGradient*)brandGradient;
@@ -50,6 +56,7 @@ private var _cachedThemeGradients: NSCache<NSString, NSGradient>!
  `TKDarkTheme` on Objective-C) to provide instance methods for each theme gradient
  class method defined on (1). E.g.:
      In Swift:
+ 
      ```
      extension LightTheme {
      
@@ -67,7 +74,9 @@ private var _cachedThemeGradients: NSCache<NSString, NSGradient>!
      
      }
      ```
+ 
      In Objective-C:
+ 
      ```
      @interface TKLightTheme (Demo) @end
      
@@ -94,6 +103,7 @@ private var _cachedThemeGradients: NSCache<NSString, NSGradient>!
  
  3. If using user theme files (`.theme` user theme files), also specify properties
  for each theme gradient class method defined on (1). E.g.:
+ 
      ```
      displayName = Sample User Theme
      identifier = com.luckymarmot.ThemeKit.SampleUserTheme

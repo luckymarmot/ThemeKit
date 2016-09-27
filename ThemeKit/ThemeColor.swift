@@ -15,12 +15,16 @@ private var _cachedThemeColors: NSCache<NSString, NSColor>!
  `ThemeColor` is a `NSColor` subclass that dynamically changes its colors whenever
  a new theme is make current.
  
+ Defining theme-aware colors
+ ---------------------------
  The recommended way of adding your own dynamic colors is as follows:
  
  1. Add a `ThemeColor` class extension (or `TKThemeColor` category on Objective-C)
  to add class methods for your colors. E.g.:
+ 
      In Swift:
-     ```
+ 
+     ```swift
      extension ThemeColor {
      
        static var brandColor: ThemeColor { 
@@ -29,8 +33,10 @@ private var _cachedThemeColors: NSCache<NSString, NSColor>!
      
      }
      ```
+ 
      In Objective-C:
-     ```
+ 
+     ```objc
      @interface TKThemeColor (Demo)
      
      + (TKThemeColor*)brandColor;
@@ -49,8 +55,10 @@ private var _cachedThemeColors: NSCache<NSString, NSColor>!
  2. Add Class Extensions on `LightTheme` and `DarkTheme` (`TKLightTheme` and 
  `TKDarkTheme` on Objective-C) to provide instance methods for each theme color 
  class method defined on (1). E.g.:
-    In Swift:
-     ```
+    
+     In Swift:
+ 
+     ```swift
      extension LightTheme {
      
        var brandColor: NSColor {
@@ -59,16 +67,18 @@ private var _cachedThemeColors: NSCache<NSString, NSColor>!
  
      }
  
-    extension DarkTheme {
+     extension DarkTheme {
      
-      var brandColor: NSColor {
-        return NSColor.white
-      }
+       var brandColor: NSColor {
+         return NSColor.white
+       }
  
-    }
+     }
      ```
+ 
      In Objective-C:
-     ```
+ 
+     ```objc
      @interface TKLightTheme (Demo) @end
      
      @implementation TKLightTheme (Demo)
@@ -94,14 +104,31 @@ private var _cachedThemeColors: NSCache<NSString, NSColor>!
  
  3. If using user theme files (`.theme` user theme files), also specify properties
  for each theme color class method defined on (1). E.g.:
-    ```
-    displayName = Sample User Theme
-    identifier = com.luckymarmot.ThemeKit.SampleUserTheme
-    darkTheme = false
  
-    brandColor = rgba(96, 240, 12, 0.5)
-    ```
+     ```swift
+     displayName = Sample User Theme
+     identifier = com.luckymarmot.ThemeKit.SampleUserTheme
+     darkTheme = false
  
+     brandColor = rgba(96, 240, 12, 0.5)
+     ```
+ 
+ Overriding system colors
+ ------------------------
+ Besides your own colors added as `ThemeColor` class methods, you can also override 
+ `NSColor` class methods so that they return theme-aware colors. The procedure is
+ exactly the same, so, for example, if adding a method named `labelColor` to a 
+ `ThemeColor` extension, that method will be overriden in `NSColor` and the colors
+ from `Theme` subclasses will be used instead. 
+ 
+ You can get the full list of available color methods overridable (class methods)
+ calling `NSColor.colorMethodNames()`.
+ 
+ At any time, you can check if a system color is being overriden by checking the
+ `NSColor.isThemeOverriden` property (e.g., `NSColor.labelColor.isThemeOverriden`).
+ 
+ Fallback colors
+ ---------------
  Unimplemented properties/methods on target theme class will default to
  `fallbackForegroundColor` and `fallbackBackgroundColor`, for foreground and
  background colors respectively. These too, can be customized per theme.

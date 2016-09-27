@@ -8,16 +8,14 @@
 
 import Foundation
 
+/**
+ `NSWindow` extensions.
+ Jazzy will fail to generate documentation for this extension.
+ Check https://github.com/realm/jazzy/pull/508 and https://github.com/realm/jazzy/issues/502
+ */
 public extension NSWindow {
     
     // MARK:- Public
-    
-    /// Theme all windows compliant to ThemeKit.windowThemePolicy (and if needed).
-    public static func themeAllWindows() {
-        for window in windowsCompliantWithWindowThemePolicy() {
-            window.theme()
-        }
-    }
     
     /// Theme window if needed.
     public func theme() {
@@ -32,6 +30,13 @@ public extension NSWindow {
     public func themeIfCompliantWithWindowThemePolicy() {
         if isCompliantWithWindowThemePolicy() {
             theme()
+        }
+    }
+    
+    /// Theme all windows compliant to ThemeKit.windowThemePolicy (and if needed).
+    public static func themeAllWindows() {
+        for window in windowsCompliantWithWindowThemePolicy() {
+            window.theme()
         }
     }
     

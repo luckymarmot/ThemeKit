@@ -14,7 +14,7 @@ import Foundation
 
  Theme file format:
  
- - lines starting with # or // will be treated as comments thus ignored
+ - lines starting with `#` or `//` will be treated as comments, thus, ignored
  - remaining lines are simple variable/value assignments (eg, `variable = value`)
  - custom variables can be specified (eg, `myVar1 = ...`)
  - theming properties match the class methods of `ThemeColor` and `ThemeGradient` (eg, `mainBorderColor`)

@@ -7,7 +7,7 @@ copyright: '© 2016 [Paw](https://paw.cloud) under [MIT License](https://github.
 
 # URLs
 github_url: https://github.com/luckymarmot/ThemeKit
-root_url: https://paw.cloud/ThemeKit/Docs
+root_url: https://paw.cloud/opensource/themekit/docs
 github_file_prefix: https://github.com/luckymarmot/ThemeKit
 
 # Generation
@@ -15,6 +15,7 @@ clean: true
 output: Docs
 min_acl: public
 hide_documentation_coverage: true
+# skip_undocumented: true bug: will not document NS* extensions
 skip_undocumented: true
 exclude:
   - "Demo*/*.*"
@@ -39,3 +40,7 @@ custom_categories:
     children:    
     - ThemeColor
     - ThemeGradient
+  - name: Extensions
+    children:
+    - NSWindow
+    - NSColor

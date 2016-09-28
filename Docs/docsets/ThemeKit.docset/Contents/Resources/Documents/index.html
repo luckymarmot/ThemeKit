@@ -103,6 +103,7 @@
 <li><a href="#usage">Usage</a></li>
 <li><a href="#theme-aware-assets">Theme-aware Assets</a></li>
 <li><a href="#user-themes">User Themes</a></li>
+<li><a href="#faq">FAQ</a></li>
 </ul>
 <a href='#features' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='features'>Features</h2>
 
@@ -297,6 +298,19 @@ ThemeKit.shared.userThemesFolderURL = //...
 </code></pre>
 
 <p>Please refer to <a href="https://paw.cloud/opensource/themekit/docs/Classes/UserTheme.html"><code>UserTheme</code></a> for more information.</p>
+<a href='#faq' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='faq'>FAQ</h2>
+<a href='#can-controls-be-tinted-with-different-colors' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='can-controls-be-tinted-with-different-colors'>Can controls be tinted with different colors?</h3>
+
+<p>Other than the colors set by the inherited appearance - light (dark text on light background) or dark (light text on dark background) - natively, it is not possible to specify different colors for the text and/or background fills of controls (buttons, popups, etc).</p>
+
+<p>For simple cases, overriding <code>NSColor</code> can be sufficient: for example, <code>NSColor.labelColor</code> is a named color used for text labels; overriding it will allow to have all labels themed accordingly. You can get a list of all overridable named colors (class method names) with <code>NSColor.colorMethodNames()</code>.</p>
+
+<p>For more complex cases, like views/controls with custom drawing, please refer to next question.</p>
+<a href='#can-i-make-custom-drawing-views-controls-theme-aware' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='can-i-make-custom-drawing-views-controls-theme-aware'>Can I make custom drawing views/controls theme-aware?</h3>
+
+<p>Yes, you can! Implement your own custom controls drawing using <a href="#theme-aware-assets">Theme-aware Assets</a> (<code>ThemeColor</code> and <code>ThemeGradient</code>) so that your controls drawing will always adapt to your current theme&hellip; automatically!</p>
+
+<p>In case needed, you can observe when theme changes to refresh the UI or to perform any theme related operation. Check <em><q>Observing theme changes</q></em> on <a href="#usage">Usage</a> section above.</p>
 
           </section>
         </section>

@@ -22,6 +22,7 @@ ThemeKit
 * [Usage](#usage)
 * [Theme-aware Assets](#theme-aware-assets)
 * [User Themes](#user-themes)
+* [FAQ](#faq)
 
 ## Features
 
@@ -217,4 +218,20 @@ ThemeKit.shared.userThemesFolderURL = //...
 ```
 
 Please refer to [`UserTheme`](https://paw.cloud/opensource/themekit/docs/Classes/UserTheme.html) for more information.
+
+
+## FAQ
+
+### Can controls be tinted with different colors?
+Other than the colors set by the inherited appearance - light (dark text on light background) or dark (light text on dark background) - natively, it is not possible to specify different colors for the text and/or background fills of controls (buttons, popups, etc).
+
+For simple cases, overriding `NSColor` can be sufficient: for example, `NSColor.labelColor` is a named color used for text labels; overriding it will allow to have all labels themed accordingly. You can get a list of all overridable named colors (class method names) with `NSColor.colorMethodNames()`.
+
+For more complex cases, like views/controls with custom drawing, please refer to next question.
+
+### Can I make custom drawing views/controls theme-aware?
+Yes, you can! Implement your own custom controls drawing using [Theme-aware Assets](#theme-aware-assets) (`ThemeColor` and `ThemeGradient`) so that your controls drawing will always adapt to your current theme... automatically!
+
+In case needed, you can observe when theme changes to refresh the UI or to perform any theme related operation. Check *"Observing theme changes"* on [Usage](#usage) section above.
+ 
 

@@ -8,6 +8,7 @@ ThemeKit
 ![MIT](https://img.shields.io/badge/license-MIT-lightgray.svg)
 ![CocoaPods](https://img.shields.io/badge/dep-CocoaPods-orange.svg)
 ![Carthage](https://img.shields.io/badge/dep-Carthage-orange.svg)
+![SPM](https://img.shields.io/badge/dep-SPM-orange.svg)
 
 ## Summary
 
@@ -23,6 +24,7 @@ ThemeKit
 * [Theme-aware Assets](#theme-aware-assets)
 * [User Themes](#user-themes)
 * [FAQ](#faq)
+* [License](#license)
 
 ## Features
 
@@ -48,11 +50,19 @@ There are multiple options to inlcude `ThemeKit` on your project:
   use_frameworks!
   pod 'ThemeKit', '~> 1.0'
   ```
+  
 - [Carthage](https://github.com/Carthage/Carthage):
 
   ```
   github "luckymarmot/ThemeKit"
   ```
+  
+- [Swift Package Manager](https://swift.org/package-manager/):
+
+  ```
+  swift build
+  ```
+  
 - Manually:
   - Either add `ThemeKit.framework` on your project
   - Or manually add source files from the `ThemeKit\` folder to your project
@@ -235,3 +245,6 @@ Yes, you can! Implement your own custom controls drawing using [Theme-aware Asse
 In case needed, you can observe when theme changes to refresh the UI or to perform any theme related operation. Check *"Observing theme changes"* on [Usage](#usage) section above.
  
 
+## License
+
+`ThemeKit` is available under the MIT license. See the [LICENSE](LICENSE) file for more info.

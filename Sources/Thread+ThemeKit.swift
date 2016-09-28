@@ -1,6 +1,6 @@
 //
 //  Thread+ThemeKit.swift
-//  CoreColor
+//  ThemeKit
 //
 //  Created by Nuno Grilo on 08/09/16.
 //  Copyright © 2016 Paw Inc. All rights reserved.

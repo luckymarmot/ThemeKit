@@ -548,7 +548,7 @@ don&rsquo;t want them to be changed.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L279-L281">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L278-L280">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -578,7 +578,7 @@ don&rsquo;t want them to be changed.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L284-L286">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L283-L285">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -608,7 +608,7 @@ don&rsquo;t want them to be changed.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L289-L291">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift#L288-L290">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -649,10 +649,10 @@ don&rsquo;t want them to be changed.</p>
 <li>doNotThemeWindows: Do not theme any window.E.g.:</li>
 </ul>
 
-<p>E.g.:
-<code>
-ThemeKit.shared.windowThemePolicy = .themeSomeWindows(windowClasses: [CustomWindow.self])
-</code></p>
+<p>E.g.:</p>
+
+<pre class="highlight plaintext"><code>ThemeKit.shared.windowThemePolicy = .themeSomeWindows(windowClasses: [CustomWindow.self])
+</code></pre>
 
 <p><a href='#objective-c' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='objective-c'>Objective-C</h2></p>
 
@@ -669,7 +669,7 @@ is set, themable window class names can then be defined using
 <code>NSArray&lt;NSString*&gt;* themableWindowClassNames</code> property. E.g.:</p>
 
 <pre class="highlight plaintext"><code>[TKThemeKit sharedInstance].windowThemePolicy = TKThemeKitWindowThemePolicyThemeSomeWindowClasses;
-[TKThemeKit sharedInstance].themableWindowClassNames = @[CustomWindow.class];
+[TKThemeKit sharedInstance].themableWindowClassNames = @[[CustomWindow class]];
 </code></pre>
 
 <p><a href='#nswindow-extension' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='nswindow-extension'>NSWindow Extension</h2></p>

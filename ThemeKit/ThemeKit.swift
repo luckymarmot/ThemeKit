@@ -263,11 +263,10 @@ public class ThemeKit: NSObject {
         willChangeValue(forKey: #keyPath(themes))
         cachedThemes = nil
         
-        print("effectiveTheme: \(effectiveTheme) user? \(effectiveTheme is UserTheme)")
         if effectiveTheme is UserTheme {
             applyUserDefaultsTheme()
         }
-        
+    
         didChangeValue(forKey: #keyPath(themes))
     }
     

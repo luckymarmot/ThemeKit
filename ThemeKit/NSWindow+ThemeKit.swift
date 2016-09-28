@@ -73,16 +73,10 @@ public extension NSWindow {
         case .themeAllWindows:
             windows = NSApplication.shared().windows
             
-        case .themeSomeWindows(let windowClasses):
-            let windowsMatchingClasses = NSApplication.shared().windows.filter({ (window) -> Bool in
-                for windowClass in windowClasses {
-                    if object_getClass(self) === windowClass.self {
-                        return true
-                    }
-                }
-                return false
+        case .themeSomeWindows:
+            windows = NSApplication.shared().windows.filter({ (window) -> Bool in
+                return window.isCompliantWithWindowThemePolicy()
             })
-            windows.append(contentsOf: windowsMatchingClasses)
             
         case .doNotThemeWindows:
             break

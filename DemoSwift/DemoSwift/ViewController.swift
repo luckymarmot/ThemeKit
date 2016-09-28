@@ -43,7 +43,6 @@ class ViewController: NSViewController {
 //        print("NOTIF: theme: \(ThemeKit.shared.theme.identifier)")
 //        print("       effective theme: \(ThemeKit.shared.effectiveTheme.identifier)")
     }
-    
 }
 
 class CustomView: NSView {

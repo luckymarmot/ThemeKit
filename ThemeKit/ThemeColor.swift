@@ -209,10 +209,20 @@ public class ThemeColor : NSColor {
             if color == nil {
                 let selectorString = NSStringFromSelector(selector)
                 if selectorString.contains("Background") {
-                    color = theme.fallbackBackgroundColor ?? theme.defaultFallbackBackgroundColor
+                    // try with theme provided `fallbackBackgroundColor`
+                    color = theme.fallbackBackgroundColor ?? theme.themeAsset?("fallbackBackgroundColor") as? NSColor
+                    if color == nil {
+                        // otherwise just use default fallback color
+                        color = theme.defaultFallbackBackgroundColor
+                    }
                 }
                 else {
-                    color = theme.fallbackForegroundColor ?? theme.defaultFallbackForegroundColor
+                    // try with theme provided `fallbackForegroundColor`
+                    color = theme.fallbackForegroundColor ?? theme.themeAsset?("fallbackForegroundColor") as? NSColor
+                    if color == nil {
+                        // otherwise just use default fallback color
+                        color = theme.defaultFallbackForegroundColor
+                    }
                 }
             }
             

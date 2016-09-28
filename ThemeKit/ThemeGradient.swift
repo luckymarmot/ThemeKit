@@ -178,7 +178,12 @@ public class ThemeGradient : NSGradient {
             
             // Otherwise, use fallback gradient
             if gradient == nil {
-                gradient = theme.fallbackGradient ?? theme.defaultFallbackGradient
+                // try with theme provided `fallbackGradient`
+                gradient = theme.fallbackGradient ?? theme.themeAsset?("fallbackGradient") as? NSGradient
+                if gradient == nil {
+                    // otherwise just use default fallback gradient
+                    gradient = theme.defaultFallbackGradient
+                }
             }
             
             // Cache it

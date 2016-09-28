@@ -41,7 +41,7 @@ ThemeKit
   - Optional override of `NSColor` named colors (e.g., `labelColor`) to dynamically change with the theme
 
 ## Installation
-There are multiple options to inlcude `ThemeKit` on your project:
+There are multiple options to inlcude *ThemeKit* on your project:
 
 - [CocoaPods](https://cocoapods.org): add to your `Podfile`:
 
@@ -181,7 +181,7 @@ For example, a project defines a `ThemeColor.brandColor` color. This will resolv
 - `ThemeColor.brandColor` will resolve to `NSColor.white` if the dark theme is selected
 - `ThemeColor.brandColor` will resolve to `rgba(100, 50, 0, 0.5)` for some user-defined theme ([`UserTheme`](https://paw.cloud/opensource/themekit/docs/Classes/UserTheme.html))
 
-Similarly, defining a `ThemeColor.labelColor` will override `NSColor.labelColor` (`ThemeColor` is a subclass of `NSColor`), and `ThemeKit` will allow `labelColor` to be customized on a per-theme basis as well.
+Similarly, defining a `ThemeColor.labelColor` will override `NSColor.labelColor` (`ThemeColor` is a subclass of `NSColor`), and *ThemeKit* will allow `labelColor` to be customized on a per-theme basis as well.
 
 Please refer to [`ThemeColor`](https://paw.cloud/opensource/themekit/docs/Classes/ThemeColor.html) and [`ThemeGradient`](https://paw.cloud/opensource/themekit/docs/Classes/ThemeGradient.html) for more information.
 
@@ -240,4 +240,4 @@ In case needed, you can observe when theme changes to refresh the UI or to perfo
 
 ## License
 
-`ThemeKit` is available under the MIT license. See the [LICENSE](LICENSE) file for more info.
+*ThemeKit* is available under the MIT license. See the [LICENSE](LICENSE) file for more info.

@@ -2,7 +2,7 @@
 module: ThemeKit
 author: Paw Inc.
 author_url: https://paw.cloud
-readme: ThemeKit/DocsFrontPage.md
+readme: README.md
 copyright: '© 2016 [Paw](https://paw.cloud) under [MIT License](https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE).'
 
 # URLs

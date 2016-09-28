@@ -254,7 +254,9 @@ depending on the macOS preference at <strong>System Preferences &gt; General &gt
 <li>theming properties match the class methods of <code><a href="Classes/ThemeColor.html">ThemeColor</a></code> and <code><a href="Classes/ThemeGradient.html">ThemeGradient</a></code> (eg, <code>labelColor</code>);</li>
 <li>variables can be referenced by prefixing them with <code>$</code> (eg, <code>mainBorderColor = $commonBorderColor</code>);</li>
 <li>colors are defined using <code>rgb(255, 255, 255)</code> or <code>rgba(255, 255, 255, 1.0)</code> (case insensitive);</li>
-<li>gradients are defined using <code>linear-gradient(color1, color2)</code> (where colors are defined as above; case insensitive).</li>
+<li>gradients are defined using <code>linear-gradient(color1, color2)</code> (where colors are defined as above; case insensitive);</li>
+<li><code><a href="Classes/ThemeKit.html#/s:vC8ThemeKit8ThemeKit6themesGSaPS_5Theme__">ThemeKit.themes</a></code> is automatically updated when there are changes on the user themes folder;</li>
+<li>file changes are applied on-the-fly, if it corresponds to the currently applied theme.</li>
 </ul>
 
 <p>Example <code>.theme</code> file:</p>
@@ -289,7 +291,7 @@ background color and gradients, respectively.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/UserTheme.swift#L50-L163">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/UserTheme.swift#L52-L165">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

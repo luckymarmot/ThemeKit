@@ -25,7 +25,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         //ThemeKit.systemTheme.apply()
         
         
-        /* 2. Advacned usage: define window theme policy & enable user themes.
+        /* 2. Advanced usage: define window theme policy & enable user themes.
          * Themes will be selected using popup bound to user defaults. */
         
         // 2.1 Setup window theme policy

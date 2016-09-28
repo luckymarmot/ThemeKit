@@ -22,7 +22,9 @@ import Foundation
  - theming properties match the class methods of `ThemeColor` and `ThemeGradient` (eg, `labelColor`);
  - variables can be referenced by prefixing them with `$` (eg, `mainBorderColor = $commonBorderColor`);
  - colors are defined using `rgb(255, 255, 255)` or `rgba(255, 255, 255, 1.0)` (case insensitive);
- - gradients are defined using `linear-gradient(color1, color2)` (where colors are defined as above; case insensitive).
+ - gradients are defined using `linear-gradient(color1, color2)` (where colors are defined as above; case insensitive);
+ - `ThemeKit.themes` is automatically updated when there are changes on the user themes folder;
+ - file changes are applied on-the-fly, if it corresponds to the currently applied theme.
  
  Example `.theme` file:
  

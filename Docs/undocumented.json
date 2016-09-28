@@ -317,7 +317,7 @@
     },
     {
       "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/UserTheme.swift",
-      "line": 160,
+      "line": 162,
       "symbol": "UserTheme.description",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"

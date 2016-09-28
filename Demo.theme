@@ -1,5 +1,6 @@
 // ************************* Theme Info ************************* //
 displayName = Custom User Theme 1
+shortDisplayName = User Theme 1
 identifier = com.luckymarmot.ThemeKit.CustomTheme1
 darkTheme = true
 

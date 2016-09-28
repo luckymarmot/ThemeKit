@@ -8,7 +8,6 @@ ThemeKit
 ![MIT](https://img.shields.io/badge/license-MIT-lightgray.svg)
 ![CocoaPods](https://img.shields.io/badge/dep-CocoaPods-orange.svg)
 ![Carthage](https://img.shields.io/badge/dep-Carthage-orange.svg)
-![SPM](https://img.shields.io/badge/dep-SPM-orange.svg)
 
 ## Summary
 
@@ -55,12 +54,6 @@ There are multiple options to inlcude `ThemeKit` on your project:
 
   ```
   github "luckymarmot/ThemeKit"
-  ```
-  
-- [Swift Package Manager](https://swift.org/package-manager/):
-
-  ```
-  swift build
   ```
   
 - Manually:

@@ -1,322 +1,322 @@
 {
   "warnings": [
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/DarkTheme.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/DarkTheme.swift",
       "line": 36,
       "symbol": "DarkTheme.description",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/LightTheme.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/LightTheme.swift",
       "line": 36,
       "symbol": "LightTheme.description",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/SystemTheme.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/SystemTheme.swift",
       "line": 62,
       "symbol": "SystemTheme.description",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeColor.swift",
       "line": 309,
       "symbol": "ThemeColor.init(coder:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeColor.swift",
       "line": 313,
       "symbol": "ThemeColor.init(colorLiteralRed:green:blue:alpha:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeColor.swift",
       "line": 317,
       "symbol": "ThemeColor.init(pasteboardPropertyList:ofType:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeColor.swift",
       "line": 341,
       "symbol": "ThemeColor.setFill()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeColor.swift",
       "line": 345,
       "symbol": "ThemeColor.setStroke()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeColor.swift",
       "line": 349,
       "symbol": "ThemeColor.set()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeColor.swift",
       "line": 353,
       "symbol": "ThemeColor.usingColorSpace(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeColor.swift",
       "line": 357,
       "symbol": "ThemeColor.usingColorSpaceName(_:device:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeColor.swift",
       "line": 389,
       "symbol": "ThemeColor.colorSpaceName",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeColor.swift",
       "line": 393,
       "symbol": "ThemeColor.colorSpace",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeColor.swift",
       "line": 397,
       "symbol": "ThemeColor.numberOfComponents",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeColor.swift",
       "line": 401,
       "symbol": "ThemeColor.getComponents(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeColor.swift",
       "line": 405,
       "symbol": "ThemeColor.redComponent",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeColor.swift",
       "line": 409,
       "symbol": "ThemeColor.greenComponent",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeColor.swift",
       "line": 413,
       "symbol": "ThemeColor.blueComponent",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeColor.swift",
       "line": 417,
       "symbol": "ThemeColor.getRed(_:green:blue:alpha:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeColor.swift",
       "line": 421,
       "symbol": "ThemeColor.cyanComponent",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeColor.swift",
       "line": 425,
       "symbol": "ThemeColor.magentaComponent",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeColor.swift",
       "line": 429,
       "symbol": "ThemeColor.yellowComponent",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeColor.swift",
       "line": 433,
       "symbol": "ThemeColor.blackComponent",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeColor.swift",
       "line": 437,
       "symbol": "ThemeColor.getCyan(_:magenta:yellow:black:alpha:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeColor.swift",
       "line": 441,
       "symbol": "ThemeColor.whiteComponent",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeColor.swift",
       "line": 445,
       "symbol": "ThemeColor.getWhite(_:alpha:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeColor.swift",
       "line": 449,
       "symbol": "ThemeColor.hueComponent",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeColor.swift",
       "line": 453,
       "symbol": "ThemeColor.saturationComponent",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeColor.swift",
       "line": 457,
       "symbol": "ThemeColor.brightnessComponent",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeColor.swift",
       "line": 461,
       "symbol": "ThemeColor.getHue(_:saturation:brightness:alpha:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeColor.swift",
       "line": 465,
       "symbol": "ThemeColor.highlight(withLevel:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeColor.swift",
       "line": 469,
       "symbol": "ThemeColor.shadow(withLevel:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeColor.swift",
       "line": 473,
       "symbol": "ThemeColor.withAlphaComponent(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeColor.swift",
       "line": 477,
       "symbol": "ThemeColor.description",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeGradient.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeGradient.swift",
       "line": 228,
       "symbol": "ThemeGradient.initialize()",
       "symbol_kind": "source.lang.swift.decl.function.method.class",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeGradient.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeGradient.swift",
       "line": 252,
       "symbol": "ThemeGradient.init(coder:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeGradient.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeGradient.swift",
       "line": 265,
       "symbol": "ThemeGradient.draw(in:angle:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeGradient.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeGradient.swift",
       "line": 269,
       "symbol": "ThemeGradient.draw(in:angle:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeGradient.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeGradient.swift",
       "line": 273,
       "symbol": "ThemeGradient.draw(from:to:options:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeGradient.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeGradient.swift",
       "line": 277,
       "symbol": "ThemeGradient.draw(fromCenter:radius:toCenter:radius:options:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeGradient.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeGradient.swift",
       "line": 281,
       "symbol": "ThemeGradient.draw(in:relativeCenterPosition:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeGradient.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeGradient.swift",
       "line": 285,
       "symbol": "ThemeGradient.draw(in:relativeCenterPosition:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeGradient.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeGradient.swift",
       "line": 289,
       "symbol": "ThemeGradient.description",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeKit.swift",
       "line": 32,
       "symbol": "ThemeKit.initialize()",
       "symbol_kind": "source.lang.swift.decl.function.method.class",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/ThemeKit.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeKit.swift",
       "line": 363,
       "symbol": "ThemeKit.observeValue(forKeyPath:of:change:context:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/ThemeKit/UserTheme.swift",
+      "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/UserTheme.swift",
       "line": 162,
       "symbol": "UserTheme.description",
       "symbol_kind": "source.lang.swift.decl.var.instance",

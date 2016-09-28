@@ -88,7 +88,8 @@
 <img src="https://img.shields.io/badge/release-1.0-blue.svg?style=flat" alt="macOS">
 <img src="https://img.shields.io/badge/license-MIT-lightgray.svg" alt="MIT">
 <img src="https://img.shields.io/badge/dep-CocoaPods-orange.svg" alt="CocoaPods">
-<img src="https://img.shields.io/badge/dep-Carthage-orange.svg" alt="Carthage"></p>
+<img src="https://img.shields.io/badge/dep-Carthage-orange.svg" alt="Carthage">
+<img src="https://img.shields.io/badge/dep-SPM-orange.svg" alt="SPM"></p>
 <a href='#summary' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='summary'>Summary</h2>
 
 <p><em>ThemeKit</em> is a lightweight theming library completly written in Swift 3 that provides theming capabilities to both Swift 3 and Objective-C macOS applications.</p>
@@ -104,6 +105,7 @@
 <li><a href="#theme-aware-assets">Theme-aware Assets</a></li>
 <li><a href="#user-themes">User Themes</a></li>
 <li><a href="#faq">FAQ</a></li>
+<li><a href="#license">License</a></li>
 </ul>
 <a href='#features' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='features'>Features</h2>
 
@@ -142,6 +144,12 @@
 <li><a href="https://github.com/Carthage/Carthage">Carthage</a>:</li>
 </ul>
 <pre class="highlight plaintext"><code>  github "luckymarmot/ThemeKit"
+</code></pre>
+
+<ul>
+<li><a href="https://swift.org/package-manager/">Swift Package Manager</a>:</li>
+</ul>
+<pre class="highlight plaintext"><code>  swift build
 </code></pre>
 
 <ul>
@@ -311,6 +319,9 @@ ThemeKit.shared.userThemesFolderURL = //...
 <p>Yes, you can! Implement your own custom controls drawing using <a href="#theme-aware-assets">Theme-aware Assets</a> (<code>ThemeColor</code> and <code>ThemeGradient</code>) so that your controls drawing will always adapt to your current theme&hellip; automatically!</p>
 
 <p>In case needed, you can observe when theme changes to refresh the UI or to perform any theme related operation. Check <em><q>Observing theme changes</q></em> on <a href="#usage">Usage</a> section above.</p>
+<a href='#license' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='license'>License</h2>
+
+<p><code>ThemeKit</code> is available under the MIT license. See the <a href="LICENSE">LICENSE</a> file for more info.</p>
 
           </section>
         </section>

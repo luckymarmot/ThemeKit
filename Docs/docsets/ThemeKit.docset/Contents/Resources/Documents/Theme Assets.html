@@ -194,9 +194,10 @@ for each theme color class method defined on (1). E.g.:</p>
 <code>NSColor</code> class methods so that they return theme-aware colors. The procedure is
 exactly the same, so, for example, if adding a method named <code>labelColor</code> to a 
 <code>ThemeColor</code> extension, that method will be overriden in <code>NSColor</code> and the colors
-from <code><a href="Protocols/Theme.html">Theme</a></code> subclasses will be used instead. </p>
+from <code><a href="Protocols/Theme.html">Theme</a></code> subclasses will be used instead. 
+In sum, calling <code>NSColor.labelColor</code> will return theme-aware colors.</p>
 
-<p>You can get the full list of available color methods overridable (class methods)
+<p>You can get the full list of available/overridable color methods (class methods)
 calling <code>NSColor.colorMethodNames()</code>.</p>
 
 <p>At any time, you can check if a system color is being overriden by checking the
@@ -221,7 +222,7 @@ background colors respectively. These too, can be customized per theme.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift#L139-L470">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift#L140-L480">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -353,7 +354,7 @@ brandGradient = linear-gradient($orangeSky, rgb(200, 140, 60))
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeGradient.swift#L126-L285">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeGradient.swift#L126-L292">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

@@ -193,7 +193,12 @@ public class ThemeGradient : NSGradient {
         return gradient!
     }
     
-    /// Current theme color, but respecting view appearance.
+    /// Current theme gradient, but respecting view appearance.
+    ///
+    /// Some views may be using a different appearance than the theme appearance.
+    /// In thoses cases, gradient won't be resolved using current theme, but from
+    /// either `lightTheme` or `darkTheme`, depending of whether view appearance
+    /// is light or dark, respectively.
     ///
     /// - parameter view:    A `NSView` instance.
     /// - parameter selector: A gradient selector.

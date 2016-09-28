@@ -183,9 +183,10 @@ for each theme color class method defined on (1). E.g.:</p>
 <code>NSColor</code> class methods so that they return theme-aware colors. The procedure is
 exactly the same, so, for example, if adding a method named <code>labelColor</code> to a 
 <code>ThemeColor</code> extension, that method will be overriden in <code>NSColor</code> and the colors
-from <code><a href="../Protocols/Theme.html">Theme</a></code> subclasses will be used instead. </p>
+from <code><a href="../Protocols/Theme.html">Theme</a></code> subclasses will be used instead. 
+In sum, calling <code>NSColor.labelColor</code> will return theme-aware colors.</p>
 
-<p>You can get the full list of available color methods overridable (class methods)
+<p>You can get the full list of available/overridable color methods (class methods)
 calling <code>NSColor.colorMethodNames()</code>.</p>
 
 <p>At any time, you can check if a system color is being overriden by checking the
@@ -236,7 +237,7 @@ or, if inexistent, as argument in the theme instance method <code>themeAsset(_:)
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift#L146">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift#L147">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -266,7 +267,7 @@ or, if inexistent, as argument in the theme instance method <code>themeAsset(_:)
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift#L149">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift#L150">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -335,7 +336,7 @@ if unavailable, the result of calling <code>themeAsset(_:)</code> on the current
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift#L167-L169">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift#L168-L170">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -403,7 +404,7 @@ if unavailable, the result of calling <code>themeAsset(_:)</code> on the current
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift#L193-L231">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift#L194-L236">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -422,6 +423,11 @@ if unavailable, the result of calling <code>themeAsset(_:)</code> on the current
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Current theme color, but respecting view appearance.</p>
+
+<p>Some views may be using a different appearance than the theme appearance.
+In thoses cases, color won&rsquo;t be resolved using current theme, but from 
+either <code>lightTheme</code> or <code>darkTheme</code>, depending of whether view appearance
+is light or dark, respectively.</p>
 
                       </div>
                       <div class="declaration">
@@ -471,7 +477,7 @@ if unavailable, the result of calling <code>themeAsset(_:)</code> on the current
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift#L240-L258">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift#L250-L268">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -501,7 +507,7 @@ if unavailable, the result of calling <code>themeAsset(_:)</code> on the current
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift#L261-L266">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/ThemeKit/ThemeColor.swift#L271-L276">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

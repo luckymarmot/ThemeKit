@@ -120,8 +120,9 @@ private var _cachedThemeColors: NSCache<NSString, NSColor>!
  exactly the same, so, for example, if adding a method named `labelColor` to a 
  `ThemeColor` extension, that method will be overriden in `NSColor` and the colors
  from `Theme` subclasses will be used instead. 
+ In sum, calling `NSColor.labelColor` will return theme-aware colors.
  
- You can get the full list of available color methods overridable (class methods)
+ You can get the full list of available/overridable color methods (class methods)
  calling `NSColor.colorMethodNames()`.
  
  At any time, you can check if a system color is being overriden by checking the
@@ -235,6 +236,11 @@ public class ThemeColor : NSColor {
     }
     
     /// Current theme color, but respecting view appearance.
+    ///
+    /// Some views may be using a different appearance than the theme appearance.
+    /// In thoses cases, color won't be resolved using current theme, but from 
+    /// either `lightTheme` or `darkTheme`, depending of whether view appearance
+    /// is light or dark, respectively.
     ///
     /// - parameter view:    A `NSView` instance.
     /// - parameter selector: A color selector.

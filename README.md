@@ -87,14 +87,18 @@ The following code will define which windows should be automatically themed ([`W
 
 ```swift
 func applicationWillFinishLaunching(_ notification: Notification) {
+
+	/// Define default theme.
+	/// Used on first run. Default: macOS Theme.
+	ThemeKit.defaultTheme = ThemeKit.lightTheme
 	
-	/// Define window theme policy
+	/// Define window theme policy.
 	ThemeKit.shared.windowThemePolicy = .themeAllWindows
 	//ThemeKit.shared.windowThemePolicy = .themeSomeWindows(windowClasses: [MyWindow.self])
 	//ThemeKit.shared.windowThemePolicy = .doNotThemeWindows
 	    
-	/// Enable & configure user themes
-	/// Will use folder `(...)/Application Support/{your_app_bundle_id}/Themes`
+	/// Enable & configure user themes.
+	/// Will use folder `(...)/Application Support/{your_app_bundle_id}/Themes`.
 	let applicationSupportURLs = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true)
 	let thisAppSupportURL = URL.init(fileURLWithPath: applicationSupportURLs.first!).appendingPathComponent(Bundle.main.bundleIdentifier!)
 	let userThemesFolderURL = thisAppSupportURL.appendingPathComponent("Themes")

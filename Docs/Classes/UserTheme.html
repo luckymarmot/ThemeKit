@@ -108,18 +108,26 @@
 <p>Example <code>.theme</code> file:</p>
 
 <pre class="highlight ruby"><code><span class="sr">//</span> <span class="o">*************************</span> <span class="no">Theme</span> <span class="no">Info</span> <span class="o">*************************</span> <span class="sr">//</span>
-<span class="n">displayName</span> <span class="o">=</span> <span class="no">Custom</span> <span class="no">User</span> <span class="no">Theme</span> <span class="mi">1</span>
-<span class="n">identifier</span> <span class="o">=</span> <span class="n">com</span><span class="p">.</span><span class="nf">luckymarmot</span><span class="o">.</span><span class="no">ThemeKit</span><span class="o">.</span><span class="no">CustomTheme1</span>
+<span class="n">displayName</span> <span class="o">=</span> <span class="no">My</span> <span class="no">Theme</span> <span class="mi">1</span>
+<span class="n">identifier</span> <span class="o">=</span> <span class="n">com</span><span class="p">.</span><span class="nf">luckymarmot</span><span class="o">.</span><span class="no">ThemeKit</span><span class="o">.</span><span class="no">MyTheme1</span>
 <span class="n">darkTheme</span> <span class="o">=</span> <span class="kp">true</span>
 
 <span class="sr">//</span> <span class="o">*********************</span> <span class="no">Colors</span> <span class="o">&amp;</span> <span class="no">Gradients</span> <span class="o">*********************</span> <span class="sr">//</span>
+<span class="c1"># define color for `ThemeColor.brandColor`</span>
 <span class="n">brandColor</span> <span class="o">=</span> <span class="vg">$blue</span>
-<span class="n">labelColor</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mi">111</span><span class="p">)</span> <span class="o">/</span><span class="sr">/ overriding `NSColor.labelColor`!
-brandGradient = linear-gradient($orange.sky, rgba(200, 140, 60, 1.0))
+<span class="c1"># define a new color for `NSColor.labelColor` (overriding)</span>
+<span class="n">labelColor</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mi">111</span><span class="p">)</span>
+<span class="c1"># define gradient for `ThemeGradient.brandGradient`</span>
+<span class="n">brandGradient</span> <span class="o">=</span> <span class="n">linear</span><span class="o">-</span><span class="n">gradient</span><span class="p">(</span><span class="vg">$orange</span><span class="p">.</span><span class="nf">sky</span><span class="p">,</span> <span class="n">rgba</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">1</span><span class="o">.</span><span class="mi">0</span><span class="p">))</span>
 
-/</span><span class="o">/</span> <span class="o">*******************+***</span> <span class="no">Common</span> <span class="no">Colors</span> <span class="o">************************</span> <span class="sr">//</span>
+<span class="sr">//</span> <span class="o">***********************</span> <span class="no">Common</span> <span class="no">Colors</span> <span class="o">************************</span> <span class="sr">//</span>
 <span class="n">blue</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">170</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
 <span class="n">orange</span><span class="p">.</span><span class="nf">sky</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="o">.</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="sr">//</span> <span class="o">**********************</span> <span class="no">Fallback</span> <span class="no">Assets</span> <span class="o">***********************</span> <span class="sr">//</span>
+<span class="n">fallbackForegroundColor</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">1</span><span class="o">.</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">fallbackBackgroundColor</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">190</span><span class="p">)</span>
+<span class="n">fallbackGradient</span> <span class="o">=</span> <span class="n">linear</span><span class="o">-</span><span class="n">gradient</span><span class="p">(</span><span class="vg">$blue</span><span class="p">,</span> <span class="n">rgba</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">1</span><span class="o">.</span><span class="mi">0</span><span class="p">))</span>
 </code></pre>
 
 <p>Unimplemented properties on theme file will default to <code>-fallbackForegroundColor</code>, 
@@ -155,7 +163,7 @@ background color and gradients, respectively.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/UserTheme.swift#L54">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/UserTheme.swift#L62">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -185,7 +193,7 @@ background color and gradients, respectively.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/UserTheme.swift#L57">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/UserTheme.swift#L65">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -215,7 +223,7 @@ background color and gradients, respectively.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/UserTheme.swift#L60">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/UserTheme.swift#L68">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -245,7 +253,7 @@ background color and gradients, respectively.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/UserTheme.swift#L63">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/UserTheme.swift#L71">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -311,7 +319,7 @@ background color and gradients, respectively.</p>
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/UserTheme.swift#L100-L107">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/UserTheme.swift#L108-L115">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

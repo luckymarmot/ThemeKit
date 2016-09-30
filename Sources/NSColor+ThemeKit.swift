@@ -40,7 +40,7 @@ extension NSColor {
     
     /// Get all `NSColor` color methods.
     /// Overridable class methods (can be overriden in `ThemeColor` extension).
-    public func colorMethodNames() -> [String] {
+    public class func colorMethodNames() -> [String] {
         let nsColorMethods = NSObject.classMethodNames(for: NSColor.classForCoder()).filter { (methodName) -> Bool in
             return methodName.hasSuffix("Color")
         }

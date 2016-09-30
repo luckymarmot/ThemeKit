@@ -30,8 +30,8 @@ public class ThemeKit: NSObject {
     // MARK: Initialization & Cleanup
     
     open override class func initialize() {
-        // Observe when application did finish launching
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.NSApplicationDidFinishLaunching, object: nil, queue: nil) { (Notification) in
+        // Observe when application will finish launching
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.NSApplicationWillFinishLaunching, object: nil, queue: nil) { (Notification) in
             // Apply theme from User Defaults
             ThemeKit.shared.applyUserDefaultsTheme()
             
@@ -138,10 +138,8 @@ public class ThemeKit: NSObject {
     /// **System Preferences > General > Appearance**.
     public static let systemTheme = SystemTheme()
     
-    /// Returns default theme to be used for the first time (`systemTheme`).
-    public static var defaultTheme: Theme {
-        return ThemeKit.systemTheme
-    }
+    /// Set/get default theme to be used on the first run (default: `systemTheme`).
+    public static var defaultTheme: Theme = ThemeKit.systemTheme
     
     /// Get the theme with specified identifier.
     ///

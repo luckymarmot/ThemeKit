@@ -30,18 +30,26 @@ import Foundation
  
  ```ruby
  // ************************* Theme Info ************************* //
- displayName = Custom User Theme 1
- identifier = com.luckymarmot.ThemeKit.CustomTheme1
+ displayName = My Theme 1
+ identifier = com.luckymarmot.ThemeKit.MyTheme1
  darkTheme = true
  
  // ********************* Colors & Gradients ********************* //
+ # define color for `ThemeColor.brandColor`
  brandColor = $blue
- labelColor = rgb(11, 220, 111) // overriding `NSColor.labelColor`!
+ # define a new color for `NSColor.labelColor` (overriding)
+ labelColor = rgb(11, 220, 111)
+ # define gradient for `ThemeGradient.brandGradient`
  brandGradient = linear-gradient($orange.sky, rgba(200, 140, 60, 1.0))
  
- // *******************+*** Common Colors ************************ //
+ // *********************** Common Colors ************************ //
  blue = rgb(0, 170, 255)
  orange.sky = rgb(160, 90, 45, .5)
+ 
+ // ********************** Fallback Assets *********************** //
+ fallbackForegroundColor = rgb(255, 10, 90, 1.0)
+ fallbackBackgroundColor = rgb(255, 200, 190)
+ fallbackGradient = linear-gradient($blue, rgba(200, 140, 60, 1.0))
  ```
  
  Unimplemented properties on theme file will default to `-fallbackForegroundColor`, 

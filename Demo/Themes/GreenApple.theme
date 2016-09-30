@@ -1,16 +1,18 @@
 // ************************* Theme Info ************************* //
-displayName = Custom User Theme 1
-shortDisplayName = User Theme 1
-identifier = com.luckymarmot.ThemeKit.CustomTheme1
+displayName = Green Apple
+identifier = com.luckymarmot.ThemeKit.GreenApple
 darkTheme = true
 
 // ********************* Colors & Gradients ********************* //
-brandColor = $blue
-labelColor = rgb(11, 220, 111) // overriding `NSColor.labelColor`!
-brandGradient = linear-gradient($orange.sky, rgba(200, 140, 60, 1.0))
+contentTextColor = $dark.green
+contentBackgroundColor = $black1
+//brandGradient = linear-gradient($orange.sky, rgba(200, 140, 60, 1.0))
 
 // *********************** Common Colors ************************ //
 blue = rgb(0, 170, 255)
+vivid.green = rgb(230, 255, 20)
+dark.green = rgb(130, 155, 80)
+black1 = rgb(5, 25, 5)
 orange.sky = rgb(160, 90, 45, .5)
 
 // ********************** Fallback Assets *********************** //

@@ -176,13 +176,17 @@
 <p>The following code will define which windows should be automatically themed (<a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeKit/WindowThemePolicy.html"><code>WindowThemePolicy</code></a>) and add support for user themes (<a href="https://paw.cloud/opensource/themekit/docs/Classes/UserTheme.html"><code>UserTheme</code></a>):</p>
 <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">applicationWillFinishLaunching</span><span class="p">(</span><span class="n">_</span> <span class="nv">notification</span><span class="p">:</span> <span class="kt">Notification</span><span class="p">)</span> <span class="p">{</span>
 
-    <span class="c1">/// Define window theme policy</span>
+    <span class="c1">/// Define default theme.</span>
+    <span class="c1">/// Used on first run. Default: macOS Theme.</span>
+    <span class="kt">ThemeKit</span><span class="o">.</span><span class="n">defaultTheme</span> <span class="o">=</span> <span class="kt">ThemeKit</span><span class="o">.</span><span class="n">lightTheme</span>
+
+    <span class="c1">/// Define window theme policy.</span>
     <span class="kt">ThemeKit</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="n">windowThemePolicy</span> <span class="o">=</span> <span class="o">.</span><span class="n">themeAllWindows</span>
     <span class="c1">//ThemeKit.shared.windowThemePolicy = .themeSomeWindows(windowClasses: [MyWindow.self])</span>
     <span class="c1">//ThemeKit.shared.windowThemePolicy = .doNotThemeWindows</span>
 
-    <span class="c1">/// Enable &amp; configure user themes</span>
-    <span class="c1">/// Will use folder `(...)/Application Support/{your_app_bundle_id}/Themes`</span>
+    <span class="c1">/// Enable &amp; configure user themes.</span>
+    <span class="c1">/// Will use folder `(...)/Application Support/{your_app_bundle_id}/Themes`.</span>
     <span class="k">let</span> <span class="nv">applicationSupportURLs</span> <span class="o">=</span> <span class="kt">NSSearchPathForDirectoriesInDomains</span><span class="p">(</span><span class="o">.</span><span class="n">applicationSupportDirectory</span><span class="p">,</span> <span class="o">.</span><span class="n">userDomainMask</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
     <span class="k">let</span> <span class="nv">thisAppSupportURL</span> <span class="o">=</span> <span class="kt">URL</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">fileURLWithPath</span><span class="p">:</span> <span class="n">applicationSupportURLs</span><span class="o">.</span><span class="n">first</span><span class="o">!</span><span class="p">)</span><span class="o">.</span><span class="nf">appendingPathComponent</span><span class="p">(</span><span class="kt">Bundle</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">bundleIdentifier</span><span class="o">!</span><span class="p">)</span>
     <span class="k">let</span> <span class="nv">userThemesFolderURL</span> <span class="o">=</span> <span class="n">thisAppSupportURL</span><span class="o">.</span><span class="nf">appendingPathComponent</span><span class="p">(</span><span class="s">"Themes"</span><span class="p">)</span>

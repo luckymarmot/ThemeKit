@@ -310,14 +310,14 @@
     },
     {
       "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeKit.swift",
-      "line": 363,
+      "line": 361,
       "symbol": "ThemeKit.observeValue(forKeyPath:of:change:context:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/UserTheme.swift",
-      "line": 162,
+      "line": 170,
       "symbol": "UserTheme.description",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"

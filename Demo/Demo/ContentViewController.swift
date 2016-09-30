@@ -12,13 +12,13 @@ import ThemeKit
 class ContentViewController: NSViewController, NSTextDelegate {
     
     /// Our content view
+    @IBOutlet var contentView: NSView!
+    
+    /// Our text view
     @IBOutlet weak var contentTextView: NSTextView!
     
     /// Our placeholder view when no note is selected.
     @IBOutlet var noSelectionPlaceholder: NSView!
-    
-    /// Our contentView scrollview.
-    @IBOutlet var contentScrollView: NSScrollView!
  
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +27,7 @@ class ContentViewController: NSViewController, NSTextDelegate {
         contentTextView.textColor = ThemeColor.contentTextColor
         contentTextView.backgroundColor = ThemeColor.contentBackgroundColor
         contentTextView.drawsBackground = true
+        contentTextView.textContainer?.lineFragmentPadding = 8
         contentTextView.font = NSFont.userFixedPitchFont(ofSize: 11)
         
         // Observe note selection change notifications
@@ -43,11 +44,11 @@ class ContentViewController: NSViewController, NSTextDelegate {
                 contentTextView.string = note.text
                 contentTextView.scrollToBeginningOfDocument(self)
                 noSelectionPlaceholder.removeFromSuperview()
-                subview = contentScrollView
+                subview = contentView
             }
             else {
                 contentTextView.string = ""
-                contentScrollView.removeFromSuperview()
+                contentView.removeFromSuperview()
                 subview = noSelectionPlaceholder
             }
             
@@ -65,6 +66,8 @@ class ContentViewController: NSViewController, NSTextDelegate {
     public func textDidChange(_ notification: Notification) {
         if let note = representedObject as? Note {
             note.text = contentTextView.string!
+            note.lastModified = Date()
+            NotificationCenter.default.post(name: .didEditNoteText, object: self, userInfo: ["note": note])
         }
     }
     

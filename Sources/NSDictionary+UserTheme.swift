@@ -75,6 +75,7 @@ extension NSDictionary {
                 // Extract variable
                 let start = range!.location + 1
                 let end = start + range!.length - 2
+                guard start < value.characters.count && end < value.characters.count else { return }
                 let variable = value[start..<end]
                 
                 // Evaluated value

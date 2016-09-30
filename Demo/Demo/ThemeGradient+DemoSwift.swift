@@ -11,8 +11,8 @@ import ThemeKit
 
 extension ThemeGradient {
     
-//    static var brandGradient: ThemeGradient {
-//        return ThemeGradient.gradient(with: #function)
-//    }
+    static var rainbowGradient: ThemeGradient {
+        return ThemeGradient.gradient(with: #function)
+    }
     
 }

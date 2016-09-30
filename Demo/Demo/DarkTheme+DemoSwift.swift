@@ -11,6 +11,13 @@ import ThemeKit
 
 extension DarkTheme {
     
+    // MARK: CONTENT
+    
+    /// Notes content title text color
+    var contentTitleColor: NSColor {
+        return NSColor(calibratedWhite: 0.95, alpha: 1.0)
+    }
+    
     /// Notes text foreground color
     var contentTextColor: NSColor {
         return NSColor.lightGray
@@ -21,7 +28,16 @@ extension DarkTheme {
         return NSColor.black
     }
     
-//    var brandGradient: NSGradient? {
-//        return NSGradient(starting: brandColor, ending: NSColor.blue)
-//    }
+    var rainbowGradient: NSGradient? {
+        return NSGradient(starting: NSColor.green, ending: NSColor.blue)
+    }
+    
+    
+    // MARK: DETAILS
+    
+    /// Notes content title text color
+    var detailsTitleColor: NSColor {
+        return NSColor.lightGray
+    }
+    
 }

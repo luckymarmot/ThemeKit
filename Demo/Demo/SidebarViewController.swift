@@ -19,8 +19,14 @@ class SidebarViewController: NSViewController, NSOutlineViewDataSource, NSOutlin
         // Load last notes
         loadNotes()
         
-        // Save notes on quit
+        // Save notes on quit & when inactive
         NotificationCenter.default.addObserver(self, selector: #selector(saveNotes), name: .NSApplicationWillTerminate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(saveNotes), name: .NSApplicationWillResignActive, object: nil)
+        
+        // Observe note title editing notifications
+        NotificationCenter.default.addObserver(forName: .didEditNoteTitle, object: nil, queue: nil) { (notification) in
+            self.outlineView.reloadData()
+        }
     }
     
     override func viewWillAppear() {
@@ -73,6 +79,29 @@ class SidebarViewController: NSViewController, NSOutlineViewDataSource, NSOutlin
     @IBAction func addNote(_ sender: NSButton){
         notes[rootNode]?.append(Note())
         outlineView.reloadData()
+    }
+    
+    /// Delete a note
+    @IBAction func deleteNote(_ sender: NSButton){
+        if outlineView.selectedRow > 0 && outlineView.selectedRow <= notes[rootNode]!.count {
+            // ask user
+            let alert = NSAlert()
+            alert.messageText = "Delete this note?"
+            alert.informativeText = "Are you sure you would like to delete this note?"
+            alert.addButton(withTitle: "Delete")
+            alert.addButton(withTitle: "Cancel")
+            alert.alertStyle = .warning
+            alert.beginSheetModal(for: view.window!, completionHandler: { (modalResponse) in
+                if modalResponse == NSAlertFirstButtonReturn {
+                    
+                    // delete note
+                    self.notes[self.rootNode]?.remove(at: self.outlineView.selectedRow - 1)
+                    self.outlineView.reloadData()
+                    NotificationCenter.default.post(name: .didChangeNoteSelection, object: self, userInfo: nil)
+                    
+                }
+            })
+        }
     }
     
     
@@ -157,6 +186,7 @@ class SidebarViewController: NSViewController, NSOutlineViewDataSource, NSOutlin
         if let note = (control.superview as? NSTableCellView)?.objectValue as? Note
          , let newTitle = (control as? NSTextField)?.objectValue as? String {
             note.title = newTitle
+            note.lastModified = Date()
         }
         return true
     }

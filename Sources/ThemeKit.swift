@@ -204,7 +204,13 @@ public class ThemeKit: NSObject {
             // Observe User Themes folder via CGD dispatch sources
             if userThemesFolderURL != nil && userThemesFolderURL! != oldValue {
                 // Create folder if needed
-                try! FileManager.default.createDirectory(at: userThemesFolderURL!, withIntermediateDirectories: true, attributes: nil)
+                do {
+                    try FileManager.default.createDirectory(at: userThemesFolderURL!, withIntermediateDirectories: true, attributes: nil)
+                } catch let error as NSError {
+                    print("Unable to create `Themes` directory: \(error.debugDescription)")
+                    userThemesFolderURL = nil
+                    return
+                }
                 
                 // Initialize file descriptor
                 let fileDescriptor = open((userThemesFolderURL!.path as NSString).fileSystemRepresentation, O_EVTONLY)

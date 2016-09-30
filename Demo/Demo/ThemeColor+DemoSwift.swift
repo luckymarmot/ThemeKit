@@ -11,6 +11,13 @@ import ThemeKit
 
 extension ThemeColor {
     
+    // MARK: CONTENT
+    
+    /// Notes content title text color
+    static var contentTitleColor: ThemeColor {
+        return ThemeColor.color(with: #function)
+    }
+    
     /// Notes text foreground color
     static var contentTextColor: ThemeColor {
         return ThemeColor.color(with: #function)
@@ -18,6 +25,14 @@ extension ThemeColor {
     
     /// Notes text background color
     static var contentBackgroundColor: ThemeColor {
+        return ThemeColor.color(with: #function)
+    }
+    
+    
+    // MARK: DETAILS
+    
+    /// Notes content title text color
+    static var detailsTitleColor: ThemeColor {
         return ThemeColor.color(with: #function)
     }
     

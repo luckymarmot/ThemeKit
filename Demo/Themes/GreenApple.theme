@@ -3,15 +3,17 @@ displayName = Green Apple
 identifier = com.luckymarmot.ThemeKit.GreenApple
 darkTheme = true
 
-// ********************* Colors & Gradients ********************* //
+// ********************* Content ********************* //
 contentTitleColor = $vivid.green
 contentTextColor = $dark.green
 contentBackgroundColor = $black1
 //rainbowGradient = linear-gradient($orange.sky, rgba(200, 140, 60, 1.0))
 //rainbowGradient = linear-gradient(rgba(150, 170, 60, 1.0), $contentBackgroundColor)
-rainbowGradient = linear-gradient($lime.green, $contentBackgroundColor)
+rainbowGradient = linear-gradient($purple, $vivid.green)
 
+// ********************* Details ********************* //
 detailsTitleColor = rgb(200, 200, 200)
+detailsGradient = linear-gradient($purple2, $clear)
 
 // *********************** Common Colors ************************ //
 blue = rgb(0, 170, 255)
@@ -19,6 +21,10 @@ vivid.green = rgb(230, 255, 20)
 dark.green = rgb(130, 155, 80)
 lime.green = rgb(250, 190, 45, .5)
 black1 = rgb(5, 25, 5)
+purple = rgb(175, 27, 230)
+purple2 = rgb(175, 27, 230, 0.25)
+lime.green2 = rgb(120, 233, 47)
+clear = rgb(0,0,0,0)
 
 // ********************** Fallback Assets *********************** //
 fallbackForegroundColor = rgb(255, 10, 90, 1.0)

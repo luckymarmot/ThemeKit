@@ -28,6 +28,7 @@ extension LightTheme {
         return NSColor.white
     }
     
+    /// Rainbow gradient (used between title and text)
     var rainbowGradient: NSGradient? {
         return NSGradient(starting: NSColor(calibratedRed: 0.0, green: 0.66, blue: 1.0, alpha: 1.0), ending: ThemeColor.contentBackgroundColor)
     }
@@ -37,7 +38,11 @@ extension LightTheme {
     
     /// Notes content title text color
     var detailsTitleColor: NSColor {
-        return NSColor.darkGray
+        return NSColor(red:0.43, green:0.43, blue:0.43, alpha:1.0)
     }
 
+    /// Details vertical gradient
+    var detailsGradient: NSGradient? {
+        return NSGradient(starting: NSColor(calibratedWhite: 1.0, alpha: 0.0), ending: NSColor(calibratedWhite: 1.0, alpha: 0.0))
+    }
 }

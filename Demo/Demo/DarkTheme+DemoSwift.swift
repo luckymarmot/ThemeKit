@@ -28,6 +28,7 @@ extension DarkTheme {
         return NSColor.black
     }
     
+    /// Rainbow gradient (used between title and text)
     var rainbowGradient: NSGradient? {
         return NSGradient(starting: NSColor.green, ending: NSColor.blue)
     }
@@ -37,7 +38,12 @@ extension DarkTheme {
     
     /// Notes content title text color
     var detailsTitleColor: NSColor {
-        return NSColor.lightGray
+        return NSColor(red:0.43, green:0.43, blue:0.43, alpha:1.0)
+    }
+    
+    /// Details vertical gradient
+    var detailsGradient: NSGradient? {
+        return NSGradient(starting: NSColor.clear, ending: NSColor.clear)
     }
     
 }

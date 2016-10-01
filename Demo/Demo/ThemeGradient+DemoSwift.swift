@@ -11,7 +11,18 @@ import ThemeKit
 
 extension ThemeGradient {
     
+    // MARK: CONTENT
+    
+    /// Rainbow gradient (used between title and text)
     static var rainbowGradient: ThemeGradient {
+        return ThemeGradient.gradient(with: #function)
+    }
+    
+    
+    // MARK: DETAILS
+    
+    /// Details vertical gradient
+    static var detailsGradient: ThemeGradient {
         return ThemeGradient.gradient(with: #function)
     }
     

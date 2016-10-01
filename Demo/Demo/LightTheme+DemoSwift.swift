@@ -25,7 +25,7 @@ extension LightTheme {
     
     /// Notes text background color
     var contentBackgroundColor: NSColor {
-        return NSColor.white
+        return NSColor(red:1.0, green:0.99, blue:0.98, alpha:1.0)
     }
     
     /// Rainbow gradient (used between title and text)

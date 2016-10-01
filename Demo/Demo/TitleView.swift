@@ -22,11 +22,23 @@ class TitleView: NSView, NSTextFieldDelegate {
         titleTextField.textColor = ThemeColor.contentTitleColor
         titleTextField.backgroundColor = ThemeColor.contentBackgroundColor
         titleTextField.delegate = self
+        var font = NSFont(name: "GillSans-Light", size: 24)
+        if font == nil {
+            font = NSFont.systemFont(ofSize: 24)
+        }
+        titleTextField.font = font
         
         // Observe note selection change notifications
         NotificationCenter.default.addObserver(forName: .didChangeNoteSelection, object: nil, queue: nil) { (notification) in
             self.note = notification.userInfo?["note"] as? Note;
             
+            if self.note != nil {
+                self.titleTextField.stringValue = (self.note?.title)!
+            }
+        }
+        
+        // Observe note title change notifications
+        NotificationCenter.default.addObserver(forName: .didEditNoteTitle, object: nil, queue: nil) { (notification) in
             if self.note != nil {
                 self.titleTextField.stringValue = (self.note?.title)!
             }

@@ -187,6 +187,7 @@ class SidebarViewController: NSViewController, NSOutlineViewDataSource, NSOutlin
          , let newTitle = (control as? NSTextField)?.objectValue as? String {
             note.title = newTitle
             note.lastModified = Date()
+            NotificationCenter.default.post(name: .didEditNoteTitle, object: self, userInfo: ["note" : note])
         }
         return true
     }

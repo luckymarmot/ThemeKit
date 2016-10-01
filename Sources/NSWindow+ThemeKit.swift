@@ -132,7 +132,7 @@ public extension NSWindow {
         
         // Search on titlebar accessory views if supported (will fail if tab bar is hidden)
         let themeFrame = self.contentView?.superview
-        if (themeFrame?.responds(to: #selector(getter: titlebarAccessoryViewControllers)))! {
+        if themeFrame?.responds(to: #selector(getter: titlebarAccessoryViewControllers)) ?? false {
             for controller: NSTitlebarAccessoryViewController in self.titlebarAccessoryViewControllers {
                 let possibleTabBar = controller.view.deepSubview(withClassName: "NSTabBar")
                 if possibleTabBar != nil {

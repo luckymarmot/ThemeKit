@@ -27,8 +27,15 @@ class ContentViewController: NSViewController, NSTextDelegate {
         contentTextView.textColor = ThemeColor.contentTextColor
         contentTextView.backgroundColor = ThemeColor.contentBackgroundColor
         contentTextView.drawsBackground = true
-        contentTextView.textContainer?.lineFragmentPadding = 8
-        contentTextView.font = NSFont.userFixedPitchFont(ofSize: 11)
+        contentTextView.textContainer?.lineFragmentPadding = 16
+        var font = NSFont(name: "GillSans-Light", size: 16)
+        if font == nil {
+            font = NSFont.systemFont(ofSize: 14)
+        }
+        contentTextView.font = font
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 4.4
+        contentTextView.defaultParagraphStyle = paragraphStyle
         
         // Observe note selection change notifications
         NotificationCenter.default.addObserver(forName: .didChangeNoteSelection, object: nil, queue: nil) { (notification) in
@@ -57,8 +64,7 @@ class ContentViewController: NSViewController, NSTextDelegate {
             subview.autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
             subview.frame = view.bounds
         }
-    }
-    
+    }    
     
     // MARK: -
     // MARK: NSTextDelegate

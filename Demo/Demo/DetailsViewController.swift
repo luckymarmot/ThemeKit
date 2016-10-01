@@ -32,6 +32,10 @@ class DetailsViewController: NSViewController {
         dateFormatter?.dateStyle = .medium
         dateFormatter?.timeStyle = .none
         
+        // Hide stuff until we have a selected note
+        containerView.isHidden = true
+        deleteButton.isHidden = true
+        
         // Observe note selection change notifications
         NotificationCenter.default.addObserver(forName: .didChangeNoteSelection, object: nil, queue: nil) { (notification) in
             self.representedObject = notification.userInfo?["note"];

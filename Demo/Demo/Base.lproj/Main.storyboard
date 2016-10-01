@@ -677,11 +677,11 @@
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="3lQ-5V-mzk"/>
                                 <toolbarItem implicitItemIdentifier="A18573F1-3B52-4DBC-87C7-A31559D6488E" label="Theme" paletteLabel="Theme" id="FpX-bJ-7Ui">
                                     <nil key="toolTip"/>
-                                    <size key="minSize" width="110" height="28"/>
-                                    <size key="maxSize" width="120" height="28"/>
+                                    <size key="minSize" width="80" height="28"/>
+                                    <size key="maxSize" width="150" height="28"/>
                                     <popUpButton key="view" verticalHuggingPriority="750" id="bUH-7N-jM3">
-                                        <rect key="frame" x="0.0" y="14" width="120" height="28"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <rect key="frame" x="0.0" y="14" width="125" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
                                         <popUpButtonCell key="cell" type="roundTextured" title="Item 1" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="PA8-Em-lSp" id="c0J-0p-c1e">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
@@ -727,12 +727,9 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="addNote:" target="Oky-zY-oP4" id="7rl-Mn-lii"/>
+                                            <action selector="addNote:" target="B8D-0N-5wS" id="ezo-O1-RVE"/>
                                         </connections>
                                     </button>
-                                    <connections>
-                                        <action selector="addNote:" target="Oky-zY-oP4" id="7Lt-EA-hZh"/>
-                                    </connections>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="80CC8F0E-258C-45D9-9D91-D0AA2B02A667" explicitItemIdentifier="deleteNote" label="Delete" paletteLabel="Delete Note" image="NSRemoveTemplate" id="ugU-yw-Fuy">
                                     <nil key="toolTip"/>
@@ -970,9 +967,9 @@
                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="bqa-xj-5HK" customClass="TitleView" customModule="Demo" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="262" width="404" height="46"/>
                             <subviews>
-                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sJK-xu-PWy">
+                                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sJK-xu-PWy">
                                     <rect key="frame" x="14" y="8" width="376" height="34"/>
-                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" drawsBackground="YES" id="aGm-Mj-uo8">
+                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" drawsBackground="YES" id="aGm-Mj-uo8">
                                         <font key="font" size="18" name=".AppleSystemUIFont"/>
                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -996,7 +993,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="404" height="262"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <textView drawsBackground="NO" importsGraphics="NO" richText="NO" usesFontPanel="YES" findStyle="panel" incrementalSearchingEnabled="YES" allowsUndo="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="Ngm-2I-WcI">
+                                    <textView focusRingType="none" drawsBackground="NO" usesFontPanel="YES" findStyle="panel" incrementalSearchingEnabled="YES" allowsUndo="YES" quoteSubstitution="YES" linkDetection="YES" dashSubstitution="YES" smartInsertDelete="YES" id="Ngm-2I-WcI">
                                         <rect key="frame" x="0.0" y="0.0" width="404" height="262"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1131,7 +1128,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="deleteNote:" target="xYr-rm-t5e" id="E9B-WW-W4k"/>
+                                    <action selector="deleteNote:" target="EpV-UA-1k1" id="mah-nr-ugh"/>
                                 </connections>
                             </button>
                         </subviews>

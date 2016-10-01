@@ -36,7 +36,7 @@ extension DarkTheme {
     
     // MARK: DETAILS
     
-    /// Notes content title text color
+    /// Notes details title text color
     var detailsTitleColor: NSColor {
         return NSColor(red:0.43, green:0.43, blue:0.43, alpha:1.0)
     }

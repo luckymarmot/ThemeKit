@@ -310,7 +310,7 @@
     },
     {
       "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeKit.swift",
-      "line": 361,
+      "line": 376,
       "symbol": "ThemeKit.observeValue(forKeyPath:of:change:context:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

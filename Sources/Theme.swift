@@ -10,7 +10,7 @@ import Foundation
 
 /// Theme protocol. The base of all themes.
 @objc(TKTheme)
-public protocol Theme {
+public protocol Theme: NSObjectProtocol {
     // MARK: Required Properties
     
     /// Unique theme identifier.

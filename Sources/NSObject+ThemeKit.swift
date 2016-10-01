@@ -10,7 +10,7 @@ import Foundation
 
 extension NSObject {
     
-    /// Swizzle instance methods
+    /// Swizzle instance methods.
     internal class func swizzleInstanceMethod(cls: AnyClass?, selector originalSelector: Selector, withSelector swizzledSelector: Selector) {
         guard cls != nil else {
             print("Unable to swizzle \(cls).\(originalSelector): dynamic system color override will not be available.")
@@ -32,7 +32,7 @@ extension NSObject {
         }
     }
     
-    /// Returns class method names
+    /// Returns class method names.
     internal class func classMethodNames(for cls: AnyClass?) -> Array<String> {
         var results: Array<String> = []
         
@@ -48,6 +48,45 @@ extension NSObject {
         
         // release class methods list
         free(methods)
+        
+        return results
+    }
+    
+    /// Returns class list.
+    internal static func classList() -> [AnyClass] {
+        var results: Array<AnyClass> = []
+        
+        // class count
+        let expectedCount: Int32 = objc_getClassList(nil, 0)
+        
+        // retrieve class list
+        let buffer = UnsafeMutablePointer<AnyClass?>.allocate(capacity: Int(expectedCount))
+        let realCount: Int32 = objc_getClassList(AutoreleasingUnsafeMutablePointer<AnyClass?>(buffer), expectedCount)
+        
+        // iterate classes
+        for i in 0..<realCount {
+            if let cls: AnyClass = buffer[Int(i)] {
+                results.append(cls)
+            }
+        }
+        
+        // release buffer
+        buffer.deallocate(capacity: Int(expectedCount))
+        
+        return results
+    }
+    
+    /// Returns classes implementing specified protocol.
+    internal static func classesImplementingProtocol(_ aProtocol: Protocol) -> [AnyClass] {
+        let classes = classList()
+        var results = [AnyClass]()
+        
+        // iterate classes
+        for cls in classes {
+            if class_conformsToProtocol(cls, aProtocol) {
+                results.append(cls)
+            }
+        }
         
         return results
     }

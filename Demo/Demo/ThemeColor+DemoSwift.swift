@@ -31,7 +31,7 @@ extension ThemeColor {
     
     // MARK: DETAILS
     
-    /// Notes content title text color
+    /// Notes details title text color
     static var detailsTitleColor: ThemeColor {
         return ThemeColor.color(with: #function)
     }

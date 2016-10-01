@@ -96,9 +96,10 @@ public class ThemeKit: NSObject {
     
     /// List all available themes:
     ///
-    /// - `lightTheme`
-    /// - `darkTheme`
-    /// - `systemTheme`
+    /// - Built-in `lightTheme`
+    /// - Built-in`darkTheme`
+    /// - Built-in`systemTheme`
+    /// - All native themes (extending `NSObject` and conforming to `Theme` protocol)
     /// - All user themes (loaded from `.theme` files)
     ///
     /// This property is KVO compliant and will change when changes occur on user
@@ -111,6 +112,14 @@ public class ThemeKit: NSObject {
             available.append(ThemeKit.lightTheme)
             available.append(ThemeKit.darkTheme)
             available.append(ThemeKit.systemTheme)
+            
+            // Developer native themes (conforming to NSObject, Theme)
+            for cls in NSObject.classesImplementingProtocol(Theme.self) {
+                if cls !== LightTheme.self && cls !== DarkTheme.self && cls !== SystemTheme.self && cls !== UserTheme.self {
+                    let themeClass = cls as! NSObject.Type
+                    available.append(themeClass.init() as! Theme)
+                }
+            }
             
             // User provided themes
             for filename in userThemesFileNames {

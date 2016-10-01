@@ -76,17 +76,19 @@ class SidebarViewController: NSViewController, NSOutlineViewDataSource, NSOutlin
     }
     
     /// Add a new note
-    @IBAction func addNote(_ sender: NSButton){
+    @IBAction override func addNote(_ sender: NSButton){
         notes[rootNode]?.append(Note())
         outlineView.reloadData()
+        outlineView.selectRowIndexes(IndexSet(integer: (notes[rootNode]?.count)!), byExtendingSelection: false)
     }
     
     /// Delete a note
-    @IBAction func deleteNote(_ sender: NSButton){
-        if outlineView.selectedRow > 0 && outlineView.selectedRow <= notes[rootNode]!.count {
+    @IBAction override func deleteNote(_ sender: NSButton){
+        if outlineView.selectedRow > 0 && outlineView.selectedRow <= notes[rootNode]!.count
+            , let note = outlineView.item(atRow: outlineView.selectedRow) as? Note {
             // ask user
             let alert = NSAlert()
-            alert.messageText = "Delete this note?"
+            alert.messageText = "Delete \"\(note.title)\"?"
             alert.informativeText = "Are you sure you would like to delete this note?"
             alert.addButton(withTitle: "Delete")
             alert.addButton(withTitle: "Cancel")

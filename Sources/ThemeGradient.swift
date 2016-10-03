@@ -243,12 +243,11 @@ public class ThemeGradient : NSGradient {
         _cachedThemeGradients.name = "com.luckymarmot.ThemeGradient.cachedThemeGradients"
     }
     
-    /// Returns a new `ThemeGradient` for the fiven selector in the specified colorspace.
+    /// Returns a new `ThemeGradient` for the given selector.
     ///
     /// - parameter selector:   A gradient selector.
-    /// - parameter colorSpace: An optional `NSColorSpace`.
     ///
-    /// - returns: A `ThemeGradient` instance in the specified colorspace.
+    /// - returns: A `ThemeGradient` instance.
     init(with selector: Selector) {
         themeGradientSelector = selector
         let defaultColor = ThemeKit.shared.effectiveTheme.defaultFallbackBackgroundColor
@@ -264,7 +263,8 @@ public class ThemeGradient : NSGradient {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func recacheGradient() {// If it is a UserTheme we actually want to discard theme cached values
+    func recacheGradient() {
+        // If it is a UserTheme we actually want to discard theme cached values
         if ThemeKit.shared.effectiveTheme is UserTheme {
             _cachedThemeGradients.removeAllObjects()
         }

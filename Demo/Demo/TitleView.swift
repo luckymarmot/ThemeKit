@@ -21,6 +21,7 @@ class TitleView: NSView, NSTextFieldDelegate {
         // Setup title text
         titleTextField.textColor = ThemeColor.contentTitleColor
         titleTextField.backgroundColor = ThemeColor.contentBackgroundColor
+        titleTextField.drawsBackground = true
         titleTextField.delegate = self
         var font = NSFont(name: "GillSans-Light", size: 24)
         if font == nil {

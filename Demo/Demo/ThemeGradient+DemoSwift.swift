@@ -18,12 +18,4 @@ extension ThemeGradient {
         return ThemeGradient.gradient(with: #function)
     }
     
-    
-    // MARK: DETAILS
-    
-    /// Details vertical gradient
-    static var detailsGradient: ThemeGradient {
-        return ThemeGradient.gradient(with: #function)
-    }
-    
 }

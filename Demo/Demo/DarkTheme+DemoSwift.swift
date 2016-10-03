@@ -41,9 +41,9 @@ extension DarkTheme {
         return NSColor(red:0.43, green:0.43, blue:0.43, alpha:1.0)
     }
     
-    /// Details vertical gradient
-    var detailsGradient: NSGradient? {
-        return NSGradient(starting: NSColor.clear, ending: NSColor.clear)
+    /// Notes details background color
+    var detailsBackgroundColor: NSColor {
+        return NSColor(calibratedWhite: 1.0, alpha: 0.0)
     }
     
 }

@@ -17,7 +17,6 @@ class DetailsViewController: NSViewController {
     @IBOutlet weak var wordCountTxt: NSTextField!
     @IBOutlet weak var characterCount: NSTextField!
     @IBOutlet weak var lastModifiedTxt: NSTextField!
-    @IBOutlet weak var deleteButton: NSButton!
     
     var dateFormatter: DateFormatter?
     
@@ -34,7 +33,6 @@ class DetailsViewController: NSViewController {
         
         // Hide stuff until we have a selected note
         containerView.isHidden = true
-        deleteButton.isHidden = true
         
         // Observe note selection change notifications
         NotificationCenter.default.addObserver(forName: .didChangeNoteSelection, object: nil, queue: nil) { (notification) in
@@ -51,14 +49,12 @@ class DetailsViewController: NSViewController {
         didSet {
             if let note = representedObject as? Note {
                 containerView.isHidden = false
-                deleteButton.isHidden = false
                 wordCountTxt.stringValue = String(note.textWordCount)
                 characterCount.stringValue = String(note.textCharacterCount)
                 lastModifiedTxt.stringValue = dateFormatter?.string(from: note.lastModified) ?? "-"
             }
             else {
                 containerView.isHidden = true
-                deleteButton.isHidden = true
             }
         }
     }

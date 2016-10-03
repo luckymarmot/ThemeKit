@@ -26,7 +26,7 @@
 		28C0CFBF1D9D6D3600530662 /* NotificationName+Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C0CFBE1D9D6D3600530662 /* NotificationName+Note.swift */; };
 		28C0CFC61D9D969C00530662 /* GreenApple.theme in Resources */ = {isa = PBXBuildFile; fileRef = 28C0CFC51D9D969C00530662 /* GreenApple.theme */; };
 		28F4EC601DA00A5000F01177 /* SidebarViewController+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F4EC5F1DA00A5000F01177 /* SidebarViewController+Actions.swift */; };
-		28F4EC621DA0113E00F01177 /* NewNativeTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F4EC611DA0113E00F01177 /* NewNativeTheme.swift */; };
+		28F4EC621DA0113E00F01177 /* PaperTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F4EC611DA0113E00F01177 /* PaperTheme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,7 +81,7 @@
 		28C0CFBE1D9D6D3600530662 /* NotificationName+Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NotificationName+Note.swift"; sourceTree = "<group>"; };
 		28C0CFC51D9D969C00530662 /* GreenApple.theme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GreenApple.theme; path = Themes/GreenApple.theme; sourceTree = SOURCE_ROOT; };
 		28F4EC5F1DA00A5000F01177 /* SidebarViewController+Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SidebarViewController+Actions.swift"; sourceTree = "<group>"; };
-		28F4EC611DA0113E00F01177 /* NewNativeTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewNativeTheme.swift; sourceTree = "<group>"; };
+		28F4EC611DA0113E00F01177 /* PaperTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperTheme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,7 +182,7 @@
 				28C0CFB51D9D673000530662 /* LightTheme+DemoSwift.swift */,
 				28C0CFB41D9D673000530662 /* DarkTheme+DemoSwift.swift */,
 				28C0CFC51D9D969C00530662 /* GreenApple.theme */,
-				28F4EC611DA0113E00F01177 /* NewNativeTheme.swift */,
+				28F4EC611DA0113E00F01177 /* PaperTheme.swift */,
 			);
 			name = Theming;
 			sourceTree = "<group>";
@@ -290,7 +290,7 @@
 				28C0CFB91D9D673000530662 /* LightTheme+DemoSwift.swift in Sources */,
 				28C0CFAC1D9D280C00530662 /* WindowController.swift in Sources */,
 				28C0CF921D9D191400530662 /* AppDelegate.swift in Sources */,
-				28F4EC621DA0113E00F01177 /* NewNativeTheme.swift in Sources */,
+				28F4EC621DA0113E00F01177 /* PaperTheme.swift in Sources */,
 				289EBA851D9EBEAF00561B3D /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

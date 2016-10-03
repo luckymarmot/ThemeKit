@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2842D8421D93D90E0096EBB3 /* NSView+ThemeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2842D8411D93D90E0096EBB3 /* NSView+ThemeKit.swift */; };
 		2842D84B1D9681460096EBB3 /* NSColor+ThemeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2842D84A1D9681460096EBB3 /* NSColor+ThemeKit.swift */; };
+		28638D0D1DA143EB0073E58C /* NSImage+ThemeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28638D0C1DA143EB0073E58C /* NSImage+ThemeKit.swift */; };
 		286DE7CD1D92DF8F00767E00 /* ThemeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 286DE7CB1D92DF8F00767E00 /* ThemeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		286DE7D41D92DFB300767E00 /* ThemeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286DE7D31D92DFB300767E00 /* ThemeKit.swift */; };
 		286DE7E21D92E08500767E00 /* ThemeKit+ObjectiveC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286DE7D51D92E08500767E00 /* ThemeKit+ObjectiveC.swift */; };
@@ -30,6 +31,7 @@
 /* Begin PBXFileReference section */
 		2842D8411D93D90E0096EBB3 /* NSView+ThemeKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSView+ThemeKit.swift"; sourceTree = "<group>"; };
 		2842D84A1D9681460096EBB3 /* NSColor+ThemeKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSColor+ThemeKit.swift"; sourceTree = "<group>"; };
+		28638D0C1DA143EB0073E58C /* NSImage+ThemeKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSImage+ThemeKit.swift"; sourceTree = "<group>"; };
 		286DE7C81D92DF8F00767E00 /* ThemeKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ThemeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		286DE7CB1D92DF8F00767E00 /* ThemeKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThemeKit.h; sourceTree = "<group>"; };
 		286DE7CC1D92DF8F00767E00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				286DE7E11D92E08500767E00 /* Thread+ThemeKit.swift */,
 				2842D8411D93D90E0096EBB3 /* NSView+ThemeKit.swift */,
 				2896943C1D96CA820021C035 /* NSObject+ThemeKit.swift */,
+				28638D0C1DA143EB0073E58C /* NSImage+ThemeKit.swift */,
 			);
 			name = "Private Extensions";
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 				286DE7E81D92E08500767E00 /* SystemTheme.swift in Sources */,
 				2842D84B1D9681460096EBB3 /* NSColor+ThemeKit.swift in Sources */,
 				2842D8421D93D90E0096EBB3 /* NSView+ThemeKit.swift in Sources */,
+				28638D0D1DA143EB0073E58C /* NSImage+ThemeKit.swift in Sources */,
 				286DE7EB1D92E08500767E00 /* ThemeGradient.swift in Sources */,
 				2896943D1D96CA820021C035 /* NSObject+ThemeKit.swift in Sources */,
 				286DE7EC1D92E08500767E00 /* NSDictionary+UserTheme.swift in Sources */,

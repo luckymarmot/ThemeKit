@@ -13,8 +13,9 @@ class DetailsView: NSView {
     
     /// Drawing code
     override func draw(_ dirtyRect: NSRect) {
-        // Draw vertical gradient
-        ThemeGradient.detailsGradient.draw(in: bounds, angle: 270)
+        // Fill with details background
+        ThemeColor.detailsBackgroundColor.set()
+        NSBezierPath(rect: bounds).fill()
     }
     
 }

@@ -12,8 +12,8 @@ contentBackgroundColor = $black1
 rainbowGradient = linear-gradient($purple, $vivid.green)
 
 // ********************* Details ********************* //
-detailsTitleColor = rgb(200, 200, 200)
-detailsGradient = linear-gradient($purple2, $clear)
+detailsTitleColor = $dark.green
+detailsBackgroundColor = $purple2
 
 // *********************** Common Colors ************************ //
 blue = rgb(0, 170, 255)

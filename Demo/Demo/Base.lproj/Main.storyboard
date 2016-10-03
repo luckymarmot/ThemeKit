@@ -1043,10 +1043,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="bgR-Ao-ICu" customClass="DetailsView" customModule="Demo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="60" width="212" height="240"/>
+                                <rect key="frame" x="0.0" y="0.0" width="212" height="300"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2TE-yg-aAJ">
-                                        <rect key="frame" x="6" y="222" width="49" height="14"/>
+                                        <rect key="frame" x="6" y="282" width="49" height="14"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="DETAILS" id="RuE-A8-By3">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1054,7 +1054,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ock-mX-b8a">
-                                        <rect key="frame" x="62" y="197" width="47" height="17"/>
+                                        <rect key="frame" x="62" y="257" width="47" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Words:" id="7zG-XS-Fm6">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1062,7 +1062,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZXY-4t-6TK">
-                                        <rect key="frame" x="114" y="197" width="37" height="17"/>
+                                        <rect key="frame" x="114" y="257" width="37" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="Nq7-ju-oa8">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -1070,7 +1070,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="M1f-xS-68y">
-                                        <rect key="frame" x="34" y="172" width="75" height="17"/>
+                                        <rect key="frame" x="34" y="232" width="75" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Characters:" id="Iie-UB-4nD">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1078,7 +1078,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kej-gw-QK0">
-                                        <rect key="frame" x="114" y="172" width="37" height="17"/>
+                                        <rect key="frame" x="114" y="232" width="37" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="cTt-TK-H08">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -1086,7 +1086,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Lf0-fe-Bjy">
-                                        <rect key="frame" x="18" y="147" width="91" height="17"/>
+                                        <rect key="frame" x="18" y="207" width="91" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Last Modified:" id="YWJ-sq-9Wr">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1094,13 +1094,23 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="Itc-fP-Iz0">
-                                        <rect key="frame" x="114" y="147" width="80" height="17"/>
+                                        <rect key="frame" x="114" y="207" width="80" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="30 Sep 2016" id="Vpm-Tb-GBM">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Qy-uy-yIN">
+                                        <rect key="frame" x="66" y="13" width="80" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Delete" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uZw-Ex-Dly">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="deleteNote:" target="EpV-UA-1k1" id="mah-nr-ugh"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Itc-fP-Iz0" secondAttribute="trailing" constant="20" symbolic="YES" id="3TB-hE-4px"/>
@@ -1108,6 +1118,7 @@
                                     <constraint firstItem="Lf0-fe-Bjy" firstAttribute="trailing" secondItem="M1f-xS-68y" secondAttribute="trailing" id="AbO-K8-SXW"/>
                                     <constraint firstItem="ZXY-4t-6TK" firstAttribute="baseline" secondItem="Ock-mX-b8a" secondAttribute="baseline" id="CwG-BC-kef"/>
                                     <constraint firstItem="kej-gw-QK0" firstAttribute="leading" secondItem="M1f-xS-68y" secondAttribute="trailing" constant="9" id="En1-mi-cyh"/>
+                                    <constraint firstItem="3Qy-uy-yIN" firstAttribute="centerX" secondItem="bgR-Ao-ICu" secondAttribute="centerX" id="F39-PL-HYe"/>
                                     <constraint firstItem="Lf0-fe-Bjy" firstAttribute="top" secondItem="M1f-xS-68y" secondAttribute="bottom" constant="8" id="JpM-j4-NE8"/>
                                     <constraint firstItem="ZXY-4t-6TK" firstAttribute="leading" secondItem="Ock-mX-b8a" secondAttribute="trailing" constant="9" id="SO6-OC-AHe"/>
                                     <constraint firstItem="M1f-xS-68y" firstAttribute="trailing" secondItem="Ock-mX-b8a" secondAttribute="trailing" id="TlD-CC-dL3"/>
@@ -1119,32 +1130,20 @@
                                     <constraint firstItem="kej-gw-QK0" firstAttribute="baseline" secondItem="M1f-xS-68y" secondAttribute="baseline" id="ynm-qp-DuU"/>
                                     <constraint firstItem="Ock-mX-b8a" firstAttribute="top" secondItem="2TE-yg-aAJ" secondAttribute="bottom" constant="8" id="ytw-pp-B1F"/>
                                     <constraint firstItem="M1f-xS-68y" firstAttribute="top" secondItem="Ock-mX-b8a" secondAttribute="bottom" constant="8" id="zAZ-AS-LS2"/>
+                                    <constraint firstAttribute="bottom" secondItem="3Qy-uy-yIN" secondAttribute="bottom" constant="20" id="zdG-kh-bfy"/>
                                 </constraints>
                             </customView>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Qy-uy-yIN">
-                                <rect key="frame" x="66" y="13" width="80" height="32"/>
-                                <buttonCell key="cell" type="push" title="Delete" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uZw-Ex-Dly">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="deleteNote:" target="EpV-UA-1k1" id="mah-nr-ugh"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="3Qy-uy-yIN" firstAttribute="centerX" secondItem="xit-SH-DRI" secondAttribute="centerX" id="5wE-wG-nCo"/>
                             <constraint firstItem="bgR-Ao-ICu" firstAttribute="top" secondItem="xit-SH-DRI" secondAttribute="top" id="Ujx-ez-068"/>
                             <constraint firstAttribute="trailing" secondItem="bgR-Ao-ICu" secondAttribute="trailing" id="ZsE-qv-jby"/>
                             <constraint firstItem="bgR-Ao-ICu" firstAttribute="leading" secondItem="xit-SH-DRI" secondAttribute="leading" id="da8-Ry-Drb"/>
-                            <constraint firstAttribute="bottom" secondItem="bgR-Ao-ICu" secondAttribute="bottom" constant="60" id="jEi-i1-hPx"/>
-                            <constraint firstAttribute="bottom" secondItem="3Qy-uy-yIN" secondAttribute="bottom" constant="20" id="sif-C0-q30"/>
+                            <constraint firstAttribute="bottom" secondItem="bgR-Ao-ICu" secondAttribute="bottom" id="jEi-i1-hPx"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="characterCount" destination="kej-gw-QK0" id="dBn-nd-ttK"/>
                         <outlet property="containerView" destination="bgR-Ao-ICu" id="1Gd-oI-F6J"/>
-                        <outlet property="deleteButton" destination="3Qy-uy-yIN" id="ln8-Vx-eTU"/>
                         <outlet property="detailsTitleTxt" destination="2TE-yg-aAJ" id="bhh-Rt-8GW"/>
                         <outlet property="lastModifiedTxt" destination="Itc-fP-Iz0" id="et5-Gw-Nly"/>
                         <outlet property="wordCountTxt" destination="ZXY-4t-6TK" id="3bR-eu-ohx"/>

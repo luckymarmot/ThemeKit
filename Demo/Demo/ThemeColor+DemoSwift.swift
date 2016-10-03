@@ -36,4 +36,9 @@ extension ThemeColor {
         return ThemeColor.color(with: #function)
     }
     
+    /// Notes details background color
+    static var detailsBackgroundColor: ThemeColor {
+        return ThemeColor.color(with: #function)
+    }
+    
 }

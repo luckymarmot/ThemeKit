@@ -1,5 +1,5 @@
 //
-// NewNativeTheme.swift
+// PaperTheme.swift
 //  Demo
 //
 //  Created by Nuno Grilo on 01/10/2016.
@@ -9,26 +9,26 @@
 import Cocoa
 import ThemeKit
 
-class NewNativeTheme: NSObject, Theme {
+class PaperTheme: NSObject, Theme {
     
     /// Light theme identifier (static).
-    public static var identifier: String = "com.luckymarmot.ThemeKit.NewNativeTheme"
+    public static var identifier: String = "com.luckymarmot.ThemeKit.PaperTheme"
     
     /// Unique theme identifier.
-    public var identifier: String = NewNativeTheme.identifier
+    public var identifier: String = PaperTheme.identifier
     
     /// Theme display name.
-    public var displayName: String = "Theme Subclass"
+    public var displayName: String = "Paper Theme"
     
     /// Theme short display name.
-    public var shortDisplayName: String = "Theme Subclass"
+    public var shortDisplayName: String = "Paper Theme"
     
     /// Is this a dark theme?
     public var isDarkTheme: Bool = false
     
     /// Description.
     public override var description : String {
-        return "<\(NewNativeTheme.self): \(themeDescription(self))>"
+        return "<\(PaperTheme.self): \(themeDescription(self))>"
     }
     
     // MARK: -
@@ -48,12 +48,14 @@ class NewNativeTheme: NSObject, Theme {
     
     /// Notes text background color
     var contentBackgroundColor: NSColor {
-        return NSColor(red:0.70, green:0.69, blue:0.98, alpha:1.0)
+        return NSColor(patternImage: Bundle.main.image(forResource: "paper")!)
     }
     
     /// Rainbow gradient (used between title and text)
     var rainbowGradient: NSGradient? {
-        return NSGradient(starting: NSColor(calibratedRed: 0.0, green: 0.66, blue: 0.7, alpha: 1.0), ending: ThemeColor.contentBackgroundColor)
+        let blue = NSColor(calibratedRed: 0.18, green: 0.45, blue: 0.88, alpha: 1.0)
+        let clear = NSColor(calibratedWhite: 1.0, alpha: 0.0)
+        return NSGradient(colorsAndLocations: (blue, 0.0), (clear, 0.66))
     }
     
     
@@ -61,12 +63,12 @@ class NewNativeTheme: NSObject, Theme {
     
     /// Notes details title text color
     var detailsTitleColor: NSColor {
-        return NSColor(red:0.43, green:0.43, blue:0.73, alpha:1.0)
+        return contentTitleColor
     }
     
-    /// Details vertical gradient
-    var detailsGradient: NSGradient? {
-        return NSGradient(starting: NSColor(calibratedRed: 0.0, green: 0.66, blue: 0.7, alpha: 1.0), ending: NSColor(calibratedWhite: 1.0, alpha: 0.0))
+    /// Notes details background color
+    var detailsBackgroundColor: NSColor {
+        return contentBackgroundColor
     }
     
 }

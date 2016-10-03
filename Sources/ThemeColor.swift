@@ -152,6 +152,9 @@ public class ThemeColor : NSColor {
     /// Theme color space (if specified).
     private var themeColorSpace: NSColorSpace?
     
+    /// Average color of pattern image from resolved color (nil for non-pattern image colors)
+    private var themePatternImageAverageColor: NSColor = NSColor.clear
+    
     
     // MARK: -
     // MARK: Creating Colors
@@ -227,8 +230,12 @@ public class ThemeColor : NSColor {
                 }
             }
             
+            // Store as Calibrated RGB if not a pattern image
+            if color?.colorSpaceName != NSPatternColorSpace {
+                color = color?.usingColorSpace(.genericRGB)
+            }
+            
             // Cache it
-            color = color?.usingColorSpace(.genericRGB)
             _cachedThemeColors.setObject(color!, forKey: cacheKey)
         }
         
@@ -333,6 +340,9 @@ public class ThemeColor : NSColor {
             let convertedColor = newColor.usingColorSpace(themeColorSpace!)
             resolvedThemeColor = convertedColor ?? newColor
         }
+        
+        // Recache average color of pattern image, if appropriate
+        themePatternImageAverageColor = resolvedThemeColor.colorSpaceName == NSPatternColorSpace ? resolvedThemeColor.patternImage.averageColor() : NSColor.clear
     }
     
     
@@ -399,79 +409,98 @@ public class ThemeColor : NSColor {
     }
     
     override public func getComponents(_ components: UnsafeMutablePointer<CGFloat>) {
-        resolvedThemeColor.usingColorSpace(NSColorSpace.genericRGB)?.getComponents(components)
+        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        color.usingColorSpace(NSColorSpace.genericRGB)?.getComponents(components)
     }
     
     override public var redComponent: CGFloat {
-        return (resolvedThemeColor.usingColorSpace(NSColorSpace.genericRGB)?.redComponent)!
+        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        return (color.usingColorSpace(NSColorSpace.genericRGB)?.redComponent)!
     }
     
     override public var greenComponent: CGFloat {
-        return (resolvedThemeColor.usingColorSpace(NSColorSpace.genericRGB)?.greenComponent)!
+        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        return (color.usingColorSpace(NSColorSpace.genericRGB)?.greenComponent)!
     }
     
     override public var blueComponent: CGFloat {
-        return (resolvedThemeColor.usingColorSpace(NSColorSpace.genericRGB)?.blueComponent)!
+        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        return (color.usingColorSpace(NSColorSpace.genericRGB)?.blueComponent)!
     }
     
     override public func getRed(_ red: UnsafeMutablePointer<CGFloat>?, green: UnsafeMutablePointer<CGFloat>?, blue: UnsafeMutablePointer<CGFloat>?, alpha: UnsafeMutablePointer<CGFloat>?) {
-        resolvedThemeColor.usingColorSpace(NSColorSpace.genericRGB)?.getRed(red, green: green, blue: blue, alpha: alpha)
+        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        color.usingColorSpace(NSColorSpace.genericRGB)?.getRed(red, green: green, blue: blue, alpha: alpha)
     }
     
     override public var cyanComponent: CGFloat {
-        return (resolvedThemeColor.usingColorSpace(NSColorSpace.genericCMYK)?.cyanComponent)!
+        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        return (color.usingColorSpace(NSColorSpace.genericCMYK)?.cyanComponent)!
     }
     
     override public var magentaComponent: CGFloat {
-        return (resolvedThemeColor.usingColorSpace(NSColorSpace.genericCMYK)?.magentaComponent)!
+        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        return (color.usingColorSpace(NSColorSpace.genericCMYK)?.magentaComponent)!
     }
     
     override public var yellowComponent: CGFloat {
-        return (resolvedThemeColor.usingColorSpace(NSColorSpace.genericCMYK)?.yellowComponent)!
+        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        return (color.usingColorSpace(NSColorSpace.genericCMYK)?.yellowComponent)!
     }
     
     override public var blackComponent: CGFloat {
-        return (resolvedThemeColor.usingColorSpace(NSColorSpace.genericCMYK)?.blackComponent)!
+        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        return (color.usingColorSpace(NSColorSpace.genericCMYK)?.blackComponent)!
     }
     
     override public func getCyan(_ cyan: UnsafeMutablePointer<CGFloat>?, magenta: UnsafeMutablePointer<CGFloat>?, yellow: UnsafeMutablePointer<CGFloat>?, black: UnsafeMutablePointer<CGFloat>?, alpha: UnsafeMutablePointer<CGFloat>?) {
-        resolvedThemeColor.usingColorSpace(NSColorSpace.genericCMYK)?.getCyan(cyan, magenta: magenta, yellow: yellow, black: black, alpha: alpha)
+        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        color.usingColorSpace(NSColorSpace.genericCMYK)?.getCyan(cyan, magenta: magenta, yellow: yellow, black: black, alpha: alpha)
     }
     
     override public var whiteComponent: CGFloat {
-        return (resolvedThemeColor.usingColorSpace(NSColorSpace.genericGray)?.whiteComponent)!
+        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        return (color.usingColorSpace(NSColorSpace.genericGray)?.whiteComponent)!
     }
     
     override public func getWhite(_ white: UnsafeMutablePointer<CGFloat>?, alpha: UnsafeMutablePointer<CGFloat>?) {
-        resolvedThemeColor.usingColorSpace(NSColorSpace.genericGray)?.getWhite(white, alpha: alpha)
+        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        color.usingColorSpace(NSColorSpace.genericGray)?.getWhite(white, alpha: alpha)
     }
     
     override public var hueComponent: CGFloat {
-        return (resolvedThemeColor.usingColorSpace(NSColorSpace.genericRGB)?.hueComponent)!
+        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        return (color.usingColorSpace(NSColorSpace.genericRGB)?.hueComponent)!
     }
     
     override public var saturationComponent: CGFloat {
-        return (resolvedThemeColor.usingColorSpace(NSColorSpace.genericRGB)?.saturationComponent)!
+        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        return (color.usingColorSpace(NSColorSpace.genericRGB)?.saturationComponent)!
     }
     
     override public var brightnessComponent: CGFloat {
-        return (resolvedThemeColor.usingColorSpace(NSColorSpace.genericRGB)?.brightnessComponent)!
+        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        return (color.usingColorSpace(NSColorSpace.genericRGB)?.brightnessComponent)!
     }
     
     override public func getHue(_ hue: UnsafeMutablePointer<CGFloat>?, saturation: UnsafeMutablePointer<CGFloat>?, brightness: UnsafeMutablePointer<CGFloat>?, alpha: UnsafeMutablePointer<CGFloat>?) {
-        resolvedThemeColor.usingColorSpace(NSColorSpace.genericRGB)?.getHue(hue, saturation: saturation, brightness: brightness, alpha: alpha)
+        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        color.usingColorSpace(NSColorSpace.genericRGB)?.getHue(hue, saturation: saturation, brightness: brightness, alpha: alpha)
     }
     
     override public func highlight(withLevel val: CGFloat) -> NSColor? {
-        return resolvedThemeColor.highlight(withLevel: val)
+        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        return color.highlight(withLevel: val)
     }
     
     override public func shadow(withLevel val: CGFloat) -> NSColor? {
-        return resolvedThemeColor.shadow(withLevel: val)
+        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        return color.shadow(withLevel: val)
     }
     
     override public func withAlphaComponent(_ alpha: CGFloat) -> NSColor {
-        return resolvedThemeColor.withAlphaComponent(alpha)
+        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        return color.withAlphaComponent(alpha)
     }
     
     override public var description: String {

@@ -122,19 +122,35 @@ public class ThemeKit: NSObject {
             }
             
             // User provided themes
-            for filename in userThemesFileNames {
-                if let themeFileURL = userThemesFolderURL?.appendingPathComponent(filename) {
-                    available.append(UserTheme.init(themeFileURL))
-                }
-            }
+            available.append(contentsOf: userThemes)
             
             cachedThemes = available
         }
         return cachedThemes!
     }
     
+    /// List all user themes (`UserTheme` class, loaded from `.theme` files)
+    public var userThemes: [Theme] {
+        if cachedUserThemes == nil {
+            var available = [Theme]()
+            
+            // User provided themes
+            for filename in userThemesFileNames {
+                if let themeFileURL = userThemesFolderURL?.appendingPathComponent(filename) {
+                    available.append(UserTheme.init(themeFileURL))
+                }
+            }
+            
+            cachedUserThemes = available
+        }
+        return cachedUserThemes!
+    }
+    
     /// Cached themes list (private use).
     private var cachedThemes: [Theme]?
+    
+    /// Cached user themes list (private use).
+    private var cachedUserThemes: [Theme]?
     
     /// Convenience method for accessing the light theme.
     public static let lightTheme = LightTheme()
@@ -242,6 +258,7 @@ public class ThemeKit: NSObject {
                 // Start watching
                 willChangeValue(forKey: #keyPath(themes))
                 cachedThemes = nil
+                cachedUserThemes = nil
                 _userThemesFolderSource?.resume()
                 didChangeValue(forKey: #keyPath(themes))
                 

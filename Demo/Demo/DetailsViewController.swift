@@ -14,6 +14,7 @@ class DetailsViewController: NSViewController {
     // IBOutlets
     @IBOutlet weak var containerView: NSView!
     @IBOutlet weak var detailsTitleTxt: NSTextField!
+    @IBOutlet weak var fakeControlsTitleTxt: NSTextField!
     @IBOutlet weak var wordCountTxt: NSTextField!
     @IBOutlet weak var characterCount: NSTextField!
     @IBOutlet weak var lastModifiedTxt: NSTextField!
@@ -25,6 +26,7 @@ class DetailsViewController: NSViewController {
         
         // Setup colors
         detailsTitleTxt.textColor = ThemeColor.detailsTitleColor
+        fakeControlsTitleTxt.textColor = ThemeColor.detailsTitleColor
         
         // Setup date formatter
         dateFormatter = DateFormatter()

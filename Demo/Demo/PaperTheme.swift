@@ -71,4 +71,11 @@ class PaperTheme: NSObject, Theme {
         return contentBackgroundColor
     }
     
+    
+    // MARK: SYSTEM OVERRIDE
+    
+    var secondaryLabelColor: NSColor {
+        return NSColor(calibratedRed: 0.18, green: 0.45, blue: 0.88, alpha: 1.0)
+    }
+    
 }

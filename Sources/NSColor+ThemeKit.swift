@@ -30,12 +30,35 @@ extension NSColor {
     
     /// Check if a given color string is overriden in a ThemeColor extension.
     public var isThemeOverriden: Bool {
+        
+        // check if `NSColor` provides this color
         let selector = Selector(colorNameComponent)
-        
-        let themeColorMethod = class_getClassMethod(ThemeColor.classForCoder(), selector)
         let nsColorMethod = class_getClassMethod(NSColor.classForCoder(), selector)
+        guard nsColorMethod != nil else {
+            return false
+        }
         
-        return nsColorMethod != nil && nsColorMethod != themeColorMethod
+        // get current theme
+        let theme = ThemeKit.shared.effectiveTheme
+        
+        // `UserTheme`: let's check `themeAsset(_:)` method
+        if theme is UserTheme {
+//            let themeAsset: Any? = theme.themeAsset!(colorNameComponent)!
+//            print("themeClass: \(object_getClass(theme)), themeColor for `\(colorNameComponent)`: \(themeAsset)")
+            
+            print("themeClass: \(object_getClass(theme)), asset for `\(colorNameComponent)`? \((theme as! UserTheme).hasThemeAsset(colorNameComponent))")
+            return (theme as! UserTheme).hasThemeAsset(colorNameComponent)
+        }
+            
+        // native themes: let's look up an instance method
+        else {
+            let themeClass: AnyClass = object_getClass(theme)
+            let themeColorMethod = class_getInstanceMethod(themeClass, selector)
+            
+            print("themeClass: \(themeClass), themeColorMethod: \(themeColorMethod)")
+            
+            return themeColorMethod != nil && nsColorMethod != themeColorMethod
+        }
     }
     
     /// Get all `NSColor` color methods.

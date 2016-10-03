@@ -292,6 +292,7 @@ public class ThemeKit: NSObject {
     private func userThemesFolderChangedContent() {
         willChangeValue(forKey: #keyPath(themes))
         cachedThemes = nil
+        cachedUserThemes = nil
         
         if effectiveTheme is UserTheme {
             applyUserDefaultsTheme()

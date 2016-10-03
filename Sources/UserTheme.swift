@@ -114,6 +114,19 @@ public class UserTheme: NSObject, Theme {
         return value
     }
     
+    /// Checks if a theme asset is provided for the given key.
+    ///
+    /// Do not check for theme asset availability with `themeAsset(_:)`, use
+    /// this method instead, which is much faster.
+    ///
+    /// - parameter key: A color name, gradient name or a theme string
+    ///
+    /// - returns: `true` if theme provides an asset for the given key; `false` otherwise.
+    public func hasThemeAsset(_ key: String) -> Bool {
+        return _keyValues[key] != nil
+    }
+    
+    
     // MARK: -
     // MARK: File
     

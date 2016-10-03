@@ -47,7 +47,7 @@ class SidebarViewController: NSViewController, NSOutlineViewDataSource, NSOutlin
     /// NSUserDefaults key
     let userDefaultsKey: String = "notes"
     
-    /// Mini in-memory Notes model
+    /// Notes model
     lazy var notes: [String: [Note]] = [self.rootNode: []]
     
     /// Load notes

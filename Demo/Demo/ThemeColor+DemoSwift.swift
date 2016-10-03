@@ -41,4 +41,11 @@ extension ThemeColor {
         return ThemeColor.color(with: #function)
     }
     
+    
+    // MARK: SYSTEM OVERRIDE
+    
+    override public static var secondaryLabelColor: ThemeColor {
+        return ThemeColor.color(with: #function)
+    }
+    
 }

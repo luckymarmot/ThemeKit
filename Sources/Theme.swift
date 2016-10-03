@@ -32,6 +32,8 @@ public protocol Theme: NSObjectProtocol {
     /// for `UserTheme`s only, also `String`).
     @objc optional func themeAsset(_ key: String) -> Any?
     
+//    @objc optional func hasThemeAsset(_ key: String) -> Bool
+    
     /// Foreground color to be used on when a foreground color is not provided 
     /// by the theme.
     @objc optional var fallbackForegroundColor : NSColor? { get }
@@ -97,6 +99,18 @@ public extension Theme {
             return self
         }
     }
+    
+//    /// Checks if a theme asset is provided for the given key/method/color name.
+//    ///
+//    /// - parameter key: A color name or gradient name
+//    ///
+//    /// - returns: `true` if theme provides an asset for the given key; `false` otherwise.
+//    public func hasThemeAsset(_ key: String) -> Bool {
+//        let themeClass: AnyClass = object_getClass(self)
+//        let selector = Selector(key)
+//        let themeColorMethod = class_getInstanceMethod(themeClass, selector)
+//        return themeColorMethod != nil
+//    }
     
     /// Theme description.
     public func themeDescription(_ theme: Theme) -> String {

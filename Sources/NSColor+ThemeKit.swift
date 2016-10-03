@@ -41,22 +41,15 @@ extension NSColor {
         // get current theme
         let theme = ThemeKit.shared.effectiveTheme
         
-        // `UserTheme`: let's check `themeAsset(_:)` method
+        // `UserTheme`: check `hasThemeAsset(_:)` method
         if theme is UserTheme {
-//            let themeAsset: Any? = theme.themeAsset!(colorNameComponent)!
-//            print("themeClass: \(object_getClass(theme)), themeColor for `\(colorNameComponent)`: \(themeAsset)")
-            
-            print("themeClass: \(object_getClass(theme)), asset for `\(colorNameComponent)`? \((theme as! UserTheme).hasThemeAsset(colorNameComponent))")
             return (theme as! UserTheme).hasThemeAsset(colorNameComponent)
         }
             
-        // native themes: let's look up an instance method
+        // native themes: look up for an instance method
         else {
             let themeClass: AnyClass = object_getClass(theme)
             let themeColorMethod = class_getInstanceMethod(themeClass, selector)
-            
-            print("themeClass: \(themeClass), themeColorMethod: \(themeColorMethod)")
-            
             return themeColorMethod != nil && nsColorMethod != themeColorMethod
         }
     }

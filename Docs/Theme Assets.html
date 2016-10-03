@@ -100,6 +100,22 @@
                         <p><code>ThemeColor</code> is a <code>NSColor</code> subclass that dynamically changes its colors whenever
 a new theme is make current.</p>
 
+<p>Theme-aware means you don&rsquo;t need to check any conditions when choosing which 
+color to draw or set on a control. E.g.:</p>
+
+<pre class="highlight plaintext"><code>myTextField.textColor = ThemeColor.myContentTextColor
+
+ThemeColor.myCircleFillColor.setFill()
+NSBezierPath(rect: bounds).fill()
+</code></pre>
+
+<p>The text color of <code>myTextField</code> will automatically change when the user switches
+a theme. Similarly, the drawing code will draw with different color depending on
+the selected theme. Unless some drawing cache is being done, there&rsquo;s no need to 
+refresh the UI after changing the current theme.</p>
+
+<p>You can also define a color to be a pattern image using <code>NSColor(patternImage:)</code>.</p>
+
 <p><a href='#defining-theme-aware-colors' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='defining-theme-aware-colors'>Defining theme-aware colors</h2></p>
 
 <p>The recommended way of adding your own dynamic colors is as follows:</p>
@@ -200,14 +216,21 @@ In sum, calling <code>NSColor.labelColor</code> will return theme-aware colors.<
 <p>You can get the full list of available/overridable color methods (class methods)
 calling <code>NSColor.colorMethodNames()</code>.</p>
 
-<p>At any time, you can check if a system color is being overriden by checking the
-<code>NSColor.isThemeOverriden</code> property (e.g., <code>NSColor.labelColor.isThemeOverriden</code>).</p>
+<p>At any time, you can check if a system color is being overriden by current theme
+by checking the <code>NSColor.isThemeOverriden</code> property (e.g., <code>NSColor.labelColor.isThemeOverriden</code>).</p>
+
+<p>When a theme does not override a system color, the original system color will be
+used instead. E.g., you have overrided <code>ThemeColor.labelColor</code>, but currently 
+applied theme does not implement <code>labelColor</code> -&gt; original <code>labelColor</code> will be
+used.</p>
 
 <p><a href='#fallback-colors' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='fallback-colors'>Fallback colors</h2></p>
 
-<p>Unimplemented properties/methods on target theme class will default to
-<code>fallbackForegroundColor</code> and <code>fallbackBackgroundColor</code>, for foreground and
-background colors respectively. These too, can be customized per theme.</p>
+<p>With the exception of system overrided named colors, which defaults to the original
+system provided named color when theme does not specifies it, unimplemented
+properties/methods on target theme class will default to <code>fallbackForegroundColor</code>
+and <code>fallbackBackgroundColor</code>, for foreground and background colors respectively.
+These too, can be customized per theme.</p>
 
 <p>Please check <code><a href="Classes/ThemeGradient.html">ThemeGradient</a></code> for theme-aware gradients.</p>
 
@@ -222,7 +245,7 @@ background colors respectively. These too, can be customized per theme.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeColor.swift#L140-L480">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeColor.swift#L164-L533">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -246,6 +269,16 @@ background colors respectively. These too, can be customized per theme.</p>
                       <div class="abstract">
                         <p><code>ThemeGradient</code> is a <code>NSGradient</code> subclass that dynamically changes its colors 
 whenever a new theme is make current.</p>
+
+<p>Theme-aware means you don&rsquo;t need to check any conditions when choosing which
+gradient to draw. E.g.:</p>
+
+<pre class="highlight plaintext"><code>ThemeGradient.rainbowGradient.draw(in: bounds, angle: 0)
+</code></pre>
+
+<p>The drawing code will draw with different gradient depending on the selected 
+theme. Unless some drawing cache is being done, there&rsquo;s no need to refresh the
+UI after changing the current theme.</p>
 
 <p><a href='#defining-theme-aware-gradients' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='defining-theme-aware-gradients'>Defining theme-aware gradients</h2></p>
 
@@ -354,7 +387,7 @@ brandGradient = linear-gradient($orangeSky, rgb(200, 140, 60))
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeGradient.swift#L126-L292">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeGradient.swift#L137-L303">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

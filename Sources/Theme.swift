@@ -8,7 +8,24 @@
 
 import Foundation
 
-/// Theme protocol. The base of all themes.
+/**
+ Theme protocol: the base of all themes.
+ 
+ *ThemeKit* makes available, without any further coding:
+ 
+ - a `LightTheme` (the default macOS theme)
+ - a `DarkTheme` (the dark macOS theme, using `NSAppearanceNameVibrantDark`)
+ - a `SystemTheme` (which dynamically resolve to either `LightTheme` or `DarkTheme 
+   depending on the macOS preference at **System Preferences > General > Appearance**)
+ 
+ You can choose wheter or not to use these, and you can also implement your custom
+ themes by:
+ - implementing native `Theme` classes conforming to this protocol and `NSObject`
+ - provide user themes (`UserTheme`) with `.theme` files
+ 
+ Please check the provided *Demo.app* project for sample implementations of both.
+ 
+ */
 @objc(TKTheme)
 public protocol Theme: NSObjectProtocol {
     // MARK: Required Properties

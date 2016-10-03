@@ -15,6 +15,17 @@ private var _cachedThemeGradients: NSCache<NSString, NSGradient>!
  `ThemeGradient` is a `NSGradient` subclass that dynamically changes its colors 
  whenever a new theme is make current.
  
+ Theme-aware means you don't need to check any conditions when choosing which
+ gradient to draw. E.g.:
+ 
+ ```
+ ThemeGradient.rainbowGradient.draw(in: bounds, angle: 0)
+ ```
+ 
+ The drawing code will draw with different gradient depending on the selected 
+ theme. Unless some drawing cache is being done, there's no need to refresh the
+ UI after changing the current theme.
+ 
  Defining theme-aware gradients
  ------------------------------
  

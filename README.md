@@ -27,13 +27,14 @@ ThemeKit
 
 ## Features
 
+- Written in Swift 3
 - Optional configuration, none required
-- No performance impact
-- Lightweight (compiled framework is less than 1 MB)
+- Neglected performance impact
 - Themes:
   - [`LightTheme`](https://paw.cloud/opensource/themekit/docs/Classes/LightTheme.html) (default macOS appearance)
   - [`DarkTheme`](https://paw.cloud/opensource/themekit/docs/Classes/DarkTheme.html)
   - [`SystemTheme`](https://paw.cloud/opensource/themekit/docs/Classes/SystemTheme.html) (default theme). Dynamically resolves to [`LightTheme`](https://paw.cloud/opensource/themekit/docs/Classes/LightTheme.html) or [`DarkTheme`](https://paw.cloud/opensource/themekit/docs/Classes/DarkTheme.html), depending on the *"System Preferences > General > Appearance"*.
+  - Support for custom themes ([`Theme`](https://paw.cloud/opensource/themekit/docs/Classes/Theme.html))
   - Support for user-defined themes ([`UserTheme`](https://paw.cloud/opensource/themekit/docs/Classes/UserTheme.html))
 - Theme-aware assets:
   - [`ThemeColor`](https://paw.cloud/opensource/themekit/docs/Classes/ThemeColor.html): colors that dynamically change with the theme
@@ -58,7 +59,7 @@ There are multiple options to inlcude *ThemeKit* on your project:
   
 - Manually:
   - Either add `ThemeKit.framework` on your project
-  - Or manually add source files from the `ThemeKit\` folder to your project
+  - Or, manually add source files from the `ThemeKit\` folder to your project
 
 ## Usage
 
@@ -239,8 +240,57 @@ For more complex cases, like views/controls with custom drawing, please refer to
 ### Can I make custom drawing views/controls theme-aware?
 Yes, you can! Implement your own custom controls drawing using [Theme-aware Assets](#theme-aware-assets) (`ThemeColor` and `ThemeGradient`) so that your controls drawing will always adapt to your current theme... automatically!
 
-In case needed, you can observe when theme changes to refresh the UI or to perform any theme related operation. Check *"Observing theme changes"* on [Usage](#usage) section above.
- 
+In case needed (for example, if drawing is being cached), you can observe when theme changes to refresh the UI or to perform any theme related operation. Check *"Observing theme changes"* on [Usage](#usage) section above.
+
+### Are images theme-aware as well?
+Partially: currently, only pattern images (defined as `NSColor(patternImage:)`) are supported. We hope to add support for theme-aware `NSImage`'s in the future.
+
+
+### I'm having font smoothing issues!
+You may run into font smoothing issues, when you use text without a background. Bottom line is, always specify/draw a background when using/drawing text. 
+
+  1. For controls like `NSTextField`, `NSTextView`, etc:
+   
+    Specify a background color on the control. E.g.,
+    
+    ```
+    control.backgroundColor = NSColor.black
+    ```
+    
+  2. For custom text rendering:
+
+    First draw a background fill, then enable font smoothing and render your text. E.g.,
+    
+    ```
+    let context = NSGraphicsContext.current()?.cgContext
+    NSColor.black.set()
+    context?.fill(frame)
+    context?.saveGState()
+    context?.setShouldSmoothFonts(true)
+        
+    // draw text...
+    
+	context?.restoreGState()
+    ``` 
+    As a last solution - if you really can't draw a background color - you can disable font smoothing which can slightly improve text rendering:
+    
+    ```
+    let context = NSGraphicsContext.current()?.cgContext
+    context?.saveGState()
+    context?.setShouldSmoothFonts(false)
+        
+    // draw text...
+    
+	context?.restoreGState()
+   ```
+   
+  3. For custom `NSButton`'s:
+
+    This is more tricky, as you will need to override private methods. If you are distributing your app on the Mac App Store, you must first check if this is allowed.
+    
+    a) override the private method `_backgroundColorForFontSmoothing` to return you button background color.
+    
+    b) if (a) isn't sufficient, you will also need to override `_textAttributes` and change the dictionary returned from the `super` call to provide your background color for the key `NSBackgroundColorAttributeName`.
 
 ## License
 

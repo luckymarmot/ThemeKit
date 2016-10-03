@@ -15,6 +15,23 @@ private var _cachedThemeColors: NSCache<NSString, NSColor>!
  `ThemeColor` is a `NSColor` subclass that dynamically changes its colors whenever
  a new theme is make current.
  
+ Theme-aware means you don't need to check any conditions when choosing which 
+ color to draw or set on a control. E.g.:
+ 
+ ```
+ myTextField.textColor = ThemeColor.myContentTextColor
+ 
+ ThemeColor.myCircleFillColor.setFill()
+ NSBezierPath(rect: bounds).fill()
+ ```
+ 
+ The text color of `myTextField` will automatically change when the user switches
+ a theme. Similarly, the drawing code will draw with different color depending on
+ the selected theme. Unless some drawing cache is being done, there's no need to 
+ refresh the UI after changing the current theme.
+ 
+ You can also define a color to be a pattern image using `NSColor(patternImage:)`.
+ 
  Defining theme-aware colors
  ---------------------------
  The recommended way of adding your own dynamic colors is as follows:
@@ -125,14 +142,21 @@ private var _cachedThemeColors: NSCache<NSString, NSColor>!
  You can get the full list of available/overridable color methods (class methods)
  calling `NSColor.colorMethodNames()`.
  
- At any time, you can check if a system color is being overriden by checking the
- `NSColor.isThemeOverriden` property (e.g., `NSColor.labelColor.isThemeOverriden`).
+ At any time, you can check if a system color is being overriden by current theme
+ by checking the `NSColor.isThemeOverriden` property (e.g., `NSColor.labelColor.isThemeOverriden`).
+ 
+ When a theme does not override a system color, the original system color will be
+ used instead. E.g., you have overrided `ThemeColor.labelColor`, but currently 
+ applied theme does not implement `labelColor` -> original `labelColor` will be
+ used.
  
  Fallback colors
  ---------------
- Unimplemented properties/methods on target theme class will default to
- `fallbackForegroundColor` and `fallbackBackgroundColor`, for foreground and
- background colors respectively. These too, can be customized per theme.
+ With the exception of system overrided named colors, which defaults to the original
+ system provided named color when theme does not specifies it, unimplemented
+ properties/methods on target theme class will default to `fallbackForegroundColor`
+ and `fallbackBackgroundColor`, for foreground and background colors respectively.
+ These too, can be customized per theme.
  
  Please check `ThemeGradient` for theme-aware gradients.
  */

@@ -52,9 +52,12 @@ import Foundation
  fallbackGradient = linear-gradient($blue, rgba(200, 140, 60, 1.0))
  ```
  
- Unimplemented properties on theme file will default to `-fallbackForegroundColor`, 
- `-fallbackBackgroundColor` and  `-fallbackGradient`, for foreground color, 
- background color and gradients, respectively.
+ With the exception of system overrided named colors (e.g., `labelColor`), which
+ defaults to the original system provided named color, unimplemented properties 
+ on theme file will default to `-fallbackForegroundColor`, `-fallbackBackgroundColor`
+ and  `-fallbackGradient`, for foreground color, background color and gradients, respectively.
+ 
+ 
  */
 @objc(TKUserTheme)
 public class UserTheme: NSObject, Theme {

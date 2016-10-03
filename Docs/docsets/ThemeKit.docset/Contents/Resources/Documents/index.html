@@ -109,15 +109,16 @@
 <a href='#features' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='features'>Features</h2>
 
 <ul>
+<li>Written in Swift 3</li>
 <li>Optional configuration, none required</li>
-<li>No performance impact</li>
-<li>Lightweight (compiled framework is less than 1 MB)</li>
+<li>Neglected performance impact</li>
 <li>Themes:
 
 <ul>
 <li><a href="https://paw.cloud/opensource/themekit/docs/Classes/LightTheme.html"><code>LightTheme</code></a> (default macOS appearance)</li>
 <li><a href="https://paw.cloud/opensource/themekit/docs/Classes/DarkTheme.html"><code>DarkTheme</code></a></li>
 <li><a href="https://paw.cloud/opensource/themekit/docs/Classes/SystemTheme.html"><code>SystemTheme</code></a> (default theme). Dynamically resolves to <a href="https://paw.cloud/opensource/themekit/docs/Classes/LightTheme.html"><code>LightTheme</code></a> or <a href="https://paw.cloud/opensource/themekit/docs/Classes/DarkTheme.html"><code>DarkTheme</code></a>, depending on the <em><q>System Preferences > General > Appearance</q></em>.</li>
+<li>Support for custom themes (<a href="https://paw.cloud/opensource/themekit/docs/Classes/Theme.html"><code>Theme</code></a>)</li>
 <li>Support for user-defined themes (<a href="https://paw.cloud/opensource/themekit/docs/Classes/UserTheme.html"><code>UserTheme</code></a>)</li>
 </ul></li>
 <li>Theme-aware assets:
@@ -150,7 +151,7 @@
 
 <ul>
 <li>Either add <code>ThemeKit.framework</code> on your project</li>
-<li>Or manually add source files from the <code>ThemeKit\</code> folder to your project</li>
+<li>Or, manually add source files from the <code>ThemeKit\</code> folder to your project</li>
 </ul></li>
 </ul>
 <a href='#usage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='usage'>Usage</h2>
@@ -315,7 +316,51 @@ ThemeKit.shared.userThemesFolderURL = //...
 
 <p>Yes, you can! Implement your own custom controls drawing using <a href="#theme-aware-assets">Theme-aware Assets</a> (<code>ThemeColor</code> and <code>ThemeGradient</code>) so that your controls drawing will always adapt to your current theme&hellip; automatically!</p>
 
-<p>In case needed, you can observe when theme changes to refresh the UI or to perform any theme related operation. Check <em><q>Observing theme changes</q></em> on <a href="#usage">Usage</a> section above.</p>
+<p>In case needed (for example, if drawing is being cached), you can observe when theme changes to refresh the UI or to perform any theme related operation. Check <em><q>Observing theme changes</q></em> on <a href="#usage">Usage</a> section above.</p>
+<a href='#are-images-theme-aware-as-well' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='are-images-theme-aware-as-well'>Are images theme-aware as well?</h3>
+
+<p>Partially: currently, only pattern images (defined as <code>NSColor(patternImage:)</code>) are supported. We hope to add support for theme-aware <code>NSImage</code>&rsquo;s in the future.</p>
+<a href='#i-39-m-having-font-smoothing-issues' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='i-39-m-having-font-smoothing-issues'>I&rsquo;m having font smoothing issues!</h3>
+
+<p>You may run into font smoothing issues, when you use text without a background. Bottom line is, always specify/draw a background when using/drawing text. </p>
+
+<ol>
+<li><p>For controls like <code>NSTextField</code>, <code>NSTextView</code>, etc:</p>
+
+<p>Specify a background color on the control. E.g.,</p>
+<pre class="highlight plaintext"><code>control.backgroundColor = NSColor.black
+</code></pre></li>
+<li><p>For custom text rendering:</p>
+
+<p>First draw a background fill, then enable font smoothing and render your text. E.g.,</p>
+<pre class="highlight plaintext"><code>let context = NSGraphicsContext.current()?.cgContext
+NSColor.black.set()
+context?.fill(frame)
+context?.saveGState()
+context?.setShouldSmoothFonts(true)
+
+// draw text...
+
+context?.restoreGState()
+</code></pre>
+
+<p>As a last solution - if you really can&rsquo;t draw a background color - you can disable font smoothing which can slightly improve text rendering:</p>
+<pre class="highlight plaintext"><code>let context = NSGraphicsContext.current()?.cgContext
+context?.saveGState()
+context?.setShouldSmoothFonts(false)
+
+// draw text...
+
+context?.restoreGState()
+</code></pre></li>
+<li><p>For custom <code>NSButton</code>&rsquo;s:</p>
+
+<p>This is more tricky, as you will need to override private methods. If you are distributing your app on the Mac App Store, you must first check if this is allowed.</p>
+
+<p>a) override the private method <code>_backgroundColorForFontSmoothing</code> to return you button background color.</p>
+
+<p>b) if (a) isn&rsquo;t sufficient, you will also need to override <code>_textAttributes</code> and change the dictionary returned from the <code>super</code> call to provide your background color for the key <code>NSBackgroundColorAttributeName</code>.</p></li>
+</ol>
 <a href='#license' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='license'>License</h2>
 
 <p><em>ThemeKit</em> is available under the MIT license. See the <a href="LICENSE">LICENSE</a> file for more info.</p>

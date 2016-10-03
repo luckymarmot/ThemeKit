@@ -86,7 +86,23 @@
 
                 </div>
               </div>
-            <p>Theme protocol. The base of all themes.</p>
+            <p>Theme protocol: the base of all themes.</p>
+
+<p><em>ThemeKit</em> makes available, without any further coding:</p>
+
+<ul>
+<li>a <code><a href="../Classes/LightTheme.html">LightTheme</a></code> (the default macOS theme)</li>
+<li>a <code><a href="../Classes/DarkTheme.html">DarkTheme</a></code> (the dark macOS theme, using <code>NSAppearanceNameVibrantDark</code>)</li>
+<li>a <code><a href="../Classes/SystemTheme.html">SystemTheme</a></code> (which dynamically resolve to either <code><a href="../Classes/LightTheme.html">LightTheme</a></code> or `DarkTheme 
+depending on the macOS preference at <strong>System Preferences &gt; General &gt; Appearance</strong>)</li>
+</ul>
+
+<p>You can choose wheter or not to use these, and you can also implement your custom
+themes by:
+- implementing native <code>Theme</code> classes conforming to this protocol and <code>NSObject</code>
+- provide user themes (<code><a href="../Classes/UserTheme.html">UserTheme</a></code>) with <code>.theme</code> files</p>
+
+<p>Please check the provided <em>Demo.app</em> project for sample implementations of both.</p>
 
           </section>
           <section class="section task-group-section">
@@ -124,7 +140,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L17">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L34">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -154,7 +170,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L20">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L37">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -184,7 +200,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L23">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L40">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -214,7 +230,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L26">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L43">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -256,7 +272,7 @@ for <code><a href="../Classes/UserTheme.html">UserTheme</a></code>s only, also <
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L33">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L50">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -287,7 +303,7 @@ by the theme.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L37">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L56">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -318,7 +334,7 @@ contains <code>Background</code> in its name) is not provided by the theme.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L41">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L60">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -348,7 +364,7 @@ contains <code>Background</code> in its name) is not provided by the theme.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L44">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L63">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -392,7 +408,7 @@ contains <code>Background</code> in its name) is not provided by the theme.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L55-L57">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L74-L76">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -426,7 +442,7 @@ contains <code>Background</code> in its name) is not provided by the theme.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L61-L63">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L80-L82">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -459,7 +475,7 @@ contains <code>Background</code> in its name) is not provided by the theme.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L66-L68">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L85-L87">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -493,7 +509,7 @@ no <code><a href="../Protocols/Theme.html#/s:vP8ThemeKit5Theme23fallbackForegrou
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L72-L74">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L91-L93">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -528,7 +544,7 @@ is a color method that contains <code>Background</code> in its name).</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L79-L81">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L98-L100">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -562,7 +578,7 @@ no <code><a href="../Protocols/Theme.html#/s:vP8ThemeKit5Theme23fallbackForegrou
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L85-L87">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L104-L106">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -597,7 +613,7 @@ system theme, respecting <strong>System Preferences &gt; General &gt; Appearance
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L92-L99">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L111-L118">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -630,7 +646,7 @@ system theme, respecting <strong>System Preferences &gt; General &gt; Appearance
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L102-L104">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L133-L135">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

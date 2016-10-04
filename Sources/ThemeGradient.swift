@@ -266,6 +266,7 @@ public class ThemeGradient : NSGradient {
     func recacheGradient() {
         // If it is a UserTheme we actually want to discard theme cached values
         if ThemeKit.shared.effectiveTheme is UserTheme {
+            _cachedGradients.removeAllObjects()
             _cachedThemeGradients.removeAllObjects()
         }
         
@@ -295,6 +296,22 @@ public class ThemeGradient : NSGradient {
     
     override public func draw(in path: NSBezierPath, relativeCenterPosition: NSPoint) {
         resolvedThemeGradient.draw(in: path, relativeCenterPosition: relativeCenterPosition)
+    }
+    
+    override open var colorSpace: NSColorSpace {
+        return resolvedThemeGradient.colorSpace
+    }
+    
+    override open var numberOfColorStops: Int {
+        return resolvedThemeGradient.numberOfColorStops
+    }
+    
+    override open func getColor(_ color: AutoreleasingUnsafeMutablePointer<NSColor>?, location: UnsafeMutablePointer<CGFloat>?, at index: Int) {
+        resolvedThemeGradient.getColor(color, location: location, at: index)
+    }
+    
+    override open func interpolatedColor(atLocation location: CGFloat) -> NSColor {
+        return resolvedThemeGradient.interpolatedColor(atLocation: location)
     }
     
     override public var description: String {

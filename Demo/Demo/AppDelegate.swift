@@ -12,6 +12,8 @@ import ThemeKit
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
+    @IBOutlet weak var themeMenu: NSMenu!
+    
     func applicationWillFinishLaunching(_ notification: Notification) {
         
         /* 1. Simpler usage: switch between light and dark theme directly. */
@@ -44,7 +46,34 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
+        
+        // Watch for theme changes and update Theme menu
+        NotificationCenter.default.addObserver(self, selector: #selector(updateThemeMenu(_:)), name: .didChangeTheme, object: nil)
+        
+        // Build theme menu
+        updateThemeMenu()
+    }
+    
+    @objc private func updateThemeMenu(_ notification: Notification? = nil) {
+        // Clean menu
+        themeMenu.removeAllItems()
+        
+        // Add themes
+        var counter = 1
+        for theme in ThemeKit.shared.themes {
+            let item = NSMenuItem(title: theme.shortDisplayName, action: #selector(switchTheme(_:)), keyEquivalent: String(counter))
+            item.representedObject = theme
+            item.state = (ThemeKit.shared.theme.identifier == theme.identifier) ? NSOnState : NSOffState
+            themeMenu.addItem(item)
+            counter += 1
+        }
+    }
+    
+    @IBAction func switchTheme(_ menuItem: NSMenuItem) {
+        guard menuItem.representedObject != nil else { return }
+        
+        ThemeKit.shared.theme = menuItem.representedObject! as! Theme
+        updateThemeMenu()
     }
     
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {

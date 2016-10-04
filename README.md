@@ -1,4 +1,4 @@
-![ThemeKit](https://github.com/luckymarmot/ThemeKit/raw/themekit-initial/ThemeKit.png)
+![ThemeKit](https://github.com/luckymarmot/ThemeKit/raw/themekit-initial/Imgs/ThemeKit.png)
 ========
 
 ![macOS](https://img.shields.io/badge/os-macOS 10.10+-green.svg?style=flat)
@@ -13,6 +13,8 @@
 *ThemeKit* is a lightweight theming library completly written in Swift 3 that provides theming capabilities to both Swift 3 and Objective-C macOS applications.
 
 *ThemeKit* is brought to you by the [Paw](https://paw.cloud) team.
+
+![ThemeKit](https://github.com/luckymarmot/ThemeKit/raw/themekit-initial/Imgs/ThemeKit.gif)
 
 ## Table of Contents
 * [Summary](#summary)

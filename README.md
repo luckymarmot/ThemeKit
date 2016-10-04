@@ -1,4 +1,4 @@
-![ThemeKit](https://raw.githubusercontent.com/luckymarmot/ThemeKit/themekit-initial/ThemeKit.png)
+![ThemeKit](https://github.com/luckymarmot/ThemeKit/raw/themekit-initial/ThemeKit.png)
 ========
 
 ![macOS](https://img.shields.io/badge/os-macOS 10.10+-green.svg?style=flat)

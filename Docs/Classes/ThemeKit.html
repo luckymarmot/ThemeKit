@@ -194,7 +194,7 @@ such as:</p>
 
 <p>This property is KVO compliant. This can return a different result than
 <code><a href="../Classes/ThemeKit.html#/s:vC8ThemeKit8ThemeKit5themePS_5Theme_">theme</a></code>, as if current theme is set to <code><a href="../Classes/SystemTheme.html">SystemTheme</a></code>, effective theme
-will be either <code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit10lightThemeCS_10LightTheme">lightTheme</a></code> or <code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit9darkThemeCS_9DarkTheme">darkTheme</a></code>, respecting user preference at
+will be either <code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit10lightThemePS_5Theme_">lightTheme</a></code> or <code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit9darkThemePS_5Theme_">darkTheme</a></code>, respecting user preference at
 <strong>System Preferences &gt; General &gt; Appearance</strong>.</p>
 
                       </div>
@@ -228,8 +228,8 @@ will be either <code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit1
                         <p>List all available themes:</p>
 
 <ul>
-<li>Built-in <code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit10lightThemeCS_10LightTheme">lightTheme</a></code></li>
-<li>Built-in<code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit9darkThemeCS_9DarkTheme">darkTheme</a></code></li>
+<li>Built-in <code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit10lightThemePS_5Theme_">lightTheme</a></code></li>
+<li>Built-in<code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit9darkThemePS_5Theme_">darkTheme</a></code></li>
 <li>Built-in<code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit11systemThemeCS_11SystemTheme">systemTheme</a></code></li>
 <li>All native themes (extending <code>NSObject</code> and conforming to <code><a href="../Protocols/Theme.html">Theme</a></code> protocol)</li>
 <li>All user themes (loaded from <code><a href="../Classes/ThemeKit.html#/s:vC8ThemeKit8ThemeKit5themePS_5Theme_">.theme</a></code> files)</li>
@@ -286,9 +286,9 @@ themes folder.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZvC8ThemeKit8ThemeKit10lightThemeCS_10LightTheme"></a>
+                    <a name="/s:ZvC8ThemeKit8ThemeKit10lightThemePS_5Theme_"></a>
                     <a name="//apple_ref/swift/Variable/lightTheme" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvC8ThemeKit8ThemeKit10lightThemeCS_10LightTheme">lightTheme</a>
+                    <a class="token" href="#/s:ZvC8ThemeKit8ThemeKit10lightThemePS_5Theme_">lightTheme</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -298,17 +298,20 @@ themes folder.</p>
                       <div class="abstract">
                         <p>Convenience method for accessing the light theme.</p>
 
+<p>This property can be changed so that <code><a href="../Classes/SystemTheme.html">SystemTheme</a></code> resolves to this theme
+instead of the default <code><a href="../Classes/LightTheme.html">LightTheme</a></code>.</p>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">lightTheme</span> <span class="o">=</span> <span class="kt"><a href="../Classes/LightTheme.html">LightTheme</a></span><span class="p">()</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">lightTheme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span> <span class="o">=</span> <span class="kt"><a href="../Classes/LightTheme.html">LightTheme</a></span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L156">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L159">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -316,9 +319,9 @@ themes folder.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZvC8ThemeKit8ThemeKit9darkThemeCS_9DarkTheme"></a>
+                    <a name="/s:ZvC8ThemeKit8ThemeKit9darkThemePS_5Theme_"></a>
                     <a name="//apple_ref/swift/Variable/darkTheme" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvC8ThemeKit8ThemeKit9darkThemeCS_9DarkTheme">darkTheme</a>
+                    <a class="token" href="#/s:ZvC8ThemeKit8ThemeKit9darkThemePS_5Theme_">darkTheme</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -328,17 +331,20 @@ themes folder.</p>
                       <div class="abstract">
                         <p>Convenience method for accessing the dark theme.</p>
 
+<p>This property can be changed so that <code><a href="../Classes/SystemTheme.html">SystemTheme</a></code> resolves to this theme
+instead of the default <code><a href="../Classes/DarkTheme.html">DarkTheme</a></code>.</p>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">darkTheme</span> <span class="o">=</span> <span class="kt"><a href="../Classes/DarkTheme.html">DarkTheme</a></span><span class="p">()</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">darkTheme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span> <span class="o">=</span> <span class="kt"><a href="../Classes/DarkTheme.html">DarkTheme</a></span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L159">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L165">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -357,8 +363,8 @@ themes folder.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Convenience method for accessing the theme that dynamically changes to
-<code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit10lightThemeCS_10LightTheme">lightTheme</a></code> or <code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit9darkThemeCS_9DarkTheme">darkTheme</a></code>, respecting user preference at
-<strong>System Preferences &gt; General &gt; Appearance</strong>.</p>
+<code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit10lightThemePS_5Theme_">ThemeKit.lightTheme</a></code> or <code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit9darkThemePS_5Theme_">ThemeKit.darkTheme</a></code>, respecting user preference
+at <strong>System Preferences &gt; General &gt; Appearance</strong>.</p>
 
                       </div>
                       <div class="declaration">
@@ -370,7 +376,7 @@ themes folder.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L164">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L170">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -388,7 +394,7 @@ themes folder.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Set/get default theme to be used on the first run (default: <code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit11systemThemeCS_11SystemTheme">systemTheme</a></code>).</p>
+                        <p>Set/get default theme to be used on the first run (default: <code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit11systemThemeCS_11SystemTheme">ThemeKit.systemTheme</a></code>).</p>
 
                       </div>
                       <div class="declaration">
@@ -400,7 +406,7 @@ themes folder.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L167">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L173">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -455,7 +461,7 @@ themes folder.</p>
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L174-L183">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L180-L189">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -487,7 +493,7 @@ themes folder.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L188">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L194">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -541,7 +547,7 @@ don&rsquo;t want them to be changed.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L224-L273">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L230-L279">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -582,7 +588,7 @@ don&rsquo;t want them to be changed.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L313-L315">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L319-L321">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -612,7 +618,7 @@ don&rsquo;t want them to be changed.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L318-L320">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L324-L326">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -642,7 +648,7 @@ don&rsquo;t want them to be changed.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L323-L325">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L329-L331">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -734,7 +740,7 @@ is set, themable window class names can then be defined using
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L378-L385">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L384-L391">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -764,7 +770,7 @@ is set, themable window class names can then be defined using
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L388">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L394">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

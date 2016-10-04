@@ -39,7 +39,7 @@
 - Themes:
   - [`LightTheme`](https://paw.cloud/opensource/themekit/docs/Classes/LightTheme.html) (default macOS appearance)
   - [`DarkTheme`](https://paw.cloud/opensource/themekit/docs/Classes/DarkTheme.html)
-  - [`SystemTheme`](https://paw.cloud/opensource/themekit/docs/Classes/SystemTheme.html) (default theme). Dynamically resolves to [`LightTheme`](https://paw.cloud/opensource/themekit/docs/Classes/LightTheme.html) or [`DarkTheme`](https://paw.cloud/opensource/themekit/docs/Classes/DarkTheme.html), depending on the *"System Preferences > General > Appearance"*.
+  - [`SystemTheme`](https://paw.cloud/opensource/themekit/docs/Classes/SystemTheme.html) (default theme). Dynamically resolves to `ThemeKit.lightTheme` or `ThemeKit.darkTheme`, depending on the *"System Preferences > General > Appearance"*.
   - Support for custom themes ([`Theme`](https://paw.cloud/opensource/themekit/docs/Classes/Theme.html))
   - Support for user-defined themes ([`UserTheme`](https://paw.cloud/opensource/themekit/docs/Classes/UserTheme.html))
 - Theme-aware assets:
@@ -97,7 +97,9 @@ The following code will define which windows should be automatically themed ([`W
 func applicationWillFinishLaunching(_ notification: Notification) {
 
 	/// Define default theme.
-	/// Used on first run. Default: macOS Theme.
+	/// Used on first run. Default: `SystemTheme`.
+	/// Note: `SystemTheme` is a special theme that resolves to `ThemeKit.lightTheme` or `ThemeKit.darkTheme`,
+	/// depending on the macOS preference at 'System Preferences > General > Appearance'.
 	ThemeKit.defaultTheme = ThemeKit.lightTheme
 	
 	/// Define window theme policy.
@@ -111,6 +113,10 @@ func applicationWillFinishLaunching(_ notification: Notification) {
 	let thisAppSupportURL = URL.init(fileURLWithPath: applicationSupportURLs.first!).appendingPathComponent(Bundle.main.bundleIdentifier!)
 	let userThemesFolderURL = thisAppSupportURL.appendingPathComponent("Themes")
 	ThemeKit.shared.userThemesFolderURL = userThemesFolderURL
+	
+	/// Change the default light and dark theme, used when `SystemTheme` is selected.
+	//ThemeKit.lightTheme = ThemeKit.shared.theme(withIdentifier: PaperTheme.identifier)!
+	//ThemeKit.darkTheme = ThemeKit.shared.theme(withIdentifier: "com.luckymarmot.ThemeKit.PurpleGreen")!
 	
 	/// NOTE: You don't need to manually select a theme.
 	///       Theme selected from last app run is stored on `NSUSerDefaults`

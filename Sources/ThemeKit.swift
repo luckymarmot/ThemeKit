@@ -153,17 +153,23 @@ public class ThemeKit: NSObject {
     private var cachedUserThemes: [Theme]?
     
     /// Convenience method for accessing the light theme.
-    public static let lightTheme = LightTheme()
+    ///
+    /// This property can be changed so that `SystemTheme` resolves to this theme
+    /// instead of the default `LightTheme`.
+    public static var lightTheme: Theme = LightTheme()
     
     /// Convenience method for accessing the dark theme.
-    public static let darkTheme = DarkTheme()
+    ///
+    /// This property can be changed so that `SystemTheme` resolves to this theme
+    /// instead of the default `DarkTheme`.
+    public static var darkTheme: Theme = DarkTheme()
     
     /// Convenience method for accessing the theme that dynamically changes to
-    /// `lightTheme` or `darkTheme`, respecting user preference at
-    /// **System Preferences > General > Appearance**.
+    /// `ThemeKit.lightTheme` or `ThemeKit.darkTheme`, respecting user preference
+    /// at **System Preferences > General > Appearance**.
     public static let systemTheme = SystemTheme()
     
-    /// Set/get default theme to be used on the first run (default: `systemTheme`).
+    /// Set/get default theme to be used on the first run (default: `ThemeKit.systemTheme`).
     public static var defaultTheme: Theme = ThemeKit.systemTheme
     
     /// Get the theme with specified identifier.

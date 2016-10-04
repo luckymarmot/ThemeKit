@@ -34,7 +34,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let projectRootURL = URL(fileURLWithPath: workingDirectory, isDirectory: true).deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent().appendingPathComponent("Themes")
         ThemeKit.shared.userThemesFolderURL = projectRootURL
         
-        // 2.3 Set default theme (default: macOS theme)
+        // 2.3 You can define the default light and dark theme, used for `SystemTheme`
+        //ThemeKit.lightTheme = ThemeKit.shared.theme(withIdentifier: PaperTheme.identifier)!
+        //ThemeKit.darkTheme = ThemeKit.shared.theme(withIdentifier: "com.luckymarmot.ThemeKit.PurpleGreen")!
+        
+        // 2.4 Set default theme (default: macOS theme)
         ThemeKit.defaultTheme = ThemeKit.lightTheme
         
     }

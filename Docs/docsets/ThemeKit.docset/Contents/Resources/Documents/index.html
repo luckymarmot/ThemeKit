@@ -134,7 +134,7 @@
 <ul>
 <li><a href="https://paw.cloud/opensource/themekit/docs/Classes/LightTheme.html"><code>LightTheme</code></a> (default macOS appearance)</li>
 <li><a href="https://paw.cloud/opensource/themekit/docs/Classes/DarkTheme.html"><code>DarkTheme</code></a></li>
-<li><a href="https://paw.cloud/opensource/themekit/docs/Classes/SystemTheme.html"><code>SystemTheme</code></a> (default theme). Dynamically resolves to <a href="https://paw.cloud/opensource/themekit/docs/Classes/LightTheme.html"><code>LightTheme</code></a> or <a href="https://paw.cloud/opensource/themekit/docs/Classes/DarkTheme.html"><code>DarkTheme</code></a>, depending on the <em><q>System Preferences > General > Appearance</q></em>.</li>
+<li><a href="https://paw.cloud/opensource/themekit/docs/Classes/SystemTheme.html"><code>SystemTheme</code></a> (default theme). Dynamically resolves to <code>ThemeKit.lightTheme</code> or <code>ThemeKit.darkTheme</code>, depending on the <em><q>System Preferences > General > Appearance</q></em>.</li>
 <li>Support for custom themes (<a href="https://paw.cloud/opensource/themekit/docs/Classes/Theme.html"><code>Theme</code></a>)</li>
 <li>Support for user-defined themes (<a href="https://paw.cloud/opensource/themekit/docs/Classes/UserTheme.html"><code>UserTheme</code></a>)</li>
 </ul></li>
@@ -196,7 +196,9 @@
 <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">applicationWillFinishLaunching</span><span class="p">(</span><span class="n">_</span> <span class="nv">notification</span><span class="p">:</span> <span class="kt">Notification</span><span class="p">)</span> <span class="p">{</span>
 
     <span class="c1">/// Define default theme.</span>
-    <span class="c1">/// Used on first run. Default: macOS Theme.</span>
+    <span class="c1">/// Used on first run. Default: `SystemTheme`.</span>
+    <span class="c1">/// Note: `SystemTheme` is a special theme that resolves to `ThemeKit.lightTheme` or `ThemeKit.darkTheme`,</span>
+    <span class="c1">/// depending on the macOS preference at 'System Preferences &gt; General &gt; Appearance'.</span>
     <span class="kt">ThemeKit</span><span class="o">.</span><span class="n">defaultTheme</span> <span class="o">=</span> <span class="kt">ThemeKit</span><span class="o">.</span><span class="n">lightTheme</span>
 
     <span class="c1">/// Define window theme policy.</span>
@@ -210,6 +212,10 @@
     <span class="k">let</span> <span class="nv">thisAppSupportURL</span> <span class="o">=</span> <span class="kt">URL</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">fileURLWithPath</span><span class="p">:</span> <span class="n">applicationSupportURLs</span><span class="o">.</span><span class="n">first</span><span class="o">!</span><span class="p">)</span><span class="o">.</span><span class="nf">appendingPathComponent</span><span class="p">(</span><span class="kt">Bundle</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">bundleIdentifier</span><span class="o">!</span><span class="p">)</span>
     <span class="k">let</span> <span class="nv">userThemesFolderURL</span> <span class="o">=</span> <span class="n">thisAppSupportURL</span><span class="o">.</span><span class="nf">appendingPathComponent</span><span class="p">(</span><span class="s">"Themes"</span><span class="p">)</span>
     <span class="kt">ThemeKit</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="n">userThemesFolderURL</span> <span class="o">=</span> <span class="n">userThemesFolderURL</span>
+
+    <span class="c1">/// Change the default light and dark theme, used when `SystemTheme` is selected.</span>
+    <span class="c1">//ThemeKit.lightTheme = ThemeKit.shared.theme(withIdentifier: PaperTheme.identifier)!</span>
+    <span class="c1">//ThemeKit.darkTheme = ThemeKit.shared.theme(withIdentifier: "com.luckymarmot.ThemeKit.PurpleGreen")!</span>
 
     <span class="c1">/// NOTE: You don't need to manually select a theme.</span>
     <span class="c1">///       Theme selected from last app run is stored on `NSUSerDefaults`</span>

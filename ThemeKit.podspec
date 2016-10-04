@@ -7,6 +7,7 @@ Pod::Spec.new do |s|
   s.screenshots  = 'https://github.com/luckymarmot/ThemeKit/Imgs/ThemeKit.gif'
   s.author       = { 'Paw Inc.' => 'https://paw.cloud' }
   s.source       = { :git => 'https://github.com/luckymarmot/ThemeKit.git', :tag => s.version }
+  s.documentation_url = 'https://paw.cloud/opensource/themekit/docs/index.html'
 
   s.platform     = :osx, '10.10'
   s.requires_arc = true

@@ -72,6 +72,9 @@
               <li class="nav-group-task">
                 <a href="../Classes/ThemeGradient.html">ThemeGradient</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ThemeImage.html">ThemeImage</a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -101,7 +104,7 @@ UI after changing the current theme.</p>
 
 <p><a href='#defining-theme-aware-gradients' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='defining-theme-aware-gradients'>Defining theme-aware gradients</h2></p>
 
-<p>The recommended way of adding your own dynamic colors is as follows:</p>
+<p>The recommended way of adding your own dynamic gradients is as follows:</p>
 
 <ol>
 <li><p><strong>Add a <code>ThemeGradient</code> class extension</strong> (or <code>TKThemeGradient</code> category on
@@ -132,9 +135,9 @@ Objective-C) to add class methods for your gradients. E.g.:</p>
 
 <span class="k">@end</span>
 </code></pre></li>
-<li><p><strong>Add Class Extensions on <code><a href="../Classes/LightTheme.html">LightTheme</a></code> and <code><a href="../Classes/DarkTheme.html">DarkTheme</a></code></strong> (<code>TKLightTheme</code> and
-<code>TKDarkTheme</code> on Objective-C) to provide instance methods for each theme gradient
-class method defined on (1). E.g.:</p>
+<li><p><strong>Add Class Extensions on any <code><a href="../Protocols/Theme.html">Theme</a></code> you want to support</strong> (e.g., <code><a href="../Classes/LightTheme.html">LightTheme</a></code>
+and <code><a href="../Classes/DarkTheme.html">DarkTheme</a></code> - <code>TKLightTheme</code> and <code>TKDarkTheme</code> on Objective-C) to provide
+instance methods for each theme gradient class method defined on (1). E.g.:</p>
 
 <p>In Swift:</p>
 <pre class="highlight plaintext"><code>extension LightTheme {
@@ -177,7 +180,7 @@ class method defined on (1). E.g.:</p>
 
 <span class="k">@end</span>
 </code></pre></li>
-<li><p><strong>Define properties on user theme files</strong> (<code>.theme</code>)
+<li><p>If supporting <code><a href="../Classes/UserTheme.html">UserTheme</a></code>&rsquo;s, <strong>define properties on user theme files</strong> (<code>.theme</code>)
 for each theme gradient class method defined on (1). E.g.:</p>
 <pre class="highlight plaintext"><code>displayName = Sample User Theme
 identifier = com.luckymarmot.ThemeKit.SampleUserTheme
@@ -193,7 +196,7 @@ brandGradient = linear-gradient($orangeSky, rgb(200, 140, 60))
 <p>Unimplemented properties/methods on target theme class will default to
 <code>fallbackGradient</code>. This too, can be customized per theme.</p>
 
-<p>Please check <code><a href="../Classes/ThemeColor.html">ThemeColor</a></code> for theme-aware colors.</p>
+<p>Please check <code><a href="../Classes/ThemeColor.html">ThemeColor</a></code> for theme-aware colors and <code><a href="../Classes/ThemeImage.html">ThemeImage</a></code> for theme-aware images.</p>
 
           </section>
           <section class="section task-group-section">

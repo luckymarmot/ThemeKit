@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		283F84601DA2BE9A000C5634 /* ThemeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283F845F1DA2BE9A000C5634 /* ThemeImage.swift */; };
 		2842D8421D93D90E0096EBB3 /* NSView+ThemeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2842D8411D93D90E0096EBB3 /* NSView+ThemeKit.swift */; };
 		2842D84B1D9681460096EBB3 /* NSColor+ThemeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2842D84A1D9681460096EBB3 /* NSColor+ThemeKit.swift */; };
 		28638D0D1DA143EB0073E58C /* NSImage+ThemeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28638D0C1DA143EB0073E58C /* NSImage+ThemeKit.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		283F845F1DA2BE9A000C5634 /* ThemeImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeImage.swift; sourceTree = "<group>"; };
 		2842D8411D93D90E0096EBB3 /* NSView+ThemeKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSView+ThemeKit.swift"; sourceTree = "<group>"; };
 		2842D84A1D9681460096EBB3 /* NSColor+ThemeKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSColor+ThemeKit.swift"; sourceTree = "<group>"; };
 		28638D0C1DA143EB0073E58C /* NSImage+ThemeKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSImage+ThemeKit.swift"; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 			children = (
 				286DE7DD1D92E08500767E00 /* ThemeColor.swift */,
 				286DE7DE1D92E08500767E00 /* ThemeGradient.swift */,
+				283F845F1DA2BE9A000C5634 /* ThemeImage.swift */,
 			);
 			name = "Theme Assets";
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				286DE7E91D92E08500767E00 /* UserTheme.swift in Sources */,
+				283F84601DA2BE9A000C5634 /* ThemeImage.swift in Sources */,
 				286DE7E31D92E08500767E00 /* NotificationName+ThemeKit.swift in Sources */,
 				286DE7EE1D92E08500767E00 /* Thread+ThemeKit.swift in Sources */,
 				286DE7E41D92E08500767E00 /* NSWindow+ThemeKit.swift in Sources */,

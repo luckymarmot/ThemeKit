@@ -71,6 +71,9 @@
               <li class="nav-group-task">
                 <a href="Classes/ThemeGradient.html">ThemeGradient</a>
               </li>
+              <li class="nav-group-task">
+                <a href="Classes/ThemeImage.html">ThemeImage</a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -149,9 +152,9 @@ to add class methods for your colors. E.g.:</p>
 
 <span class="k">@end</span>
 </code></pre></li>
-<li><p><strong>Add Class Extensions on <code><a href="Classes/LightTheme.html">LightTheme</a></code> and <code><a href="Classes/DarkTheme.html">DarkTheme</a></code></strong> (<code>TKLightTheme</code> and
-<code>TKDarkTheme</code> on Objective-C) to provide instance methods for each theme color 
-class method defined on (1). E.g.:</p>
+<li><p><strong>Add Class Extensions on any <code><a href="Protocols/Theme.html">Theme</a></code> you want to support</strong> (e.g., <code><a href="Classes/LightTheme.html">LightTheme</a></code>
+and <code><a href="Classes/DarkTheme.html">DarkTheme</a></code> - <code>TKLightTheme</code> and <code>TKDarkTheme</code> on Objective-C) to provide
+instance methods for each theme color class method defined on (1). E.g.:</p>
 
 <p>In Swift:</p>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">LightTheme</span> <span class="p">{</span>
@@ -194,7 +197,7 @@ class method defined on (1). E.g.:</p>
 
 <span class="k">@end</span>
 </code></pre></li>
-<li><p><strong>Define properties on user theme files</strong> (<code>.theme</code>)
+<li><p>If supporting <code><a href="Classes/UserTheme.html">UserTheme</a></code>&rsquo;s, <strong>define properties on user theme files</strong> (<code>.theme</code>)
 for each theme color class method defined on (1). E.g.:</p>
 <pre class="highlight swift"><code><span class="n">displayName</span> <span class="o">=</span> <span class="kt">Sample</span> <span class="kt">User</span> <span class="kt">Theme</span>
 <span class="n">identifier</span> <span class="o">=</span> <span class="n">com</span><span class="o">.</span><span class="n">luckymarmot</span><span class="o">.</span><span class="kt">ThemeKit</span><span class="o">.</span><span class="kt">SampleUserTheme</span>
@@ -232,7 +235,7 @@ properties/methods on target theme class will default to <code>fallbackForegroun
 and <code>fallbackBackgroundColor</code>, for foreground and background colors respectively.
 These too, can be customized per theme.</p>
 
-<p>Please check <code><a href="Classes/ThemeGradient.html">ThemeGradient</a></code> for theme-aware gradients.</p>
+<p>Please check <code><a href="Classes/ThemeGradient.html">ThemeGradient</a></code> for theme-aware gradients and <code><a href="Classes/ThemeImage.html">ThemeImage</a></code> for theme-aware images.</p>
 
                         <a href="Classes/ThemeColor.html" class="slightly-smaller">See more</a>
                       </div>
@@ -282,7 +285,7 @@ UI after changing the current theme.</p>
 
 <p><a href='#defining-theme-aware-gradients' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='defining-theme-aware-gradients'>Defining theme-aware gradients</h2></p>
 
-<p>The recommended way of adding your own dynamic colors is as follows:</p>
+<p>The recommended way of adding your own dynamic gradients is as follows:</p>
 
 <ol>
 <li><p><strong>Add a <code>ThemeGradient</code> class extension</strong> (or <code>TKThemeGradient</code> category on
@@ -313,9 +316,9 @@ Objective-C) to add class methods for your gradients. E.g.:</p>
 
 <span class="k">@end</span>
 </code></pre></li>
-<li><p><strong>Add Class Extensions on <code><a href="Classes/LightTheme.html">LightTheme</a></code> and <code><a href="Classes/DarkTheme.html">DarkTheme</a></code></strong> (<code>TKLightTheme</code> and
-<code>TKDarkTheme</code> on Objective-C) to provide instance methods for each theme gradient
-class method defined on (1). E.g.:</p>
+<li><p><strong>Add Class Extensions on any <code><a href="Protocols/Theme.html">Theme</a></code> you want to support</strong> (e.g., <code><a href="Classes/LightTheme.html">LightTheme</a></code>
+and <code><a href="Classes/DarkTheme.html">DarkTheme</a></code> - <code>TKLightTheme</code> and <code>TKDarkTheme</code> on Objective-C) to provide
+instance methods for each theme gradient class method defined on (1). E.g.:</p>
 
 <p>In Swift:</p>
 <pre class="highlight plaintext"><code>extension LightTheme {
@@ -358,7 +361,7 @@ class method defined on (1). E.g.:</p>
 
 <span class="k">@end</span>
 </code></pre></li>
-<li><p><strong>Define properties on user theme files</strong> (<code>.theme</code>)
+<li><p>If supporting <code><a href="Classes/UserTheme.html">UserTheme</a></code>&rsquo;s, <strong>define properties on user theme files</strong> (<code>.theme</code>)
 for each theme gradient class method defined on (1). E.g.:</p>
 <pre class="highlight plaintext"><code>displayName = Sample User Theme
 identifier = com.luckymarmot.ThemeKit.SampleUserTheme
@@ -374,7 +377,7 @@ brandGradient = linear-gradient($orangeSky, rgb(200, 140, 60))
 <p>Unimplemented properties/methods on target theme class will default to
 <code>fallbackGradient</code>. This too, can be customized per theme.</p>
 
-<p>Please check <code><a href="Classes/ThemeColor.html">ThemeColor</a></code> for theme-aware colors.</p>
+<p>Please check <code><a href="Classes/ThemeColor.html">ThemeColor</a></code> for theme-aware colors and <code><a href="Classes/ThemeImage.html">ThemeImage</a></code> for theme-aware images.</p>
 
                         <a href="Classes/ThemeGradient.html" class="slightly-smaller">See more</a>
                       </div>
@@ -388,6 +391,148 @@ brandGradient = linear-gradient($orangeSky, rgb(200, 140, 60))
                       </div>
                       <div class="slightly-smaller">
                         <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeGradient.swift#L137-L303">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:C8ThemeKit10ThemeImage"></a>
+                    <a name="//apple_ref/swift/Class/ThemeImage" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C8ThemeKit10ThemeImage">ThemeImage</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p><code>ThemeImage</code> is a <code>NSImage</code> subclass that dynamically changes its colors
+whenever a new theme is make current.</p>
+
+<p>Theme-aware means you don&rsquo;t need to check any conditions when choosing which
+image to draw. E.g.:</p>
+
+<pre class="highlight plaintext"><code>ThemeImage.logoImage.draw(in: bounds)
+</code></pre>
+
+<p>The drawing code will draw with different image depending on the selected
+theme. Unless some drawing cache is being done, there&rsquo;s no need to refresh the
+UI after changing the current theme.</p>
+
+<p><a href='#defining-theme-aware-images' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='defining-theme-aware-images'>Defining theme-aware images</h2></p>
+
+<p>The recommended way of adding your own dynamic images is as follows:</p>
+
+<ol>
+<li><p><strong>Add a <code>ThemeImage</code> class extension</strong> (or <code>TKThemeImage</code> category on
+Objective-C) to add class methods for your images. E.g.:</p>
+
+<p>In Swift:</p>
+<pre class="highlight plaintext"><code>extension ThemeImage {
+
+    static var logoImage: ThemeImage {
+        return ThemeImage.image(with: #function)
+    }
+
+}
+</code></pre>
+
+<p>In Objective-C:</p>
+<pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">TKThemeImage</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
+
+<span class="err">+</span> <span class="err">(</span><span class="nc">TKThemeImage</span><span class="o">*</span><span class="p">)</span><span class="n">logoImage</span><span class="p">;</span>
+
+<span class="k">@end</span>
+
+<span class="k">@implementation</span> <span class="nc">TKThemeImage</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
+
+<span class="err">+</span> <span class="err">(</span><span class="nc">TKThemeImage</span><span class="o">*</span><span class="p">)</span><span class="n">logoImage</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">TKThemeImage</span> <span class="nf">imageWithSelector</span><span class="p">:</span><span class="n">_cmd</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">@end</span>
+</code></pre></li>
+<li><p><strong>Add Class Extensions on any <code><a href="Protocols/Theme.html">Theme</a></code> you want to support</strong> (e.g., <code><a href="Classes/LightTheme.html">LightTheme</a></code>
+and <code><a href="Classes/DarkTheme.html">DarkTheme</a></code> - <code>TKLightTheme</code> and <code>TKDarkTheme</code> on Objective-C) to provide 
+instance methods for each theme image class method defined on (1). E.g.:</p>
+
+<p>In Swift:</p>
+<pre class="highlight plaintext"><code>extension LightTheme {
+
+    var logoImage: NSImage {
+        return NSImage(named: "MyLightLogo")!
+    }
+
+}
+
+extension DarkTheme {
+
+    var logoImage: NSImage {
+        return NSImage(contentsOfFile: "somewhere/MyDarkLogo.png")!
+    }
+
+}
+</code></pre>
+
+<p>In Objective-C:</p>
+<pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">TKLightTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span> <span class="err">@</span><span class="nc">end</span>
+
+<span class="k">@implementation</span> <span class="nc">TKLightTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
+
+<span class="err">-</span> <span class="err">(</span><span class="nc">NSImage</span><span class="o">*</span><span class="p">)</span><span class="n">logoImage</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">NSImage</span> <span class="nf">imageNamed</span><span class="p">:</span><span class="s">@"MyLightLogo"</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">@end</span>
+
+<span class="k">@interface</span> <span class="nc">TKDarkTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span> <span class="err">@</span><span class="nc">end</span>
+
+<span class="k">@implementation</span> <span class="nc">TKDarkTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
+
+<span class="err">-</span> <span class="err">(</span><span class="nc">NSImage</span><span class="o">*</span><span class="p">)</span><span class="n">logoImage</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">NSImage</span> <span class="nf">alloc</span><span class="p">]</span> <span class="n">initWithContentsOfFile</span><span class="o">:</span><span class="s">@"somewhere/MyDarkLogo.png"</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">@end</span>
+</code></pre></li>
+<li><p>If supporting <code><a href="Classes/UserTheme.html">UserTheme</a></code>&rsquo;s, <strong>define properties on user theme files</strong> (<code>.theme</code>)
+for each theme image class method defined on (1). E.g.:</p>
+<pre class="highlight plaintext"><code>displayName = Sample User Theme
+identifier = com.luckymarmot.ThemeKit.SampleUserTheme
+darkTheme = false
+
+logoImage = image(named:MyLogo)
+//logoImage = image(file:../some/path/MyLogo.png)
+</code></pre></li>
+</ol>
+
+<p><a href='#fallback-images' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='fallback-images'>Fallback images</h2></p>
+
+<p>Unimplemented properties/methods on target theme class will default to
+<code>fallbackImage</code>. This too, can be customized per theme.</p>
+
+<p>Please check <code><a href="Classes/ThemeColor.html">ThemeColor</a></code> for theme-aware colors and <code><a href="Classes/ThemeGradient.html">ThemeGradient</a></code> for theme-aware gradients.</p>
+
+                        <a href="Classes/ThemeImage.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ThemeImage</span> <span class="p">:</span> <span class="kt">NSImage</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeImage.swift#L138-L502">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

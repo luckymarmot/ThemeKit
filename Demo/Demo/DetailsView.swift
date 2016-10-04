@@ -16,6 +16,10 @@ class DetailsView: NSView {
         // Fill with details background
         ThemeColor.detailsBackgroundColor.set()
         NSBezierPath(rect: bounds).fill()
+        
+        // Draw theme details image
+        let imageSize = NSMakeSize(48, 48)
+        ThemeImage.detailsImage.draw(in: NSMakeRect((NSWidth(bounds) - imageSize.width) / 2, 56, imageSize.width, imageSize.height))
     }
     
 }

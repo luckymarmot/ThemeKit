@@ -38,7 +38,8 @@ custom_categories:
   - name: Theme Assets
     children:    
     - ThemeColor
-    - ThemeGradient
+    - ThemeGradient 
+    - ThemeImage
 # "skip_undocumented: true" side-effect bug: will not document NS* extensions
 #   - name: Extensions
 #     children:

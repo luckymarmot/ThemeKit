@@ -29,7 +29,7 @@ private var _cachedThemeGradients: NSCache<NSString, NSGradient>!
  Defining theme-aware gradients
  ------------------------------
  
- The recommended way of adding your own dynamic colors is as follows:
+ The recommended way of adding your own dynamic gradients is as follows:
  
  1. **Add a `ThemeGradient` class extension** (or `TKThemeGradient` category on
  Objective-C) to add class methods for your gradients. E.g.:
@@ -64,9 +64,9 @@ private var _cachedThemeGradients: NSCache<NSString, NSGradient>!
      @end
      ```
  
- 2. **Add Class Extensions on `LightTheme` and `DarkTheme`** (`TKLightTheme` and
- `TKDarkTheme` on Objective-C) to provide instance methods for each theme gradient
- class method defined on (1). E.g.:
+ 2. **Add Class Extensions on any `Theme` you want to support** (e.g., `LightTheme`
+ and `DarkTheme` - `TKLightTheme` and `TKDarkTheme` on Objective-C) to provide
+ instance methods for each theme gradient class method defined on (1). E.g.:
  
      In Swift:
  
@@ -114,7 +114,7 @@ private var _cachedThemeGradients: NSCache<NSString, NSGradient>!
      @end
      ```
  
- 3.  **Define properties on user theme files** (`.theme`)
+ 3.  If supporting `UserTheme`'s, **define properties on user theme files** (`.theme`)
  for each theme gradient class method defined on (1). E.g.:
  
      ```
@@ -131,7 +131,7 @@ private var _cachedThemeGradients: NSCache<NSString, NSGradient>!
  Unimplemented properties/methods on target theme class will default to
  `fallbackGradient`. This too, can be customized per theme.
  
- Please check `ThemeColor` for theme-aware colors.
+ Please check `ThemeColor` for theme-aware colors and `ThemeImage` for theme-aware images.
  */
 @objc(TKThemeGradient)
 public class ThemeGradient : NSGradient {

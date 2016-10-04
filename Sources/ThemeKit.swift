@@ -257,9 +257,11 @@ public class ThemeKit: NSObject {
                 
                 // Start watching
                 willChangeValue(forKey: #keyPath(themes))
+                willChangeValue(forKey: #keyPath(userThemes))
                 cachedThemes = nil
                 cachedUserThemes = nil
                 _userThemesFolderSource?.resume()
+                didChangeValue(forKey: #keyPath(userThemes))
                 didChangeValue(forKey: #keyPath(themes))
                 
                 // Re-apply current theme if user theme
@@ -291,6 +293,7 @@ public class ThemeKit: NSObject {
     /// Called when themes folder has file changes --> refresh modified user theme (if current).
     private func userThemesFolderChangedContent() {
         willChangeValue(forKey: #keyPath(themes))
+        willChangeValue(forKey: #keyPath(userThemes))
         cachedThemes = nil
         cachedUserThemes = nil
         
@@ -298,6 +301,7 @@ public class ThemeKit: NSObject {
             applyUserDefaultsTheme()
         }
     
+        didChangeValue(forKey: #keyPath(userThemes))
         didChangeValue(forKey: #keyPath(themes))
     }
     

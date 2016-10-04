@@ -69,9 +69,9 @@ private var _cachedThemeColors: NSCache<NSString, NSColor>!
      @end
      ```
  
- 2. **Add Class Extensions on `LightTheme` and `DarkTheme`** (`TKLightTheme` and
- `TKDarkTheme` on Objective-C) to provide instance methods for each theme color 
- class method defined on (1). E.g.:
+ 2. **Add Class Extensions on any `Theme` you want to support** (e.g., `LightTheme`
+ and `DarkTheme` - `TKLightTheme` and `TKDarkTheme` on Objective-C) to provide
+ instance methods for each theme color class method defined on (1). E.g.:
     
      In Swift:
  
@@ -119,7 +119,7 @@ private var _cachedThemeColors: NSCache<NSString, NSColor>!
      @end
      ```
  
- 3. **Define properties on user theme files** (`.theme`)
+ 3. If supporting `UserTheme`'s, **define properties on user theme files** (`.theme`)
  for each theme color class method defined on (1). E.g.:
  
      ```swift
@@ -158,7 +158,7 @@ private var _cachedThemeColors: NSCache<NSString, NSColor>!
  and `fallbackBackgroundColor`, for foreground and background colors respectively.
  These too, can be customized per theme.
  
- Please check `ThemeGradient` for theme-aware gradients.
+ Please check `ThemeGradient` for theme-aware gradients and `ThemeImage` for theme-aware images.
  */
 @objc(TKThemeColor)
 public class ThemeColor : NSColor {

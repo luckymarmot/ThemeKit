@@ -19,11 +19,13 @@ import Foundation
  - non-comment lines consists on simple variable/value assignments (eg, `variable = value`);
  - `variable` name can contain characters `[a-zA-Z0-9_-.]+`;
  - custom variables can be specified (eg, `myBackgroundColor = ...`);
- - theming properties match the class methods of `ThemeColor` and `ThemeGradient` (eg, `labelColor`);
+ - theming properties match the class methods of `ThemeColor`, `ThemeGradient` and `ThemeImage` (eg, `labelColor`);
  - variables can be referenced by prefixing them with `$` (eg, `mainBorderColor = $commonBorderColor`);
  - colors are defined using `rgb(255, 255, 255)` or `rgba(255, 255, 255, 1.0)` (case insensitive);
  - gradients are defined using `linear-gradient(color1, color2)` (where colors are defined as above; case insensitive);
- - `ThemeKit.themes` is automatically updated when there are changes on the user themes folder;
+ - pattern images are defined using `pattern(named:xxxx)` (named images) or `pattern(file:../dddd/xxxx.yyy)` (filesystem images);
+ - images are defined using `image(named:xxxx)` (named images) or `image(file:../dddd/xxxx.yyy)` (filesystem images);
+ - `ThemeKit.themes` property is automatically updated when there are changes on the user themes folder;
  - file changes are applied on-the-fly, if it corresponds to the currently applied theme.
  
  Example `.theme` file:
@@ -42,6 +44,16 @@ import Foundation
  # define gradient for `ThemeGradient.brandGradient`
  brandGradient = linear-gradient($orange.sky, rgba(200, 140, 60, 1.0))
  
+ // ********************* Images & Patterns ********************** //
+ # define pattern image from named image "paper" for color `ThemeColor.contentBackgroundColor`
+ contentBackgroundColor = pattern(named:paper)
+ # define pattern image from filesystem (relative to user themes folder) for color `ThemeColor.bottomBackgroundColor`
+ bottomBackgroundColor = pattern(file:../some/path/some-file.png)
+ # use named image "apple"
+ namedImage = image(named:apple)
+ # use image from filesystem (relative to user themes folder)
+ fileImage = image(file:../some/path/some-file.jpg)
+ 
  // *********************** Common Colors ************************ //
  blue = rgb(0, 170, 255)
  orange.sky = rgb(160, 90, 45, .5)
@@ -54,8 +66,9 @@ import Foundation
  
  With the exception of system overrided named colors (e.g., `labelColor`), which
  defaults to the original system provided named color, unimplemented properties 
- on theme file will default to `-fallbackForegroundColor`, `-fallbackBackgroundColor`
- and  `-fallbackGradient`, for foreground color, background color and gradients, respectively.
+ on theme file will default to `-fallbackForegroundColor`, `-fallbackBackgroundColor`,
+ `-fallbackGradient` and `-fallbackImage`, for foreground color, background color,
+ gradients and images, respectively.
  
  
  */

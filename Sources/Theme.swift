@@ -45,22 +45,23 @@ public protocol Theme: NSObjectProtocol {
     
     // MARK: Optional Methods/Properties
     
-    /// Theme asset for the specified key (`ThemeColor`, `ThemeGradient` and 
-    /// for `UserTheme`s only, also `String`).
+    /// Optional: theme asset for the specified key (`ThemeColor`, `ThemeGradient`,
+    /// `ThemeImage` and, for `UserTheme`s only, also `String`).
     @objc optional func themeAsset(_ key: String) -> Any?
     
-//    @objc optional func hasThemeAsset(_ key: String) -> Bool
-    
-    /// Foreground color to be used on when a foreground color is not provided 
+    /// Optional: foreground color to be used on when a foreground color is not provided
     /// by the theme.
     @objc optional var fallbackForegroundColor : NSColor? { get }
     
-    /// Background color to be used on when a background color (a color which 
+    /// Optional: background color to be used on when a background color (a color which
     /// contains `Background` in its name) is not provided by the theme.
     @objc optional var fallbackBackgroundColor : NSColor? { get }
     
-    /// Gradient to be used on when a gradient is not provided by the theme.
+    /// Optional: gradient to be used on when a gradient is not provided by the theme.
     @objc optional var fallbackGradient : NSGradient? { get }
+    
+    /// Optional: image to be used on when an image is not provided by the theme.
+    @objc optional var fallbackImage : NSImage? { get }
 }
 
 /// Theme protocol extension.
@@ -105,6 +106,12 @@ public extension Theme {
         return NSGradient.init(starting: defaultFallbackBackgroundColor, ending: defaultFallbackBackgroundColor)!
     }
     
+    /// Default image to be used on fallback situations when
+    /// no image was specified by the theme.
+    var defaultFallbackImage: NSImage {
+        return NSImage(size: NSZeroSize)
+    }
+    
     /// Effective theme, which can be different from itself if it represents the 
     /// system theme, respecting **System Preferences > General > Appearance** 
     /// (in that case it will be either `ThemeKit.lightTheme` or `ThemeKit.darkTheme`).
@@ -116,18 +123,6 @@ public extension Theme {
             return self
         }
     }
-    
-//    /// Checks if a theme asset is provided for the given key/method/color name.
-//    ///
-//    /// - parameter key: A color name or gradient name
-//    ///
-//    /// - returns: `true` if theme provides an asset for the given key; `false` otherwise.
-//    public func hasThemeAsset(_ key: String) -> Bool {
-//        let themeClass: AnyClass = object_getClass(self)
-//        let selector = Selector(key)
-//        let themeColorMethod = class_getInstanceMethod(themeClass, selector)
-//        return themeColorMethod != nil
-//    }
     
     /// Theme description.
     public func themeDescription(_ theme: Theme) -> String {

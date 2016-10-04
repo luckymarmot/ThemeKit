@@ -11,6 +11,8 @@ import Foundation
 private var varsRegExpr: NSRegularExpression!
 private var colorRegExpr: NSRegularExpression!
 private var linearGradRegExpr: NSRegularExpression!
+private var patternRegExpr: NSRegularExpression!
+private var imageRegExpr: NSRegularExpression!
 
 extension NSDictionary {
     
@@ -41,16 +43,30 @@ extension NSDictionary {
         catch let error {
             print(error)
         }
+        
+        // Regular expression for user theme pattern images (NSColor)
+        do {
+            patternRegExpr = try NSRegularExpression.init(pattern: "pattern\\(((named):[\\s]*([\\w-\\. ]+)|(file):[\\s]*([\\w-\\. \\/]+))\\)", options: .caseInsensitive)
+        } catch let error {
+            print(error)
+        }
+        
+        // Regular expression for user theme images
+        do {
+            imageRegExpr = try NSRegularExpression.init(pattern: "image\\(((named):[\\s]*([\\w-\\. ]+)|(file):[\\s]*([\\w-\\. \\/]+))\\)", options: .caseInsensitive)
+        } catch let error {
+            print(error)
+        }
     }
     
     // MARK: Evaluation
     
-    /// Evaluate object for the specified key as theme asset (`NSColor`, `NSGradient`, ...).
+    /// Evaluate object for the specified key as theme asset (`NSColor`, `NSGradient`, `NSImage`, ...).
     func evaluatedObject(key: String) -> AnyObject! {
         // Resolve any variables
         let stringValue = evaluatedString(key: key)
         
-        // Evaluate as theme asset (NSColor, NSGradient, ...)
+        // Evaluate as theme asset (NSColor, NSGradient, NSImage, ...)
         return evaluatedObjectAsThemeAsset(value: stringValue as AnyObject)
     }
     
@@ -95,7 +111,7 @@ extension NSDictionary {
         return value
     }
     
-    /// Evaluate object as theme asset (`NSColor`, `NSGradient`, ...).
+    /// Evaluate object as theme asset (`NSColor`, `NSGradient`, `NSImage`, ...).
     private func evaluatedObjectAsThemeAsset(value: AnyObject) -> AnyObject {
         var object = value
         if (object is String) {
@@ -134,6 +150,54 @@ extension NSDictionary {
                     
                     // Color
                     object = NSColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: CGFloat(alpha))
+                }
+            }
+            
+            // pattern
+            if (object is String) {
+                var stringValue = (object as! String)
+                let match = patternRegExpr.firstMatch(in: stringValue, options:NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSMakeRange(0, stringValue.characters.count))
+                if match?.numberOfRanges == 6 {
+                    let isNamedType = stringValue.substring(withNSRange: match!.rangeAt(2)) == "named"
+                    let imageName = stringValue.substring(withNSRange: match!.rangeAt(3))
+                    let isFileType = stringValue.substring(withNSRange: match!.rangeAt(4)) == "file"
+                    let imageFileName = stringValue.substring(withNSRange: match!.rangeAt(5))
+                    
+                    // Pattern image
+                    var pattern: NSImage
+                    if isNamedType {
+                        pattern = NSImage(named: imageName) ?? NSImage(size: NSZeroSize)
+                    }
+                    else if isFileType, let imageURL = ThemeKit.shared.userThemesFolderURL?.appendingPathComponent(imageFileName) {
+                        pattern = NSImage(contentsOf: imageURL) ?? NSImage(size: NSZeroSize)
+                    }
+                    else {
+                        pattern = NSImage(size: NSZeroSize)
+                    }
+                    object = NSColor(patternImage: pattern)
+                }
+            }
+            
+            // image
+            if (object is String) {
+                var stringValue = (object as! String)
+                let match = imageRegExpr.firstMatch(in: stringValue, options:NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSMakeRange(0, stringValue.characters.count))
+                if match?.numberOfRanges == 6 {
+                    let isNamedType = stringValue.substring(withNSRange: match!.rangeAt(2)) == "named"
+                    let imageName = stringValue.substring(withNSRange: match!.rangeAt(3))
+                    let isFileType = stringValue.substring(withNSRange: match!.rangeAt(4)) == "file"
+                    let imageFileName = stringValue.substring(withNSRange: match!.rangeAt(5))
+                    
+                    // Image
+                    if isNamedType {
+                        object = NSImage(named: imageName) ?? NSImage(size: NSZeroSize)
+                    }
+                    else if isFileType, let imageURL = ThemeKit.shared.userThemesFolderURL?.appendingPathComponent(imageFileName) {
+                        object = NSImage(contentsOf: imageURL) ?? NSImage(size: NSZeroSize)
+                    }
+                    else {
+                        object = NSImage(size: NSZeroSize)
+                    }
                 }
             }
             

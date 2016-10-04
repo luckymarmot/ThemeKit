@@ -21,7 +21,7 @@ class PaperTheme: NSObject, Theme {
     public var displayName: String = "Paper Theme"
     
     /// Theme short display name.
-    public var shortDisplayName: String = "Paper Theme"
+    public var shortDisplayName: String = "Paper"
     
     /// Is this a dark theme?
     public var isDarkTheme: Bool = false
@@ -69,6 +69,11 @@ class PaperTheme: NSObject, Theme {
     /// Notes details background color
     var detailsBackgroundColor: NSColor {
         return contentBackgroundColor
+    }
+    
+    /// Notes details image
+    var detailsImage: NSImage {
+        return NSImage(named: "file_doc")!
     }
     
     

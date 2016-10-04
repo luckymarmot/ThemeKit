@@ -46,4 +46,9 @@ extension LightTheme {
         return NSColor(calibratedWhite: 1.0, alpha: 0.0)
     }
     
+    /// Notes details image
+    var detailsImage: NSImage {
+        return NSImage(named: "sun")!
+    }
+    
 }

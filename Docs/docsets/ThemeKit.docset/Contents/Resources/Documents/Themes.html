@@ -71,6 +71,9 @@
               <li class="nav-group-task">
                 <a href="Classes/ThemeGradient.html">ThemeGradient</a>
               </li>
+              <li class="nav-group-task">
+                <a href="Classes/ThemeImage.html">ThemeImage</a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -126,7 +129,7 @@ themes by:
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L30-L64">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/Theme.swift#L30-L65">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -267,11 +270,13 @@ depending on the macOS preference at <strong>System Preferences &gt; General &gt
 <li>non-comment lines consists on simple variable/value assignments (eg, <code>variable = value</code>);</li>
 <li><code>variable</code> name can contain characters <code>[a-zA-Z0-9_-.]+</code>;</li>
 <li>custom variables can be specified (eg, <code>myBackgroundColor = ...</code>);</li>
-<li>theming properties match the class methods of <code><a href="Classes/ThemeColor.html">ThemeColor</a></code> and <code><a href="Classes/ThemeGradient.html">ThemeGradient</a></code> (eg, <code>labelColor</code>);</li>
+<li>theming properties match the class methods of <code><a href="Classes/ThemeColor.html">ThemeColor</a></code>, <code><a href="Classes/ThemeGradient.html">ThemeGradient</a></code> and <code><a href="Classes/ThemeImage.html">ThemeImage</a></code> (eg, <code>labelColor</code>);</li>
 <li>variables can be referenced by prefixing them with <code>$</code> (eg, <code>mainBorderColor = $commonBorderColor</code>);</li>
 <li>colors are defined using <code>rgb(255, 255, 255)</code> or <code>rgba(255, 255, 255, 1.0)</code> (case insensitive);</li>
 <li>gradients are defined using <code>linear-gradient(color1, color2)</code> (where colors are defined as above; case insensitive);</li>
-<li><code><a href="Classes/ThemeKit.html#/s:vC8ThemeKit8ThemeKit6themesGSaPS_5Theme__">ThemeKit.themes</a></code> is automatically updated when there are changes on the user themes folder;</li>
+<li>pattern images are defined using <code>pattern(named:xxxx)</code> (named images) or <code>pattern(file:../dddd/xxxx.yyy)</code> (filesystem images);</li>
+<li>images are defined using <code>image(named:xxxx)</code> (named images) or <code>image(file:../dddd/xxxx.yyy)</code> (filesystem images);</li>
+<li><code><a href="Classes/ThemeKit.html#/s:vC8ThemeKit8ThemeKit6themesGSaPS_5Theme__">ThemeKit.themes</a></code> property is automatically updated when there are changes on the user themes folder;</li>
 <li>file changes are applied on-the-fly, if it corresponds to the currently applied theme.</li>
 </ul>
 
@@ -290,6 +295,16 @@ depending on the macOS preference at <strong>System Preferences &gt; General &gt
 <span class="c1"># define gradient for `ThemeGradient.brandGradient`</span>
 <span class="n">brandGradient</span> <span class="o">=</span> <span class="n">linear</span><span class="o">-</span><span class="n">gradient</span><span class="p">(</span><span class="vg">$orange</span><span class="p">.</span><span class="nf">sky</span><span class="p">,</span> <span class="n">rgba</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">1</span><span class="o">.</span><span class="mi">0</span><span class="p">))</span>
 
+<span class="sr">//</span> <span class="o">*********************</span> <span class="no">Images</span> <span class="o">&amp;</span> <span class="no">Patterns</span> <span class="o">**********************</span> <span class="sr">//</span>
+<span class="c1"># define pattern image from named image "paper" for color `ThemeColor.contentBackgroundColor`</span>
+<span class="n">contentBackgroundColor</span> <span class="o">=</span> <span class="n">pattern</span><span class="p">(</span><span class="n">named</span><span class="ss">:paper</span><span class="p">)</span>
+<span class="c1"># define pattern image from filesystem (relative to user themes folder) for color `ThemeColor.bottomBackgroundColor`</span>
+<span class="n">bottomBackgroundColor</span> <span class="o">=</span> <span class="n">pattern</span><span class="p">(</span><span class="n">file</span><span class="p">:.</span><span class="nf">.</span><span class="o">/</span><span class="n">some</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">some</span><span class="o">-</span><span class="n">file</span><span class="p">.</span><span class="nf">png</span><span class="p">)</span>
+<span class="c1"># use named image "apple"</span>
+<span class="n">namedImage</span> <span class="o">=</span> <span class="n">image</span><span class="p">(</span><span class="n">named</span><span class="ss">:apple</span><span class="p">)</span>
+<span class="c1"># use image from filesystem (relative to user themes folder)</span>
+<span class="n">fileImage</span> <span class="o">=</span> <span class="n">image</span><span class="p">(</span><span class="n">file</span><span class="p">:.</span><span class="nf">.</span><span class="o">/</span><span class="n">some</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">some</span><span class="o">-</span><span class="n">file</span><span class="p">.</span><span class="nf">jpg</span><span class="p">)</span>
+
 <span class="sr">//</span> <span class="o">***********************</span> <span class="no">Common</span> <span class="no">Colors</span> <span class="o">************************</span> <span class="sr">//</span>
 <span class="n">blue</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">170</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
 <span class="n">orange</span><span class="p">.</span><span class="nf">sky</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="o">.</span><span class="mi">5</span><span class="p">)</span>
@@ -302,8 +317,9 @@ depending on the macOS preference at <strong>System Preferences &gt; General &gt
 
 <p>With the exception of system overrided named colors (e.g., <code>labelColor</code>), which
 defaults to the original system provided named color, unimplemented properties 
-on theme file will default to <code>-fallbackForegroundColor</code>, <code>-fallbackBackgroundColor</code>
-and  <code>-fallbackGradient</code>, for foreground color, background color and gradients, respectively.</p>
+on theme file will default to <code>-fallbackForegroundColor</code>, <code>-fallbackBackgroundColor</code>,
+<code>-fallbackGradient</code> and <code>-fallbackImage</code>, for foreground color, background color,
+gradients and images, respectively.</p>
 
                         <a href="Classes/UserTheme.html" class="slightly-smaller">See more</a>
                       </div>
@@ -316,7 +332,7 @@ and  <code>-fallbackGradient</code>, for foreground color, background color and 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/UserTheme.swift#L63-L189">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/UserTheme.swift#L76-L202">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

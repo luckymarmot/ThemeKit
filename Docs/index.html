@@ -71,6 +71,9 @@
               <li class="nav-group-task">
                 <a href="Classes/ThemeGradient.html">ThemeGradient</a>
               </li>
+              <li class="nav-group-task">
+                <a href="Classes/ThemeImage.html">ThemeImage</a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -79,11 +82,9 @@
         <section>
           <section class="section">
             
-            <a href='#themekit' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='themekit'>ThemeKit</h1>
+            <a href='#img-src-https-raw-githubusercontent-com-luckymarmot-themekit-themekit-initial-themekit-png-alt-themekit' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='img-src-https-raw-githubusercontent-com-luckymarmot-themekit-themekit-initial-themekit-png-alt-themekit'><img src="https://raw.githubusercontent.com/luckymarmot/ThemeKit/themekit-initial/ThemeKit.png" alt="ThemeKit"></h1>
 
-<p><strong>A macOS Theming Framework</strong></p>
-
-<p><img src="https://img.shields.io/badge/os-macOS-green.svg?style=flat" alt="macOS">
+<p><img src="https://img.shields.io/badge/os-macOS%2010.10+-green.svg?style=flat" alt="macOS">
 <img src="https://img.shields.io/badge/swift-3.0.x-green.svg?style=flat" alt="Swift3">
 <img src="https://img.shields.io/badge/release-1.0-blue.svg?style=flat" alt="macOS">
 <img src="https://img.shields.io/badge/license-MIT-lightgray.svg" alt="MIT">
@@ -100,9 +101,25 @@
 <li><a href="#summary">Summary</a></li>
 <li><a href="#features">Features</a></li>
 <li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
+<li><a href="#usage">Usage</a>
+
+<ul>
+<li><a href="#simple-usage">Simple Usage</a></li>
+<li><a href="#advanced-usage">Advanced Usage</a>
+
+<ul>
+<li><a href="#observing-theme-changes">Observing theme changes</a></li>
+<li><a href="#manually-theming-windows">Manually theming windows</a></li>
+<li><a href="#nswindow-extension">NSWindow extension</a></li>
+</ul></li>
+</ul></li>
 <li><a href="#theme-aware-assets">Theme-aware Assets</a></li>
+<li><a href="#creating-themes">Creating Themes</a>
+
+<ul>
+<li><a href="#native-themes">Native Themes</a></li>
 <li><a href="#user-themes">User Themes</a></li>
+</ul></li>
 <li><a href="#faq">FAQ</a></li>
 <li><a href="#license">License</a></li>
 </ul>
@@ -126,6 +143,7 @@
 <ul>
 <li><a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeColor.html"><code>ThemeColor</code></a>: colors that dynamically change with the theme</li>
 <li><a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeGradient.html"><code>ThemeGradient</code></a>: gradients that dynamically change with the theme</li>
+<li><a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeImage.html"><code>ThemeImage</code></a>: images that dynamically change with the theme</li>
 <li>Optional override of <code>NSColor</code> named colors (e.g., <code>labelColor</code>) to dynamically change with the theme</li>
 </ul></li>
 </ul>
@@ -224,6 +242,7 @@
 <li><a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeKit.html#/s:vC8ThemeKit8ThemeKit5themePS_5Theme_"><code>ThemeKit.shared.theme</code></a></li>
 <li><a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeKit.html#/s:vC8ThemeKit8ThemeKit14effectiveThemePS_5Theme_"><code>ThemeKit.shared.effectiveTheme</code></a></li>
 <li><a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeKit.html#/s:vC8ThemeKit8ThemeKit6themesGSaPS_5Theme__"><code>ThemeKit.shared.themes</code></a></li>
+<li><a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeKit.html#/s:vC8ThemeKit8ThemeKit10userThemesGSaPS_5Theme__"><code>ThemeKit.shared.userThemes</code></a></li>
 </ul>
 
 <p>Example:</p>
@@ -257,7 +276,7 @@
 </ul>
 <a href='#theme-aware-assets' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='theme-aware-assets'>Theme-aware Assets</h2>
 
-<p><a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeColor.html"><code>ThemeColor</code></a> and <a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeGradient.html"><code>ThemeGradient</code></a> provides colors and gradients, respectively, that dynamically change with the current theme.
+<p><a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeColor.html"><code>ThemeColor</code></a>, <a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeGradient.html"><code>ThemeGradient</code></a> and <a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeImage.html"><code>ThemeImage</code></a> provides colors, gradients and images, respectively, that dynamically change with the current theme.
 Additionally, named colors from the <code>NSColor</code> class defined on the <code>ThemeColor</code> subclass extension will override the system ones, providing theme-aware colors.</p>
 
 <p>For example, a project defines a <code>ThemeColor.brandColor</code> color. This will resolve to different colors at runtime, depending on the selected theme:</p>
@@ -269,9 +288,64 @@ Additionally, named colors from the <code>NSColor</code> class defined on the <c
 </ul>
 
 <p>Similarly, defining a <code>ThemeColor.labelColor</code> will override <code>NSColor.labelColor</code> (<code>ThemeColor</code> is a subclass of <code>NSColor</code>), and <em>ThemeKit</em> will allow <code>labelColor</code> to be customized on a per-theme basis as well.</p>
+<a href='#fallback-assets' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='fallback-assets'>Fallback Assets</h3>
 
-<p>Please refer to <a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeColor.html"><code>ThemeColor</code></a> and <a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeGradient.html"><code>ThemeGradient</code></a> for more information.</p>
-<a href='#user-themes' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='user-themes'>User Themes</h2>
+<p>ThemeKit provides a simple fallback mechanism when looking up assets in current theme. It will search for assets, in order:</p>
+
+<ul>
+<li>the asset name, defined in theme (e.g., <code>myBackgroundColor</code>)</li>
+<li><code>fallbackForegroundColor</code>, <code>fallbackBackgroundColor</code>, <code>fallbackGradient</code> or <code>fallbackImage</code> defined in theme, depending if asset is a foreground/background color, gradient or image, respectively</li>
+<li><code>defaultFallbackForegroundColor</code>, <code>defaultFallbackBackgroundColor</code>, <code>fallbackGradient</code> or <code>defaultFallbackImage</code> defined internally, depending if asset is a foreground/background color, gradient or image, respectively</li>
+</ul>
+
+<p>However, for overrided system named colors, the fallback mechanism is different and simpler:</p>
+
+<ul>
+<li>the asset name, defined in theme (e.g., <code>labelColor</code>)</li>
+<li>original asset defined in system (e.g., <code>NSColor.labelColor</code>)</li>
+</ul>
+
+<p>Please refer to <a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeColor.html"><code>ThemeColor</code></a>, <a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeGradient.html"><code>ThemeGradient</code></a> and <a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeImage.html"><code>ThemeImage</code></a> for more information.</p>
+<a href='#creating-themes' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='creating-themes'>Creating Themes</h2>
+<a href='#native-themes' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='native-themes'>Native Themes</h3>
+
+<p>For creating additional themes, you only need to create a class that conforms to the <a href="https://paw.cloud/opensource/themekit/docs/Classes/Theme.html"><code>Theme</code></a> protocol and extends <code>NSObject</code>.</p>
+
+<p>Sample theme:</p>
+<pre class="highlight plaintext"><code>import Cocoa
+import ThemeKit
+
+class MyOwnTheme: NSObject, Theme {
+
+    /// Light theme identifier (static).
+    public static var identifier: String = "com.luckymarmot.ThemeKit.MyOwnTheme"
+
+    /// Unique theme identifier.
+    public var identifier: String = MyOwnTheme.identifier
+
+    /// Theme display name.
+    public var displayName: String = "My Own Theme"
+
+    /// Theme short display name.
+    public var shortDisplayName: String = "My Own"
+
+    /// Is this a dark theme?
+    public var isDarkTheme: Bool = false
+
+    /// Description (optional).
+    public override var description : String {
+        return "&lt;\(MyOwnTheme.self): \(themeDescription(self))&gt;"
+    }
+
+    // MARK: -
+    // MARK: Theme Assets
+
+    // Here you can define the instance methods for the class methods defined 
+    // on `ThemeColor`, `ThemeGradient` and `ThemeImage`, if any. Check
+    // documentation of these classes for more details.
+}
+</code></pre>
+<a href='#user-themes' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='user-themes'>User Themes</h3>
 
 <p>ThemeKit also supports definition of additional themes with simple text files (<code>.theme</code> files). Example of a very basic <code>.theme</code> file:</p>
 <pre class="highlight ruby"><code><span class="sr">//</span> <span class="o">*************************</span> <span class="no">Theme</span> <span class="no">Info</span> <span class="o">*************************</span> <span class="sr">//</span>
@@ -286,6 +360,16 @@ Additionally, named colors from the <code>NSColor</code> class defined on the <c
 <span class="n">labelColor</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mi">111</span><span class="p">)</span>
 <span class="c1"># define gradient for `ThemeGradient.brandGradient`</span>
 <span class="n">brandGradient</span> <span class="o">=</span> <span class="n">linear</span><span class="o">-</span><span class="n">gradient</span><span class="p">(</span><span class="vg">$orange</span><span class="p">.</span><span class="nf">sky</span><span class="p">,</span> <span class="n">rgba</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">1</span><span class="o">.</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="sr">//</span> <span class="o">*********************</span> <span class="no">Images</span> <span class="o">&amp;</span> <span class="no">Patterns</span> <span class="o">**********************</span> <span class="sr">//</span>
+<span class="c1"># define pattern image from named image "paper" for color `ThemeColor.contentBackgroundColor`</span>
+<span class="n">contentBackgroundColor</span> <span class="o">=</span> <span class="n">pattern</span><span class="p">(</span><span class="n">named</span><span class="ss">:paper</span><span class="p">)</span>
+<span class="c1"># define pattern image from filesystem (relative to user themes folder) for color `ThemeColor.bottomBackgroundColor`</span>
+<span class="n">bottomBackgroundColor</span> <span class="o">=</span> <span class="n">pattern</span><span class="p">(</span><span class="n">file</span><span class="p">:.</span><span class="nf">.</span><span class="o">/</span><span class="n">some</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">some</span><span class="o">-</span><span class="n">file</span><span class="p">.</span><span class="nf">png</span><span class="p">)</span>
+<span class="c1"># define image using named image "apple"</span>
+<span class="n">namedImage</span> <span class="o">=</span> <span class="n">image</span><span class="p">(</span><span class="n">named</span><span class="ss">:apple</span><span class="p">)</span>
+<span class="c1"># define image using from filesystem (relative to user themes folder)</span>
+<span class="n">fileImage</span> <span class="o">=</span> <span class="n">image</span><span class="p">(</span><span class="n">file</span><span class="p">:.</span><span class="nf">.</span><span class="o">/</span><span class="n">some</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">some</span><span class="o">-</span><span class="n">file</span><span class="p">.</span><span class="nf">jpg</span><span class="p">)</span>
 
 <span class="sr">//</span> <span class="o">***********************</span> <span class="no">Common</span> <span class="no">Colors</span> <span class="o">************************</span> <span class="sr">//</span>
 <span class="n">blue</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">170</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
@@ -357,7 +441,7 @@ context?.restoreGState()
 
 <p>This is more tricky, as you will need to override private methods. If you are distributing your app on the Mac App Store, you must first check if this is allowed.</p>
 
-<p>a) override the private method <code>_backgroundColorForFontSmoothing</code> to return you button background color.</p>
+<p>a) override the private method <code>_backgroundColorForFontSmoothing</code> to return your button background color.</p>
 
 <p>b) if (a) isn&rsquo;t sufficient, you will also need to override <code>_textAttributes</code> and change the dictionary returned from the <code>super</code> call to provide your background color for the key <code>NSBackgroundColorAttributeName</code>.</p></li>
 </ol>

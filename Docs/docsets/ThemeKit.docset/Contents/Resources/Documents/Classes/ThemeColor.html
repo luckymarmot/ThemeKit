@@ -72,6 +72,9 @@
               <li class="nav-group-task">
                 <a href="../Classes/ThemeGradient.html">ThemeGradient</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ThemeImage.html">ThemeImage</a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -138,9 +141,9 @@ to add class methods for your colors. E.g.:</p>
 
 <span class="k">@end</span>
 </code></pre></li>
-<li><p><strong>Add Class Extensions on <code><a href="../Classes/LightTheme.html">LightTheme</a></code> and <code><a href="../Classes/DarkTheme.html">DarkTheme</a></code></strong> (<code>TKLightTheme</code> and
-<code>TKDarkTheme</code> on Objective-C) to provide instance methods for each theme color 
-class method defined on (1). E.g.:</p>
+<li><p><strong>Add Class Extensions on any <code><a href="../Protocols/Theme.html">Theme</a></code> you want to support</strong> (e.g., <code><a href="../Classes/LightTheme.html">LightTheme</a></code>
+and <code><a href="../Classes/DarkTheme.html">DarkTheme</a></code> - <code>TKLightTheme</code> and <code>TKDarkTheme</code> on Objective-C) to provide
+instance methods for each theme color class method defined on (1). E.g.:</p>
 
 <p>In Swift:</p>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">LightTheme</span> <span class="p">{</span>
@@ -183,7 +186,7 @@ class method defined on (1). E.g.:</p>
 
 <span class="k">@end</span>
 </code></pre></li>
-<li><p><strong>Define properties on user theme files</strong> (<code>.theme</code>)
+<li><p>If supporting <code><a href="../Classes/UserTheme.html">UserTheme</a></code>&rsquo;s, <strong>define properties on user theme files</strong> (<code>.theme</code>)
 for each theme color class method defined on (1). E.g.:</p>
 <pre class="highlight swift"><code><span class="n">displayName</span> <span class="o">=</span> <span class="kt">Sample</span> <span class="kt">User</span> <span class="kt">Theme</span>
 <span class="n">identifier</span> <span class="o">=</span> <span class="n">com</span><span class="o">.</span><span class="n">luckymarmot</span><span class="o">.</span><span class="kt">ThemeKit</span><span class="o">.</span><span class="kt">SampleUserTheme</span>
@@ -221,7 +224,7 @@ properties/methods on target theme class will default to <code>fallbackForegroun
 and <code>fallbackBackgroundColor</code>, for foreground and background colors respectively.
 These too, can be customized per theme.</p>
 
-<p>Please check <code><a href="../Classes/ThemeGradient.html">ThemeGradient</a></code> for theme-aware gradients.</p>
+<p>Please check <code><a href="../Classes/ThemeGradient.html">ThemeGradient</a></code> for theme-aware gradients and <code><a href="../Classes/ThemeImage.html">ThemeImage</a></code> for theme-aware images.</p>
 
           </section>
           <section class="section task-group-section">

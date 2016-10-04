@@ -18,6 +18,10 @@ extension NSViewController {
         forwardActionToSidebarViewController(#selector(deleteNote(_:)), with: sender)
     }
     
+    @IBAction func resetNotes(_ sender: Any) {
+        forwardActionToSidebarViewController(#selector(resetNotes(_:)), with: sender)
+    }
+    
 }
 
 
@@ -30,6 +34,10 @@ extension NSWindowController {
     
     @IBAction func deleteNote(_ sender: NSButton) {
         forwardActionToSidebarViewController(#selector(deleteNote(_:)), with: sender)
+    }
+    
+    @IBAction func resetNotes(_ sender: Any) {
+        forwardActionToSidebarViewController(#selector(resetNotes(_:)), with: sender)
     }
     
 }

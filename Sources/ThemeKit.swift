@@ -333,7 +333,7 @@ public class ThemeKit: NSObject {
     /// -----
     /// By default, all application windows will be themed (`.themeAllWindows`).
     ///
-    /// - themeAllWindows:   Theme all application windows (default).
+    /// - themeAllWindows:   Theme all application windows, except `NSPanel` subclasses (default).
     /// - themeSomeWindows:  Only theme windows of the specified classes.
     /// - doNotThemeWindows: Do not theme any window.E.g.:
     ///

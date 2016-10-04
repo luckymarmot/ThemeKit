@@ -26,7 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // 2.1 Setup window theme policy
         ThemeKit.shared.windowThemePolicy = .themeAllWindows
-        //ThemeKit.shared.windowThemePolicy = .themeSomeWindows(windowClasses: [MyWindow.self])
+        //ThemeKit.shared.windowThemePolicy = .themeSomeWindows(windowClasses: [MyCustomWindow.self])
         //ThemeKit.shared.windowThemePolicy = .doNotThemeWindows
         
         // 2.2 User themes folder

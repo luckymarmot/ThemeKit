@@ -42,7 +42,6 @@ class Note: NSObject, NSCoding {
     // MARK: NSCoder
     
     public func encode(with aCoder: NSCoder) {
-        //[encoder encodeObject:title forKey:@"Title"];
         aCoder.encode(title, forKey: "title")
         aCoder.encode(text, forKey: "text")
         aCoder.encode(lastModified, forKey: "lastModified")

@@ -49,11 +49,11 @@ public extension NSWindow {
         switch ThemeKit.shared.windowThemePolicy {
             
         case .themeAllWindows:
-            return true
+            return !self.isExcludedFromTheming
             
         case .themeSomeWindows(let windowClasses):
             for windowClass in windowClasses {
-                if object_getClass(self) === windowClass.self {
+                if self.classForCoder === windowClass.self {
                     return true
                 }
             }
@@ -83,6 +83,11 @@ public extension NSWindow {
         }
         
         return windows
+    }
+    
+    /// Returns if current window is excluded from theming
+    internal var isExcludedFromTheming: Bool {
+        return self is NSPanel
     }
     
     

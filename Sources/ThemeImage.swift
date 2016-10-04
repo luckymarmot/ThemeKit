@@ -142,10 +142,10 @@ public class ThemeImage : NSImage {
     
     /// `ThemeImage` image selector used as theme instance method for same
     /// selector or, if inexistent, as argument in the theme instance method `themeAsset(_:)`.
-    public var themeImageSelector: Selector
+    public var themeImageSelector: Selector?
     
     /// Resolved Image from current theme (dynamically changes with the current theme).
-    public var resolvedThemeImage: NSImage
+    public var resolvedThemeImage: NSImage = NSImage(size: NSZeroSize)
     
     
     // MARK: -
@@ -263,16 +263,37 @@ public class ThemeImage : NSImage {
         NotificationCenter.default.addObserver(self, selector: #selector(recacheImage), name: .didChangeTheme, object: nil)
     }
     
-    required public init(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     required convenience public init(imageLiteralResourceName name: String) {
         fatalError("init(imageLiteralResourceName:) has not been implemented")
     }
     
     required public init?(pasteboardPropertyList propertyList: Any, ofType type: String) {
         fatalError("init(pasteboardPropertyList:ofType:) has not been implemented")
+    }
+    
+    required public init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        if aDecoder.allowsKeyedCoding {
+            themeImageSelector = NSSelectorFromString((aDecoder.decodeObject(forKey: "themeImageSelector") as? String)!)
+        }
+        else {
+            themeImageSelector = NSSelectorFromString((aDecoder.decodeObject() as? String)!)
+        }
+        
+        recacheImage()
+        NotificationCenter.default.addObserver(self, selector: #selector(recacheImage), name: .didChangeTheme, object: nil)
+    }
+    
+    public override func encode(with aCoder: NSCoder) {
+        super.encode(with: aCoder)
+        
+        if aCoder.allowsKeyedCoding {
+            aCoder.encode(NSStringFromSelector(themeImageSelector!), forKey: "themeImageSelector")
+        }
+        else {
+            aCoder.encode(NSStringFromSelector(themeImageSelector!))
+        }
     }
     
     func recacheImage() {
@@ -282,7 +303,7 @@ public class ThemeImage : NSImage {
         }
         
         // Recache resolved image
-        resolvedThemeImage = ThemeImage.image(for: ThemeKit.shared.effectiveTheme, selector: themeImageSelector)
+        resolvedThemeImage = ThemeImage.image(for: ThemeKit.shared.effectiveTheme, selector: themeImageSelector!)
     }
     
     

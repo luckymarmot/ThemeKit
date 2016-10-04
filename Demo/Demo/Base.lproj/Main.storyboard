@@ -333,6 +333,13 @@
                                                 </items>
                                             </menu>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="B0k-Ck-jtu"/>
+                                        <menuItem title="Reset Notes" id="pNc-Iu-Hhl">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="resetNotes:" target="Ady-hI-5gd" id="HcD-tN-5Ke"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>
@@ -992,7 +999,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="404" height="262"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <textView focusRingType="none" drawsBackground="NO" usesFontPanel="YES" findStyle="panel" incrementalSearchingEnabled="YES" allowsUndo="YES" quoteSubstitution="YES" linkDetection="YES" dashSubstitution="YES" smartInsertDelete="YES" id="Ngm-2I-WcI">
+                                    <textView focusRingType="none" drawsBackground="NO" fieldEditor="YES" usesFontPanel="YES" findStyle="panel" incrementalSearchingEnabled="YES" allowsUndo="YES" smartInsertDelete="YES" id="Ngm-2I-WcI">
                                         <rect key="frame" x="0.0" y="0.0" width="404" height="262"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

@@ -168,7 +168,7 @@ public class ThemeColor : NSColor {
     
     /// `ThemeColor` color selector used as theme instance method for same selector
     /// or, if inexistent, as argument in the theme instance method `themeAsset(_:)`.
-    public var themeColorSelector: Selector
+    public var themeColorSelector: Selector = #selector(getter: NSColor.clear)
     
     /// Resolved color from current theme (dynamically changes with the current theme).
     public lazy var resolvedThemeColor: NSColor = NSColor.clear
@@ -337,16 +337,37 @@ public class ThemeColor : NSColor {
 
     }
     
-    required public init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     required convenience public init(colorLiteralRed red: Float, green: Float, blue: Float, alpha: Float) {
         fatalError("init(colorLiteralRed:green:blue:alpha:) has not been implemented")
     }
     
     required public init?(pasteboardPropertyList propertyList: Any, ofType type: String) {
         fatalError("init(pasteboardPropertyList:ofType:) has not been implemented")
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        if aDecoder.allowsKeyedCoding {
+            themeColorSelector = NSSelectorFromString((aDecoder.decodeObject(forKey: "themeColorSelector") as? String)!)
+        }
+        else {
+            themeColorSelector = NSSelectorFromString((aDecoder.decodeObject() as? String)!)
+        }
+        
+        recacheColor()
+        NotificationCenter.default.addObserver(self, selector: #selector(recacheColor), name: .didChangeTheme, object: nil)
+    }
+
+    public override func encode(with aCoder: NSCoder) {
+        super.encode(with: aCoder)
+        
+        if aCoder.allowsKeyedCoding {
+            aCoder.encode(NSStringFromSelector(themeColorSelector), forKey: "themeColorSelector")
+        }
+        else {
+            aCoder.encode(NSStringFromSelector(themeColorSelector))
+        }
     }
     
     func recacheColor() {

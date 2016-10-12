@@ -39,7 +39,10 @@ class ContentViewController: NSViewController, NSTextDelegate {
         
         // Observe note selection change notifications
         NotificationCenter.default.addObserver(forName: .didChangeNoteSelection, object: nil, queue: nil) { (notification) in
-            self.representedObject = notification.userInfo?["note"];
+            let obj = notification.object
+            if obj is NSViewController && (obj as! NSViewController).view.window == self.view.window {
+                self.representedObject = notification.userInfo?["note"]
+            }
         }
     }
     

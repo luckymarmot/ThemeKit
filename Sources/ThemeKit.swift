@@ -97,8 +97,8 @@ public class ThemeKit: NSObject {
     /// List all available themes:
     ///
     /// - Built-in `lightTheme`
-    /// - Built-in`darkTheme`
-    /// - Built-in`systemTheme`
+    /// - Built-in `darkTheme`
+    /// - Built-in `systemTheme`
     /// - All native themes (extending `NSObject` and conforming to `Theme` protocol)
     /// - All user themes (loaded from `.theme` files)
     ///
@@ -341,6 +341,7 @@ public class ThemeKit: NSObject {
     ///
     /// - themeAllWindows:   Theme all application windows, except `NSPanel` subclasses (default).
     /// - themeSomeWindows:  Only theme windows of the specified classes.
+    /// - doNotThemeSomeWindows: Do not theme windows of the specified classes.
     /// - doNotThemeWindows: Do not theme any window.E.g.:
     ///
     /// E.g.:
@@ -355,6 +356,7 @@ public class ThemeKit: NSObject {
     ///
     /// - TKThemeKitWindowThemePolicyThemeAllWindows:   Theme all application windows (default).
     /// - TKThemeKitWindowThemePolicyThemeSomeWindowClasses:  Only theme windows of the specified classes.
+    /// - TKThemeKitWindowThemePolicyDoNotThemeSomeWindowClasses:  Do not theme windows of the specified classes.
     /// - TKThemeKitWindowThemePolicyDoNotThemeWindows: Do not theme any window.
     ///
     /// If `.windowThemePolicy = TKThemeKitWindowThemePolicyThemeSomeWindowClasses`
@@ -386,6 +388,8 @@ public class ThemeKit: NSObject {
         case themeAllWindows
         /// Only theme windows of the specified classes.
         case themeSomeWindows(windowClasses: [AnyClass])
+        /// Do not theme windows of the specified classes.
+        case doNotThemeSomeWindows(windowClasses: [AnyClass])
         /// Do not theme any window.
         case doNotThemeWindows
     }

@@ -15,8 +15,10 @@ public extension ThemeKit {
     public enum TKThemeKitWindowThemePolicy: Int {
         /// Theme all application windows (default).
         case themeAllWindows
-        /// Only theme windows of the specified class names.
+        /// Only theme windows of the specified classes.
         case themeSomeWindows
+        /// Do not theme windows of the specified classes.
+        case doNotThemeSomeWindows
         /// Do not theme any window.
         case doNotThemeWindows
     }
@@ -33,6 +35,9 @@ public extension ThemeKit {
             case .themeSomeWindows:
                 return .themeSomeWindows
                 
+            case .doNotThemeSomeWindows:
+                return .doNotThemeSomeWindows
+                
             case .doNotThemeWindows:
                 return .doNotThemeWindows
             }
@@ -43,7 +48,41 @@ public extension ThemeKit {
                 windowThemePolicy = .themeAllWindows
             case .themeSomeWindows:
                 windowThemePolicy = .themeSomeWindows(windowClasses: objc_themableWindowClasses ?? [])
+            case .doNotThemeSomeWindows:
+                windowThemePolicy = .doNotThemeSomeWindows(windowClasses: objc_notThemableWindowClasses ?? [])
             case .doNotThemeWindows:
+                windowThemePolicy = .doNotThemeWindows
+            }
+        }
+    }
+    
+    /// Windows classes to be excluded from theming with the `TKThemeKitWindowThemePolicyDoNotThemeSomeWindows` (Objective-C only).
+    @objc(notThemableWindowClasses)
+    public var objc_notThemableWindowClasses: [AnyClass]? {
+        get {
+            switch windowThemePolicy {
+                
+            case .themeAllWindows:
+                return nil
+                
+            case .themeSomeWindows:
+                return []
+                
+            case .doNotThemeSomeWindows(let windowClasses):
+                return windowClasses
+                
+            case .doNotThemeWindows:
+                return []
+            }
+        }
+        set(value) {
+            if value == nil {
+                windowThemePolicy = .themeAllWindows
+            }
+            else if value!.count > 0 {
+                windowThemePolicy = .doNotThemeSomeWindows(windowClasses: value!)
+            }
+            else {
                 windowThemePolicy = .doNotThemeWindows
             }
         }
@@ -60,6 +99,9 @@ public extension ThemeKit {
                 
             case .themeSomeWindows(let windowClasses):
                 return windowClasses
+                
+            case .doNotThemeSomeWindows:
+                return []
                 
             case .doNotThemeWindows:
                 return []

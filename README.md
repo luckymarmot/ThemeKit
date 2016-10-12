@@ -107,6 +107,7 @@ func applicationWillFinishLaunching(_ notification: Notification) {
 	/// Define window theme policy.
 	ThemeKit.shared.windowThemePolicy = .themeAllWindows
 	//ThemeKit.shared.windowThemePolicy = .themeSomeWindows(windowClasses: [MyWindow.self])
+	//ThemeKit.shared.windowThemePolicy = .doNotThemeSomeWindows(windowClasses: [NSPanel.self])
 	//ThemeKit.shared.windowThemePolicy = .doNotThemeWindows
 	    
 	/// Enable & configure user themes.

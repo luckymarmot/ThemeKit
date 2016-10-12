@@ -29,6 +29,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // 2.1 Setup window theme policy
         ThemeKit.shared.windowThemePolicy = .themeAllWindows
         //ThemeKit.shared.windowThemePolicy = .themeSomeWindows(windowClasses: [MyCustomWindow.self])
+        //ThemeKit.shared.windowThemePolicy = .doNotThemeSomeWindows(windowClasses: [NSPanel.self])
         //ThemeKit.shared.windowThemePolicy = .doNotThemeWindows
         
         // 2.2 User themes folder
@@ -92,6 +93,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
+    }
+    
+    private var tabs: [NSWindowController] = []
+    
+    @IBAction func newWindowForTab(_ sender: Any?) {
+        let storyBoard = NSStoryboard(name: "Main", bundle:nil)
+        let windowController = storyBoard.instantiateController(withIdentifier: "WindowController") as! NSWindowController
+        windowController.showWindow(self)
     }
 
 }

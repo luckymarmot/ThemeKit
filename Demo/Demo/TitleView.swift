@@ -31,10 +31,13 @@ class TitleView: NSView, NSTextFieldDelegate {
         
         // Observe note selection change notifications
         NotificationCenter.default.addObserver(forName: .didChangeNoteSelection, object: nil, queue: nil) { (notification) in
-            self.note = notification.userInfo?["note"] as? Note;
-            
-            if self.note != nil {
-                self.titleTextField.stringValue = (self.note?.title)!
+            let obj = notification.object
+            if obj is NSViewController && (obj as! NSViewController).view.window == self.window {
+                self.note = notification.userInfo?["note"] as? Note;
+                
+                if self.note != nil {
+                    self.titleTextField.stringValue = (self.note?.title)!
+                }
             }
         }
         

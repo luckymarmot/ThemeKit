@@ -44,11 +44,11 @@ extension ThemeColor {
     
     // MARK: SYSTEM OVERRIDE
     
-    override public static var labelColor: ThemeColor {
+    override open static var labelColor: ThemeColor {
         return ThemeColor.color(with: #function)
     }
     
-    override public static var secondaryLabelColor: ThemeColor {
+    override open static var secondaryLabelColor: ThemeColor {
         return ThemeColor.color(with: #function)
     }
     

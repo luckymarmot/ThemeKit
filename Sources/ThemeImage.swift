@@ -135,7 +135,7 @@ private var _cachedThemeImages: NSCache<NSString, NSImage>!
  Please check `ThemeColor` for theme-aware colors and `ThemeGradient` for theme-aware gradients.
  */
 @objc(TKThemeImage)
-public class ThemeImage : NSImage {
+open class ThemeImage : NSImage {
     
     // MARK: -
     // MARK: Properties
@@ -285,7 +285,7 @@ public class ThemeImage : NSImage {
         NotificationCenter.default.addObserver(self, selector: #selector(recacheImage), name: .didChangeTheme, object: nil)
     }
     
-    public override func encode(with aCoder: NSCoder) {
+    open override func encode(with aCoder: NSCoder) {
         super.encode(with: aCoder)
         
         if aCoder.allowsKeyedCoding {
@@ -296,7 +296,9 @@ public class ThemeImage : NSImage {
         }
     }
     
-    func recacheImage() {
+    /// Forces dynamic color resolution into `resolvedThemeImage` and cache it.
+    /// You should not need to manually call this function.
+    open func recacheImage() {
         // If it is a UserTheme we actually want to discard theme cached values
         if ThemeKit.shared.effectiveTheme is UserTheme {
             _cachedThemeImages.removeAllObjects()

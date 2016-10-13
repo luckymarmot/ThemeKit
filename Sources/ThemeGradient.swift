@@ -134,7 +134,7 @@ private var _cachedThemeGradients: NSCache<NSString, NSGradient>!
  Please check `ThemeColor` for theme-aware colors and `ThemeImage` for theme-aware images.
  */
 @objc(TKThemeGradient)
-public class ThemeGradient : NSGradient {
+open class ThemeGradient : NSGradient {
     
     // MARK: -
     // MARK: Properties
@@ -263,7 +263,9 @@ public class ThemeGradient : NSGradient {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func recacheGradient() {
+    /// Forces dynamic gradient resolution into `resolvedThemeGradient` and cache it.
+    /// You should not need to manually call this function.
+    open func recacheGradient() {
         // If it is a UserTheme we actually want to discard theme cached values
         if ThemeKit.shared.effectiveTheme is UserTheme {
             _cachedGradients.removeAllObjects()
@@ -274,27 +276,27 @@ public class ThemeGradient : NSGradient {
         resolvedThemeGradient = ThemeGradient.gradient(for: ThemeKit.shared.effectiveTheme, selector: themeGradientSelector)
     }
     
-    override public func draw(in rect: NSRect, angle: CGFloat) {
+    override open func draw(in rect: NSRect, angle: CGFloat) {
         resolvedThemeGradient.draw(in: rect, angle: angle)
     }
     
-    override public func draw(in path: NSBezierPath, angle: CGFloat) {
+    override open func draw(in path: NSBezierPath, angle: CGFloat) {
         resolvedThemeGradient.draw(in: path, angle: angle)
     }
     
-    override public func draw(from startingPoint: NSPoint, to endingPoint: NSPoint, options: NSGradientDrawingOptions = []) {
+    override open func draw(from startingPoint: NSPoint, to endingPoint: NSPoint, options: NSGradientDrawingOptions = []) {
         resolvedThemeGradient.draw(from: startingPoint, to: endingPoint, options: options)
     }
     
-    override public func draw(fromCenter startCenter: NSPoint, radius startRadius: CGFloat, toCenter endCenter: NSPoint, radius endRadius: CGFloat, options: NSGradientDrawingOptions = []) {
+    override open func draw(fromCenter startCenter: NSPoint, radius startRadius: CGFloat, toCenter endCenter: NSPoint, radius endRadius: CGFloat, options: NSGradientDrawingOptions = []) {
         resolvedThemeGradient.draw(fromCenter: startCenter, radius: startRadius, toCenter: endCenter, radius: endRadius, options: options)
     }
     
-    override public func draw(in rect: NSRect, relativeCenterPosition: NSPoint) {
+    override open func draw(in rect: NSRect, relativeCenterPosition: NSPoint) {
         resolvedThemeGradient.draw(in: rect, relativeCenterPosition: relativeCenterPosition)
     }
     
-    override public func draw(in path: NSBezierPath, relativeCenterPosition: NSPoint) {
+    override open func draw(in path: NSBezierPath, relativeCenterPosition: NSPoint) {
         resolvedThemeGradient.draw(in: path, relativeCenterPosition: relativeCenterPosition)
     }
     
@@ -314,7 +316,7 @@ public class ThemeGradient : NSGradient {
         return resolvedThemeGradient.interpolatedColor(atLocation: location)
     }
     
-    override public var description: String {
+    override open var description: String {
         return "\(super.description): \(NSStringFromSelector(themeGradientSelector))"
     }
 }

@@ -241,7 +241,7 @@ open class ThemeImage : NSImage {
         }
         
         // if a custom window theme was set, use the appropriate asset
-        if view.window?.windowEffectiveTheme != nil {
+        if view.window?.windowTheme != nil {
             return ThemeImage.image(for: theme, selector: selector)
         }
         

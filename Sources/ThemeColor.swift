@@ -298,7 +298,7 @@ open class ThemeColor : NSColor {
         }
         
         // if a custom window theme was set, use the appropriate asset
-        if view.window?.windowEffectiveTheme != nil {
+        if view.window?.windowTheme != nil {
             return ThemeColor.color(for: theme, selector: selector)
         }
         

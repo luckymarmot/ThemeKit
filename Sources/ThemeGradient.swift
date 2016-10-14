@@ -204,19 +204,22 @@ open class ThemeGradient : NSGradient {
         return gradient!
     }
     
-    /// Current theme gradient, but respecting view appearance.
+    /// Current theme gradient, but respecting view appearance and any window
+    /// specific theme (if set).
     ///
+    /// If a `NSWindow.windowTheme` was set, it will be used instead.
     /// Some views may be using a different appearance than the theme appearance.
     /// In thoses cases, gradient won't be resolved using current theme, but from
     /// either `lightTheme` or `darkTheme`, depending of whether view appearance
     /// is light or dark, respectively.
     ///
-    /// - parameter view:    A `NSView` instance.
+    /// - parameter view:     A `NSView` instance.
     /// - parameter selector: A gradient selector.
     ///
     /// - returns: Resolved gradient for specified selector on given view.
     @objc(gradientForView:selector:)
     public class func gradient(for view: NSView, selector: Selector) -> NSGradient {
+        let theme = view.window?.windowEffectiveTheme ?? ThemeKit.shared.effectiveTheme
         let viewAppearance = view.appearance
         let aquaAppearance = NSAppearance.init(named: NSAppearanceNameAqua)
         let lightAppearance = NSAppearance.init(named: NSAppearanceNameVibrantLight)
@@ -232,7 +235,12 @@ open class ThemeGradient : NSGradient {
             return ThemeGradient.gradient(for: ThemeKit.darkTheme, selector: selector)
         }
         
-        // any other case => current theme gradient
+        // if a custom window theme was set, use the appropriate asset
+        if view.window?.windowEffectiveTheme != nil {
+            return ThemeGradient.gradient(for: theme, selector: selector)
+        }
+        
+        // otherwise, return current theme gradient
         return ThemeGradient.gradient(with: selector)
     }
     

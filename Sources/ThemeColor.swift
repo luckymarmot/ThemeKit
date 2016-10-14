@@ -266,19 +266,22 @@ open class ThemeColor : NSColor {
         return color!
     }
     
-    /// Current theme color, but respecting view appearance.
+    /// Current theme color, but respecting view appearance and any window
+    /// specific theme (if set).
     ///
+    /// If a `NSWindow.windowTheme` was set, it will be used instead.
     /// Some views may be using a different appearance than the theme appearance.
     /// In thoses cases, color won't be resolved using current theme, but from 
     /// either `lightTheme` or `darkTheme`, depending of whether view appearance
     /// is light or dark, respectively.
     ///
-    /// - parameter view:    A `NSView` instance.
+    /// - parameter view:     A `NSView` instance.
     /// - parameter selector: A color selector.
     ///
     /// - returns: Resolved color for specified selector on given view.
     @objc(colorForView:selector:)
     public class func color(for view: NSView, selector: Selector) -> NSColor {
+        let theme = view.window?.windowEffectiveTheme ?? ThemeKit.shared.effectiveTheme
         let viewAppearance = view.appearance
         let aquaAppearance = NSAppearance.init(named: NSAppearanceNameAqua)
         let lightAppearance = NSAppearance.init(named: NSAppearanceNameVibrantLight)
@@ -286,15 +289,20 @@ open class ThemeColor : NSColor {
         let windowIsNSVBAccessoryWindow = view.window?.isKind(of: NSClassFromString("NSVBAccessoryWindow")!) ?? false
         
         // using a dark theme but control is on a light surface => use light theme instead
-        if ThemeKit.shared.effectiveTheme.isDarkTheme &&
+        if theme.isDarkTheme &&
             (viewAppearance == lightAppearance || viewAppearance == aquaAppearance || windowIsNSVBAccessoryWindow) {
             return ThemeColor.color(for: ThemeKit.lightTheme, selector: selector)
         }
-        else if ThemeKit.shared.effectiveTheme.isLightTheme && viewAppearance == darkAppearance {
+        else if theme.isLightTheme && viewAppearance == darkAppearance {
             return ThemeColor.color(for: ThemeKit.darkTheme, selector: selector)
         }
         
-        // any other case => current theme color
+        // if a custom window theme was set, use the appropriate asset
+        if view.window?.windowEffectiveTheme != nil {
+            return ThemeColor.color(for: theme, selector: selector)
+        }
+        
+        // otherwise, return current theme color
         return ThemeColor.color(with: selector)
     }
     

@@ -209,8 +209,10 @@ open class ThemeImage : NSImage {
         return image!
     }
     
-    /// Current theme image, but respecting view appearance.
+    /// Current theme image, but respecting view appearance and any window 
+    /// specific theme (if set).
     ///
+    /// If a `NSWindow.windowTheme` was set, it will be used instead.
     /// Some views may be using a different appearance than the theme appearance.
     /// In thoses cases, image won't be resolved using current theme, but from
     /// either `lightTheme` or `darkTheme`, depending of whether view appearance
@@ -222,6 +224,7 @@ open class ThemeImage : NSImage {
     /// - returns: Resolved image for specified selector on given view.
     @objc(imageForView:selector:)
     public class func image(for view: NSView, selector: Selector) -> NSImage {
+        let theme = view.window?.windowEffectiveTheme ?? ThemeKit.shared.effectiveTheme
         let viewAppearance = view.appearance
         let aquaAppearance = NSAppearance.init(named: NSAppearanceNameAqua)
         let lightAppearance = NSAppearance.init(named: NSAppearanceNameVibrantLight)
@@ -229,15 +232,20 @@ open class ThemeImage : NSImage {
         let windowIsNSVBAccessoryWindow = view.window?.isKind(of: NSClassFromString("NSVBAccessoryWindow")!) ?? false
         
         // using a dark theme but control is on a light surface => use light theme instead
-        if ThemeKit.shared.effectiveTheme.isDarkTheme &&
+        if theme.isDarkTheme &&
             (viewAppearance == lightAppearance || viewAppearance == aquaAppearance || windowIsNSVBAccessoryWindow) {
             return ThemeImage.image(for: ThemeKit.lightTheme, selector: selector)
         }
-        else if ThemeKit.shared.effectiveTheme.isLightTheme && viewAppearance == darkAppearance {
+        else if theme.isLightTheme && viewAppearance == darkAppearance {
             return ThemeImage.image(for: ThemeKit.darkTheme, selector: selector)
         }
         
-        // any other case => current theme image
+        // if a custom window theme was set, use the appropriate asset
+        if view.window?.windowEffectiveTheme != nil {
+            return ThemeImage.image(for: theme, selector: selector)
+        }
+        
+        // otherwise, return current theme image
         return ThemeImage.image(with: selector)
     }
     

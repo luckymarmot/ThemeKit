@@ -17,6 +17,38 @@ public extension NSWindow {
     
     // MARK:- Public
     
+    /// Any window specific theme.
+    ///
+    /// This is, usually, `nil`, which means the current global theme will be used.
+    /// Please note that for when using window specific themes, only the associated
+    /// `NSAppearance` will be automatically set. All theme aware assets (`ThemeColor`,
+    /// `ThemeGradient` and `ThemeImage`) should call methods specifying a view:
+    ///
+    /// - `ThemeColor.color(for view:, selector:)`
+    /// - `ThemeGradient.gradient(for view:, selector:)`
+    /// - `ThemeImage.image(for view:, selector:)`
+    ///
+    /// Additionaly, please note that system overriden colors (`NSColor.*`) will
+    /// always use the global theme.
+    public var windowTheme: Theme? {
+        get {
+            return objc_getAssociatedObject(self, &themeAssociationKey) as? Theme
+        }
+        set(newValue) {
+            objc_setAssociatedObject(self, &themeAssociationKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+        }
+    }
+    
+    /// Returns the current effective theme (read-only).
+    public var windowEffectiveTheme: Theme {
+        return windowTheme ?? ThemeKit.shared.effectiveTheme
+    }
+    
+    /// Returns the current effective appearance (read-only).
+    public var windowEffectiveThemeAppearance: NSAppearance {
+        return windowEffectiveTheme.isLightTheme ? ThemeKit.shared.lightAppearance : ThemeKit.shared.darkAppearance
+    }
+    
     /// Theme window if needed.
     public func theme() {
         // Change window tab bar appearance
@@ -192,9 +224,9 @@ public extension NSWindow {
     
     /// Update window appearance (if needed).
     private func themeWindow() {
-        if appearance != ThemeKit.shared.effectiveThemeAppearance {
+        if appearance != windowEffectiveThemeAppearance {
             // Change window appearance
-            appearance = ThemeKit.shared.effectiveThemeAppearance
+            appearance = windowEffectiveThemeAppearance
             
             // Invalidate shadow as sometimes it is incorrecty drawn or missing
             invalidateShadow()
@@ -211,8 +243,8 @@ public extension NSWindow {
     private func themeTabBar() {
         if isTabBarVisible {
             let _tabBar = tabBar
-            if _tabBar?.appearance != ThemeKit.shared.effectiveThemeAppearance {
-                _tabBar?.appearance = ThemeKit.shared.effectiveThemeAppearance
+            if _tabBar?.appearance != windowEffectiveThemeAppearance {
+                _tabBar?.appearance = windowEffectiveThemeAppearance
                 for tabBarSubview: NSView in (tabBar?.subviews)! {
                     tabBarSubview.needsDisplay = true
                 }
@@ -231,4 +263,5 @@ public extension NSWindow {
     }
 }
 
+private var themeAssociationKey: UInt8 = 0
 private var tabbarAssociationKey: UInt8 = 0

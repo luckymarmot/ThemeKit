@@ -190,11 +190,32 @@ In case ([`WindowThemePolicy`](https://paw.cloud/opensource/themekit/docs/Classe
 - `NSWindow.themeAllWindows()`
 
 	Theme all windows compliant to `ThemeKit.shared.windowThemePolicy` (and if appearance needs update).
+	
+- `NSWindow.windowTheme`
+
+	Any window specific theme.
+   This is, usually, `nil`, which means the current global theme will be used.
+   Please note that when using window specific themes, only the associated `NSAppearance` will be automatically set. All theme aware assets (`ThemeColor`, `ThemeGradient` and `ThemeImage`) should call methods specifying a view:
+
+   	- `ThemeColor.color(for view:, selector:)`
+   	- `ThemeGradient.gradient(for view:, selector:)`
+   	- `ThemeImage.image(for view:, selector:)`
+
+   	Additionaly, please note that system overriden colors (`NSColor.*`) will always use the global theme.
+
+- `NSWindow.windowEffectiveTheme`
+
+	Returns the current effective theme (read-only).
+
+- `NSWindow.windowEffectiveThemeAppearance`
+
+	Returns the current effective appearance (read-only).
 
 
 ## Theme-aware Assets
 
 [`ThemeColor`](https://paw.cloud/opensource/themekit/docs/Classes/ThemeColor.html), [`ThemeGradient`](https://paw.cloud/opensource/themekit/docs/Classes/ThemeGradient.html) and [`ThemeImage`](https://paw.cloud/opensource/themekit/docs/Classes/ThemeImage.html) provides colors, gradients and images, respectively, that dynamically change with the current theme.
+
 Additionally, named colors from the `NSColor` class defined on the `ThemeColor` subclass extension will override the system ones, providing theme-aware colors.
 
 For example, a project defines a `ThemeColor.brandColor` color. This will resolve to different colors at runtime, depending on the selected theme:

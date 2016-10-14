@@ -282,11 +282,31 @@
 <li><p><code>NSWindow.themeAllWindows()</code></p>
 
 <p>Theme all windows compliant to <code>ThemeKit.shared.windowThemePolicy</code> (and if appearance needs update).</p></li>
+<li><p><code>NSWindow.windowTheme</code></p>
+
+<p>Any window specific theme.
+This is, usually, <code>nil</code>, which means the current global theme will be used.
+Please note that when using window specific themes, only the associated <code>NSAppearance</code> will be automatically set. All theme aware assets (<code>ThemeColor</code>, <code>ThemeGradient</code> and <code>ThemeImage</code>) should call methods specifying a view:</p>
+
+<ul>
+<li><code>ThemeColor.color(for view:, selector:)</code></li>
+<li><code>ThemeGradient.gradient(for view:, selector:)</code></li>
+<li><code>ThemeImage.image(for view:, selector:)</code></li>
+</ul>
+
+<p>Additionaly, please note that system overriden colors (<code>NSColor.*</code>) will always use the global theme.</p></li>
+<li><p><code>NSWindow.windowEffectiveTheme</code></p>
+
+<p>Returns the current effective theme (read-only).</p></li>
+<li><p><code>NSWindow.windowEffectiveThemeAppearance</code></p>
+
+<p>Returns the current effective appearance (read-only).</p></li>
 </ul>
 <a href='#theme-aware-assets' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='theme-aware-assets'>Theme-aware Assets</h2>
 
-<p><a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeColor.html"><code>ThemeColor</code></a>, <a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeGradient.html"><code>ThemeGradient</code></a> and <a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeImage.html"><code>ThemeImage</code></a> provides colors, gradients and images, respectively, that dynamically change with the current theme.
-Additionally, named colors from the <code>NSColor</code> class defined on the <code>ThemeColor</code> subclass extension will override the system ones, providing theme-aware colors.</p>
+<p><a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeColor.html"><code>ThemeColor</code></a>, <a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeGradient.html"><code>ThemeGradient</code></a> and <a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeImage.html"><code>ThemeImage</code></a> provides colors, gradients and images, respectively, that dynamically change with the current theme.</p>
+
+<p>Additionally, named colors from the <code>NSColor</code> class defined on the <code>ThemeColor</code> subclass extension will override the system ones, providing theme-aware colors.</p>
 
 <p>For example, a project defines a <code>ThemeColor.brandColor</code> color. This will resolve to different colors at runtime, depending on the selected theme:</p>
 

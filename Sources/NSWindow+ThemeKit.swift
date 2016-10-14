@@ -264,4 +264,4 @@ public extension NSWindow {
 }
 
 private var themeAssociationKey: UInt8 = 0
-private var tabbarAssociationKey: UInt8 = 0
+private var tabbarAssociationKey: UInt8 = 1

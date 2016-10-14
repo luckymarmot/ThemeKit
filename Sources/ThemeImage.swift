@@ -162,7 +162,7 @@ open class ThemeImage : NSImage {
     /// - returns: A `ThemeImage` instance for the specified selector.
     @objc(imageWithSelector:)
     public class func image(with selector: Selector) -> ThemeImage {
-        let cacheKey = "\(selector)\0\(self)" as NSString
+        let cacheKey = "\(selector.hashValue)\0\(self.hash())" as NSString
         var image = _cachedImages.object(forKey: cacheKey)
         if image == nil {
             image = ThemeImage.init(with: selector)
@@ -179,7 +179,7 @@ open class ThemeImage : NSImage {
     /// - returns: Resolved image for specified selector on given theme.
     @objc(imageForTheme:selector:)
     public class func image(for theme: Theme, selector: Selector) -> NSImage {
-        let cacheKey = "\(theme.identifier)\0\(selector)" as NSString
+        let cacheKey = "\(theme.identifier.hashValue)\0\(selector.hashValue)" as NSString
         var image = _cachedThemeImages.object(forKey: cacheKey)
         
         if image == nil && theme is NSObject {

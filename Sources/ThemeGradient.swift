@@ -157,7 +157,7 @@ open class ThemeGradient : NSGradient {
     /// - returns: A `ThemeGradient` instance for the specified selector.
     @objc(gradientWithSelector:)
     public class func gradient(with selector: Selector) -> ThemeGradient {
-        let cacheKey = "\(selector)\0\(self)" as NSString
+        let cacheKey = "\(selector.hashValue)\0\(self.hash())" as NSString
         var gradient = _cachedGradients.object(forKey: cacheKey)
         if gradient == nil {
             gradient = ThemeGradient.init(with: selector)
@@ -174,7 +174,7 @@ open class ThemeGradient : NSGradient {
     /// - returns: Resolved gradient for specified selector on given theme.
     @objc(gradientForTheme:selector:)
     public class func gradient(for theme: Theme, selector: Selector) -> NSGradient {
-        let cacheKey = "\(theme.identifier)\0\(selector)" as NSString
+        let cacheKey = "\(theme.identifier.hashValue)\0\(selector.hashValue)" as NSString
         var gradient = _cachedThemeGradients.object(forKey: cacheKey)
         
         if gradient == nil && theme is NSObject {

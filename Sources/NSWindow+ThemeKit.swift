@@ -36,6 +36,7 @@ public extension NSWindow {
         }
         set(newValue) {
             objc_setAssociatedObject(self, &themeAssociationKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+            theme()
         }
     }
     

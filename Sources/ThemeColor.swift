@@ -8,8 +8,8 @@
 
 import Foundation
 
-private var _cachedColors: NSCache<NSString, NSColor>!
-private var _cachedThemeColors: NSCache<NSString, NSColor>!
+private var _cachedColors: NSCache<NSNumber, NSColor>!
+private var _cachedThemeColors: NSCache<NSNumber, NSColor>!
 
 /**
  `ThemeColor` is a `NSColor` subclass that dynamically changes its colors whenever
@@ -219,7 +219,7 @@ open class ThemeColor : NSColor {
     /// - returns: Resolved color for specified selector on given theme.
     @objc(colorForTheme:selector:)
     public class func color(for theme: Theme, selector: Selector) -> NSColor {
-        let cacheKey = "\(theme.identifier.hashValue)\0\(selector.hashValue)" as NSString
+        let cacheKey = CacheKey(selector: selector, theme: theme)
         var color = _cachedThemeColors.object(forKey: cacheKey)
         
         if color == nil && theme is NSObject {
@@ -321,7 +321,7 @@ open class ThemeColor : NSColor {
     ///
     /// - returns: A `ThemeColor` instance in the specified colorspace.
     class func color(with selector: Selector, colorSpace: NSColorSpace?) -> ThemeColor {
-        let cacheKey = "\(selector.hashValue)\0\(colorSpace == nil ? 0 : colorSpace!.hashValue)\0\(self.hash())" as NSString
+        let cacheKey = CacheKey(selector: selector, colorSpace: colorSpace)
         var color = _cachedColors.object(forKey: cacheKey)
         if color == nil {
             color = ThemeColor.init(with: selector, colorSpace: colorSpace)

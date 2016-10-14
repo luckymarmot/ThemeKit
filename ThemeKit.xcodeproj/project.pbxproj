@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		282C4BFB1DB196450073193B /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282C4BFA1DB196450073193B /* Common.swift */; };
 		283F84601DA2BE9A000C5634 /* ThemeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283F845F1DA2BE9A000C5634 /* ThemeImage.swift */; };
 		2842D8421D93D90E0096EBB3 /* NSView+ThemeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2842D8411D93D90E0096EBB3 /* NSView+ThemeKit.swift */; };
 		2842D84B1D9681460096EBB3 /* NSColor+ThemeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2842D84A1D9681460096EBB3 /* NSColor+ThemeKit.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		282C4BFA1DB196450073193B /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		283F845F1DA2BE9A000C5634 /* ThemeImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeImage.swift; sourceTree = "<group>"; };
 		2842D8411D93D90E0096EBB3 /* NSView+ThemeKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSView+ThemeKit.swift"; sourceTree = "<group>"; };
 		2842D84A1D9681460096EBB3 /* NSColor+ThemeKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSColor+ThemeKit.swift"; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				286DE7DD1D92E08500767E00 /* ThemeColor.swift */,
 				286DE7DE1D92E08500767E00 /* ThemeGradient.swift */,
 				283F845F1DA2BE9A000C5634 /* ThemeImage.swift */,
+				282C4BFA1DB196450073193B /* Common.swift */,
 			);
 			name = "Theme Assets";
 			sourceTree = "<group>";
@@ -237,6 +240,7 @@
 				2896943D1D96CA820021C035 /* NSObject+ThemeKit.swift in Sources */,
 				286DE7EC1D92E08500767E00 /* NSDictionary+UserTheme.swift in Sources */,
 				286DE7E61D92E08500767E00 /* LightTheme.swift in Sources */,
+				282C4BFB1DB196450073193B /* Common.swift in Sources */,
 				286DE7ED1D92E08500767E00 /* String+Substring.swift in Sources */,
 				286DE7E71D92E08500767E00 /* DarkTheme.swift in Sources */,
 				286DE7D41D92DFB300767E00 /* ThemeKit.swift in Sources */,

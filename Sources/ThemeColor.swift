@@ -281,7 +281,12 @@ open class ThemeColor : NSColor {
     /// - returns: Resolved color for specified selector on given view.
     @objc(colorForView:selector:)
     public class func color(for view: NSView, selector: Selector) -> NSColor {
-        let theme = view.window?.windowEffectiveTheme ?? ThemeKit.shared.effectiveTheme
+        // if a custom window theme was set, use the appropriate asset
+        if view.window?.windowTheme != nil {
+            return ThemeColor.color(for: (view.window?.windowTheme)!, selector: selector)
+        }
+        
+        let theme = ThemeKit.shared.effectiveTheme
         let viewAppearance = view.appearance
         let aquaAppearance = NSAppearance.init(named: NSAppearanceNameAqua)
         let lightAppearance = NSAppearance.init(named: NSAppearanceNameVibrantLight)
@@ -295,11 +300,6 @@ open class ThemeColor : NSColor {
         }
         else if theme.isLightTheme && viewAppearance == darkAppearance {
             return ThemeColor.color(for: ThemeKit.darkTheme, selector: selector)
-        }
-        
-        // if a custom window theme was set, use the appropriate asset
-        if view.window?.windowTheme != nil {
-            return ThemeColor.color(for: theme, selector: selector)
         }
         
         // otherwise, return current theme color
@@ -383,7 +383,7 @@ open class ThemeColor : NSColor {
     open func recacheColor() {
         // If it is a UserTheme we actually want to discard theme cached values
         if ThemeKit.shared.effectiveTheme is UserTheme {
-            _cachedThemeColors.removeAllObjects()
+            ThemeColor.emptyCache()
         }
         
         // Recache resolved color
@@ -398,6 +398,13 @@ open class ThemeColor : NSColor {
         
         // Recache average color of pattern image, if appropriate
         themePatternImageAverageColor = resolvedThemeColor.colorSpaceName == NSPatternColorSpace ? resolvedThemeColor.patternImage.averageColor() : NSColor.clear
+    }
+    
+    /// Clear all caches.
+    /// You should not need to manually call this function.
+    static open func emptyCache() {
+        _cachedColors.removeAllObjects()
+        _cachedThemeColors.removeAllObjects()
     }
     
     

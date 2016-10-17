@@ -219,7 +219,12 @@ open class ThemeGradient : NSGradient {
     /// - returns: Resolved gradient for specified selector on given view.
     @objc(gradientForView:selector:)
     public class func gradient(for view: NSView, selector: Selector) -> NSGradient {
-        let theme = view.window?.windowEffectiveTheme ?? ThemeKit.shared.effectiveTheme
+        // if a custom window theme was set, use the appropriate asset
+        if view.window?.windowTheme != nil {
+            return ThemeGradient.gradient(for: (view.window?.windowTheme)!, selector: selector)
+        }
+        
+        let theme = ThemeKit.shared.effectiveTheme
         let viewAppearance = view.appearance
         let aquaAppearance = NSAppearance.init(named: NSAppearanceNameAqua)
         let lightAppearance = NSAppearance.init(named: NSAppearanceNameVibrantLight)
@@ -227,17 +232,12 @@ open class ThemeGradient : NSGradient {
         let windowIsNSVBAccessoryWindow = view.window?.isKind(of: NSClassFromString("NSVBAccessoryWindow")!) ?? false
         
         // using a dark theme but control is on a light surface => use light theme instead
-        if ThemeKit.shared.effectiveTheme.isDarkTheme &&
+        if theme.isDarkTheme &&
             (viewAppearance == lightAppearance || viewAppearance == aquaAppearance || windowIsNSVBAccessoryWindow) {
             return ThemeGradient.gradient(for: ThemeKit.lightTheme, selector: selector)
         }
-        else if ThemeKit.shared.effectiveTheme.isLightTheme && viewAppearance == darkAppearance {
+        else if theme.isLightTheme && viewAppearance == darkAppearance {
             return ThemeGradient.gradient(for: ThemeKit.darkTheme, selector: selector)
-        }
-        
-        // if a custom window theme was set, use the appropriate asset
-        if view.window?.windowTheme != nil {
-            return ThemeGradient.gradient(for: theme, selector: selector)
         }
         
         // otherwise, return current theme gradient
@@ -276,12 +276,18 @@ open class ThemeGradient : NSGradient {
     open func recacheGradient() {
         // If it is a UserTheme we actually want to discard theme cached values
         if ThemeKit.shared.effectiveTheme is UserTheme {
-            _cachedGradients.removeAllObjects()
-            _cachedThemeGradients.removeAllObjects()
+            ThemeGradient.emptyCache()
         }
         
         // Recache resolved color
         resolvedThemeGradient = ThemeGradient.gradient(for: ThemeKit.shared.effectiveTheme, selector: themeGradientSelector)
+    }
+    
+    /// Clear all caches.
+    /// You should not need to manually call this function.
+    static open func emptyCache() {
+        _cachedGradients.removeAllObjects()
+        _cachedThemeGradients.removeAllObjects()
     }
     
     override open func draw(in rect: NSRect, angle: CGFloat) {

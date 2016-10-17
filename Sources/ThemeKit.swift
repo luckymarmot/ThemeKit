@@ -524,5 +524,18 @@ public class ThemeKit: NSObject {
         }
     }
     
+    
+    // MARK:-
+    // MARK: Notifications
+    
+    /// ThemeKit notification sent when current theme is about to change.
+    public static let willChangeThemeNotification = Notification.Name.willChangeTheme
+    
+    /// ThemeKit notification sent when current theme did change.
+    public static let didChangeThemeNotification = Notification.Name.didChangeTheme
+    
+    /// ThemeKit notification sent when system theme did change (System Preference > General > Appearance).
+    public static let didChangeSystemThemeNotification = Notification.Name.didChangeSystemTheme
+    
 }
 

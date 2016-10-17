@@ -224,7 +224,12 @@ open class ThemeImage : NSImage {
     /// - returns: Resolved image for specified selector on given view.
     @objc(imageForView:selector:)
     public class func image(for view: NSView, selector: Selector) -> NSImage {
-        let theme = view.window?.windowEffectiveTheme ?? ThemeKit.shared.effectiveTheme
+        // if a custom window theme was set, use the appropriate asset
+        if view.window?.windowTheme != nil {
+            return ThemeImage.image(for: (view.window?.windowTheme)!, selector: selector)
+        }
+        
+        let theme = ThemeKit.shared.effectiveTheme
         let viewAppearance = view.appearance
         let aquaAppearance = NSAppearance.init(named: NSAppearanceNameAqua)
         let lightAppearance = NSAppearance.init(named: NSAppearanceNameVibrantLight)
@@ -238,11 +243,6 @@ open class ThemeImage : NSImage {
         }
         else if theme.isLightTheme && viewAppearance == darkAppearance {
             return ThemeImage.image(for: ThemeKit.darkTheme, selector: selector)
-        }
-        
-        // if a custom window theme was set, use the appropriate asset
-        if view.window?.windowTheme != nil {
-            return ThemeImage.image(for: theme, selector: selector)
         }
         
         // otherwise, return current theme image
@@ -309,11 +309,18 @@ open class ThemeImage : NSImage {
     open func recacheImage() {
         // If it is a UserTheme we actually want to discard theme cached values
         if ThemeKit.shared.effectiveTheme is UserTheme {
-            _cachedThemeImages.removeAllObjects()
+            ThemeImage.emptyCache()
         }
         
         // Recache resolved image
         resolvedThemeImage = ThemeImage.image(for: ThemeKit.shared.effectiveTheme, selector: themeImageSelector!)
+    }
+    
+    /// Clear all caches.
+    /// You should not need to manually call this function.
+    static open func emptyCache() {
+        _cachedImages.removeAllObjects()
+        _cachedThemeImages.removeAllObjects()
     }
     
     

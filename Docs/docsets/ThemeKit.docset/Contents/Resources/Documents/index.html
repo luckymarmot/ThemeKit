@@ -286,7 +286,7 @@
 
 <p>Any window specific theme.
 This is, usually, <code>nil</code>, which means the current global theme will be used.
-Please note that when using window specific themes, only the associated <code>NSAppearance</code> will be automatically set. All theme aware assets (<code>ThemeColor</code>, <code>ThemeGradient</code> and <code>ThemeImage</code>) should call methods specifying a view:</p>
+Please note that when using window specific themes, only the associated <code>NSAppearance</code> will be automatically set. All theme aware assets (<code>ThemeColor</code>, <code>ThemeGradient</code> and <code>ThemeImage</code>) should call methods that returns a resolved color instead (which means they don&rsquo;t change with the them change, you need to observe theme changes manually, and set colors afterwards):</p>
 
 <ul>
 <li><code>ThemeColor.color(for view:, selector:)</code></li>

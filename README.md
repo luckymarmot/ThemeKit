@@ -345,12 +345,8 @@ Yes, you can! Implement your own custom controls drawing using [Theme-aware Asse
 
 In case needed (for example, if drawing is being cached), you can observe when theme changes to refresh the UI or to perform any theme related operation. Check *"Observing theme changes"* on [Usage](#usage) section above.
 
-### Are images theme-aware as well?
-Partially: currently, only pattern images (defined as `NSColor(patternImage:)`) are supported. We hope to add support for theme-aware `NSImage`'s in the future.
-
-
 ### I'm having font smoothing issues!
-You may run into font smoothing issues, when you use text without a background. Bottom line is, always specify/draw a background when using/drawing text. 
+You may run into font smoothing issues, when you use text without a background color set. Bottom line is, always specify/draw a background when using/drawing text. 
 
   1. For controls like `NSTextField`, `NSTextView`, etc:
    

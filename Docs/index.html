@@ -430,12 +430,9 @@ ThemeKit.shared.userThemesFolderURL = //...
 <p>Yes, you can! Implement your own custom controls drawing using <a href="#theme-aware-assets">Theme-aware Assets</a> (<code>ThemeColor</code> and <code>ThemeGradient</code>) so that your controls drawing will always adapt to your current theme&hellip; automatically!</p>
 
 <p>In case needed (for example, if drawing is being cached), you can observe when theme changes to refresh the UI or to perform any theme related operation. Check <em><q>Observing theme changes</q></em> on <a href="#usage">Usage</a> section above.</p>
-<a href='#are-images-theme-aware-as-well' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='are-images-theme-aware-as-well'>Are images theme-aware as well?</h3>
-
-<p>Partially: currently, only pattern images (defined as <code>NSColor(patternImage:)</code>) are supported. We hope to add support for theme-aware <code>NSImage</code>&rsquo;s in the future.</p>
 <a href='#i-39-m-having-font-smoothing-issues' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='i-39-m-having-font-smoothing-issues'>I&rsquo;m having font smoothing issues!</h3>
 
-<p>You may run into font smoothing issues, when you use text without a background. Bottom line is, always specify/draw a background when using/drawing text. </p>
+<p>You may run into font smoothing issues, when you use text without a background color set. Bottom line is, always specify/draw a background when using/drawing text. </p>
 
 <ol>
 <li><p>For controls like <code>NSTextField</code>, <code>NSTextView</code>, etc:</p>

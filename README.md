@@ -195,7 +195,7 @@ In case ([`WindowThemePolicy`](https://paw.cloud/opensource/themekit/docs/Classe
 
 	Any window specific theme.
    This is, usually, `nil`, which means the current global theme will be used.
-   Please note that when using window specific themes, only the associated `NSAppearance` will be automatically set. All theme aware assets (`ThemeColor`, `ThemeGradient` and `ThemeImage`) should call methods that returns a resolved color instead (which means they don't change with the them change, you need to observe theme changes manually, and set colors afterwards):
+   Please note that when using window specific themes, only the associated `NSAppearance` will be automatically set. All theme aware assets (`ThemeColor`, `ThemeGradient` and `ThemeImage`) should call methods that returns a resolved color instead (which means they don't change with the theme change, you need to observe theme changes manually, and set colors afterwards):
 
    	- `ThemeColor.color(for view:, selector:)`
    	- `ThemeGradient.gradient(for view:, selector:)`

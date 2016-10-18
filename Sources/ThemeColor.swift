@@ -8,7 +8,7 @@
 
 import Foundation
 
-private var _cachedColors: NSCache<NSNumber, NSColor>!
+private var _cachedColors: NSCache<NSNumber, ThemeColor>!
 private var _cachedThemeColors: NSCache<NSNumber, NSColor>!
 
 /**
@@ -327,7 +327,7 @@ open class ThemeColor : NSColor {
             color = ThemeColor.init(with: selector, colorSpace: colorSpace)
             _cachedColors.setObject(color!, forKey: cacheKey)
         }
-        return color as! ThemeColor
+        return color!
     }
     
     /// Returns a new `ThemeColor` for the fiven selector in the specified colorpsace.

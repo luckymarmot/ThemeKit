@@ -8,7 +8,7 @@
 
 import Foundation
 
-private var _cachedGradients: NSCache<NSNumber, NSGradient>!
+private var _cachedGradients: NSCache<NSNumber, ThemeGradient>!
 private var _cachedThemeGradients: NSCache<NSNumber, NSGradient>!
 
 /**
@@ -163,7 +163,7 @@ open class ThemeGradient : NSGradient {
             gradient = ThemeGradient.init(with: selector)
             _cachedGradients.setObject(gradient!, forKey: cacheKey)
         }
-        return gradient as! ThemeGradient
+        return gradient!
     }
     
     /// Gradient for a specific theme.

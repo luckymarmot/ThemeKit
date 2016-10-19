@@ -15,7 +15,7 @@ class ContentViewController: NSViewController, NSTextDelegate {
     @IBOutlet var contentView: NSView!
     
     /// Our text view
-    @IBOutlet /* weak <- crash on OS X 10.10 */ var contentTextView: NSTextView!
+    @IBOutlet var contentTextView: NSTextView!
     
     /// Our placeholder view when no note is selected.
     @IBOutlet var noSelectionPlaceholder: NSView!

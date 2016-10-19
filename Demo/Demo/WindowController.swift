@@ -11,7 +11,7 @@ import ThemeKit
 
 class WindowController: NSWindowController {
     
-    @IBOutlet weak var sidebarViewController: SidebarViewController!
+    @IBOutlet var sidebarViewController: SidebarViewController!
     
     public var themeKit: ThemeKit = ThemeKit.shared
     

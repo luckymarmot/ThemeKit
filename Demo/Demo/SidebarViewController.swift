@@ -11,7 +11,7 @@ import Cocoa
 class SidebarViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate, NSTextFieldDelegate {
     
     /// Our outline view
-    @IBOutlet weak var outlineView: NSOutlineView!
+    @IBOutlet var outlineView: NSOutlineView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

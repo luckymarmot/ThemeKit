@@ -234,11 +234,10 @@ open class ThemeImage : NSImage {
         let aquaAppearance = NSAppearance.init(named: NSAppearanceNameAqua)
         let lightAppearance = NSAppearance.init(named: NSAppearanceNameVibrantLight)
         let darkAppearance = NSAppearance.init(named: NSAppearanceNameVibrantDark)
-        let windowIsNSVBAccessoryWindow = view.window?.isKind(of: NSClassFromString("NSVBAccessoryWindow")!) ?? false
         
         // using a dark theme but control is on a light surface => use light theme instead
         if theme.isDarkTheme &&
-            (viewAppearance == lightAppearance || viewAppearance == aquaAppearance || windowIsNSVBAccessoryWindow) {
+            (viewAppearance == lightAppearance || viewAppearance == aquaAppearance) {
             return ThemeImage.image(for: ThemeKit.lightTheme, selector: selector)
         }
         else if theme.isLightTheme && viewAppearance == darkAppearance {

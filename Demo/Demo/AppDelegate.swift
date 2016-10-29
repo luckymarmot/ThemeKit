@@ -11,8 +11,9 @@ import ThemeKit
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-    @IBOutlet weak var themeMenu: NSMenu!
+    
+    // MARK:-
+    // MARK: App Launch
     
     func applicationWillFinishLaunching(_ notification: Notification) {
         
@@ -65,6 +66,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         updateThemeMenu()
     }
     
+    
+    // MARK:-
+    // MARK: Theme related
+    
     @objc private func updateThemeMenu(_ notification: Notification? = nil) {
         // Clean menu
         themeMenu.removeAllItems()
@@ -87,6 +92,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         updateThemeMenu()
     }
     
+    
+    // MARK:-
+    // MARK: App Termination
+    
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         return true
     }
@@ -95,6 +104,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
     }
     
+    
+    // MARK:-
+    // MARK: Tabs
+    
     private var tabs: [NSWindowController] = []
     
     @IBAction func newWindowForTab(_ sender: Any?) {
@@ -102,6 +115,41 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let windowController = storyBoard.instantiateController(withIdentifier: "WindowController") as! NSWindowController
         windowController.showWindow(self)
     }
+    
+    
+    // MARK:-
+    // MARK: Notes actions
+    
+    @IBAction func addNote(_ sender: NSButton) {
+        sidebarViewController?.addNote(sender)
+    }
+    
+    @IBAction func deleteNote(_ sender: NSButton) {
+        sidebarViewController?.deleteNote(sender)
+    }
+    
+    @IBAction func resetNotes(_ sender: Any) {
+        sidebarViewController?.resetNotes(sender)
+    }
+    
+    
+    // MARK:-
+    // MARK: Others
+    
+    // Weak control references
+    @IBOutlet weak var themeMenu: NSMenu!
+    
+    // Strong controllers references
+    weak var sidebarViewController: SidebarViewController?
 
+}
+
+extension NSApplication {
+    
+    static var sidebarViewController: SidebarViewController {
+        let appDelegate = NSApplication.shared().delegate as! AppDelegate
+        return appDelegate.sidebarViewController!
+    }
+    
 }
 

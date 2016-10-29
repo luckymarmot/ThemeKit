@@ -16,6 +16,10 @@ class SidebarViewController: NSViewController, NSOutlineViewDataSource, NSOutlin
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Keep a reference on app delegate
+        let appDelegate = NSApplication.shared().delegate as! AppDelegate
+        appDelegate.sidebarViewController = self
+        
         // Load last notes
         loadNotes()
         
@@ -41,39 +45,41 @@ class SidebarViewController: NSViewController, NSOutlineViewDataSource, NSOutlin
     // MARK: -
     // MARK: Notes
     
-    /// Model root node
-    let rootNode: String = "ROOT"
-    
     /// NSUserDefaults key
     let userDefaultsKey: String = "notes"
     
     /// Notes model
-    lazy var notes: [String: [Note]] = [self.rootNode: []]
+    var notes: [Note] = []
     
     /// Load notes
     private func loadNotes(reset: Bool = false) {
-        //userDefaultsKey
+        var newNotes: [Note]?
         let userDefaultsNotes = UserDefaults.standard.object(forKey: userDefaultsKey)
         
         if !reset, let pastNotes = userDefaultsNotes as? Data {
             // Load past notes
-            notes = NSKeyedUnarchiver.unarchiveObject(with: pastNotes) as! [String : [Note]]
+            let unarchivedObject = NSKeyedUnarchiver.unarchiveObject(with: pastNotes)
+            newNotes = unarchivedObject is [Note] ? unarchivedObject as? [Note] : nil
         }
-        else {
+        
+        if newNotes == nil {
             // Add some sample Notes to our model
-            notes[rootNode] = [
+            newNotes = [
                 Note(title: "Themes", text: "..:: Light Theme ::..\nDefault, light macOS theme.\n\n..:: Dark Theme ::..\nDark macOS theme, using NSAppearanceNameVibrantDark.\n\n..:: macOS Theme ::..\nDynamically resolve to either the 'Light Theme' or the 'Dark Theme', depending on the macOS preference at 'System Preferences > General > Appearance'.\n\n..:: Paper Theme ::..\nA native 'Theme' defined for this sample application.\n\n..:: Purple Green Theme ::..\nAn user theme ('UserTheme') defined using a '.theme' file. Editing that file will trigger automatic UI refreshes (as long as this is the selected theme).\n"),
                 Note(title: "Lorem Ipsum", text: "Lorem ipsum dolor sit amet, his solum antiopam eu, est eu utamur menandri inciderint, eu laudem adipisci eam. Eos euismod apeirian an, quot iusto postulant id cum. Dicit nullam assueverit ne his. Falli constituam ut eam, cu has vitae facilis scribentur, pro ei zril nostro numquam. Est te dicta doctus ullamcorper.\n\nIudico omnesque probatus nec id, eius lorem consequuntur vix ut. Eam graeci laoreet posidonium te, probo possim detraxit eum te. Et vel zril persius pertinacia. Ex delenit persequeris vel, eam no autem molestiae. Volumus sensibus pro at, vel probo timeam ea.\n\nVis wisi nonumy iisque cu. Ponderum abhorreant vis no, oblique tractatos disputando ex mel, an pri placerat deseruisse. An primis intellegebat nec, eam meliore molestie scriptorem ad, affert periculis sit te. At dico elaboraret disputationi eos, inciderint signiferumque has ex. Id vis oblique insolens./n/nAn has ullum omittam, vis etiam disputationi te. Per cu summo utinam neglegentur, eam indoctum philosophia no, ea sea congue discere admodum. Invidunt adipisci ut cum, duis magna audire eu vel. Mea nulla intellegat ad, vis et tibique aliquando./n/nUsu graeco vivendum ex. Partem prodesset per no. Ut usu amet lucilius necessitatibus, hinc dissentias referrentur mei an. Iuvaret molestie expetenda ea quo, clita libris mediocritatem ea duo. Et enim eruditi pro, in vis assum rationibus, case ignota laboramus vel et."),
                 Note(title: "Superfruits", text: "- Apples\n- Bananas\n- Grapefruit\n- Blueberries\n- Cantaloupe\n- Cherries\n- Citrus fruits\n- Cranberries\n- Dragon fruit\n- Grapes\n- Blackberries\n- Kiwi\n- Oranges\n- Plums\n- Pomegranate\n- Strawberries\n- Avocados\n- Tomatoes\n- Papayas\n- Raspberries\n- Pumpkin\n- Watermelon\n- Pineapple")
             ]
         }
+        
+        notes = newNotes!
     }
     
     /// Reset to original notes
     @IBAction override func resetNotes(_ sender: Any){
         loadNotes(reset: true)
         outlineView.reloadData()
-        outlineView.selectRowIndexes(IndexSet(integer: (notes[rootNode]?.count)!), byExtendingSelection: false)
+        outlineView.expandItem(nil, expandChildren: true)
+        outlineView.selectRowIndexes(IndexSet(integer: notes.count), byExtendingSelection: false)
     }
     
     /// Save notes
@@ -85,14 +91,15 @@ class SidebarViewController: NSViewController, NSOutlineViewDataSource, NSOutlin
     
     /// Add a new note
     @IBAction override func addNote(_ sender: NSButton){
-        notes[rootNode]?.append(Note())
+        notes.append(Note())
         outlineView.reloadData()
-        outlineView.selectRowIndexes(IndexSet(integer: (notes[rootNode]?.count)!), byExtendingSelection: false)
+        outlineView.expandItem(nil, expandChildren: true)
+        outlineView.selectRowIndexes(IndexSet(integer: notes.count), byExtendingSelection: false)
     }
     
     /// Delete a note
     @IBAction override func deleteNote(_ sender: NSButton){
-        if outlineView.selectedRow > 0 && outlineView.selectedRow <= notes[rootNode]!.count
+        if outlineView.selectedRow > 0 && outlineView.selectedRow <= notes.count
             , let note = outlineView.item(atRow: outlineView.selectedRow) as? Note {
             // ask user
             let alert = NSAlert()
@@ -103,12 +110,11 @@ class SidebarViewController: NSViewController, NSOutlineViewDataSource, NSOutlin
             alert.alertStyle = .warning
             alert.beginSheetModal(for: view.window!, completionHandler: { (modalResponse) in
                 if modalResponse == NSAlertFirstButtonReturn {
-                    
                     // delete note
-                    self.notes[self.rootNode]?.remove(at: self.outlineView.selectedRow - 1)
+                    self.notes.remove(at: self.outlineView.selectedRow - 1)
                     self.outlineView.reloadData()
+                    self.outlineView.expandItem(nil, expandChildren: true)
                     NotificationCenter.default.post(name: .didChangeNoteSelection, object: self, userInfo: nil)
-                    
                 }
             })
         }
@@ -136,44 +142,39 @@ class SidebarViewController: NSViewController, NSOutlineViewDataSource, NSOutlin
     // MARK: -
     // MARK: NSOutlineViewDataSource
     
-    public func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
-        return item == nil ? notes.count : notes[rootNode]!.count
+    func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
+        if item == nil {
+            return 1;
+        }
+        else if item is [Note] {
+            return notes.count
+        }
+        return 0;
     }
     
-    public func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
-        return item as? String == rootNode ? true : false
+    func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
+        return item is [Note] ? true : false
     }
     
     func outlineView(_ outlineView: NSOutlineView, isGroupItem item: Any) -> Bool {
-        return item as? String == rootNode ? true : false
+        return (item is [Note])
     }
     
-    public func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
-        if item == nil {
-            return rootNode
-        }
-        
-        return (notes[rootNode])?[index]
-    }
-
-    public func outlineView(_ outlineView: NSOutlineView, objectValueFor tableColumn: NSTableColumn?, byItem item: Any?) -> Any? {
-        if let note = item as? Note {
-            return note
-        }
-        
-        return rootNode
+    func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
+        return item == nil ? notes as Any : notes[index]
     }
     
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
         var cellView: NSTableCellView?
         
-        if item is String {
+        if item is [Note] {
             cellView = outlineView.make(withIdentifier: "HeaderCell", owner: self) as? NSTableCellView
             cellView?.textField?.stringValue = "NOTES"
         }
-        else if let note = item as? Note {
+        else {
             cellView = outlineView.make(withIdentifier: "DataCell", owner: self) as? NSTableCellView
-            cellView?.textField?.stringValue = note.title
+            cellView?.textField?.stringValue = (item as! Note).title
+            cellView?.textField?.textColor = NSColor.labelColor
             cellView?.textField?.delegate = self
         }
         
@@ -181,13 +182,13 @@ class SidebarViewController: NSViewController, NSOutlineViewDataSource, NSOutlin
     }
     
     func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
-        return item as? String == rootNode ? false : true
+        return item is [Note] ? false : true
     }
     
     func outlineView(_ outlineView: NSOutlineView, shouldEdit tableColumn: NSTableColumn?, item: Any) -> Bool {
-        return item as? String == rootNode ? false : true
+        return item is [Note] ? false : true
     }
-    
+
     
     // MARK: -
     // MARK: NSTextDelegate

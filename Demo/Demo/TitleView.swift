@@ -68,9 +68,12 @@ class TitleView: NSView, NSTextFieldDelegate {
     // MARK: NSTextDelegate
     
     override func controlTextDidChange(_ obj: Notification) {
-        note?.title = titleTextField.stringValue
-        note?.lastModified = Date()
-        NotificationCenter.default.post(name: .didEditNoteTitle, object: self, userInfo: ["note" : note])
+        guard note != nil else {
+            return
+        }
+        note!.title = titleTextField.stringValue
+        note!.lastModified = Date()
+        NotificationCenter.default.post(name: .didEditNoteTitle, object: self, userInfo: ["note" : note!])
     }
     
 }

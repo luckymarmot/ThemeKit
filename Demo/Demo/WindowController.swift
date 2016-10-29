@@ -11,8 +11,6 @@ import ThemeKit
 
 class WindowController: NSWindowController {
     
-    @IBOutlet var sidebarViewController: SidebarViewController!
-    
     public var themeKit: ThemeKit = ThemeKit.shared
     
     override func windowDidLoad() {

@@ -125,7 +125,7 @@ public class UserTheme: NSObject, Theme {
         var value = _evaluatedKeyValues[key]
         if value == nil {
             value = _keyValues.evaluatedObject(key: key)
-            _evaluatedKeyValues.setObject(value, forKey: key as NSString)
+            _evaluatedKeyValues.setObject(value as Any, forKey: key as NSString)
         }
         return value
     }

@@ -250,12 +250,16 @@ public extension NSWindow {
     /// Update tab bar appearance (if needed).
     private func themeTabBar() {
         if isTabBarVisible {
-            let _tabBar = tabBar
-            if _tabBar?.appearance != windowEffectiveThemeAppearance {
-                _tabBar?.appearance = windowEffectiveThemeAppearance
+            if let _tabBar = tabBar, _tabBar.appearance != windowEffectiveThemeAppearance {
+                // Change tabbar appearance...
+                _tabBar.appearance = windowEffectiveThemeAppearance
+                // ... and tabbar subviews appearance as well
                 for tabBarSubview: NSView in (tabBar?.subviews)! {
                     tabBarSubview.needsDisplay = true
                 }
+                // Also, make sure tabbar is on top (this also properly refreshes it)
+                let tabbarSuperview = _tabBar.superview
+                tabbarSuperview?.addSubview(_tabBar)
             }
         }
     }

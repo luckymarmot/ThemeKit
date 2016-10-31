@@ -234,10 +234,15 @@ public extension NSWindow {
             // Invalidate shadow as sometimes it is incorrecty drawn or missing
             invalidateShadow()
             
-            // Trick to force update of all CALayers in deep & private views
-            titlebarAppearsTransparent = !titlebarAppearsTransparent
-            DispatchQueue.main.async {
+            if #available(macOS 10.12, *) {
+                // We're all good here: windows are properly refreshed!
+            }
+            else {
+                // Need a trick to force update of all CALayers down the view hierarchy
                 self.titlebarAppearsTransparent = !self.titlebarAppearsTransparent
+                DispatchQueue.main.async {
+                    self.titlebarAppearsTransparent = !self.titlebarAppearsTransparent
+                }
             }
         }
     }

@@ -286,7 +286,7 @@ open class ThemeColor : NSColor {
             return ThemeColor.color(for: (view.window?.windowTheme)!, selector: selector)
         }
         
-        let theme = ThemeKit.shared.effectiveTheme
+        let theme = ThemeManager.shared.effectiveTheme
         let viewAppearance = view.appearance
         let aquaAppearance = NSAppearance.init(named: NSAppearanceNameAqua)
         let lightAppearance = NSAppearance.init(named: NSAppearanceNameVibrantLight)
@@ -295,10 +295,10 @@ open class ThemeColor : NSColor {
         // using a dark theme but control is on a light surface => use light theme instead
         if theme.isDarkTheme &&
             (viewAppearance == lightAppearance || viewAppearance == aquaAppearance) {
-            return ThemeColor.color(for: ThemeKit.lightTheme, selector: selector)
+            return ThemeColor.color(for: ThemeManager.lightTheme, selector: selector)
         }
         else if theme.isLightTheme && viewAppearance == darkAppearance {
-            return ThemeColor.color(for: ThemeKit.darkTheme, selector: selector)
+            return ThemeColor.color(for: ThemeManager.darkTheme, selector: selector)
         }
         
         // otherwise, return current theme color
@@ -381,12 +381,12 @@ open class ThemeColor : NSColor {
     /// You should not need to manually call this function.
     open func recacheColor() {
         // If it is a UserTheme we actually want to discard theme cached values
-        if ThemeKit.shared.effectiveTheme is UserTheme {
+        if ThemeManager.shared.effectiveTheme is UserTheme {
             ThemeColor.emptyCache()
         }
         
         // Recache resolved color
-        let newColor = ThemeColor.color(for: ThemeKit.shared.effectiveTheme, selector: themeColorSelector)
+        let newColor = ThemeColor.color(for: ThemeManager.shared.effectiveTheme, selector: themeColorSelector)
         if themeColorSpace == nil {
             resolvedThemeColor = newColor
         }

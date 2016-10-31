@@ -229,7 +229,7 @@ open class ThemeImage : NSImage {
             return ThemeImage.image(for: (view.window?.windowTheme)!, selector: selector)
         }
         
-        let theme = ThemeKit.shared.effectiveTheme
+        let theme = ThemeManager.shared.effectiveTheme
         let viewAppearance = view.appearance
         let aquaAppearance = NSAppearance.init(named: NSAppearanceNameAqua)
         let lightAppearance = NSAppearance.init(named: NSAppearanceNameVibrantLight)
@@ -238,10 +238,10 @@ open class ThemeImage : NSImage {
         // using a dark theme but control is on a light surface => use light theme instead
         if theme.isDarkTheme &&
             (viewAppearance == lightAppearance || viewAppearance == aquaAppearance) {
-            return ThemeImage.image(for: ThemeKit.lightTheme, selector: selector)
+            return ThemeImage.image(for: ThemeManager.lightTheme, selector: selector)
         }
         else if theme.isLightTheme && viewAppearance == darkAppearance {
-            return ThemeImage.image(for: ThemeKit.darkTheme, selector: selector)
+            return ThemeImage.image(for: ThemeManager.darkTheme, selector: selector)
         }
         
         // otherwise, return current theme image
@@ -307,12 +307,12 @@ open class ThemeImage : NSImage {
     /// You should not need to manually call this function.
     open func recacheImage() {
         // If it is a UserTheme we actually want to discard theme cached values
-        if ThemeKit.shared.effectiveTheme is UserTheme {
+        if ThemeManager.shared.effectiveTheme is UserTheme {
             ThemeImage.emptyCache()
         }
         
         // Recache resolved image
-        resolvedThemeImage = ThemeImage.image(for: ThemeKit.shared.effectiveTheme, selector: themeImageSelector!)
+        resolvedThemeImage = ThemeImage.image(for: ThemeManager.shared.effectiveTheme, selector: themeImageSelector!)
     }
     
     /// Clear all caches.

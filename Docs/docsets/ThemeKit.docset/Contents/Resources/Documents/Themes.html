@@ -32,10 +32,10 @@
             <a href="ThemeKit.html">ThemeKit</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Classes/ThemeKit.html">ThemeKit</a>
+                <a href="Classes/ThemeManager.html">ThemeManager</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/ThemeKit/WindowThemePolicy.html">– WindowThemePolicy</a>
+                <a href="Classes/ThemeManager/WindowThemePolicy.html">– WindowThemePolicy</a>
               </li>
               <li class="nav-group-task">
                 <a href="Extensions/Notification.html">Notification</a>
@@ -223,7 +223,7 @@ themes by:
                       <div class="abstract">
                         <p>System theme. </p>
 
-<p>Will dynamically resolve to either <code><a href="Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit10lightThemePS_5Theme_">ThemeKit.lightTheme</a></code> or <code><a href="Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit9darkThemePS_5Theme_">ThemeKit.darkTheme</a></code>,
+<p>Will dynamically resolve to either <code><a href="Classes/ThemeManager.html#/s:ZvC8ThemeKit12ThemeManager10lightThemePS_5Theme_">ThemeManager.lightTheme</a></code> or <code><a href="Classes/ThemeManager.html#/s:ZvC8ThemeKit12ThemeManager9darkThemePS_5Theme_">ThemeManager.darkTheme</a></code>,
 depending on the macOS preference at <strong>System Preferences &gt; General &gt; Appearance</strong>.</p>
 
                         <a href="Classes/SystemTheme.html" class="slightly-smaller">See more</a>
@@ -261,7 +261,7 @@ depending on the macOS preference at <strong>System Preferences &gt; General &gt
                       <div class="abstract">
                         <p>A <code><a href="Protocols/Theme.html">Theme</a></code> class wrapping a user provided theme file (<code>.theme</code>).</p>
 
-<p>To enable user themes, set theme folder on <code><a href="Classes/ThemeKit.html#/s:vC8ThemeKit8ThemeKit19userThemesFolderURLGSqV10Foundation3URL_">ThemeKit.userThemesFolderURL</a></code>.</p>
+<p>To enable user themes, set theme folder on <code><a href="Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager19userThemesFolderURLGSqV10Foundation3URL_">ThemeManager.userThemesFolderURL</a></code>.</p>
 
 <p>Notes about <code>.theme</code> files:</p>
 
@@ -276,7 +276,7 @@ depending on the macOS preference at <strong>System Preferences &gt; General &gt
 <li>gradients are defined using <code>linear-gradient(color1, color2)</code> (where colors are defined as above; case insensitive);</li>
 <li>pattern images are defined using <code>pattern(named:xxxx)</code> (named images) or <code>pattern(file:../dddd/xxxx.yyy)</code> (filesystem images);</li>
 <li>images are defined using <code>image(named:xxxx)</code> (named images) or <code>image(file:../dddd/xxxx.yyy)</code> (filesystem images);</li>
-<li><code><a href="Classes/ThemeKit.html#/s:vC8ThemeKit8ThemeKit6themesGSaPS_5Theme__">ThemeKit.themes</a></code> property is automatically updated when there are changes on the user themes folder;</li>
+<li><code><a href="Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager6themesGSaPS_5Theme__">ThemeManager.themes</a></code> property is automatically updated when there are changes on the user themes folder;</li>
 <li>file changes are applied on-the-fly, if it corresponds to the currently applied theme.</li>
 </ul>
 

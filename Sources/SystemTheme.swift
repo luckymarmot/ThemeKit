@@ -10,7 +10,7 @@ import Foundation
 
 /// System theme. 
 ///
-/// Will dynamically resolve to either `ThemeKit.lightTheme` or `ThemeKit.darkTheme`,
+/// Will dynamically resolve to either `ThemeManager.lightTheme` or `ThemeManager.darkTheme`,
 /// depending on the macOS preference at **System Preferences > General > Appearance**.
 @objc(TKSystemTheme)
 public class SystemTheme: NSObject, Theme {
@@ -39,7 +39,7 @@ public class SystemTheme: NSObject, Theme {
     public static var isAppleInterfaceThemeDark: Bool = SystemTheme.isAppleInterfaceThemeDarkOnUserDefaults()
     
     /// Calling `init()` is not allowed outside this library.
-    /// Use `ThemeKit.systemTheme` instead.
+    /// Use `ThemeManager.systemTheme` instead.
     internal override init() {
         super.init()
         

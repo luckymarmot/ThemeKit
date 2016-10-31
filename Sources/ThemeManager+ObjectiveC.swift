@@ -1,5 +1,5 @@
 //
-//  ThemeKit+ObjectiveC.swift
+//  ThemeManager+ObjectiveC.swift
 //  ThemeKit
 //
 //  Created by Nuno Grilo on 09/09/16.
@@ -8,11 +8,11 @@
 
 import Foundation
 
-public extension ThemeKit {
+public extension ThemeManager {
     
     /// Window theme policies that define which windows should be automatically themed, if any (Objective-C variant, only).
-    @objc(TKThemeKitWindowThemePolicy)
-    public enum TKThemeKitWindowThemePolicy: Int {
+    @objc(TKThemeManagerWindowThemePolicy)
+    public enum TKThemeManagerWindowThemePolicy: Int {
         /// Theme all application windows (default).
         case themeAllWindows
         /// Only theme windows of the specified classes.
@@ -25,7 +25,7 @@ public extension ThemeKit {
     
     /// Current window theme policy.
     @objc(windowThemePolicy)
-    public var objc_windowThemePolicy: TKThemeKitWindowThemePolicy {
+    public var objc_windowThemePolicy: TKThemeManagerWindowThemePolicy {
         get {
             switch windowThemePolicy {
                 
@@ -56,7 +56,7 @@ public extension ThemeKit {
         }
     }
     
-    /// Windows classes to be excluded from theming with the `TKThemeKitWindowThemePolicyDoNotThemeSomeWindows`.
+    /// Windows classes to be excluded from theming with the `TKThemeManagerWindowThemePolicyDoNotThemeSomeWindows`.
     @objc(notThemableWindowClasses)
     public var notThemableWindowClasses: [AnyClass]? {
         get {
@@ -88,7 +88,7 @@ public extension ThemeKit {
         }
     }
     
-    /// Windows classes to be themed with the `TKThemeKitWindowThemePolicyThemeSomeWindows`.
+    /// Windows classes to be themed with the `TKThemeManagerWindowThemePolicyThemeSomeWindows`.
     @objc(themableWindowClasses)
     public var themableWindowClasses: [AnyClass]? {
         get {

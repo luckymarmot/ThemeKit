@@ -12,7 +12,7 @@
 
 *ThemeKit* is a lightweight theming library completly written in Swift 3 that provides theming capabilities to both Swift 3 and Objective-C macOS applications.
 
-*ThemeKit* is brought to you by the [Paw](https://paw.cloud) team.
+*ThemeKit* is brought to you with ❤️ by the [Paw](https://paw.cloud) team.
 
 ![ThemeKit](https://github.com/luckymarmot/ThemeKit/raw/themekit-initial/Imgs/ThemeKit.gif)
 
@@ -38,10 +38,11 @@
 - Written in Swift 3
 - Optional configuration, none required
 - Neglected performance impact
+- Automatically theme windows (configurable)
 - Themes:
   - [`LightTheme`](https://paw.cloud/opensource/themekit/docs/Classes/LightTheme.html) (default macOS appearance)
   - [`DarkTheme`](https://paw.cloud/opensource/themekit/docs/Classes/DarkTheme.html)
-  - [`SystemTheme`](https://paw.cloud/opensource/themekit/docs/Classes/SystemTheme.html) (default theme). Dynamically resolves to `ThemeKit.lightTheme` or `ThemeKit.darkTheme`, depending on the *"System Preferences > General > Appearance"*.
+  - [`SystemTheme`](https://paw.cloud/opensource/themekit/docs/Classes/SystemTheme.html) (default theme). Dynamically resolves to `ThemeManager.lightTheme` or `ThemeManager.darkTheme`, depending on the *"System Preferences > General > Appearance"*.
   - Support for custom themes ([`Theme`](https://paw.cloud/opensource/themekit/docs/Classes/Theme.html))
   - Support for user-defined themes ([`UserTheme`](https://paw.cloud/opensource/themekit/docs/Classes/UserTheme.html))
 - Theme-aware assets:
@@ -79,14 +80,14 @@ At its simpler usage, applications can be themed with a single line command:
 func applicationWillFinishLaunching(_ notification: Notification) {
 	
 	/// Apply the dark theme
-	ThemeKit.darkTheme.apply()
+	ThemeManager.darkTheme.apply()
 	
 	/// or, the light theme
-	//ThemeKit.lightTheme.apply()
+	//ThemeManager.lightTheme.apply()
 	
 	/// or, the 'system' theme, which dynamically changes to light or dark, 
 	/// respecting *System Preferences > General > Appearance* setting.
-	//ThemeKit.systemTheme.apply()
+	//ThemeManager.systemTheme.apply()
 	
 }
 ```
@@ -100,26 +101,26 @@ func applicationWillFinishLaunching(_ notification: Notification) {
 
 	/// Define default theme.
 	/// Used on first run. Default: `SystemTheme`.
-	/// Note: `SystemTheme` is a special theme that resolves to `ThemeKit.lightTheme` or `ThemeKit.darkTheme`,
+	/// Note: `SystemTheme` is a special theme that resolves to `ThemeManager.lightTheme` or `ThemeManager.darkTheme`,
 	/// depending on the macOS preference at 'System Preferences > General > Appearance'.
-	ThemeKit.defaultTheme = ThemeKit.lightTheme
+	ThemeManager.defaultTheme = ThemeManager.lightTheme
 	
 	/// Define window theme policy.
-	ThemeKit.shared.windowThemePolicy = .themeAllWindows
-	//ThemeKit.shared.windowThemePolicy = .themeSomeWindows(windowClasses: [MyWindow.self])
-	//ThemeKit.shared.windowThemePolicy = .doNotThemeSomeWindows(windowClasses: [NSPanel.self])
-	//ThemeKit.shared.windowThemePolicy = .doNotThemeWindows
+	ThemeManager.shared.windowThemePolicy = .themeAllWindows
+	//ThemeManager.shared.windowThemePolicy = .themeSomeWindows(windowClasses: [MyWindow.self])
+	//ThemeManager.shared.windowThemePolicy = .doNotThemeSomeWindows(windowClasses: [NSPanel.self])
+	//ThemeManager.shared.windowThemePolicy = .doNotThemeWindows
 	    
 	/// Enable & configure user themes.
 	/// Will use folder `(...)/Application Support/{your_app_bundle_id}/Themes`.
 	let applicationSupportURLs = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true)
 	let thisAppSupportURL = URL.init(fileURLWithPath: applicationSupportURLs.first!).appendingPathComponent(Bundle.main.bundleIdentifier!)
 	let userThemesFolderURL = thisAppSupportURL.appendingPathComponent("Themes")
-	ThemeKit.shared.userThemesFolderURL = userThemesFolderURL
+	ThemeManager.shared.userThemesFolderURL = userThemesFolderURL
 	
 	/// Change the default light and dark theme, used when `SystemTheme` is selected.
-	//ThemeKit.lightTheme = ThemeKit.shared.theme(withIdentifier: PaperTheme.identifier)!
-	//ThemeKit.darkTheme = ThemeKit.shared.theme(withIdentifier: "com.luckymarmot.ThemeKit.PurpleGreen")!
+	//ThemeManager.lightTheme = ThemeManager.shared.theme(withIdentifier: PaperTheme.identifier)!
+	//ThemeManager.darkTheme = ThemeManager.shared.theme(withIdentifier: "com.luckymarmot.ThemeKit.PurpleGreen")!
 	
 	/// NOTE: You don't need to manually select a theme.
 	///       Theme selected from last app run is stored on `NSUSerDefaults`
@@ -149,16 +150,16 @@ NotificationCenter.default.addObserver(self, selector: #selector(changedTheme(_:
 
 Additionaly, the following properties are KVO compliant:
 
-- [`ThemeKit.shared.theme`](https://paw.cloud/opensource/themekit/docs/Classes/ThemeKit.html#/s:vC8ThemeKit8ThemeKit5themePS_5Theme_)
-- [`ThemeKit.shared.effectiveTheme`](https://paw.cloud/opensource/themekit/docs/Classes/ThemeKit.html#/s:vC8ThemeKit8ThemeKit14effectiveThemePS_5Theme_)
-- [`ThemeKit.shared.themes`](https://paw.cloud/opensource/themekit/docs/Classes/ThemeKit.html#/s:vC8ThemeKit8ThemeKit6themesGSaPS_5Theme__)
-- [`ThemeKit.shared.userThemes`](https://paw.cloud/opensource/themekit/docs/Classes/ThemeKit.html#/s:vC8ThemeKit8ThemeKit10userThemesGSaPS_5Theme__)
+- [`ThemeManager.shared.theme`](https://paw.cloud/opensource/themekit/docs/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager6themesGSaPS_5Theme__)
+- [`ThemeManager.shared.effectiveTheme`](https://paw.cloud/opensource/themekit/docs/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager14effectiveThemePS_5Theme_)
+- [`ThemeManager.shared.themes`](https://paw.cloud/opensource/themekit/docs/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager6themesGSaPS_5Theme__)
+- [`ThemeManager.shared.userThemes`](https://paw.cloud/opensource/themekit/docs/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager10userThemesGSaPS_5Theme__)
 
 Example:
 
 ```swift
-// Register for KVO changes on ThemeKit.shared.effectiveTheme
-ThemeKit.shared.addObserver(self, forKeyPath: "effectiveTheme", options: NSKeyValueObservingOptions.init(rawValue: 0), context: nil)
+// Register for KVO changes on ThemeManager.shared.effectiveTheme
+ThemeManager.shared.addObserver(self, forKeyPath: "effectiveTheme", options: NSKeyValueObservingOptions.init(rawValue: 0), context: nil)
 
 public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 	if keyPath == "effectiveTheme" {
@@ -185,11 +186,11 @@ In case ([`WindowThemePolicy`](https://paw.cloud/opensource/themekit/docs/Classe
 
 - `NSWindow.themeIfCompliantWithWindowThemePolicy()`
 
-	Theme window if compliant to `ThemeKit.shared.windowThemePolicy` (and if appearance needs update).
+	Theme window if compliant to `ThemeManager.shared.windowThemePolicy` (and if appearance needs update).
 
 - `NSWindow.themeAllWindows()`
 
-	Theme all windows compliant to `ThemeKit.shared.windowThemePolicy` (and if appearance needs update).
+	Theme all windows compliant to `ThemeManager.shared.windowThemePolicy` (and if appearance needs update).
 	
 - `NSWindow.windowTheme`
 
@@ -325,7 +326,7 @@ To enable support for user themes, just need to set the location for them:
 
 ```
 // Setup ThemeKit user themes folder
-ThemeKit.shared.userThemesFolderURL = //...
+ThemeManager.shared.userThemesFolderURL = //...
 ```
 
 Please refer to [`UserTheme`](https://paw.cloud/opensource/themekit/docs/Classes/UserTheme.html) for more information.

@@ -11,7 +11,7 @@ import ThemeKit
 
 class WindowController: NSWindowController {
     
-    public var themeKit: ThemeKit = ThemeKit.shared
+    public var themeKit: ThemeManager = ThemeManager.shared
     
     override func windowDidLoad() {
         // Observe note selection change notifications

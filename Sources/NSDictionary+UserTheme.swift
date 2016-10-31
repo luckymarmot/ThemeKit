@@ -168,7 +168,7 @@ extension NSDictionary {
                     if isNamedType {
                         pattern = NSImage(named: imageName) ?? NSImage(size: NSZeroSize)
                     }
-                    else if isFileType, let imageURL = ThemeKit.shared.userThemesFolderURL?.appendingPathComponent(imageFileName) {
+                    else if isFileType, let imageURL = ThemeManager.shared.userThemesFolderURL?.appendingPathComponent(imageFileName) {
                         pattern = NSImage(contentsOf: imageURL) ?? NSImage(size: NSZeroSize)
                     }
                     else {
@@ -192,7 +192,7 @@ extension NSDictionary {
                     if isNamedType {
                         object = NSImage(named: imageName) ?? NSImage(size: NSZeroSize)
                     }
-                    else if isFileType, let imageURL = ThemeKit.shared.userThemesFolderURL?.appendingPathComponent(imageFileName) {
+                    else if isFileType, let imageURL = ThemeManager.shared.userThemesFolderURL?.appendingPathComponent(imageFileName) {
                         object = NSImage(contentsOf: imageURL) ?? NSImage(size: NSZeroSize)
                     }
                     else {

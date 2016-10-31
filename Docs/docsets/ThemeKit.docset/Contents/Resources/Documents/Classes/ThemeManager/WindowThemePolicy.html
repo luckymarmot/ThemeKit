@@ -33,10 +33,10 @@
             <a href="../../ThemeKit.html">ThemeKit</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../../Classes/ThemeKit.html">ThemeKit</a>
+                <a href="../../Classes/ThemeManager.html">ThemeManager</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Classes/ThemeKit/WindowThemePolicy.html">– WindowThemePolicy</a>
+                <a href="../../Classes/ThemeManager/WindowThemePolicy.html">– WindowThemePolicy</a>
               </li>
               <li class="nav-group-task">
                 <a href="../../Extensions/Notification.html">Notification</a>
@@ -104,26 +104,26 @@
 
 <p>E.g.:</p>
 
-<pre class="highlight plaintext"><code>ThemeKit.shared.windowThemePolicy = .themeSomeWindows(windowClasses: [CustomWindow.self])
+<pre class="highlight plaintext"><code>ThemeManager.shared.windowThemePolicy = .themeSomeWindows(windowClasses: [CustomWindow.self])
 </code></pre>
 
 <p><a href='#objective-c' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='objective-c'>Objective-C</h2></p>
 
-<p>By default, all application windows will be themed (<code>.TKThemeKitWindowThemePolicyThemeAllWindows</code>).</p>
+<p>By default, all application windows will be themed (<code>.TKThemeManagerWindowThemePolicyThemeAllWindows</code>).</p>
 
 <ul>
-<li>TKThemeKitWindowThemePolicyThemeAllWindows:   Theme all application windows (default).</li>
-<li>TKThemeKitWindowThemePolicyThemeSomeWindowClasses:  Only theme windows of the specified classes.</li>
-<li>TKThemeKitWindowThemePolicyDoNotThemeSomeWindowClasses:  Do not theme windows of the specified classes.</li>
-<li>TKThemeKitWindowThemePolicyDoNotThemeWindows: Do not theme any window.</li>
+<li>TKThemeManagerWindowThemePolicyThemeAllWindows:   Theme all application windows (default).</li>
+<li>TKThemeManagerWindowThemePolicyThemeSomeWindowClasses:  Only theme windows of the specified classes.</li>
+<li>TKThemeManagerWindowThemePolicyDoNotThemeSomeWindowClasses:  Do not theme windows of the specified classes.</li>
+<li>TKThemeManagerWindowThemePolicyDoNotThemeWindows: Do not theme any window.</li>
 </ul>
 
-<p>If <code>.windowThemePolicy = TKThemeKitWindowThemePolicyThemeSomeWindowClasses</code>
+<p>If <code>.windowThemePolicy = TKThemeManagerWindowThemePolicyThemeSomeWindowClasses</code>
 is set, themable window class names can then be defined using
 <code>NSArray&lt;NSString*&gt;* themableWindowClassNames</code> property. E.g.:</p>
 
-<pre class="highlight plaintext"><code>[TKThemeKit sharedInstance].windowThemePolicy = TKThemeKitWindowThemePolicyThemeSomeWindowClasses;
-[TKThemeKit sharedInstance].themableWindowClassNames = @[[CustomWindow class]];
+<pre class="highlight plaintext"><code>[TKThemeManager sharedManager].windowThemePolicy = TKThemeManagerWindowThemePolicyThemeSomeWindowClasses;
+[TKThemeManager sharedManager].themableWindowClassNames = @[[CustomWindow class]];
 </code></pre>
 
 <p><a href='#nswindow-extension' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='nswindow-extension'>NSWindow Extension</h2></p>
@@ -137,10 +137,10 @@ is set, themable window class names can then be defined using
 <p>Check if window complies to current policy.</p></li>
 <li><p><code>NSWindow.themeIfCompliantWithWindowThemePolicy()</code></p>
 
-<p>Theme window if compliant to <code><a href="../../Classes/ThemeKit.html#/s:vC8ThemeKit8ThemeKit17windowThemePolicyOS0_17WindowThemePolicy">windowThemePolicy</a></code> (and if appearance needs update).</p></li>
+<p>Theme window if compliant to <code><a href="../../Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager17windowThemePolicyOS0_17WindowThemePolicy">windowThemePolicy</a></code> (and if appearance needs update).</p></li>
 <li><p><code>NSWindow.themeAllWindows()</code></p>
 
-<p>Theme all windows compliant to ThemeKit.windowThemePolicy (and if appearance needs update).</p></li>
+<p>Theme all windows compliant to ThemeManager.windowThemePolicy (and if appearance needs update).</p></li>
 </ul>
 
           </section>
@@ -150,9 +150,9 @@ is set, themable window class names can then be defined using
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FOC8ThemeKit8ThemeKit17WindowThemePolicy15themeAllWindowsFMS1_S1_"></a>
+                    <a name="/s:FOC8ThemeKit12ThemeManager17WindowThemePolicy15themeAllWindowsFMS1_S1_"></a>
                     <a name="//apple_ref/swift/Element/themeAllWindows" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FOC8ThemeKit8ThemeKit17WindowThemePolicy15themeAllWindowsFMS1_S1_">themeAllWindows</a>
+                    <a class="token" href="#/s:FOC8ThemeKit12ThemeManager17WindowThemePolicy15themeAllWindowsFMS1_S1_">themeAllWindows</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -172,7 +172,7 @@ is set, themable window class names can then be defined using
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L388">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L388">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -184,9 +184,9 @@ is set, themable window class names can then be defined using
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FOC8ThemeKit8ThemeKit17WindowThemePolicy16themeSomeWindowsFMS1_FT13windowClassesGSaPMPs9AnyObject___S1_"></a>
+                    <a name="/s:FOC8ThemeKit12ThemeManager17WindowThemePolicy16themeSomeWindowsFMS1_FT13windowClassesGSaPMPs9AnyObject___S1_"></a>
                     <a name="//apple_ref/swift/Element/themeSomeWindows" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FOC8ThemeKit8ThemeKit17WindowThemePolicy16themeSomeWindowsFMS1_FT13windowClassesGSaPMPs9AnyObject___S1_">themeSomeWindows</a>
+                    <a class="token" href="#/s:FOC8ThemeKit12ThemeManager17WindowThemePolicy16themeSomeWindowsFMS1_FT13windowClassesGSaPMPs9AnyObject___S1_">themeSomeWindows</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -206,7 +206,7 @@ is set, themable window class names can then be defined using
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L390">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L390">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -218,9 +218,9 @@ is set, themable window class names can then be defined using
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FOC8ThemeKit8ThemeKit17WindowThemePolicy21doNotThemeSomeWindowsFMS1_FT13windowClassesGSaPMPs9AnyObject___S1_"></a>
+                    <a name="/s:FOC8ThemeKit12ThemeManager17WindowThemePolicy21doNotThemeSomeWindowsFMS1_FT13windowClassesGSaPMPs9AnyObject___S1_"></a>
                     <a name="//apple_ref/swift/Element/doNotThemeSomeWindows" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FOC8ThemeKit8ThemeKit17WindowThemePolicy21doNotThemeSomeWindowsFMS1_FT13windowClassesGSaPMPs9AnyObject___S1_">doNotThemeSomeWindows</a>
+                    <a class="token" href="#/s:FOC8ThemeKit12ThemeManager17WindowThemePolicy21doNotThemeSomeWindowsFMS1_FT13windowClassesGSaPMPs9AnyObject___S1_">doNotThemeSomeWindows</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -240,7 +240,7 @@ is set, themable window class names can then be defined using
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L392">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L392">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -252,9 +252,9 @@ is set, themable window class names can then be defined using
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FOC8ThemeKit8ThemeKit17WindowThemePolicy17doNotThemeWindowsFMS1_S1_"></a>
+                    <a name="/s:FOC8ThemeKit12ThemeManager17WindowThemePolicy17doNotThemeWindowsFMS1_S1_"></a>
                     <a name="//apple_ref/swift/Element/doNotThemeWindows" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FOC8ThemeKit8ThemeKit17WindowThemePolicy17doNotThemeWindowsFMS1_S1_">doNotThemeWindows</a>
+                    <a class="token" href="#/s:FOC8ThemeKit12ThemeManager17WindowThemePolicy17doNotThemeWindowsFMS1_S1_">doNotThemeWindows</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -274,7 +274,7 @@ is set, themable window class names can then be defined using
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L394">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L394">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

@@ -1,5 +1,5 @@
 //
-//  ThemeKit.swift
+//  ThemeManager.swift
 //  ThemeKit
 //
 //  Created by Nuno Grilo on 06/09/16.
@@ -10,7 +10,7 @@ import Foundation
 import QuartzCore
 
 /**
- Use `ThemeKit` shared instance to perform app-wide theming related operations, 
+ Use `ThemeManager` shared instance to perform app-wide theming related operations,
  such as:
  
  - Get information about current theme/appearance
@@ -19,12 +19,12 @@ import QuartzCore
  - Define `ThemeKit` behaviour 
  
  */
-@objc(TKThemeKit)
-public class ThemeKit: NSObject {
+@objc(TKThemeManager)
+public class ThemeManager: NSObject {
     
-    /// ThemeKit shared instance.
-    @objc(sharedInstance)
-    public static let shared = ThemeKit()
+    /// ThemeManager shared manager.
+    @objc(sharedManager)
+    public static let shared = ThemeManager()
     
     // MARK: -
     // MARK: Initialization & Cleanup
@@ -33,7 +33,7 @@ public class ThemeKit: NSObject {
         // Observe when application will finish launching
         NotificationCenter.default.addObserver(forName: NSNotification.Name.NSApplicationWillFinishLaunching, object: nil, queue: nil) { (Notification) in
             // Apply theme from User Defaults
-            ThemeKit.shared.applyUserDefaultsTheme()
+            ThemeManager.shared.applyUserDefaultsTheme()
             
             // Observe and theme new windows (before being displayed onscreen)
             NotificationCenter.default.addObserver(forName: NSNotification.Name.NSWindowDidUpdate, object: nil, queue: nil) { (notification) in
@@ -67,12 +67,12 @@ public class ThemeKit: NSObject {
     /// `userDefaultsThemeKey`.
     public var theme: Theme {
         get {
-            return _theme ?? ThemeKit.defaultTheme
+            return _theme ?? ThemeManager.defaultTheme
         }
         set(newTheme) {
             // Store identifier on user defaults
-            if newTheme.identifier != UserDefaults.standard.string(forKey: ThemeKit.userDefaultsThemeKey) {
-                UserDefaults.standard.set(newTheme.identifier, forKey: ThemeKit.userDefaultsThemeKey)
+            if newTheme.identifier != UserDefaults.standard.string(forKey: ThemeManager.userDefaultsThemeKey) {
+                UserDefaults.standard.set(newTheme.identifier, forKey: ThemeManager.userDefaultsThemeKey)
             }
             
             // Apply theme
@@ -109,9 +109,9 @@ public class ThemeKit: NSObject {
             var available = [Theme]()
             
             // Builtin themes
-            available.append(ThemeKit.lightTheme)
-            available.append(ThemeKit.darkTheme)
-            available.append(ThemeKit.systemTheme)
+            available.append(ThemeManager.lightTheme)
+            available.append(ThemeManager.darkTheme)
+            available.append(ThemeManager.systemTheme)
             
             // Developer native themes (conforming to NSObject, Theme)
             for cls in NSObject.classesImplementingProtocol(Theme.self) {
@@ -165,12 +165,12 @@ public class ThemeKit: NSObject {
     public static var darkTheme: Theme = DarkTheme()
     
     /// Convenience method for accessing the theme that dynamically changes to
-    /// `ThemeKit.lightTheme` or `ThemeKit.darkTheme`, respecting user preference
+    /// `ThemeManager.lightTheme` or `ThemeManager.darkTheme`, respecting user preference
     /// at **System Preferences > General > Appearance**.
     public static let systemTheme = SystemTheme()
     
-    /// Set/get default theme to be used on the first run (default: `ThemeKit.systemTheme`).
-    public static var defaultTheme: Theme = ThemeKit.systemTheme
+    /// Set/get default theme to be used on the first run (default: `ThemeManager.systemTheme`).
+    public static var defaultTheme: Theme = ThemeManager.systemTheme
     
     /// Get the theme with specified identifier.
     ///
@@ -193,10 +193,10 @@ public class ThemeKit: NSObject {
     /// Current `theme.identifier` will be stored under the `"ThemeKitTheme"` `NSUserDefaults` key.
     static public let userDefaultsThemeKey = "ThemeKitTheme"
     
-    /// Apply theme stored on user defaults (or default `ThemeKit.defaultTheme`).
+    /// Apply theme stored on user defaults (or default `ThemeManager.defaultTheme`).
     private func applyUserDefaultsTheme() {
-        let userDefaultsTheme = theme(withIdentifier: UserDefaults.standard.string(forKey: ThemeKit.userDefaultsThemeKey))
-        (userDefaultsTheme ?? ThemeKit.defaultTheme).apply()
+        let userDefaultsTheme = theme(withIdentifier: UserDefaults.standard.string(forKey: ThemeManager.userDefaultsThemeKey))
+        (userDefaultsTheme ?? ThemeManager.defaultTheme).apply()
     }
     
     /// Apple Interface theme has changed.
@@ -347,25 +347,25 @@ public class ThemeKit: NSObject {
     /// E.g.:
     ///
     /// ```
-    /// ThemeKit.shared.windowThemePolicy = .themeSomeWindows(windowClasses: [CustomWindow.self])
+    /// ThemeManager.shared.windowThemePolicy = .themeSomeWindows(windowClasses: [CustomWindow.self])
     /// ```
     ///
     /// Objective-C
     /// -----------
-    /// By default, all application windows will be themed (`.TKThemeKitWindowThemePolicyThemeAllWindows`).
+    /// By default, all application windows will be themed (`.TKThemeManagerWindowThemePolicyThemeAllWindows`).
     ///
-    /// - TKThemeKitWindowThemePolicyThemeAllWindows:   Theme all application windows (default).
-    /// - TKThemeKitWindowThemePolicyThemeSomeWindowClasses:  Only theme windows of the specified classes.
-    /// - TKThemeKitWindowThemePolicyDoNotThemeSomeWindowClasses:  Do not theme windows of the specified classes.
-    /// - TKThemeKitWindowThemePolicyDoNotThemeWindows: Do not theme any window.
+    /// - TKThemeManagerWindowThemePolicyThemeAllWindows:   Theme all application windows (default).
+    /// - TKThemeManagerWindowThemePolicyThemeSomeWindowClasses:  Only theme windows of the specified classes.
+    /// - TKThemeManagerWindowThemePolicyDoNotThemeSomeWindowClasses:  Do not theme windows of the specified classes.
+    /// - TKThemeManagerWindowThemePolicyDoNotThemeWindows: Do not theme any window.
     ///
-    /// If `.windowThemePolicy = TKThemeKitWindowThemePolicyThemeSomeWindowClasses`
+    /// If `.windowThemePolicy = TKThemeManagerWindowThemePolicyThemeSomeWindowClasses`
     /// is set, themable window class names can then be defined using
     /// `NSArray<NSString*>* themableWindowClassNames` property. E.g.:
     ///
     /// ```
-    /// [TKThemeKit sharedInstance].windowThemePolicy = TKThemeKitWindowThemePolicyThemeSomeWindowClasses;
-    /// [TKThemeKit sharedInstance].themableWindowClassNames = @[[CustomWindow class]];
+    /// [TKThemeManager sharedManager].windowThemePolicy = TKThemeManagerWindowThemePolicyThemeSomeWindowClasses;
+    /// [TKThemeManager sharedManager].themableWindowClassNames = @[[CustomWindow class]];
     /// ```
     ///
     /// NSWindow Extension
@@ -382,7 +382,7 @@ public class ThemeKit: NSObject {
     ///     Theme window if compliant to `windowThemePolicy` (and if appearance needs update).
     /// - `NSWindow.themeAllWindows()`
     ///
-    ///     Theme all windows compliant to ThemeKit.windowThemePolicy (and if appearance needs update).
+    ///     Theme all windows compliant to ThemeManager.windowThemePolicy (and if appearance needs update).
     public enum WindowThemePolicy {
         /// Theme all application windows (default).
         case themeAllWindows
@@ -402,14 +402,14 @@ public class ThemeKit: NSObject {
     // MARK: Theme Switching
     
     /// Keypath for string `values.ThemeKitTheme`.
-    private var themeChangeKVOKeyPath: String = "values.\(ThemeKit.userDefaultsThemeKey)"
+    private var themeChangeKVOKeyPath: String = "values.\(ThemeManager.userDefaultsThemeKey)"
     
     // Called when theme is changed on `NSUserDefaults`.
     public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard keyPath == themeChangeKVOKeyPath else { return }
         
         // Theme selected on user defaults
-        let userDefaultsThemeIdentifier = UserDefaults.standard.string(forKey: ThemeKit.userDefaultsThemeKey)
+        let userDefaultsThemeIdentifier = UserDefaults.standard.string(forKey: ThemeManager.userDefaultsThemeKey)
         
         // Theme was changed on user defaults -> apply
         if userDefaultsThemeIdentifier != theme.identifier {
@@ -459,7 +459,7 @@ public class ThemeKit: NSObject {
             // refresh appearance on controls => need to 'tilt' appearance to force refresh!
             if oldEffectiveTheme.isLightTheme == newEffectiveTheme.isLightTheme && _theme != nil {
                 // Switch to "inverted" theme (light -> dark, dark -> light)
-                applyAndPropagate(oldEffectiveTheme.isLightTheme ? ThemeKit.darkTheme : ThemeKit.lightTheme)
+                applyAndPropagate(oldEffectiveTheme.isLightTheme ? ThemeManager.darkTheme : ThemeManager.lightTheme)
             }
             
             // Switch to new theme

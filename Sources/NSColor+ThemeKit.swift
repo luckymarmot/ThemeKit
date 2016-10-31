@@ -39,7 +39,7 @@ extension NSColor {
         }
         
         // get current theme
-        let theme = ThemeKit.shared.effectiveTheme
+        let theme = ThemeManager.shared.effectiveTheme
         
         // `UserTheme`: check `hasThemeAsset(_:)` method
         if theme is UserTheme {

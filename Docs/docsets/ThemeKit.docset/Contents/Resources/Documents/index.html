@@ -32,10 +32,10 @@
             <a href="ThemeKit.html">ThemeKit</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Classes/ThemeKit.html">ThemeKit</a>
+                <a href="Classes/ThemeManager.html">ThemeManager</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/ThemeKit/WindowThemePolicy.html">– WindowThemePolicy</a>
+                <a href="Classes/ThemeManager/WindowThemePolicy.html">– WindowThemePolicy</a>
               </li>
               <li class="nav-group-task">
                 <a href="Extensions/Notification.html">Notification</a>
@@ -94,7 +94,7 @@
 
 <p><em>ThemeKit</em> is a lightweight theming library completly written in Swift 3 that provides theming capabilities to both Swift 3 and Objective-C macOS applications.</p>
 
-<p><em>ThemeKit</em> is brought to you by the <a href="https://paw.cloud">Paw</a> team.</p>
+<p><em>ThemeKit</em> is brought to you with ❤️ by the <a href="https://paw.cloud">Paw</a> team.</p>
 
 <p><img src="https://github.com/luckymarmot/ThemeKit/raw/themekit-initial/Imgs/ThemeKit.gif" alt="ThemeKit"></p>
 <a href='#table-of-contents' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='table-of-contents'>Table of Contents</h2>
@@ -131,12 +131,13 @@
 <li>Written in Swift 3</li>
 <li>Optional configuration, none required</li>
 <li>Neglected performance impact</li>
+<li>Automatically theme windows (configurable)</li>
 <li>Themes:
 
 <ul>
 <li><a href="https://paw.cloud/opensource/themekit/docs/Classes/LightTheme.html"><code>LightTheme</code></a> (default macOS appearance)</li>
 <li><a href="https://paw.cloud/opensource/themekit/docs/Classes/DarkTheme.html"><code>DarkTheme</code></a></li>
-<li><a href="https://paw.cloud/opensource/themekit/docs/Classes/SystemTheme.html"><code>SystemTheme</code></a> (default theme). Dynamically resolves to <code>ThemeKit.lightTheme</code> or <code>ThemeKit.darkTheme</code>, depending on the <em><q>System Preferences > General > Appearance</q></em>.</li>
+<li><a href="https://paw.cloud/opensource/themekit/docs/Classes/SystemTheme.html"><code>SystemTheme</code></a> (default theme). Dynamically resolves to <code>ThemeManager.lightTheme</code> or <code>ThemeManager.darkTheme</code>, depending on the <em><q>System Preferences > General > Appearance</q></em>.</li>
 <li>Support for custom themes (<a href="https://paw.cloud/opensource/themekit/docs/Classes/Theme.html"><code>Theme</code></a>)</li>
 <li>Support for user-defined themes (<a href="https://paw.cloud/opensource/themekit/docs/Classes/UserTheme.html"><code>UserTheme</code></a>)</li>
 </ul></li>
@@ -181,14 +182,14 @@
 <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">applicationWillFinishLaunching</span><span class="p">(</span><span class="n">_</span> <span class="nv">notification</span><span class="p">:</span> <span class="kt">Notification</span><span class="p">)</span> <span class="p">{</span>
 
     <span class="c1">/// Apply the dark theme</span>
-    <span class="kt">ThemeKit</span><span class="o">.</span><span class="n">darkTheme</span><span class="o">.</span><span class="nf">apply</span><span class="p">()</span>
+    <span class="kt">ThemeManager</span><span class="o">.</span><span class="n">darkTheme</span><span class="o">.</span><span class="nf">apply</span><span class="p">()</span>
 
     <span class="c1">/// or, the light theme</span>
-    <span class="c1">//ThemeKit.lightTheme.apply()</span>
+    <span class="c1">//ThemeManager.lightTheme.apply()</span>
 
     <span class="c1">/// or, the 'system' theme, which dynamically changes to light or dark, </span>
     <span class="c1">/// respecting *System Preferences &gt; General &gt; Appearance* setting.</span>
-    <span class="c1">//ThemeKit.systemTheme.apply()</span>
+    <span class="c1">//ThemeManager.systemTheme.apply()</span>
 
 <span class="p">}</span>
 </code></pre>
@@ -199,26 +200,26 @@
 
     <span class="c1">/// Define default theme.</span>
     <span class="c1">/// Used on first run. Default: `SystemTheme`.</span>
-    <span class="c1">/// Note: `SystemTheme` is a special theme that resolves to `ThemeKit.lightTheme` or `ThemeKit.darkTheme`,</span>
+    <span class="c1">/// Note: `SystemTheme` is a special theme that resolves to `ThemeManager.lightTheme` or `ThemeManager.darkTheme`,</span>
     <span class="c1">/// depending on the macOS preference at 'System Preferences &gt; General &gt; Appearance'.</span>
-    <span class="kt">ThemeKit</span><span class="o">.</span><span class="n">defaultTheme</span> <span class="o">=</span> <span class="kt">ThemeKit</span><span class="o">.</span><span class="n">lightTheme</span>
+    <span class="kt">ThemeManager</span><span class="o">.</span><span class="n">defaultTheme</span> <span class="o">=</span> <span class="kt">ThemeManager</span><span class="o">.</span><span class="n">lightTheme</span>
 
     <span class="c1">/// Define window theme policy.</span>
-    <span class="kt">ThemeKit</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="n">windowThemePolicy</span> <span class="o">=</span> <span class="o">.</span><span class="n">themeAllWindows</span>
-    <span class="c1">//ThemeKit.shared.windowThemePolicy = .themeSomeWindows(windowClasses: [MyWindow.self])</span>
-    <span class="c1">//ThemeKit.shared.windowThemePolicy = .doNotThemeSomeWindows(windowClasses: [NSPanel.self])</span>
-    <span class="c1">//ThemeKit.shared.windowThemePolicy = .doNotThemeWindows</span>
+    <span class="kt">ThemeManager</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="n">windowThemePolicy</span> <span class="o">=</span> <span class="o">.</span><span class="n">themeAllWindows</span>
+    <span class="c1">//ThemeManager.shared.windowThemePolicy = .themeSomeWindows(windowClasses: [MyWindow.self])</span>
+    <span class="c1">//ThemeManager.shared.windowThemePolicy = .doNotThemeSomeWindows(windowClasses: [NSPanel.self])</span>
+    <span class="c1">//ThemeManager.shared.windowThemePolicy = .doNotThemeWindows</span>
 
     <span class="c1">/// Enable &amp; configure user themes.</span>
     <span class="c1">/// Will use folder `(...)/Application Support/{your_app_bundle_id}/Themes`.</span>
     <span class="k">let</span> <span class="nv">applicationSupportURLs</span> <span class="o">=</span> <span class="kt">NSSearchPathForDirectoriesInDomains</span><span class="p">(</span><span class="o">.</span><span class="n">applicationSupportDirectory</span><span class="p">,</span> <span class="o">.</span><span class="n">userDomainMask</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
     <span class="k">let</span> <span class="nv">thisAppSupportURL</span> <span class="o">=</span> <span class="kt">URL</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">fileURLWithPath</span><span class="p">:</span> <span class="n">applicationSupportURLs</span><span class="o">.</span><span class="n">first</span><span class="o">!</span><span class="p">)</span><span class="o">.</span><span class="nf">appendingPathComponent</span><span class="p">(</span><span class="kt">Bundle</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">bundleIdentifier</span><span class="o">!</span><span class="p">)</span>
     <span class="k">let</span> <span class="nv">userThemesFolderURL</span> <span class="o">=</span> <span class="n">thisAppSupportURL</span><span class="o">.</span><span class="nf">appendingPathComponent</span><span class="p">(</span><span class="s">"Themes"</span><span class="p">)</span>
-    <span class="kt">ThemeKit</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="n">userThemesFolderURL</span> <span class="o">=</span> <span class="n">userThemesFolderURL</span>
+    <span class="kt">ThemeManager</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="n">userThemesFolderURL</span> <span class="o">=</span> <span class="n">userThemesFolderURL</span>
 
     <span class="c1">/// Change the default light and dark theme, used when `SystemTheme` is selected.</span>
-    <span class="c1">//ThemeKit.lightTheme = ThemeKit.shared.theme(withIdentifier: PaperTheme.identifier)!</span>
-    <span class="c1">//ThemeKit.darkTheme = ThemeKit.shared.theme(withIdentifier: "com.luckymarmot.ThemeKit.PurpleGreen")!</span>
+    <span class="c1">//ThemeManager.lightTheme = ThemeManager.shared.theme(withIdentifier: PaperTheme.identifier)!</span>
+    <span class="c1">//ThemeManager.darkTheme = ThemeManager.shared.theme(withIdentifier: "com.luckymarmot.ThemeKit.PurpleGreen")!</span>
 
     <span class="c1">/// NOTE: You don't need to manually select a theme.</span>
     <span class="c1">///       Theme selected from last app run is stored on `NSUSerDefaults`</span>
@@ -248,15 +249,15 @@
 <p>Additionaly, the following properties are KVO compliant:</p>
 
 <ul>
-<li><a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeKit.html#/s:vC8ThemeKit8ThemeKit5themePS_5Theme_"><code>ThemeKit.shared.theme</code></a></li>
-<li><a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeKit.html#/s:vC8ThemeKit8ThemeKit14effectiveThemePS_5Theme_"><code>ThemeKit.shared.effectiveTheme</code></a></li>
-<li><a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeKit.html#/s:vC8ThemeKit8ThemeKit6themesGSaPS_5Theme__"><code>ThemeKit.shared.themes</code></a></li>
-<li><a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeKit.html#/s:vC8ThemeKit8ThemeKit10userThemesGSaPS_5Theme__"><code>ThemeKit.shared.userThemes</code></a></li>
+<li><a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager6themesGSaPS_5Theme__"><code>ThemeManager.shared.theme</code></a></li>
+<li><a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager14effectiveThemePS_5Theme_"><code>ThemeManager.shared.effectiveTheme</code></a></li>
+<li><a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager6themesGSaPS_5Theme__"><code>ThemeManager.shared.themes</code></a></li>
+<li><a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager10userThemesGSaPS_5Theme__"><code>ThemeManager.shared.userThemes</code></a></li>
 </ul>
 
 <p>Example:</p>
-<pre class="highlight swift"><code><span class="c1">// Register for KVO changes on ThemeKit.shared.effectiveTheme</span>
-<span class="kt">ThemeKit</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">forKeyPath</span><span class="p">:</span> <span class="s">"effectiveTheme"</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="kt">NSKeyValueObservingOptions</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="mi">0</span><span class="p">),</span> <span class="nv">context</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+<pre class="highlight swift"><code><span class="c1">// Register for KVO changes on ThemeManager.shared.effectiveTheme</span>
+<span class="kt">ThemeManager</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">forKeyPath</span><span class="p">:</span> <span class="s">"effectiveTheme"</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="kt">NSKeyValueObservingOptions</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="mi">0</span><span class="p">),</span> <span class="nv">context</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
 
 <span class="kd">public</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">observeValue</span><span class="p">(</span><span class="n">forKeyPath</span> <span class="nv">keyPath</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="n">of</span> <span class="nv">object</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?,</span> <span class="nv">change</span><span class="p">:</span> <span class="p">[</span><span class="kt">NSKeyValueChangeKey</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]?,</span> <span class="nv">context</span><span class="p">:</span> <span class="kt">UnsafeMutableRawPointer</span><span class="p">?)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="n">keyPath</span> <span class="o">==</span> <span class="s">"effectiveTheme"</span> <span class="p">{</span>
@@ -278,10 +279,10 @@
 <p>Check if window complies to current policy.</p></li>
 <li><p><code>NSWindow.themeIfCompliantWithWindowThemePolicy()</code></p>
 
-<p>Theme window if compliant to <code>ThemeKit.shared.windowThemePolicy</code> (and if appearance needs update).</p></li>
+<p>Theme window if compliant to <code>ThemeManager.shared.windowThemePolicy</code> (and if appearance needs update).</p></li>
 <li><p><code>NSWindow.themeAllWindows()</code></p>
 
-<p>Theme all windows compliant to <code>ThemeKit.shared.windowThemePolicy</code> (and if appearance needs update).</p></li>
+<p>Theme all windows compliant to <code>ThemeManager.shared.windowThemePolicy</code> (and if appearance needs update).</p></li>
 <li><p><code>NSWindow.windowTheme</code></p>
 
 <p>Any window specific theme.
@@ -413,7 +414,7 @@ class MyOwnTheme: NSObject, Theme {
 
 <p>To enable support for user themes, just need to set the location for them:</p>
 <pre class="highlight plaintext"><code>// Setup ThemeKit user themes folder
-ThemeKit.shared.userThemesFolderURL = //...
+ThemeManager.shared.userThemesFolderURL = //...
 </code></pre>
 
 <p>Please refer to <a href="https://paw.cloud/opensource/themekit/docs/Classes/UserTheme.html"><code>UserTheme</code></a> for more information.</p>

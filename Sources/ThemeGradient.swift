@@ -224,7 +224,7 @@ open class ThemeGradient : NSGradient {
             return ThemeGradient.gradient(for: (view.window?.windowTheme)!, selector: selector)
         }
         
-        let theme = ThemeKit.shared.effectiveTheme
+        let theme = ThemeManager.shared.effectiveTheme
         let viewAppearance = view.appearance
         let aquaAppearance = NSAppearance.init(named: NSAppearanceNameAqua)
         let lightAppearance = NSAppearance.init(named: NSAppearanceNameVibrantLight)
@@ -233,10 +233,10 @@ open class ThemeGradient : NSGradient {
         // using a dark theme but control is on a light surface => use light theme instead
         if theme.isDarkTheme &&
             (viewAppearance == lightAppearance || viewAppearance == aquaAppearance) {
-            return ThemeGradient.gradient(for: ThemeKit.lightTheme, selector: selector)
+            return ThemeGradient.gradient(for: ThemeManager.lightTheme, selector: selector)
         }
         else if theme.isLightTheme && viewAppearance == darkAppearance {
-            return ThemeGradient.gradient(for: ThemeKit.darkTheme, selector: selector)
+            return ThemeGradient.gradient(for: ThemeManager.darkTheme, selector: selector)
         }
         
         // otherwise, return current theme gradient
@@ -257,7 +257,7 @@ open class ThemeGradient : NSGradient {
     /// - returns: A `ThemeGradient` instance.
     init(with selector: Selector) {
         themeGradientSelector = selector
-        let defaultColor = ThemeKit.shared.effectiveTheme.defaultFallbackBackgroundColor
+        let defaultColor = ThemeManager.shared.effectiveTheme.defaultFallbackBackgroundColor
         resolvedThemeGradient = NSGradient.init(starting: defaultColor, ending: defaultColor)!
         
         super.init(colors: [defaultColor, defaultColor], atLocations: [0.0, 1.0], colorSpace: NSColorSpace.genericRGB)!
@@ -274,12 +274,12 @@ open class ThemeGradient : NSGradient {
     /// You should not need to manually call this function.
     open func recacheGradient() {
         // If it is a UserTheme we actually want to discard theme cached values
-        if ThemeKit.shared.effectiveTheme is UserTheme {
+        if ThemeManager.shared.effectiveTheme is UserTheme {
             ThemeGradient.emptyCache()
         }
         
         // Recache resolved color
-        resolvedThemeGradient = ThemeGradient.gradient(for: ThemeKit.shared.effectiveTheme, selector: themeGradientSelector)
+        resolvedThemeGradient = ThemeGradient.gradient(for: ThemeManager.shared.effectiveTheme, selector: themeGradientSelector)
     }
     
     /// Clear all caches.

@@ -76,15 +76,15 @@ public extension Theme {
         return !isDarkTheme
     }
     
-    /// Does theme automatically resolve to `ThemeKit.lightTheme` or 
-    /// `ThemeKit.darkTheme`, accordingly to **System Preferences > General > Appearance**?
+    /// Does theme automatically resolve to `ThemeManager.lightTheme` or 
+    /// `ThemeManager.darkTheme`, accordingly to **System Preferences > General > Appearance**?
     public var isAutoTheme: Bool {
         return identifier == SystemTheme.identifier
     }
     
     /// Apply theme (make it the current one).
     public func apply() {
-        ThemeKit.shared.theme = self
+        ThemeManager.shared.theme = self
     }
     
     /// Default foreground color to be used on fallback situations when
@@ -114,10 +114,10 @@ public extension Theme {
     
     /// Effective theme, which can be different from itself if it represents the 
     /// system theme, respecting **System Preferences > General > Appearance** 
-    /// (in that case it will be either `ThemeKit.lightTheme` or `ThemeKit.darkTheme`).
+    /// (in that case it will be either `ThemeManager.lightTheme` or `ThemeManager.darkTheme`).
     var effectiveTheme: Theme {
         if isAutoTheme {
-            return isDarkTheme ? ThemeKit.darkTheme : ThemeKit.lightTheme
+            return isDarkTheme ? ThemeManager.darkTheme : ThemeManager.lightTheme
         }
         else {
             return self

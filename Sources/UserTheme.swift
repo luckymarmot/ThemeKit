@@ -11,7 +11,7 @@ import Foundation
 /**
  A `Theme` class wrapping a user provided theme file (`.theme`).
  
- To enable user themes, set theme folder on `ThemeKit.userThemesFolderURL`.
+ To enable user themes, set theme folder on `ThemeManager.userThemesFolderURL`.
 
  Notes about `.theme` files:
  
@@ -25,7 +25,7 @@ import Foundation
  - gradients are defined using `linear-gradient(color1, color2)` (where colors are defined as above; case insensitive);
  - pattern images are defined using `pattern(named:xxxx)` (named images) or `pattern(file:../dddd/xxxx.yyy)` (filesystem images);
  - images are defined using `image(named:xxxx)` (named images) or `image(file:../dddd/xxxx.yyy)` (filesystem images);
- - `ThemeKit.themes` property is automatically updated when there are changes on the user themes folder;
+ - `ThemeManager.themes` property is automatically updated when there are changes on the user themes folder;
  - file changes are applied on-the-fly, if it corresponds to the currently applied theme.
  
  Example `.theme` file:
@@ -101,7 +101,7 @@ public class UserTheme: NSObject, Theme {
     }
     
     /// Calling `init(_:)` is not allowed outside this library.
-    /// Use `ThemeKit.shared.theme(:_)` instead.
+    /// Use `ThemeManager.shared.theme(:_)` instead.
     ///
     /// - parameter themeFileURL: A theme file (`.theme`) URL.
     ///

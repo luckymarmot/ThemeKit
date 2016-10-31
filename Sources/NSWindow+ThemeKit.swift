@@ -44,12 +44,12 @@ public extension NSWindow {
     
     /// Returns the current effective theme (read-only).
     public var windowEffectiveTheme: Theme {
-        return windowTheme ?? ThemeKit.shared.effectiveTheme
+        return windowTheme ?? ThemeManager.shared.effectiveTheme
     }
     
     /// Returns the current effective appearance (read-only).
     public var windowEffectiveThemeAppearance: NSAppearance {
-        return windowEffectiveTheme.isLightTheme ? ThemeKit.shared.lightAppearance : ThemeKit.shared.darkAppearance
+        return windowEffectiveTheme.isLightTheme ? ThemeManager.shared.lightAppearance : ThemeManager.shared.darkAppearance
     }
     
     /// Theme window if needed.
@@ -61,14 +61,14 @@ public extension NSWindow {
         themeWindow()
     }
     
-    /// Theme window if compliant to ThemeKit.windowThemePolicy (and if needed).
+    /// Theme window if compliant to ThemeManager.windowThemePolicy (and if needed).
     public func themeIfCompliantWithWindowThemePolicy() {
         if isCompliantWithWindowThemePolicy() {
             theme()
         }
     }
     
-    /// Theme all windows compliant to ThemeKit.windowThemePolicy (and if needed).
+    /// Theme all windows compliant to ThemeManager.windowThemePolicy (and if needed).
     public static func themeAllWindows() {
         for window in windowsCompliantWithWindowThemePolicy() {
             window.theme()
@@ -79,9 +79,9 @@ public extension NSWindow {
     // MARK:- Private
     // MARK:- Window theme policy compliance
     
-    /// Check if window is compliant with ThemeKit.windowThemePolicy.
+    /// Check if window is compliant with ThemeManager.windowThemePolicy.
     internal func isCompliantWithWindowThemePolicy() -> Bool {
-        switch ThemeKit.shared.windowThemePolicy {
+        switch ThemeManager.shared.windowThemePolicy {
             
         case .themeAllWindows:
             return !self.isExcludedFromTheming
@@ -107,11 +107,11 @@ public extension NSWindow {
         }
     }
     
-    /// List of all existing windows compliant to ThemeKit.windowThemePolicy.
+    /// List of all existing windows compliant to ThemeManager.windowThemePolicy.
     internal static func windowsCompliantWithWindowThemePolicy() -> [NSWindow] {
         var windows = [NSWindow]()
         
-        switch ThemeKit.shared.windowThemePolicy {
+        switch ThemeManager.shared.windowThemePolicy {
             
         case .themeAllWindows:
             windows = NSApplication.shared().windows

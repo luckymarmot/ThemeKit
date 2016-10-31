@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>ThemeKit Class Reference</title>
+    <title>ThemeManager Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Class/ThemeKit" class="dashAnchor"></a>
-    <a title="ThemeKit Class Reference"></a>
+    <a name="//apple_ref/swift/Class/ThemeManager" class="dashAnchor"></a>
+    <a title="ThemeManager Class Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">ThemeKit Docs</a></p>
@@ -23,7 +23,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">ThemeKit Reference</a>
         <img id="carat" src="../img/carat.png" />
-        ThemeKit Class Reference
+        ThemeManager Class Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -33,10 +33,10 @@
             <a href="../ThemeKit.html">ThemeKit</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Classes/ThemeKit.html">ThemeKit</a>
+                <a href="../Classes/ThemeManager.html">ThemeManager</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/ThemeKit/WindowThemePolicy.html">– WindowThemePolicy</a>
+                <a href="../Classes/ThemeManager/WindowThemePolicy.html">– WindowThemePolicy</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Notification.html">Notification</a>
@@ -82,14 +82,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>ThemeKit</h1>
+            <h1>ThemeManager</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ThemeKit</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ThemeManager</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
 
                 </div>
               </div>
-            <p>Use <code>ThemeKit</code> shared instance to perform app-wide theming related operations, 
+            <p>Use <code>ThemeManager</code> shared instance to perform app-wide theming related operations,
 such as:</p>
 
 <ul>
@@ -106,9 +106,9 @@ such as:</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZvC8ThemeKit8ThemeKit6sharedS0_"></a>
+                    <a name="/s:ZvC8ThemeKit12ThemeManager6sharedS0_"></a>
                     <a name="//apple_ref/swift/Variable/shared" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvC8ThemeKit8ThemeKit6sharedS0_">shared</a>
+                    <a class="token" href="#/s:ZvC8ThemeKit12ThemeManager6sharedS0_">shared</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -116,19 +116,19 @@ such as:</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>ThemeKit shared instance.</p>
+                        <p>ThemeManager shared manager.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">shared</span> <span class="o">=</span> <span class="kt">ThemeKit</span><span class="p">()</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">shared</span> <span class="o">=</span> <span class="kt">ThemeManager</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L27">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L27">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -147,9 +147,9 @@ such as:</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC8ThemeKit8ThemeKit5themePS_5Theme_"></a>
+                    <a name="/s:vC8ThemeKit12ThemeManager5themePS_5Theme_"></a>
                     <a name="//apple_ref/swift/Property/theme" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC8ThemeKit8ThemeKit5themePS_5Theme_">theme</a>
+                    <a class="token" href="#/s:vC8ThemeKit12ThemeManager5themePS_5Theme_">theme</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -160,7 +160,7 @@ such as:</p>
                         <p>Returns the current theme.</p>
 
 <p>This property is KVO compliant. Value is stored on user defaults under key
-<code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit20userDefaultsThemeKeySS">userDefaultsThemeKey</a></code>.</p>
+<code><a href="../Classes/ThemeManager.html#/s:ZvC8ThemeKit12ThemeManager20userDefaultsThemeKeySS">userDefaultsThemeKey</a></code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -172,7 +172,7 @@ such as:</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L68-L83">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L68-L83">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -180,9 +180,9 @@ such as:</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC8ThemeKit8ThemeKit14effectiveThemePS_5Theme_"></a>
+                    <a name="/s:vC8ThemeKit12ThemeManager14effectiveThemePS_5Theme_"></a>
                     <a name="//apple_ref/swift/Property/effectiveTheme" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC8ThemeKit8ThemeKit14effectiveThemePS_5Theme_">effectiveTheme</a>
+                    <a class="token" href="#/s:vC8ThemeKit12ThemeManager14effectiveThemePS_5Theme_">effectiveTheme</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -193,8 +193,8 @@ such as:</p>
                         <p>Returns the current effective theme (read-only).</p>
 
 <p>This property is KVO compliant. This can return a different result than
-<code><a href="../Classes/ThemeKit.html#/s:vC8ThemeKit8ThemeKit5themePS_5Theme_">theme</a></code>, as if current theme is set to <code><a href="../Classes/SystemTheme.html">SystemTheme</a></code>, effective theme
-will be either <code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit10lightThemePS_5Theme_">lightTheme</a></code> or <code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit9darkThemePS_5Theme_">darkTheme</a></code>, respecting user preference at
+<code><a href="../Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager5themePS_5Theme_">theme</a></code>, as if current theme is set to <code><a href="../Classes/SystemTheme.html">SystemTheme</a></code>, effective theme
+will be either <code><a href="../Classes/ThemeManager.html#/s:ZvC8ThemeKit12ThemeManager10lightThemePS_5Theme_">lightTheme</a></code> or <code><a href="../Classes/ThemeManager.html#/s:ZvC8ThemeKit12ThemeManager9darkThemePS_5Theme_">darkTheme</a></code>, respecting user preference at
 <strong>System Preferences &gt; General &gt; Appearance</strong>.</p>
 
                       </div>
@@ -207,7 +207,7 @@ will be either <code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit1
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L93-L95">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L93-L95">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -215,9 +215,9 @@ will be either <code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit1
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC8ThemeKit8ThemeKit6themesGSaPS_5Theme__"></a>
+                    <a name="/s:vC8ThemeKit12ThemeManager6themesGSaPS_5Theme__"></a>
                     <a name="//apple_ref/swift/Property/themes" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC8ThemeKit8ThemeKit6themesGSaPS_5Theme__">themes</a>
+                    <a class="token" href="#/s:vC8ThemeKit12ThemeManager6themesGSaPS_5Theme__">themes</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -228,11 +228,11 @@ will be either <code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit1
                         <p>List all available themes:</p>
 
 <ul>
-<li>Built-in <code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit10lightThemePS_5Theme_">lightTheme</a></code></li>
-<li>Built-in <code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit9darkThemePS_5Theme_">darkTheme</a></code></li>
-<li>Built-in <code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit11systemThemeCS_11SystemTheme">systemTheme</a></code></li>
+<li>Built-in <code><a href="../Classes/ThemeManager.html#/s:ZvC8ThemeKit12ThemeManager10lightThemePS_5Theme_">lightTheme</a></code></li>
+<li>Built-in <code><a href="../Classes/ThemeManager.html#/s:ZvC8ThemeKit12ThemeManager9darkThemePS_5Theme_">darkTheme</a></code></li>
+<li>Built-in <code><a href="../Classes/ThemeManager.html#/s:ZvC8ThemeKit12ThemeManager11systemThemeCS_11SystemTheme">systemTheme</a></code></li>
 <li>All native themes (extending <code>NSObject</code> and conforming to <code><a href="../Protocols/Theme.html">Theme</a></code> protocol)</li>
-<li>All user themes (loaded from <code><a href="../Classes/ThemeKit.html#/s:vC8ThemeKit8ThemeKit5themePS_5Theme_">.theme</a></code> files)</li>
+<li>All user themes (loaded from <code><a href="../Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager5themePS_5Theme_">.theme</a></code> files)</li>
 </ul>
 
 <p>This property is KVO compliant and will change when changes occur on user
@@ -248,7 +248,7 @@ themes folder.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L107-L130">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L107-L130">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -256,9 +256,9 @@ themes folder.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC8ThemeKit8ThemeKit10userThemesGSaPS_5Theme__"></a>
+                    <a name="/s:vC8ThemeKit12ThemeManager10userThemesGSaPS_5Theme__"></a>
                     <a name="//apple_ref/swift/Property/userThemes" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC8ThemeKit8ThemeKit10userThemesGSaPS_5Theme__">userThemes</a>
+                    <a class="token" href="#/s:vC8ThemeKit12ThemeManager10userThemesGSaPS_5Theme__">userThemes</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -266,7 +266,7 @@ themes folder.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>List all user themes (<code><a href="../Classes/UserTheme.html">UserTheme</a></code> class, loaded from <code><a href="../Classes/ThemeKit.html#/s:vC8ThemeKit8ThemeKit5themePS_5Theme_">.theme</a></code> files)</p>
+                        <p>List all user themes (<code><a href="../Classes/UserTheme.html">UserTheme</a></code> class, loaded from <code><a href="../Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager5themePS_5Theme_">.theme</a></code> files)</p>
 
                       </div>
                       <div class="declaration">
@@ -278,7 +278,7 @@ themes folder.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L133-L147">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L133-L147">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -286,9 +286,9 @@ themes folder.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZvC8ThemeKit8ThemeKit10lightThemePS_5Theme_"></a>
+                    <a name="/s:ZvC8ThemeKit12ThemeManager10lightThemePS_5Theme_"></a>
                     <a name="//apple_ref/swift/Variable/lightTheme" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvC8ThemeKit8ThemeKit10lightThemePS_5Theme_">lightTheme</a>
+                    <a class="token" href="#/s:ZvC8ThemeKit12ThemeManager10lightThemePS_5Theme_">lightTheme</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -311,7 +311,7 @@ instead of the default <code><a href="../Classes/LightTheme.html">LightTheme</a>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L159">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L159">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -319,9 +319,9 @@ instead of the default <code><a href="../Classes/LightTheme.html">LightTheme</a>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZvC8ThemeKit8ThemeKit9darkThemePS_5Theme_"></a>
+                    <a name="/s:ZvC8ThemeKit12ThemeManager9darkThemePS_5Theme_"></a>
                     <a name="//apple_ref/swift/Variable/darkTheme" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvC8ThemeKit8ThemeKit9darkThemePS_5Theme_">darkTheme</a>
+                    <a class="token" href="#/s:ZvC8ThemeKit12ThemeManager9darkThemePS_5Theme_">darkTheme</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -344,7 +344,7 @@ instead of the default <code><a href="../Classes/DarkTheme.html">DarkTheme</a></
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L165">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L165">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -352,9 +352,9 @@ instead of the default <code><a href="../Classes/DarkTheme.html">DarkTheme</a></
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZvC8ThemeKit8ThemeKit11systemThemeCS_11SystemTheme"></a>
+                    <a name="/s:ZvC8ThemeKit12ThemeManager11systemThemeCS_11SystemTheme"></a>
                     <a name="//apple_ref/swift/Variable/systemTheme" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvC8ThemeKit8ThemeKit11systemThemeCS_11SystemTheme">systemTheme</a>
+                    <a class="token" href="#/s:ZvC8ThemeKit12ThemeManager11systemThemeCS_11SystemTheme">systemTheme</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -363,7 +363,7 @@ instead of the default <code><a href="../Classes/DarkTheme.html">DarkTheme</a></
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Convenience method for accessing the theme that dynamically changes to
-<code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit10lightThemePS_5Theme_">ThemeKit.lightTheme</a></code> or <code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit9darkThemePS_5Theme_">ThemeKit.darkTheme</a></code>, respecting user preference
+<code><a href="../Classes/ThemeManager.html#/s:ZvC8ThemeKit12ThemeManager10lightThemePS_5Theme_">ThemeManager.lightTheme</a></code> or <code><a href="../Classes/ThemeManager.html#/s:ZvC8ThemeKit12ThemeManager9darkThemePS_5Theme_">ThemeManager.darkTheme</a></code>, respecting user preference
 at <strong>System Preferences &gt; General &gt; Appearance</strong>.</p>
 
                       </div>
@@ -376,7 +376,7 @@ at <strong>System Preferences &gt; General &gt; Appearance</strong>.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L170">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L170">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -384,9 +384,9 @@ at <strong>System Preferences &gt; General &gt; Appearance</strong>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZvC8ThemeKit8ThemeKit12defaultThemePS_5Theme_"></a>
+                    <a name="/s:ZvC8ThemeKit12ThemeManager12defaultThemePS_5Theme_"></a>
                     <a name="//apple_ref/swift/Variable/defaultTheme" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvC8ThemeKit8ThemeKit12defaultThemePS_5Theme_">defaultTheme</a>
+                    <a class="token" href="#/s:ZvC8ThemeKit12ThemeManager12defaultThemePS_5Theme_">defaultTheme</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -394,19 +394,19 @@ at <strong>System Preferences &gt; General &gt; Appearance</strong>.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Set/get default theme to be used on the first run (default: <code><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit11systemThemeCS_11SystemTheme">ThemeKit.systemTheme</a></code>).</p>
+                        <p>Set/get default theme to be used on the first run (default: <code><a href="../Classes/ThemeManager.html#/s:ZvC8ThemeKit12ThemeManager11systemThemeCS_11SystemTheme">ThemeManager.systemTheme</a></code>).</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultTheme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span> <span class="o">=</span> <span class="kt">ThemeKit</span><span class="o">.</span><span class="n"><a href="../Classes/ThemeKit.html#/s:ZvC8ThemeKit8ThemeKit11systemThemeCS_11SystemTheme">systemTheme</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultTheme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span> <span class="o">=</span> <span class="kt">ThemeManager</span><span class="o">.</span><span class="n"><a href="../Classes/ThemeManager.html#/s:ZvC8ThemeKit12ThemeManager11systemThemeCS_11SystemTheme">systemTheme</a></span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L173">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L173">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -414,9 +414,9 @@ at <strong>System Preferences &gt; General &gt; Appearance</strong>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC8ThemeKit8ThemeKit5themeFT14withIdentifierGSqSS__GSqPS_5Theme__"></a>
+                    <a name="/s:FC8ThemeKit12ThemeManager5themeFT14withIdentifierGSqSS__GSqPS_5Theme__"></a>
                     <a name="//apple_ref/swift/Method/theme(withIdentifier:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC8ThemeKit8ThemeKit5themeFT14withIdentifierGSqSS__GSqPS_5Theme__">theme(withIdentifier:)</a>
+                    <a class="token" href="#/s:FC8ThemeKit12ThemeManager5themeFT14withIdentifierGSqSS__GSqPS_5Theme__">theme(withIdentifier:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -461,7 +461,7 @@ at <strong>System Preferences &gt; General &gt; Appearance</strong>.</p>
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L180-L189">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L180-L189">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -469,9 +469,9 @@ at <strong>System Preferences &gt; General &gt; Appearance</strong>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZvC8ThemeKit8ThemeKit20userDefaultsThemeKeySS"></a>
+                    <a name="/s:ZvC8ThemeKit12ThemeManager20userDefaultsThemeKeySS"></a>
                     <a name="//apple_ref/swift/Variable/userDefaultsThemeKey" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvC8ThemeKit8ThemeKit20userDefaultsThemeKeySS">userDefaultsThemeKey</a>
+                    <a class="token" href="#/s:ZvC8ThemeKit12ThemeManager20userDefaultsThemeKeySS">userDefaultsThemeKey</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -479,7 +479,7 @@ at <strong>System Preferences &gt; General &gt; Appearance</strong>.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>User defaults key for current <code><a href="../Classes/ThemeKit.html#/s:vC8ThemeKit8ThemeKit5themePS_5Theme_">theme</a></code>.</p>
+                        <p>User defaults key for current <code><a href="../Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager5themePS_5Theme_">theme</a></code>.</p>
 
 <p>Current <code>theme.identifier</code> will be stored under the <code>&quot;ThemeKitTheme&quot;</code> <code>NSUserDefaults</code> key.</p>
 
@@ -493,7 +493,7 @@ at <strong>System Preferences &gt; General &gt; Appearance</strong>.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L194">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L194">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -512,9 +512,9 @@ at <strong>System Preferences &gt; General &gt; Appearance</strong>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC8ThemeKit8ThemeKit19userThemesFolderURLGSqV10Foundation3URL_"></a>
+                    <a name="/s:vC8ThemeKit12ThemeManager19userThemesFolderURLGSqV10Foundation3URL_"></a>
                     <a name="//apple_ref/swift/Property/userThemesFolderURL" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC8ThemeKit8ThemeKit19userThemesFolderURLGSqV10Foundation3URL_">userThemesFolderURL</a>
+                    <a class="token" href="#/s:vC8ThemeKit12ThemeManager19userThemesFolderURLGSqV10Foundation3URL_">userThemesFolderURL</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -547,7 +547,7 @@ don&rsquo;t want them to be changed.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L230-L279">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L230-L279">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -566,9 +566,9 @@ don&rsquo;t want them to be changed.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC8ThemeKit8ThemeKit24effectiveThemeAppearanceCSo12NSAppearance"></a>
+                    <a name="/s:vC8ThemeKit12ThemeManager24effectiveThemeAppearanceCSo12NSAppearance"></a>
                     <a name="//apple_ref/swift/Property/effectiveThemeAppearance" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC8ThemeKit8ThemeKit24effectiveThemeAppearanceCSo12NSAppearance">effectiveThemeAppearance</a>
+                    <a class="token" href="#/s:vC8ThemeKit12ThemeManager24effectiveThemeAppearanceCSo12NSAppearance">effectiveThemeAppearance</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -588,7 +588,7 @@ don&rsquo;t want them to be changed.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L319-L321">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L319-L321">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -596,9 +596,9 @@ don&rsquo;t want them to be changed.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC8ThemeKit8ThemeKit15lightAppearanceCSo12NSAppearance"></a>
+                    <a name="/s:vC8ThemeKit12ThemeManager15lightAppearanceCSo12NSAppearance"></a>
                     <a name="//apple_ref/swift/Property/lightAppearance" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC8ThemeKit8ThemeKit15lightAppearanceCSo12NSAppearance">lightAppearance</a>
+                    <a class="token" href="#/s:vC8ThemeKit12ThemeManager15lightAppearanceCSo12NSAppearance">lightAppearance</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -618,7 +618,7 @@ don&rsquo;t want them to be changed.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L324-L326">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L324-L326">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -626,9 +626,9 @@ don&rsquo;t want them to be changed.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC8ThemeKit8ThemeKit14darkAppearanceCSo12NSAppearance"></a>
+                    <a name="/s:vC8ThemeKit12ThemeManager14darkAppearanceCSo12NSAppearance"></a>
                     <a name="//apple_ref/swift/Property/darkAppearance" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC8ThemeKit8ThemeKit14darkAppearanceCSo12NSAppearance">darkAppearance</a>
+                    <a class="token" href="#/s:vC8ThemeKit12ThemeManager14darkAppearanceCSo12NSAppearance">darkAppearance</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -648,7 +648,7 @@ don&rsquo;t want them to be changed.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L329-L331">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L329-L331">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -667,9 +667,9 @@ don&rsquo;t want them to be changed.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:OC8ThemeKit8ThemeKit17WindowThemePolicy"></a>
+                    <a name="/s:OC8ThemeKit12ThemeManager17WindowThemePolicy"></a>
                     <a name="//apple_ref/swift/Enum/WindowThemePolicy" class="dashAnchor"></a>
-                    <a class="token" href="#/s:OC8ThemeKit8ThemeKit17WindowThemePolicy">WindowThemePolicy</a>
+                    <a class="token" href="#/s:OC8ThemeKit12ThemeManager17WindowThemePolicy">WindowThemePolicy</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -692,26 +692,26 @@ don&rsquo;t want them to be changed.</p>
 
 <p>E.g.:</p>
 
-<pre class="highlight plaintext"><code>ThemeKit.shared.windowThemePolicy = .themeSomeWindows(windowClasses: [CustomWindow.self])
+<pre class="highlight plaintext"><code>ThemeManager.shared.windowThemePolicy = .themeSomeWindows(windowClasses: [CustomWindow.self])
 </code></pre>
 
 <p><a href='#objective-c' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='objective-c'>Objective-C</h2></p>
 
-<p>By default, all application windows will be themed (<code>.TKThemeKitWindowThemePolicyThemeAllWindows</code>).</p>
+<p>By default, all application windows will be themed (<code>.TKThemeManagerWindowThemePolicyThemeAllWindows</code>).</p>
 
 <ul>
-<li>TKThemeKitWindowThemePolicyThemeAllWindows:   Theme all application windows (default).</li>
-<li>TKThemeKitWindowThemePolicyThemeSomeWindowClasses:  Only theme windows of the specified classes.</li>
-<li>TKThemeKitWindowThemePolicyDoNotThemeSomeWindowClasses:  Do not theme windows of the specified classes.</li>
-<li>TKThemeKitWindowThemePolicyDoNotThemeWindows: Do not theme any window.</li>
+<li>TKThemeManagerWindowThemePolicyThemeAllWindows:   Theme all application windows (default).</li>
+<li>TKThemeManagerWindowThemePolicyThemeSomeWindowClasses:  Only theme windows of the specified classes.</li>
+<li>TKThemeManagerWindowThemePolicyDoNotThemeSomeWindowClasses:  Do not theme windows of the specified classes.</li>
+<li>TKThemeManagerWindowThemePolicyDoNotThemeWindows: Do not theme any window.</li>
 </ul>
 
-<p>If <code>.windowThemePolicy = TKThemeKitWindowThemePolicyThemeSomeWindowClasses</code>
+<p>If <code>.windowThemePolicy = TKThemeManagerWindowThemePolicyThemeSomeWindowClasses</code>
 is set, themable window class names can then be defined using
 <code>NSArray&lt;NSString*&gt;* themableWindowClassNames</code> property. E.g.:</p>
 
-<pre class="highlight plaintext"><code>[TKThemeKit sharedInstance].windowThemePolicy = TKThemeKitWindowThemePolicyThemeSomeWindowClasses;
-[TKThemeKit sharedInstance].themableWindowClassNames = @[[CustomWindow class]];
+<pre class="highlight plaintext"><code>[TKThemeManager sharedManager].windowThemePolicy = TKThemeManagerWindowThemePolicyThemeSomeWindowClasses;
+[TKThemeManager sharedManager].themableWindowClassNames = @[[CustomWindow class]];
 </code></pre>
 
 <p><a href='#nswindow-extension' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='nswindow-extension'>NSWindow Extension</h2></p>
@@ -725,13 +725,13 @@ is set, themable window class names can then be defined using
 <p>Check if window complies to current policy.</p></li>
 <li><p><code>NSWindow.themeIfCompliantWithWindowThemePolicy()</code></p>
 
-<p>Theme window if compliant to <code><a href="../Classes/ThemeKit.html#/s:vC8ThemeKit8ThemeKit17windowThemePolicyOS0_17WindowThemePolicy">windowThemePolicy</a></code> (and if appearance needs update).</p></li>
+<p>Theme window if compliant to <code><a href="../Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager17windowThemePolicyOS0_17WindowThemePolicy">windowThemePolicy</a></code> (and if appearance needs update).</p></li>
 <li><p><code>NSWindow.themeAllWindows()</code></p>
 
-<p>Theme all windows compliant to ThemeKit.windowThemePolicy (and if appearance needs update).</p></li>
+<p>Theme all windows compliant to ThemeManager.windowThemePolicy (and if appearance needs update).</p></li>
 </ul>
 
-                        <a href="../Classes/ThemeKit/WindowThemePolicy.html" class="slightly-smaller">See more</a>
+                        <a href="../Classes/ThemeManager/WindowThemePolicy.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -742,7 +742,7 @@ is set, themable window class names can then be defined using
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L386-L395">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L386-L395">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -750,9 +750,9 @@ is set, themable window class names can then be defined using
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC8ThemeKit8ThemeKit17windowThemePolicyOS0_17WindowThemePolicy"></a>
+                    <a name="/s:vC8ThemeKit12ThemeManager17windowThemePolicyOS0_17WindowThemePolicy"></a>
                     <a name="//apple_ref/swift/Property/windowThemePolicy" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC8ThemeKit8ThemeKit17windowThemePolicyOS0_17WindowThemePolicy">windowThemePolicy</a>
+                    <a class="token" href="#/s:vC8ThemeKit12ThemeManager17windowThemePolicyOS0_17WindowThemePolicy">windowThemePolicy</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -767,12 +767,12 @@ is set, themable window class names can then be defined using
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">windowThemePolicy</span><span class="p">:</span> <span class="kt"><a href="../Classes/ThemeKit/WindowThemePolicy.html">WindowThemePolicy</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">themeAllWindows</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">windowThemePolicy</span><span class="p">:</span> <span class="kt"><a href="../Classes/ThemeManager/WindowThemePolicy.html">WindowThemePolicy</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">themeAllWindows</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L398">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L398">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -791,9 +791,9 @@ is set, themable window class names can then be defined using
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZvC8ThemeKit8ThemeKit27willChangeThemeNotificationVCSo14NSNotification4Name"></a>
+                    <a name="/s:ZvC8ThemeKit12ThemeManager27willChangeThemeNotificationVCSo14NSNotification4Name"></a>
                     <a name="//apple_ref/swift/Variable/willChangeThemeNotification" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvC8ThemeKit8ThemeKit27willChangeThemeNotificationVCSo14NSNotification4Name">willChangeThemeNotification</a>
+                    <a class="token" href="#/s:ZvC8ThemeKit12ThemeManager27willChangeThemeNotificationVCSo14NSNotification4Name">willChangeThemeNotification</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -813,7 +813,7 @@ is set, themable window class names can then be defined using
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L532">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L532">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -821,9 +821,9 @@ is set, themable window class names can then be defined using
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZvC8ThemeKit8ThemeKit26didChangeThemeNotificationVCSo14NSNotification4Name"></a>
+                    <a name="/s:ZvC8ThemeKit12ThemeManager26didChangeThemeNotificationVCSo14NSNotification4Name"></a>
                     <a name="//apple_ref/swift/Variable/didChangeThemeNotification" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvC8ThemeKit8ThemeKit26didChangeThemeNotificationVCSo14NSNotification4Name">didChangeThemeNotification</a>
+                    <a class="token" href="#/s:ZvC8ThemeKit12ThemeManager26didChangeThemeNotificationVCSo14NSNotification4Name">didChangeThemeNotification</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -843,7 +843,7 @@ is set, themable window class names can then be defined using
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L535">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L535">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -851,9 +851,9 @@ is set, themable window class names can then be defined using
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZvC8ThemeKit8ThemeKit32didChangeSystemThemeNotificationVCSo14NSNotification4Name"></a>
+                    <a name="/s:ZvC8ThemeKit12ThemeManager32didChangeSystemThemeNotificationVCSo14NSNotification4Name"></a>
                     <a name="//apple_ref/swift/Variable/didChangeSystemThemeNotification" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvC8ThemeKit8ThemeKit32didChangeSystemThemeNotificationVCSo14NSNotification4Name">didChangeSystemThemeNotification</a>
+                    <a class="token" href="#/s:ZvC8ThemeKit12ThemeManager32didChangeSystemThemeNotificationVCSo14NSNotification4Name">didChangeSystemThemeNotification</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -873,7 +873,7 @@ is set, themable window class names can then be defined using
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeKit.swift#L538">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L538">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

@@ -28,7 +28,7 @@ public class LightTheme: NSObject, Theme {
     public var isDarkTheme: Bool = false
     
     /// Calling `init()` is not allowed outside this library.
-    /// Use `ThemeKit.lightTheme` instead.
+    /// Use `ThemeManager.lightTheme` instead.
     internal override init() {
         super.init()
     }

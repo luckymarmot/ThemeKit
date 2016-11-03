@@ -44,6 +44,12 @@ class ContentViewController: NSViewController, NSTextDelegate {
                 self.representedObject = notification.userInfo?["note"]
             }
         }
+        
+        // Fix white scrollbar view when in dark theme and scrollbars are set to
+        // always be shown on *System Preferences > General*.
+        contentTextView.enclosingScrollView?.backgroundColor = ThemeColor.contentBackgroundColor
+        contentTextView.enclosingScrollView?.wantsLayer = true
+        NotificationCenter.default.addObserver(self, selector: #selector(didChangeTheme(_:)), name: .didChangeTheme, object: nil)
     }
     
     override var representedObject: Any? {
@@ -67,7 +73,19 @@ class ContentViewController: NSViewController, NSTextDelegate {
             subview.autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
             subview.frame = view.bounds
         }
-    }    
+    }
+    
+    
+    // MARK:-
+    // MARK: Theme related
+    
+    @objc private func didChangeTheme(_ notification: Notification? = nil) {
+        // Update `NSScroller` background color based on current theme
+        DispatchQueue.main.async {
+            self.contentTextView.enclosingScrollView?.verticalScroller?.layer?.backgroundColor = ThemeColor.contentBackgroundColor.cgColor
+        }
+    }
+    
     
     // MARK: -
     // MARK: NSTextDelegate

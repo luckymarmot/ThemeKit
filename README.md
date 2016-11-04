@@ -1,5 +1,5 @@
-<p align="left" style="margin-top: 20px;">
-  <img src="https://github.com/luckymarmot/ThemeKit/raw/themekit-initial/Imgs/ThemeKit@2x.png" width="377" height="105" alt="ThemeKit" />
+<p align="left">
+  <img src="https://github.com/luckymarmot/ThemeKit/raw/themekit-initial/Imgs/ThemeKit@2x.png" width="377" height="105" alt="ThemeKit" style="margin-top:10px" />
 </p>
 
 ![macOS](https://img.shields.io/badge/os-macOS 10.10+-green.svg?style=flat)

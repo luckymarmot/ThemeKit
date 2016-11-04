@@ -1,5 +1,7 @@
-![ThemeKit](https://github.com/luckymarmot/ThemeKit/raw/themekit-initial/Imgs/ThemeKit.png)
-========
+<p align="left">
+  <img src="https://github.com/luckymarmot/ThemeKit/raw/themekit-initial/Imgs/ThemeKit.png" srcset="https://github.com/luckymarmot/ThemeKit/raw/themekit-initial/Imgs/ThemeKit@2x.png 2x" alt="ThemeKit" />
+</p>
+---
 
 ![macOS](https://img.shields.io/badge/os-macOS 10.10+-green.svg?style=flat)
 ![Swift3](https://img.shields.io/badge/swift-3.0.x-green.svg?style=flat)

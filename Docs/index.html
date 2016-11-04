@@ -82,11 +82,9 @@
         <section>
           <section class="section">
             
-            <p align="left">
-  <img src="https://github.com/luckymarmot/ThemeKit/raw/themekit-initial/Imgs/ThemeKit.png" srcset="https://github.com/luckymarmot/ThemeKit/raw/themekit-initial/Imgs/ThemeKit@2x.png 2x" alt="ThemeKit" />
+            <p align="left" style="margin-top: 20px;">
+  <img src="https://github.com/luckymarmot/ThemeKit/raw/themekit-initial/Imgs/ThemeKit@2x.png" width="377" height="105" alt="ThemeKit" />
 </p>
-
-<hr>
 
 <p><img src="https://img.shields.io/badge/os-macOS%2010.10+-green.svg?style=flat" alt="macOS">
 <img src="https://img.shields.io/badge/swift-3.0.x-green.svg?style=flat" alt="Swift3">
@@ -139,18 +137,18 @@
 <li>Themes:
 
 <ul>
-<li><a href="https://paw.cloud/opensource/themekit/docs/Classes/LightTheme.html"><code>LightTheme</code></a> (default macOS appearance)</li>
-<li><a href="https://paw.cloud/opensource/themekit/docs/Classes/DarkTheme.html"><code>DarkTheme</code></a></li>
-<li><a href="https://paw.cloud/opensource/themekit/docs/Classes/SystemTheme.html"><code>SystemTheme</code></a> (default theme). Dynamically resolves to <code>ThemeManager.lightTheme</code> or <code>ThemeManager.darkTheme</code>, depending on the <em><q>System Preferences > General > Appearance</q></em>.</li>
-<li>Support for custom themes (<a href="https://paw.cloud/opensource/themekit/docs/Classes/Theme.html"><code>Theme</code></a>)</li>
-<li>Support for user-defined themes (<a href="https://paw.cloud/opensource/themekit/docs/Classes/UserTheme.html"><code>UserTheme</code></a>)</li>
+<li><a href="https://opensource.paw.cloud/themekit/docs/Classes/LightTheme.html"><code>LightTheme</code></a> (default macOS appearance)</li>
+<li><a href="https://opensource.paw.cloud/themekit/docs/Classes/DarkTheme.html"><code>DarkTheme</code></a></li>
+<li><a href="https://opensource.paw.cloud/themekit/docs/Classes/SystemTheme.html"><code>SystemTheme</code></a> (default theme). Dynamically resolves to <code>ThemeManager.lightTheme</code> or <code>ThemeManager.darkTheme</code>, depending on the <em><q>System Preferences > General > Appearance</q></em>.</li>
+<li>Support for custom themes (<a href="https://opensource.paw.cloud/themekit/docs/Classes/Theme.html"><code>Theme</code></a>)</li>
+<li>Support for user-defined themes (<a href="https://opensource.paw.cloud/themekit/docs/Classes/UserTheme.html"><code>UserTheme</code></a>)</li>
 </ul></li>
 <li>Theme-aware assets:
 
 <ul>
-<li><a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeColor.html"><code>ThemeColor</code></a>: colors that dynamically change with the theme</li>
-<li><a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeGradient.html"><code>ThemeGradient</code></a>: gradients that dynamically change with the theme</li>
-<li><a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeImage.html"><code>ThemeImage</code></a>: images that dynamically change with the theme</li>
+<li><a href="https://opensource.paw.cloud/themekit/docs/Classes/ThemeColor.html"><code>ThemeColor</code></a>: colors that dynamically change with the theme</li>
+<li><a href="https://opensource.paw.cloud/themekit/docs/Classes/ThemeGradient.html"><code>ThemeGradient</code></a>: gradients that dynamically change with the theme</li>
+<li><a href="https://opensource.paw.cloud/themekit/docs/Classes/ThemeImage.html"><code>ThemeImage</code></a>: images that dynamically change with the theme</li>
 <li>Optional override of <code>NSColor</code> named colors (e.g., <code>labelColor</code>) to dynamically change with the theme</li>
 </ul></li>
 </ul>
@@ -199,7 +197,7 @@
 </code></pre>
 <a href='#advanced-usage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='advanced-usage'>Advanced Usage</h3>
 
-<p>The following code will define which windows should be automatically themed (<a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeKit/WindowThemePolicy.html"><code>WindowThemePolicy</code></a>) and add support for user themes (<a href="https://paw.cloud/opensource/themekit/docs/Classes/UserTheme.html"><code>UserTheme</code></a>):</p>
+<p>The following code will define which windows should be automatically themed (<a href="https://opensource.paw.cloud/themekit/docs/Classes/ThemeKit/WindowThemePolicy.html"><code>WindowThemePolicy</code></a>) and add support for user themes (<a href="https://opensource.paw.cloud/themekit/docs/Classes/UserTheme.html"><code>UserTheme</code></a>):</p>
 <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">applicationWillFinishLaunching</span><span class="p">(</span><span class="n">_</span> <span class="nv">notification</span><span class="p">:</span> <span class="kt">Notification</span><span class="p">)</span> <span class="p">{</span>
 
     <span class="c1">/// Define default theme.</span>
@@ -253,10 +251,10 @@
 <p>Additionaly, the following properties are KVO compliant:</p>
 
 <ul>
-<li><a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager6themesGSaPS_5Theme__"><code>ThemeManager.shared.theme</code></a></li>
-<li><a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager14effectiveThemePS_5Theme_"><code>ThemeManager.shared.effectiveTheme</code></a></li>
-<li><a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager6themesGSaPS_5Theme__"><code>ThemeManager.shared.themes</code></a></li>
-<li><a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager10userThemesGSaPS_5Theme__"><code>ThemeManager.shared.userThemes</code></a></li>
+<li><a href="https://opensource.paw.cloud/themekit/docs/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager6themesGSaPS_5Theme__"><code>ThemeManager.shared.theme</code></a></li>
+<li><a href="https://opensource.paw.cloud/themekit/docs/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager14effectiveThemePS_5Theme_"><code>ThemeManager.shared.effectiveTheme</code></a></li>
+<li><a href="https://opensource.paw.cloud/themekit/docs/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager6themesGSaPS_5Theme__"><code>ThemeManager.shared.themes</code></a></li>
+<li><a href="https://opensource.paw.cloud/themekit/docs/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager10userThemesGSaPS_5Theme__"><code>ThemeManager.shared.userThemes</code></a></li>
 </ul>
 
 <p>Example:</p>
@@ -271,7 +269,7 @@
 </code></pre>
 <a href='#manually-theming-windows' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='manually-theming-windows'>Manually theming windows</h4>
 
-<p>In case (<a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeKit/WindowThemePolicy.html"><code>WindowThemePolicy</code></a>) was NOT set to <code>.themeAllWindows</code>, you may need to manually theme a window. You can use our <code>NSWindow</code> extension for that:</p>
+<p>In case (<a href="https://opensource.paw.cloud/themekit/docs/Classes/ThemeKit/WindowThemePolicy.html"><code>WindowThemePolicy</code></a>) was NOT set to <code>.themeAllWindows</code>, you may need to manually theme a window. You can use our <code>NSWindow</code> extension for that:</p>
 <a href='#nswindow-extension' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h5 id='nswindow-extension'>NSWindow Extension</h5>
 
 <ul>
@@ -309,7 +307,7 @@ Please note that when using window specific themes, only the associated <code>NS
 </ul>
 <a href='#theme-aware-assets' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='theme-aware-assets'>Theme-aware Assets</h2>
 
-<p><a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeColor.html"><code>ThemeColor</code></a>, <a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeGradient.html"><code>ThemeGradient</code></a> and <a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeImage.html"><code>ThemeImage</code></a> provides colors, gradients and images, respectively, that dynamically change with the current theme.</p>
+<p><a href="https://opensource.paw.cloud/themekit/docs/Classes/ThemeColor.html"><code>ThemeColor</code></a>, <a href="https://opensource.paw.cloud/themekit/docs/Classes/ThemeGradient.html"><code>ThemeGradient</code></a> and <a href="https://opensource.paw.cloud/themekit/docs/Classes/ThemeImage.html"><code>ThemeImage</code></a> provides colors, gradients and images, respectively, that dynamically change with the current theme.</p>
 
 <p>Additionally, named colors from the <code>NSColor</code> class defined on the <code>ThemeColor</code> subclass extension will override the system ones, providing theme-aware colors.</p>
 
@@ -318,7 +316,7 @@ Please note that when using window specific themes, only the associated <code>NS
 <ul>
 <li><code>ThemeColor.brandColor</code> will resolve to <code>NSColor.blue</code> if the light theme is selected</li>
 <li><code>ThemeColor.brandColor</code> will resolve to <code>NSColor.white</code> if the dark theme is selected</li>
-<li><code>ThemeColor.brandColor</code> will resolve to <code>rgba(100, 50, 0, 0.5)</code> for some user-defined theme (<a href="https://paw.cloud/opensource/themekit/docs/Classes/UserTheme.html"><code>UserTheme</code></a>)</li>
+<li><code>ThemeColor.brandColor</code> will resolve to <code>rgba(100, 50, 0, 0.5)</code> for some user-defined theme (<a href="https://opensource.paw.cloud/themekit/docs/Classes/UserTheme.html"><code>UserTheme</code></a>)</li>
 </ul>
 
 <p>Similarly, defining a <code>ThemeColor.labelColor</code> will override <code>NSColor.labelColor</code> (<code>ThemeColor</code> is a subclass of <code>NSColor</code>), and <em>ThemeKit</em> will allow <code>labelColor</code> to be customized on a per-theme basis as well.</p>
@@ -339,11 +337,11 @@ Please note that when using window specific themes, only the associated <code>NS
 <li>original asset defined in system (e.g., <code>NSColor.labelColor</code>)</li>
 </ul>
 
-<p>Please refer to <a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeColor.html"><code>ThemeColor</code></a>, <a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeGradient.html"><code>ThemeGradient</code></a> and <a href="https://paw.cloud/opensource/themekit/docs/Classes/ThemeImage.html"><code>ThemeImage</code></a> for more information.</p>
+<p>Please refer to <a href="https://opensource.paw.cloud/themekit/docs/Classes/ThemeColor.html"><code>ThemeColor</code></a>, <a href="https://opensource.paw.cloud/themekit/docs/Classes/ThemeGradient.html"><code>ThemeGradient</code></a> and <a href="https://opensource.paw.cloud/themekit/docs/Classes/ThemeImage.html"><code>ThemeImage</code></a> for more information.</p>
 <a href='#creating-themes' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='creating-themes'>Creating Themes</h2>
 <a href='#native-themes' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='native-themes'>Native Themes</h3>
 
-<p>For creating additional themes, you only need to create a class that conforms to the <a href="https://paw.cloud/opensource/themekit/docs/Classes/Theme.html"><code>Theme</code></a> protocol and extends <code>NSObject</code>.</p>
+<p>For creating additional themes, you only need to create a class that conforms to the <a href="https://opensource.paw.cloud/themekit/docs/Classes/Theme.html"><code>Theme</code></a> protocol and extends <code>NSObject</code>.</p>
 
 <p>Sample theme:</p>
 <pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">Cocoa</span>
@@ -421,7 +419,7 @@ Please note that when using window specific themes, only the associated <code>NS
 <span class="kt">ThemeManager</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="n">userThemesFolderURL</span> <span class="o">=</span> <span class="c1">//...</span>
 </code></pre>
 
-<p>Please refer to <a href="https://paw.cloud/opensource/themekit/docs/Classes/UserTheme.html"><code>UserTheme</code></a> for more information.</p>
+<p>Please refer to <a href="https://opensource.paw.cloud/themekit/docs/Classes/UserTheme.html"><code>UserTheme</code></a> for more information.</p>
 <a href='#faq' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='faq'>FAQ</h2>
 <a href='#strong-can-controls-be-tinted-with-different-colors-strong' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='strong-can-controls-be-tinted-with-different-colors-strong'><strong>Can controls be tinted with different colors?</strong></h3>
 

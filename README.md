@@ -15,7 +15,9 @@
 
 *ThemeKit* is brought to you with ❤️ by the [Paw](https://paw.cloud) team.
 
-![ThemeKit](https://github.com/luckymarmot/ThemeKit/raw/themekit-initial/Imgs/ThemeKit.gif)
+<p align="left">
+  <img src="https://github.com/luckymarmot/ThemeKit/raw/themekit-initial/Imgs/ThemeKit.gif" width="675" height="390" alt="ThemeKit Animated Demo" />
+</p>
 
 ## Table of Contents
 * [Summary](#summary)

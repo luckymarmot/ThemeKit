@@ -20,6 +20,7 @@ import Foundation
  
  You can choose wheter or not to use these, and you can also implement your custom
  themes by:
+ 
  - implementing native `Theme` classes conforming to this protocol and `NSObject`
  - provide user themes (`UserTheme`) with `.theme` files
  

@@ -1,5 +1,5 @@
-<p align="left">
-  <img src="https://github.com/luckymarmot/ThemeKit/raw/themekit-initial/Imgs/ThemeKit.png" srcset="https://github.com/luckymarmot/ThemeKit/raw/themekit-initial/Imgs/ThemeKit@2x.png 2x" alt="ThemeKit" />
+<p align="left" style="margin-top: 20px;">
+  <img src="https://github.com/luckymarmot/ThemeKit/raw/themekit-initial/Imgs/ThemeKit@2x.png" width="377" height="105" alt="ThemeKit" />
 </p>
 ---
 

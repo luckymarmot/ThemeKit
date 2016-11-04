@@ -37,7 +37,7 @@ public extension NSWindow {
             return objc_getAssociatedObject(self, &themeAssociationKey) as? Theme
         }
         set(newValue) {
-            objc_setAssociatedObject(self, &themeAssociationKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+            objc_setAssociatedObject(self, &themeAssociationKey, newValue, .OBJC_ASSOCIATION_RETAIN)
             theme()
         }
     }
@@ -54,11 +54,16 @@ public extension NSWindow {
     
     /// Theme window if needed.
     public func theme() {
-        // Change window tab bar appearance
-        themeTabBar()
+        if currentTheme == nil || currentTheme! != windowEffectiveTheme {
+            // Keep record of currently applied theme
+            currentTheme = windowEffectiveTheme
         
-        // Change window appearance
-        themeWindow()
+            // Change window tab bar appearance
+            themeTabBar()
+            
+            // Change window appearance
+            themeWindow()
+        }
     }
     
     /// Theme window if compliant to ThemeManager.windowThemePolicy (and if needed).
@@ -172,51 +177,64 @@ public extension NSWindow {
     }
     
     
+    // MARK:- Caching
+    
+    /// Currently applied window theme.
+    private var currentTheme: Theme? {
+        get {
+            return objc_getAssociatedObject(self, &currentThemeAssociationKey) as? Theme
+        }
+        set(newValue) {
+            objc_setAssociatedObject(self, &currentThemeAssociationKey, newValue, .OBJC_ASSOCIATION_RETAIN)
+            purgeTheme()
+        }
+    }
+    
+    private func purgeTheme() {
+        tabBar = nil
+    }
+    
+    
     // MARK:- Tab bar view
     
     /// Returns the tab bar view.
     private var tabBar: NSView? {
-        // If we found before, return it
-        if windowTabBar != nil {
-            return windowTabBar
-        }
-        
-        var tabBar: NSView?
-        
-        // Search on titlebar accessory views if supported (will fail if tab bar is hidden)
-        let themeFrame = self.contentView?.superview
-        if themeFrame?.responds(to: #selector(getter: titlebarAccessoryViewControllers)) ?? false {
-            for controller: NSTitlebarAccessoryViewController in self.titlebarAccessoryViewControllers {
-                let possibleTabBar = controller.view.deepSubview(withClassName: "NSTabBar")
-                if possibleTabBar != nil {
-                    tabBar = possibleTabBar
-                    break
+        get {
+            // If cached, return it
+            if let storedTabBar = objc_getAssociatedObject(self, &tabbarAssociationKey) as? NSView {
+                return storedTabBar
+            }
+
+            var _tabBar: NSView?
+            
+            // Search on titlebar accessory views if supported (will fail if tab bar is hidden)
+            let themeFrame = self.contentView?.superview
+            if themeFrame?.responds(to: #selector(getter: titlebarAccessoryViewControllers)) ?? false {
+                for controller: NSTitlebarAccessoryViewController in self.titlebarAccessoryViewControllers {
+                    if let possibleTabBar = controller.view.deepSubview(withClassName: "NSTabBar") {
+                        _tabBar = possibleTabBar
+                        break
+                    }
                 }
             }
+            
+            // Search down the title bar view
+            if _tabBar == nil {
+                let titlebarContainerView = themeFrame?.deepSubview(withClassName: "NSTitlebarContainerView")
+                let titlebarView = titlebarContainerView?.deepSubview(withClassName: "NSTitlebarView")
+                _tabBar = titlebarView?.deepSubview(withClassName: "NSTabBar")
+            }
+            
+            // Remember it
+            if _tabBar != nil {
+                objc_setAssociatedObject(self, &tabbarAssociationKey, _tabBar, .OBJC_ASSOCIATION_RETAIN)
+            }
+            
+            return _tabBar
         }
         
-        // Search down the title bar view
-        if tabBar == nil {
-            let titlebarContainerView = themeFrame?.deepSubview(withClassName: "NSTitlebarContainerView")
-            let titlebarView = titlebarContainerView?.deepSubview(withClassName: "NSTitlebarView")
-            tabBar = titlebarView?.deepSubview(withClassName: "NSTabBar")
-        }
-        
-        // Remember it
-        if tabBar != nil {
-            windowTabBar = tabBar
-        }
-        
-        return tabBar
-    }
-    
-    /// Holds a reference to tabbar as associated object
-    private var windowTabBar: NSView? {
-        get {
-            return objc_getAssociatedObject(self, &tabbarAssociationKey) as? NSView
-        }
         set(newValue) {
-            objc_setAssociatedObject(self, &tabbarAssociationKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+            objc_setAssociatedObject(self, &tabbarAssociationKey, newValue, .OBJC_ASSOCIATION_RETAIN)
         }
     }
     
@@ -249,19 +267,22 @@ public extension NSWindow {
     
     /// Update tab bar appearance (if needed).
     private func themeTabBar() {
-        if isTabBarVisible {
-            if let _tabBar = tabBar, _tabBar.appearance != windowEffectiveThemeAppearance {
-                // Change tabbar appearance...
-                _tabBar.appearance = windowEffectiveThemeAppearance
-                // ... and tabbar subviews appearance as well
-                for tabBarSubview: NSView in (tabBar?.subviews)! {
-                    tabBarSubview.needsDisplay = true
-                }
-                // Also, make sure tabbar is on top (this also properly refreshes it)
-                let tabbarSuperview = _tabBar.superview
-                tabbarSuperview?.addSubview(_tabBar)
-            }
+        let _tabBar: NSView? = tabBar
+        guard _tabBar != nil && isTabBarVisible && _tabBar!.appearance != windowEffectiveThemeAppearance else {
+            return
         }
+        
+        // Change tabbar appearance
+        _tabBar!.appearance = windowEffectiveThemeAppearance
+        
+        // Refresh its subviews
+        for tabBarSubview: NSView in (tabBar?.subviews)! {
+            tabBarSubview.needsDisplay = true
+        }
+        
+        // Also, make sure tabbar is on top (this also properly refreshes it)
+        let tabbarSuperview = _tabBar!.superview
+        tabbarSuperview?.addSubview(_tabBar!)
     }
     
     
@@ -275,5 +296,6 @@ public extension NSWindow {
     }
 }
 
-private var themeAssociationKey: UInt8 = 0
-private var tabbarAssociationKey: UInt8 = 1
+private var currentThemeAssociationKey: UInt8 = 0
+private var themeAssociationKey: UInt8 = 1
+private var tabbarAssociationKey: UInt8 = 2

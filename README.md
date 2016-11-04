@@ -249,7 +249,7 @@ For creating additional themes, you only need to create a class that conforms to
 
 Sample theme:
 
-```
+```swift
 import Cocoa
 import ThemeKit
 	
@@ -324,7 +324,7 @@ fallbackGradient = linear-gradient($blue, rgba(200, 140, 60, 1.0))
 
 To enable support for user themes, just need to set the location for them:
 
-```
+```swift
 // Setup ThemeKit user themes folder
 ThemeManager.shared.userThemesFolderURL = //...
 ```
@@ -334,26 +334,37 @@ Please refer to [`UserTheme`](https://paw.cloud/opensource/themekit/docs/Classes
 
 ## FAQ
 
-### Can controls be tinted with different colors?
+### **Can controls be tinted with different colors?**
 Other than the colors set by the inherited appearance - light (dark text on light background) or dark (light text on dark background) - natively, it is not possible to specify different colors for the text and/or background fills of controls (buttons, popups, etc).
 
 For simple cases, overriding `NSColor` can be sufficient: for example, `NSColor.labelColor` is a named color used for text labels; overriding it will allow to have all labels themed accordingly. You can get a list of all overridable named colors (class method names) with `NSColor.colorMethodNames()`.
 
 For more complex cases, like views/controls with custom drawing, please refer to next question.
 
-### Can I make custom drawing views/controls theme-aware?
+### **Can I make custom drawing views/controls theme-aware?**
 Yes, you can! Implement your own custom controls drawing using [Theme-aware Assets](#theme-aware-assets) (`ThemeColor` and `ThemeGradient`) so that your controls drawing will always adapt to your current theme... automatically!
 
 In case needed (for example, if drawing is being cached), you can observe when theme changes to refresh the UI or to perform any theme related operation. Check *"Observing theme changes"* on [Usage](#usage) section above.
 
-### I'm having font smoothing issues!
+### **Scrollbars appear all white on dark themes!**
+If the user opts for always showing the scrollbars on *System Preferences*, scrollbars may render all white on dark themes. To bypass this, we need to observe for theme changes and change its background color directly. E.g.,
+
+   ```swift
+   scrollView?.backgroundColor = ThemeColor.myBackgroundColor
+   scrollView?.wantsLayer = true
+   NotificationCenter.default.addObserver(forName: .didChangeTheme, object: nil, queue: nil) { (note) in
+     scrollView?.verticalScroller?.layer?.backgroundColor = ThemeColor.myBackgroundColor.cgColor
+   }
+   ```
+
+### **I'm having font smoothing issues!**
 You may run into font smoothing issues, when you use text without a background color set. Bottom line is, always specify/draw a background when using/drawing text. 
 
   1. For controls like `NSTextField`, `NSTextView`, etc:
    
     Specify a background color on the control. E.g.,
     
-    ```
+    ```swift
     control.backgroundColor = NSColor.black
     ```
     
@@ -361,7 +372,7 @@ You may run into font smoothing issues, when you use text without a background c
 
     First draw a background fill, then enable font smoothing and render your text. E.g.,
     
-    ```
+    ```swift
     let context = NSGraphicsContext.current()?.cgContext
     NSColor.black.set()
     context?.fill(frame)
@@ -374,7 +385,7 @@ You may run into font smoothing issues, when you use text without a background c
     ``` 
     As a last solution - if you really can't draw a background color - you can disable font smoothing which can slightly improve text rendering:
     
-    ```
+    ```swift
     let context = NSGraphicsContext.current()?.cgContext
     context?.saveGState()
     context?.setShouldSmoothFonts(false)

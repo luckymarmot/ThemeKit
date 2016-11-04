@@ -61,7 +61,7 @@ public class ThemeManager: NSObject {
     // MARK: -
     // MARK: Themes
 
-    /// Returns the current theme.
+    /// Sets or returns the current theme.
     ///
     /// This property is KVO compliant. Value is stored on user defaults under key
     /// `userDefaultsThemeKey`.

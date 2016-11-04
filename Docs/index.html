@@ -342,38 +342,38 @@ Please note that when using window specific themes, only the associated <code>NS
 <p>For creating additional themes, you only need to create a class that conforms to the <a href="https://paw.cloud/opensource/themekit/docs/Classes/Theme.html"><code>Theme</code></a> protocol and extends <code>NSObject</code>.</p>
 
 <p>Sample theme:</p>
-<pre class="highlight plaintext"><code>import Cocoa
-import ThemeKit
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">Cocoa</span>
+<span class="kd">import</span> <span class="kt">ThemeKit</span>
 
-class MyOwnTheme: NSObject, Theme {
+<span class="kd">class</span> <span class="kt">MyOwnTheme</span><span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">Theme</span> <span class="p">{</span>
 
-    /// Light theme identifier (static).
-    public static var identifier: String = "com.luckymarmot.ThemeKit.MyOwnTheme"
+    <span class="c1">/// Light theme identifier (static).</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"com.luckymarmot.ThemeKit.MyOwnTheme"</span>
 
-    /// Unique theme identifier.
-    public var identifier: String = MyOwnTheme.identifier
+    <span class="c1">/// Unique theme identifier.</span>
+    <span class="kd">public</span> <span class="k">var</span> <span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kt">MyOwnTheme</span><span class="o">.</span><span class="n">identifier</span>
 
-    /// Theme display name.
-    public var displayName: String = "My Own Theme"
+    <span class="c1">/// Theme display name.</span>
+    <span class="kd">public</span> <span class="k">var</span> <span class="nv">displayName</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"My Own Theme"</span>
 
-    /// Theme short display name.
-    public var shortDisplayName: String = "My Own"
+    <span class="c1">/// Theme short display name.</span>
+    <span class="kd">public</span> <span class="k">var</span> <span class="nv">shortDisplayName</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"My Own"</span>
 
-    /// Is this a dark theme?
-    public var isDarkTheme: Bool = false
+    <span class="c1">/// Is this a dark theme?</span>
+    <span class="kd">public</span> <span class="k">var</span> <span class="nv">isDarkTheme</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span>
 
-    /// Description (optional).
-    public override var description : String {
-        return "&lt;\(MyOwnTheme.self): \(themeDescription(self))&gt;"
-    }
+    <span class="c1">/// Description (optional).</span>
+    <span class="kd">public</span> <span class="k">override</span> <span class="k">var</span> <span class="nv">description</span> <span class="p">:</span> <span class="kt">String</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s">"&lt;</span><span class="se">\(</span><span class="kt">MyOwnTheme</span><span class="o">.</span><span class="k">self</span><span class="se">)</span><span class="s">: </span><span class="se">\(</span><span class="nf">themeDescription</span><span class="p">(</span><span class="k">self</span><span class="p">)</span><span class="se">)</span><span class="s">&gt;"</span>
+    <span class="p">}</span>
 
-    // MARK: -
-    // MARK: Theme Assets
+    <span class="c1">// MARK: -</span>
+    <span class="c1">// MARK: Theme Assets</span>
 
-    // Here you can define the instance methods for the class methods defined 
-    // on `ThemeColor`, `ThemeGradient` and `ThemeImage`, if any. Check
-    // documentation of these classes for more details.
-}
+    <span class="c1">// Here you can define the instance methods for the class methods defined </span>
+    <span class="c1">// on `ThemeColor`, `ThemeGradient` and `ThemeImage`, if any. Check</span>
+    <span class="c1">// documentation of these classes for more details.</span>
+<span class="p">}</span>
 </code></pre>
 <a href='#user-themes' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='user-themes'>User Themes</h3>
 
@@ -413,25 +413,34 @@ class MyOwnTheme: NSObject, Theme {
 </code></pre>
 
 <p>To enable support for user themes, just need to set the location for them:</p>
-<pre class="highlight plaintext"><code>// Setup ThemeKit user themes folder
-ThemeManager.shared.userThemesFolderURL = //...
+<pre class="highlight swift"><code><span class="c1">// Setup ThemeKit user themes folder</span>
+<span class="kt">ThemeManager</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="n">userThemesFolderURL</span> <span class="o">=</span> <span class="c1">//...</span>
 </code></pre>
 
 <p>Please refer to <a href="https://paw.cloud/opensource/themekit/docs/Classes/UserTheme.html"><code>UserTheme</code></a> for more information.</p>
 <a href='#faq' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='faq'>FAQ</h2>
-<a href='#can-controls-be-tinted-with-different-colors' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='can-controls-be-tinted-with-different-colors'>Can controls be tinted with different colors?</h3>
+<a href='#strong-can-controls-be-tinted-with-different-colors-strong' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='strong-can-controls-be-tinted-with-different-colors-strong'><strong>Can controls be tinted with different colors?</strong></h3>
 
 <p>Other than the colors set by the inherited appearance - light (dark text on light background) or dark (light text on dark background) - natively, it is not possible to specify different colors for the text and/or background fills of controls (buttons, popups, etc).</p>
 
 <p>For simple cases, overriding <code>NSColor</code> can be sufficient: for example, <code>NSColor.labelColor</code> is a named color used for text labels; overriding it will allow to have all labels themed accordingly. You can get a list of all overridable named colors (class method names) with <code>NSColor.colorMethodNames()</code>.</p>
 
 <p>For more complex cases, like views/controls with custom drawing, please refer to next question.</p>
-<a href='#can-i-make-custom-drawing-views-controls-theme-aware' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='can-i-make-custom-drawing-views-controls-theme-aware'>Can I make custom drawing views/controls theme-aware?</h3>
+<a href='#strong-can-i-make-custom-drawing-views-controls-theme-aware-strong' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='strong-can-i-make-custom-drawing-views-controls-theme-aware-strong'><strong>Can I make custom drawing views/controls theme-aware?</strong></h3>
 
 <p>Yes, you can! Implement your own custom controls drawing using <a href="#theme-aware-assets">Theme-aware Assets</a> (<code>ThemeColor</code> and <code>ThemeGradient</code>) so that your controls drawing will always adapt to your current theme&hellip; automatically!</p>
 
 <p>In case needed (for example, if drawing is being cached), you can observe when theme changes to refresh the UI or to perform any theme related operation. Check <em><q>Observing theme changes</q></em> on <a href="#usage">Usage</a> section above.</p>
-<a href='#i-39-m-having-font-smoothing-issues' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='i-39-m-having-font-smoothing-issues'>I&rsquo;m having font smoothing issues!</h3>
+<a href='#strong-scrollbars-appear-all-white-on-dark-themes-strong' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='strong-scrollbars-appear-all-white-on-dark-themes-strong'><strong>Scrollbars appear all white on dark themes!</strong></h3>
+
+<p>If the user opts for always showing the scrollbars on <em>System Preferences</em>, scrollbars may render all white on dark themes. To bypass this, we need to observe for theme changes and change its background color directly. E.g.,</p>
+<pre class="highlight swift"><code>   <span class="n">scrollView</span><span class="p">?</span><span class="o">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="kt">ThemeColor</span><span class="o">.</span><span class="n">myBackgroundColor</span>
+   <span class="n">scrollView</span><span class="p">?</span><span class="o">.</span><span class="n">wantsLayer</span> <span class="o">=</span> <span class="kc">true</span>
+   <span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="nv">forName</span><span class="p">:</span> <span class="o">.</span><span class="n">didChangeTheme</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">queue</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">note</span><span class="p">)</span> <span class="k">in</span>
+     <span class="n">scrollView</span><span class="p">?</span><span class="o">.</span><span class="n">verticalScroller</span><span class="p">?</span><span class="o">.</span><span class="n">layer</span><span class="p">?</span><span class="o">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="kt">ThemeColor</span><span class="o">.</span><span class="n">myBackgroundColor</span><span class="o">.</span><span class="n">cgColor</span>
+   <span class="p">}</span>
+</code></pre>
+<a href='#strong-i-39-m-having-font-smoothing-issues-strong' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='strong-i-39-m-having-font-smoothing-issues-strong'><strong>I&rsquo;m having font smoothing issues!</strong></h3>
 
 <p>You may run into font smoothing issues, when you use text without a background color set. Bottom line is, always specify/draw a background when using/drawing text. </p>
 
@@ -439,30 +448,30 @@ ThemeManager.shared.userThemesFolderURL = //...
 <li><p>For controls like <code>NSTextField</code>, <code>NSTextView</code>, etc:</p>
 
 <p>Specify a background color on the control. E.g.,</p>
-<pre class="highlight plaintext"><code>control.backgroundColor = NSColor.black
+<pre class="highlight swift"><code><span class="n">control</span><span class="o">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="kt">NSColor</span><span class="o">.</span><span class="n">black</span>
 </code></pre></li>
 <li><p>For custom text rendering:</p>
 
 <p>First draw a background fill, then enable font smoothing and render your text. E.g.,</p>
-<pre class="highlight plaintext"><code>let context = NSGraphicsContext.current()?.cgContext
-NSColor.black.set()
-context?.fill(frame)
-context?.saveGState()
-context?.setShouldSmoothFonts(true)
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">context</span> <span class="o">=</span> <span class="kt">NSGraphicsContext</span><span class="o">.</span><span class="nf">current</span><span class="p">()?</span><span class="o">.</span><span class="n">cgContext</span>
+<span class="kt">NSColor</span><span class="o">.</span><span class="n">black</span><span class="o">.</span><span class="nf">set</span><span class="p">()</span>
+<span class="n">context</span><span class="p">?</span><span class="o">.</span><span class="nf">fill</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+<span class="n">context</span><span class="p">?</span><span class="o">.</span><span class="nf">saveGState</span><span class="p">()</span>
+<span class="n">context</span><span class="p">?</span><span class="o">.</span><span class="nf">setShouldSmoothFonts</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
 
-// draw text...
+<span class="c1">// draw text...</span>
 
-context?.restoreGState()
+<span class="n">context</span><span class="p">?</span><span class="o">.</span><span class="nf">restoreGState</span><span class="p">()</span>
 </code></pre>
 
 <p>As a last solution - if you really can&rsquo;t draw a background color - you can disable font smoothing which can slightly improve text rendering:</p>
-<pre class="highlight plaintext"><code>let context = NSGraphicsContext.current()?.cgContext
-context?.saveGState()
-context?.setShouldSmoothFonts(false)
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">context</span> <span class="o">=</span> <span class="kt">NSGraphicsContext</span><span class="o">.</span><span class="nf">current</span><span class="p">()?</span><span class="o">.</span><span class="n">cgContext</span>
+<span class="n">context</span><span class="p">?</span><span class="o">.</span><span class="nf">saveGState</span><span class="p">()</span>
+<span class="n">context</span><span class="p">?</span><span class="o">.</span><span class="nf">setShouldSmoothFonts</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
 
-// draw text...
+<span class="c1">// draw text...</span>
 
-context?.restoreGState()
+<span class="n">context</span><span class="p">?</span><span class="o">.</span><span class="nf">restoreGState</span><span class="p">()</span>
 </code></pre></li>
 <li><p>For custom <code>NSButton</code>&rsquo;s:</p>
 

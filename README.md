@@ -41,15 +41,15 @@
 - Neglected performance impact
 - Automatically theme windows (configurable)
 - Themes:
-  - [`LightTheme`](https://paw.cloud/opensource/themekit/docs/Classes/LightTheme.html) (default macOS appearance)
-  - [`DarkTheme`](https://paw.cloud/opensource/themekit/docs/Classes/DarkTheme.html)
-  - [`SystemTheme`](https://paw.cloud/opensource/themekit/docs/Classes/SystemTheme.html) (default theme). Dynamically resolves to `ThemeManager.lightTheme` or `ThemeManager.darkTheme`, depending on the *"System Preferences > General > Appearance"*.
-  - Support for custom themes ([`Theme`](https://paw.cloud/opensource/themekit/docs/Classes/Theme.html))
-  - Support for user-defined themes ([`UserTheme`](https://paw.cloud/opensource/themekit/docs/Classes/UserTheme.html))
+  - [`LightTheme`](https://opensource.paw.cloud/themekit/docs/Classes/LightTheme.html) (default macOS appearance)
+  - [`DarkTheme`](https://opensource.paw.cloud/themekit/docs/Classes/DarkTheme.html)
+  - [`SystemTheme`](https://opensource.paw.cloud/themekit/docs/Classes/SystemTheme.html) (default theme). Dynamically resolves to `ThemeManager.lightTheme` or `ThemeManager.darkTheme`, depending on the *"System Preferences > General > Appearance"*.
+  - Support for custom themes ([`Theme`](https://opensource.paw.cloud/themekit/docs/Classes/Theme.html))
+  - Support for user-defined themes ([`UserTheme`](https://opensource.paw.cloud/themekit/docs/Classes/UserTheme.html))
 - Theme-aware assets:
-  - [`ThemeColor`](https://paw.cloud/opensource/themekit/docs/Classes/ThemeColor.html): colors that dynamically change with the theme
-  - [`ThemeGradient`](https://paw.cloud/opensource/themekit/docs/Classes/ThemeGradient.html): gradients that dynamically change with the theme
-  - [`ThemeImage`](https://paw.cloud/opensource/themekit/docs/Classes/ThemeImage.html): images that dynamically change with the theme
+  - [`ThemeColor`](https://opensource.paw.cloud/themekit/docs/Classes/ThemeColor.html): colors that dynamically change with the theme
+  - [`ThemeGradient`](https://opensource.paw.cloud/themekit/docs/Classes/ThemeGradient.html): gradients that dynamically change with the theme
+  - [`ThemeImage`](https://opensource.paw.cloud/themekit/docs/Classes/ThemeImage.html): images that dynamically change with the theme
   - Optional override of `NSColor` named colors (e.g., `labelColor`) to dynamically change with the theme
 
 ## Installation
@@ -95,7 +95,7 @@ func applicationWillFinishLaunching(_ notification: Notification) {
 
 ### Advanced Usage
 
-The following code will define which windows should be automatically themed ([`WindowThemePolicy`](https://paw.cloud/opensource/themekit/docs/Classes/ThemeKit/WindowThemePolicy.html)) and add support for user themes ([`UserTheme`](https://paw.cloud/opensource/themekit/docs/Classes/UserTheme.html)):
+The following code will define which windows should be automatically themed ([`WindowThemePolicy`](https://opensource.paw.cloud/themekit/docs/Classes/ThemeKit/WindowThemePolicy.html)) and add support for user themes ([`UserTheme`](https://opensource.paw.cloud/themekit/docs/Classes/UserTheme.html)):
 
 ```swift
 func applicationWillFinishLaunching(_ notification: Notification) {
@@ -151,10 +151,10 @@ NotificationCenter.default.addObserver(self, selector: #selector(changedTheme(_:
 
 Additionaly, the following properties are KVO compliant:
 
-- [`ThemeManager.shared.theme`](https://paw.cloud/opensource/themekit/docs/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager6themesGSaPS_5Theme__)
-- [`ThemeManager.shared.effectiveTheme`](https://paw.cloud/opensource/themekit/docs/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager14effectiveThemePS_5Theme_)
-- [`ThemeManager.shared.themes`](https://paw.cloud/opensource/themekit/docs/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager6themesGSaPS_5Theme__)
-- [`ThemeManager.shared.userThemes`](https://paw.cloud/opensource/themekit/docs/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager10userThemesGSaPS_5Theme__)
+- [`ThemeManager.shared.theme`](https://opensource.paw.cloud/themekit/docs/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager6themesGSaPS_5Theme__)
+- [`ThemeManager.shared.effectiveTheme`](https://opensource.paw.cloud/themekit/docs/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager14effectiveThemePS_5Theme_)
+- [`ThemeManager.shared.themes`](https://opensource.paw.cloud/themekit/docs/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager6themesGSaPS_5Theme__)
+- [`ThemeManager.shared.userThemes`](https://opensource.paw.cloud/themekit/docs/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager10userThemesGSaPS_5Theme__)
 
 Example:
 
@@ -172,7 +172,7 @@ public override func observeValue(forKeyPath keyPath: String?, of object: Any?, 
 
 #### Manually theming windows
 
-In case ([`WindowThemePolicy`](https://paw.cloud/opensource/themekit/docs/Classes/ThemeKit/WindowThemePolicy.html)) was NOT set to `.themeAllWindows`, you may need to manually theme a window. You can use our `NSWindow` extension for that:
+In case ([`WindowThemePolicy`](https://opensource.paw.cloud/themekit/docs/Classes/ThemeKit/WindowThemePolicy.html)) was NOT set to `.themeAllWindows`, you may need to manually theme a window. You can use our `NSWindow` extension for that:
 
 ##### NSWindow Extension
 
@@ -216,7 +216,7 @@ In case ([`WindowThemePolicy`](https://paw.cloud/opensource/themekit/docs/Classe
 
 ## Theme-aware Assets
 
-[`ThemeColor`](https://paw.cloud/opensource/themekit/docs/Classes/ThemeColor.html), [`ThemeGradient`](https://paw.cloud/opensource/themekit/docs/Classes/ThemeGradient.html) and [`ThemeImage`](https://paw.cloud/opensource/themekit/docs/Classes/ThemeImage.html) provides colors, gradients and images, respectively, that dynamically change with the current theme.
+[`ThemeColor`](https://opensource.paw.cloud/themekit/docs/Classes/ThemeColor.html), [`ThemeGradient`](https://opensource.paw.cloud/themekit/docs/Classes/ThemeGradient.html) and [`ThemeImage`](https://opensource.paw.cloud/themekit/docs/Classes/ThemeImage.html) provides colors, gradients and images, respectively, that dynamically change with the current theme.
 
 Additionally, named colors from the `NSColor` class defined on the `ThemeColor` subclass extension will override the system ones, providing theme-aware colors.
 
@@ -224,7 +224,7 @@ For example, a project defines a `ThemeColor.brandColor` color. This will resolv
 
 - `ThemeColor.brandColor` will resolve to `NSColor.blue` if the light theme is selected
 - `ThemeColor.brandColor` will resolve to `NSColor.white` if the dark theme is selected
-- `ThemeColor.brandColor` will resolve to `rgba(100, 50, 0, 0.5)` for some user-defined theme ([`UserTheme`](https://paw.cloud/opensource/themekit/docs/Classes/UserTheme.html))
+- `ThemeColor.brandColor` will resolve to `rgba(100, 50, 0, 0.5)` for some user-defined theme ([`UserTheme`](https://opensource.paw.cloud/themekit/docs/Classes/UserTheme.html))
 
 Similarly, defining a `ThemeColor.labelColor` will override `NSColor.labelColor` (`ThemeColor` is a subclass of `NSColor`), and *ThemeKit* will allow `labelColor` to be customized on a per-theme basis as well.
 
@@ -241,12 +241,12 @@ However, for overrided system named colors, the fallback mechanism is different 
 - the asset name, defined in theme (e.g., `labelColor`)
 - original asset defined in system (e.g., `NSColor.labelColor`)
 
-Please refer to [`ThemeColor`](https://paw.cloud/opensource/themekit/docs/Classes/ThemeColor.html), [`ThemeGradient`](https://paw.cloud/opensource/themekit/docs/Classes/ThemeGradient.html) and [`ThemeImage`](https://paw.cloud/opensource/themekit/docs/Classes/ThemeImage.html) for more information.
+Please refer to [`ThemeColor`](https://opensource.paw.cloud/themekit/docs/Classes/ThemeColor.html), [`ThemeGradient`](https://opensource.paw.cloud/themekit/docs/Classes/ThemeGradient.html) and [`ThemeImage`](https://opensource.paw.cloud/themekit/docs/Classes/ThemeImage.html) for more information.
 
 ## Creating Themes
 
 ### Native Themes
-For creating additional themes, you only need to create a class that conforms to the [`Theme`](https://paw.cloud/opensource/themekit/docs/Classes/Theme.html) protocol and extends `NSObject`.
+For creating additional themes, you only need to create a class that conforms to the [`Theme`](https://opensource.paw.cloud/themekit/docs/Classes/Theme.html) protocol and extends `NSObject`.
 
 Sample theme:
 
@@ -330,7 +330,7 @@ To enable support for user themes, just need to set the location for them:
 ThemeManager.shared.userThemesFolderURL = //...
 ```
 
-Please refer to [`UserTheme`](https://paw.cloud/opensource/themekit/docs/Classes/UserTheme.html) for more information.
+Please refer to [`UserTheme`](https://opensource.paw.cloud/themekit/docs/Classes/UserTheme.html) for more information.
 
 
 ## FAQ

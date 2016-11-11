@@ -90,40 +90,37 @@ extension NSColor {
     
     // ThemeKit.set() replacement to use theme-aware color
     public func themeKitSet() {
+        // call original .set() function
+        themeKitSet()
+
         // check if the user provides an alternative color
         if isThemeOverriden {
             // call ThemeColor.set() function
             ThemeColor.color(with: colorNameComponent).set()
         }
-        else {
-            // call original .set() function
-            themeKitSet()
-        }
     }
-    
+
     // ThemeKit.setFill() replacement to use theme-aware color
     public func themeKitSetFill() {
+        // call original .setFill() function
+        themeKitSetFill()
+
         // check if the user provides an alternative color
         if isThemeOverriden {
             // call ThemeColor.setFill() function
             ThemeColor.color(with: colorNameComponent).setFill()
         }
-        else {
-            // call original .setFill() function
-            themeKitSetFill()
-        }
     }
-    
+
     // ThemeKit.setStroke() replacement to use theme-aware color
     public func themeKitSetStroke() {
+        // call original .setStroke() function
+        themeKitSetStroke()
+
         // check if the user provides an alternative color
         if isThemeOverriden {
             // call ThemeColor.setStroke() function
             ThemeColor.color(with: colorNameComponent).setStroke()
-        }
-        else {
-            // call original .setStroke() function
-            themeKitSetStroke()
         }
     }
     

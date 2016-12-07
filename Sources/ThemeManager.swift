@@ -70,19 +70,23 @@ public class ThemeManager: NSObject {
             return _theme ?? ThemeManager.defaultTheme
         }
         set(newTheme) {
-            // Store identifier on user defaults
-            if newTheme.identifier != UserDefaults.standard.string(forKey: ThemeManager.userDefaultsThemeKey) {
-                UserDefaults.standard.set(newTheme.identifier, forKey: ThemeManager.userDefaultsThemeKey)
-            }
-            
             // Apply theme
             if _theme == nil || newTheme != _theme! || newTheme is UserTheme {
                 applyTheme(newTheme)
+            }
+            
+            // Store identifier on user defaults
+            if newTheme.identifier != UserDefaults.standard.string(forKey: ThemeManager.userDefaultsThemeKey) {
+                _storingThemeOnUserDefaults = true
+                UserDefaults.standard.set(newTheme.identifier, forKey: ThemeManager.userDefaultsThemeKey)
+                _storingThemeOnUserDefaults = false
             }
         }
     }
     /// Internal storage for `theme` property. Doesn't trigger an `applyTheme()` call.
     private var _theme: Theme?
+    /// Internal variable set when storing theme on user defaults, to prevent infinte loops.
+    private var _storingThemeOnUserDefaults: Bool = false
     
     /// Returns the current effective theme (read-only).
     ///
@@ -406,7 +410,7 @@ public class ThemeManager: NSObject {
     
     // Called when theme is changed on `NSUserDefaults`.
     public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        guard keyPath == themeChangeKVOKeyPath else { return }
+        guard keyPath == themeChangeKVOKeyPath && !_storingThemeOnUserDefaults else { return }
         
         // Theme selected on user defaults
         let userDefaultsThemeIdentifier = UserDefaults.standard.string(forKey: ThemeManager.userDefaultsThemeKey)

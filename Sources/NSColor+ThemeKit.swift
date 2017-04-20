@@ -15,18 +15,22 @@ import Foundation
  */
 extension NSColor {
     
-    /// Initialize
-    open override class func initialize() {
-        // process once (if swizzle needed)
-        guard !processed else { return }
-        processed = true
+    /// Swizzle NSColor in case we are replacing system colors by themable colors.
+    public static func swizzleNSColor() {
+        swizzleNSColorOnce
+    }
+    
+    /// Swizzle NSColor in case we are replacing system colors by themable colors.
+    /// This code is executed *only once* (even if invoked multiple times).
+    private static let swizzleNSColorOnce: Void = {
+        // swizzle only if needed
         guard needsSwizzling else { return }
         
         // swizzle NSColor methods
         swizzleInstanceMethod(cls: NSClassFromString("NSDynamicSystemColor"), selector: #selector(set), withSelector: #selector(themeKitSet))
         swizzleInstanceMethod(cls: NSClassFromString("NSDynamicSystemColor"), selector: #selector(setFill), withSelector: #selector(themeKitSetFill))
         swizzleInstanceMethod(cls: NSClassFromString("NSDynamicSystemColor"), selector: #selector(setStroke), withSelector: #selector(themeKitSetStroke))
-    }
+    }()
     
     /// Check if a given color string is overriden in a ThemeColor extension.
     public var isThemeOverriden: Bool {
@@ -64,9 +68,6 @@ extension NSColor {
     }
     
     // MARK: - Private
-    
-    /// Processed flag.
-    @nonobjc static private var processed = false
     
     /// Check if we need to swizzle NSDynamicSystemColor class.
     private class var needsSwizzling: Bool {

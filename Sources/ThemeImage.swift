@@ -8,8 +8,8 @@
 
 import Foundation
 
-private var _cachedImages: NSCache<NSNumber, ThemeImage>!
-private var _cachedThemeImages: NSCache<NSNumber, NSImage>!
+private var _cachedImages: NSCache<NSNumber, ThemeImage> = NSCache()
+private var _cachedThemeImages: NSCache<NSNumber, NSImage> = NSCache()
 
 
 /**
@@ -246,13 +246,6 @@ open class ThemeImage : NSImage {
         
         // otherwise, return current theme image
         return ThemeImage.image(with: selector)
-    }
-    
-    open override class func initialize() {
-        _cachedImages = NSCache.init()
-        _cachedThemeImages = NSCache.init()
-        _cachedImages.name = "com.luckymarmot.ThemeImage.cachedImages"
-        _cachedThemeImages.name = "com.luckymarmot.ThemeImage.cachedThemeImages"
     }
     
     /// Returns a new `ThemeImage` for the given selector.

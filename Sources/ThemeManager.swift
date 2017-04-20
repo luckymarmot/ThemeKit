@@ -29,22 +29,17 @@ public class ThemeManager: NSObject {
     // MARK: -
     // MARK: Initialization & Cleanup
     
-    open override class func initialize() {
-        // Observe when application will finish launching
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.NSApplicationWillFinishLaunching, object: nil, queue: nil) { (Notification) in
-            // Apply theme from User Defaults
-            ThemeManager.shared.applyUserDefaultsTheme()
-            
-            // Observe and theme new windows (before being displayed onscreen)
-            NotificationCenter.default.addObserver(forName: NSNotification.Name.NSWindowDidUpdate, object: nil, queue: nil) { (notification) in
-                let window = notification.object as! NSWindow?
-                window?.themeIfCompliantWithWindowThemePolicy()
-            }
-        }
-    }
-    
     private override init() {
         super.init()
+        
+        // Initialize custom NSColor code (swizzle NSColor, if needed)
+        NSColor.swizzleNSColor()
+        
+        // Observe and theme new windows (before being displayed onscreen)
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.NSWindowDidUpdate, object: nil, queue: nil) { (notification) in
+            let window = notification.object as! NSWindow?
+            window?.themeIfCompliantWithWindowThemePolicy()
+        }
 
         // Observe current theme on User Defaults
         NSUserDefaultsController.shared().addObserver(self, forKeyPath: themeChangeKVOKeyPath, options: NSKeyValueObservingOptions.init(rawValue: 0), context: nil)
@@ -197,8 +192,11 @@ public class ThemeManager: NSObject {
     /// Current `theme.identifier` will be stored under the `"ThemeKitTheme"` `NSUserDefaults` key.
     static public let userDefaultsThemeKey = "ThemeKitTheme"
     
-    /// Apply theme stored on user defaults (or default `ThemeManager.defaultTheme`).
-    private func applyUserDefaultsTheme() {
+    /// Apply last applied theme, or default, if none.
+    ///
+    /// Get last applied theme from user defaults and load it. If no theme was
+    /// previously applied, load the default theme (`ThemeManager.defaultTheme`).
+    public func applyLastOrDefaultTheme() {
         let userDefaultsTheme = theme(withIdentifier: UserDefaults.standard.string(forKey: ThemeManager.userDefaultsThemeKey))
         (userDefaultsTheme ?? ThemeManager.defaultTheme).apply()
     }
@@ -276,7 +274,7 @@ public class ThemeManager: NSObject {
                 
                 // Re-apply current theme if user theme
                 if theme is UserTheme {
-                    applyUserDefaultsTheme()
+                    applyLastOrDefaultTheme()
                 }
             }
         }
@@ -308,7 +306,7 @@ public class ThemeManager: NSObject {
         cachedUserThemes = nil
         
         if effectiveTheme is UserTheme {
-            applyUserDefaultsTheme()
+            applyLastOrDefaultTheme()
         }
     
         didChangeValue(forKey: #keyPath(userThemes))
@@ -417,7 +415,7 @@ public class ThemeManager: NSObject {
         
         // Theme was changed on user defaults -> apply
         if userDefaultsThemeIdentifier != theme.identifier {
-            applyUserDefaultsTheme()
+            applyLastOrDefaultTheme()
         }
     }
     

@@ -48,13 +48,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // let users know about our choosen user themes folder
         NSLog("ThemeManager.shared.userThemesFolderURL: %@", ThemeManager.shared.userThemesFolderURL!.path)
         
-        // 2.3 You can define the default light and dark theme, used for `SystemTheme`
+        // 2.3 You can define the default light and dark theme, used for `ThemeManager.systemTheme`
         //ThemeManager.lightTheme = ThemeManager.shared.theme(withIdentifier: PaperTheme.identifier)!
         //ThemeManager.darkTheme = ThemeManager.shared.theme(withIdentifier: "com.luckymarmot.ThemeKit.PurpleGreen")!
         
-        // 2.4 Set default theme (default: macOS theme)
+        // 2.4 Set default theme (default: macOS theme `ThemeManager.systemTheme`)
         ThemeManager.defaultTheme = ThemeManager.lightTheme
         
+        // 2.5 Apply last applied theme, or the default one
+        ThemeManager.shared.applyLastOrDefaultTheme()
     }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {

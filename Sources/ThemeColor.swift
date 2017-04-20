@@ -8,8 +8,8 @@
 
 import Foundation
 
-private var _cachedColors: NSCache<NSNumber, ThemeColor>!
-private var _cachedThemeColors: NSCache<NSNumber, NSColor>!
+private var _cachedColors: NSCache<NSNumber, ThemeColor> = NSCache()
+private var _cachedThemeColors: NSCache<NSNumber, NSColor> = NSCache()
 
 /**
  `ThemeColor` is a `NSColor` subclass that dynamically changes its colors whenever
@@ -303,14 +303,6 @@ open class ThemeColor : NSColor {
         
         // otherwise, return current theme color
         return ThemeColor.color(with: selector)
-    }
-    
-    /// Static initialization.
-    open override class func initialize() {
-        _cachedColors = NSCache.init()
-        _cachedThemeColors = NSCache.init()
-        _cachedColors.name = "com.luckymarmot.ThemeColor.cachedColors"
-        _cachedThemeColors.name = "com.luckymarmot.ThemeColor.cachedThemeColors"
     }
     
     /// Returns a new `ThemeColor` for the fiven selector in the specified colorspace.

@@ -8,8 +8,8 @@
 
 import Foundation
 
-private var _cachedGradients: NSCache<NSNumber, ThemeGradient>!
-private var _cachedThemeGradients: NSCache<NSNumber, NSGradient>!
+private var _cachedGradients: NSCache<NSNumber, ThemeGradient> = NSCache()
+private var _cachedThemeGradients: NSCache<NSNumber, NSGradient> = NSCache()
 
 /**
  `ThemeGradient` is a `NSGradient` subclass that dynamically changes its colors 
@@ -241,13 +241,6 @@ open class ThemeGradient : NSGradient {
         
         // otherwise, return current theme gradient
         return ThemeGradient.gradient(with: selector)
-    }
-    
-    open override class func initialize() {
-        _cachedGradients = NSCache.init()
-        _cachedThemeGradients = NSCache.init()
-        _cachedGradients.name = "com.luckymarmot.ThemeGradient.cachedGradients"
-        _cachedThemeGradients.name = "com.luckymarmot.ThemeGradient.cachedThemeGradients"
     }
     
     /// Returns a new `ThemeGradient` for the given selector.

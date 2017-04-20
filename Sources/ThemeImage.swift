@@ -165,7 +165,7 @@ open class ThemeImage : NSImage {
         let cacheKey = CacheKey(selector: selector)
         var image = _cachedImages.object(forKey: cacheKey)
         if image == nil {
-            image = ThemeImage.init(with: selector)
+            image = ThemeImage(with: selector)
             _cachedImages.setObject(image!, forKey: cacheKey)
         }
         return image!
@@ -231,9 +231,9 @@ open class ThemeImage : NSImage {
         
         let theme = ThemeManager.shared.effectiveTheme
         let viewAppearance = view.appearance
-        let aquaAppearance = NSAppearance.init(named: NSAppearanceNameAqua)
-        let lightAppearance = NSAppearance.init(named: NSAppearanceNameVibrantLight)
-        let darkAppearance = NSAppearance.init(named: NSAppearanceNameVibrantDark)
+        let aquaAppearance = NSAppearance(named: NSAppearanceNameAqua)
+        let lightAppearance = NSAppearance(named: NSAppearanceNameVibrantLight)
+        let darkAppearance = NSAppearance(named: NSAppearanceNameVibrantDark)
         
         // using a dark theme but control is on a light surface => use light theme instead
         if theme.isDarkTheme &&

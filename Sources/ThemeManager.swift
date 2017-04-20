@@ -136,7 +136,7 @@ public class ThemeManager: NSObject {
             // User provided themes
             for filename in userThemesFileNames {
                 if let themeFileURL = userThemesFolderURL?.appendingPathComponent(filename) {
-                    available.append(UserTheme.init(themeFileURL))
+                    available.append(UserTheme(themeFileURL))
                 }
             }
             
@@ -222,7 +222,7 @@ public class ThemeManager: NSObject {
     /// ```swift
     /// public var applicationSupportUserThemesFolderURL: URL {
     ///   let applicationSupportURLs = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true)
-    ///   let thisAppSupportURL = URL.init(fileURLWithPath: applicationSupportURLs.first!).appendingPathComponent(Bundle.main.bundleIdentifier!)
+    ///   let thisAppSupportURL = URL(fileURLWithPath: applicationSupportURLs.first!).appendingPathComponent(Bundle.main.bundleIdentifier!)
     ///   return thisAppSupportURL.appendingPathComponent("Themes")
     /// }
     /// ```
@@ -286,7 +286,7 @@ public class ThemeManager: NSObject {
             return []
         }
         let folderFiles = try! FileManager.default.contentsOfDirectory(atPath: userThemesFolderURL!.path) as NSArray
-        let themeFileNames = folderFiles.filtered(using: NSPredicate.init(format: "self ENDSWITH '.theme'", argumentArray: nil))
+        let themeFileNames = folderFiles.filtered(using: NSPredicate(format: "self ENDSWITH '.theme'", argumentArray: nil))
         return themeFileNames.map({ (fileName: Any) -> String in
             return fileName as! String
         })
@@ -324,12 +324,12 @@ public class ThemeManager: NSObject {
     
     /// Convenience method to get the light appearance.
     public var lightAppearance: NSAppearance {
-        return NSAppearance.init(named: NSAppearanceNameVibrantLight)!
+        return NSAppearance(named: NSAppearanceNameVibrantLight)!
     }
     
     /// Convenience method to get the dark appearance.
     public var darkAppearance: NSAppearance {
-        return NSAppearance.init(named: NSAppearanceNameVibrantDark)!
+        return NSAppearance(named: NSAppearanceNameVibrantDark)!
     }
     
     // MARK: -

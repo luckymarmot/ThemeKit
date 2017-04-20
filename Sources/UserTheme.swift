@@ -151,10 +151,10 @@ public class UserTheme: NSObject, Theme {
     /// - parameter from: A theme file (`.theme`) URL.
     private func loadThemeFile(from: URL) {
         // Load contents from theme file
-        let themeContents = try! String.init(contentsOf: from, encoding: String.Encoding.utf8)
+        let themeContents = try! String(contentsOf: from, encoding: String.Encoding.utf8)
         
         // Split content into lines
-        var lineCharset = CharacterSet.init(charactersIn: ";")
+        var lineCharset = CharacterSet(charactersIn: ";")
         lineCharset.formUnion(CharacterSet.newlines)
         let lines:[String] = themeContents.components(separatedBy: lineCharset)
         

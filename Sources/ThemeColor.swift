@@ -288,9 +288,9 @@ open class ThemeColor : NSColor {
         
         let theme = ThemeManager.shared.effectiveTheme
         let viewAppearance = view.appearance
-        let aquaAppearance = NSAppearance.init(named: NSAppearanceNameAqua)
-        let lightAppearance = NSAppearance.init(named: NSAppearanceNameVibrantLight)
-        let darkAppearance = NSAppearance.init(named: NSAppearanceNameVibrantDark)
+        let aquaAppearance = NSAppearance(named: NSAppearanceNameAqua)
+        let lightAppearance = NSAppearance(named: NSAppearanceNameVibrantLight)
+        let darkAppearance = NSAppearance(named: NSAppearanceNameVibrantDark)
         
         // using a dark theme but control is on a light surface => use light theme instead
         if theme.isDarkTheme &&
@@ -315,7 +315,7 @@ open class ThemeColor : NSColor {
         let cacheKey = CacheKey(selector: selector, colorSpace: colorSpace)
         var color = _cachedColors.object(forKey: cacheKey)
         if color == nil {
-            color = ThemeColor.init(with: selector, colorSpace: colorSpace)
+            color = ThemeColor(with: selector, colorSpace: colorSpace)
             _cachedColors.setObject(color!, forKey: cacheKey)
         }
         return color!

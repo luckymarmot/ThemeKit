@@ -160,7 +160,7 @@ open class ThemeGradient : NSGradient {
         let cacheKey = CacheKey(selector: selector)
         var gradient = _cachedGradients.object(forKey: cacheKey)
         if gradient == nil {
-            gradient = ThemeGradient.init(with: selector)
+            gradient = ThemeGradient(with: selector)
             _cachedGradients.setObject(gradient!, forKey: cacheKey)
         }
         return gradient!
@@ -226,9 +226,9 @@ open class ThemeGradient : NSGradient {
         
         let theme = ThemeManager.shared.effectiveTheme
         let viewAppearance = view.appearance
-        let aquaAppearance = NSAppearance.init(named: NSAppearanceNameAqua)
-        let lightAppearance = NSAppearance.init(named: NSAppearanceNameVibrantLight)
-        let darkAppearance = NSAppearance.init(named: NSAppearanceNameVibrantDark)
+        let aquaAppearance = NSAppearance(named: NSAppearanceNameAqua)
+        let lightAppearance = NSAppearance(named: NSAppearanceNameVibrantLight)
+        let darkAppearance = NSAppearance(named: NSAppearanceNameVibrantDark)
         
         // using a dark theme but control is on a light surface => use light theme instead
         if theme.isDarkTheme &&
@@ -251,7 +251,7 @@ open class ThemeGradient : NSGradient {
     init(with selector: Selector) {
         themeGradientSelector = selector
         let defaultColor = ThemeManager.shared.effectiveTheme.defaultFallbackBackgroundColor
-        resolvedThemeGradient = NSGradient.init(starting: defaultColor, ending: defaultColor)!
+        resolvedThemeGradient = NSGradient(starting: defaultColor, ending: defaultColor)!
         
         super.init(colors: [defaultColor, defaultColor], atLocations: [0.0, 1.0], colorSpace: NSColorSpace.genericRGB)!
         

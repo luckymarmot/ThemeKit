@@ -23,7 +23,7 @@ public class SystemTheme: NSObject, Theme {
     
     /// Theme display name.
     public var displayName: String {
-        let systemVersion = OperatingSystemVersion.init(majorVersion: 10, minorVersion: 12, patchVersion: 0)
+        let systemVersion = OperatingSystemVersion(majorVersion: 10, minorVersion: 12, patchVersion: 0)
         return ProcessInfo.processInfo.isOperatingSystemAtLeast(systemVersion) ? "macOS Theme" : "OS X Theme"
     }
     

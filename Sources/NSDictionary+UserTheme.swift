@@ -15,7 +15,7 @@ extension NSDictionary {
     /// Regular expression for user theme variables ($var)
     static var varsRegExpr: NSRegularExpression? {
         do {
-            return try NSRegularExpression.init(pattern: "(\\$[a-zA-Z0-9_\\-\\.]+)+", options: .caseInsensitive)
+            return try NSRegularExpression(pattern: "(\\$[a-zA-Z0-9_\\-\\.]+)+", options: .caseInsensitive)
         }
         catch let error {
             print(error)
@@ -26,7 +26,7 @@ extension NSDictionary {
     /// Regular expression for user theme colors
     static var colorRegExpr: NSRegularExpression? {
         do {
-            return try NSRegularExpression.init(pattern: "(?:rgba?)?[\\s]?[\\(]?[\\s+]?(\\d+)[(\\s)|(,)]+[\\s+]?(\\d+)[(\\s)|(,)]+[\\s+]?(\\d+)[(\\s)|(,)]+[\\s+]?([0-1]?(?:\\.\\d+)?)", options: .caseInsensitive)
+            return try NSRegularExpression(pattern: "(?:rgba?)?[\\s]?[\\(]?[\\s+]?(\\d+)[(\\s)|(,)]+[\\s+]?(\\d+)[(\\s)|(,)]+[\\s+]?(\\d+)[(\\s)|(,)]+[\\s+]?([0-1]?(?:\\.\\d+)?)", options: .caseInsensitive)
         }
         catch let error {
             print(error)
@@ -37,7 +37,7 @@ extension NSDictionary {
     /// Regular expression for user theme gradients
     static var linearGradRegExpr: NSRegularExpression? {
         do {
-            return try NSRegularExpression.init(pattern: "linear-gradient\\(\\s*((?:rgba?)?[\\s]?[\\(]?[\\s+]?(\\d+)[(\\s)|(,)]+[\\s+]?(\\d+)[(\\s)|(,)]+[\\s+]?(\\d+)[(\\s)|(,)]*[\\s+]?([0-1]?(?:\\.\\d+)?)\\))\\s*,\\s*((?:rgba?)?[\\s]?[\\(]?[\\s+]?(\\d+)[(\\s)|(,)]+[\\s+]?(\\d+)[(\\s)|(,)]+[\\s+]?(\\d+)[(\\s)|(,)]*[\\s+]?([0-1]?(?:\\.\\d+)?)\\))\\s*\\)", options: .caseInsensitive)
+            return try NSRegularExpression(pattern: "linear-gradient\\(\\s*((?:rgba?)?[\\s]?[\\(]?[\\s+]?(\\d+)[(\\s)|(,)]+[\\s+]?(\\d+)[(\\s)|(,)]+[\\s+]?(\\d+)[(\\s)|(,)]*[\\s+]?([0-1]?(?:\\.\\d+)?)\\))\\s*,\\s*((?:rgba?)?[\\s]?[\\(]?[\\s+]?(\\d+)[(\\s)|(,)]+[\\s+]?(\\d+)[(\\s)|(,)]+[\\s+]?(\\d+)[(\\s)|(,)]*[\\s+]?([0-1]?(?:\\.\\d+)?)\\))\\s*\\)", options: .caseInsensitive)
         }
         catch let error {
             print(error)
@@ -48,7 +48,7 @@ extension NSDictionary {
     /// Regular expression for user theme pattern images (NSColor)
     static var patternRegExpr: NSRegularExpression? {
         do {
-            return try NSRegularExpression.init(pattern: "pattern\\(((named):[\\s]*([\\w-\\. ]+)|(file):[\\s]*([\\w-\\. \\/]+))\\)", options: .caseInsensitive)
+            return try NSRegularExpression(pattern: "pattern\\(((named):[\\s]*([\\w-\\. ]+)|(file):[\\s]*([\\w-\\. \\/]+))\\)", options: .caseInsensitive)
         }
         catch let error {
             print(error)
@@ -59,7 +59,7 @@ extension NSDictionary {
     /// Regular expression for user theme images
     static var imageRegExpr: NSRegularExpression? {
         do {
-            return try NSRegularExpression.init(pattern: "image\\(((named):[\\s]*([\\w-\\. ]+)|(file):[\\s]*([\\w-\\. \\/]+))\\)", options: .caseInsensitive)
+            return try NSRegularExpression(pattern: "image\\(((named):[\\s]*([\\w-\\. ]+)|(file):[\\s]*([\\w-\\. \\/]+))\\)", options: .caseInsensitive)
         }
         catch let error {
             print(error)

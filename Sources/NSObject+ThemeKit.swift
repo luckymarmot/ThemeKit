@@ -13,7 +13,7 @@ extension NSObject {
     /// Swizzle instance methods.
     internal class func swizzleInstanceMethod(cls: AnyClass?, selector originalSelector: Selector, withSelector swizzledSelector: Selector) {
         guard cls != nil else {
-            print("Unable to swizzle \(cls).\(originalSelector): dynamic system color override will not be available.")
+            print("Unable to swizzle \(originalSelector): dynamic system color override will not be available.")
             return
         }
         

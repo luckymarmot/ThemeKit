@@ -2,7 +2,7 @@
   <img src="https://github.com/luckymarmot/ThemeKit/raw/themekit-initial/Imgs/ThemeKit@2x.png" width="377" height="105" alt="ThemeKit" />
 </p>
 
-![macOS](https://img.shields.io/badge/os-macOS 10.10+-green.svg?style=flat)
+![macOS](https://img.shields.io/badge/os-macOS 10.10%2B-green.svg?style=flat)
 ![Swift3](https://img.shields.io/badge/swift-3.0.x-green.svg?style=flat)
 ![macOS](https://img.shields.io/badge/release-1.0-blue.svg?style=flat)
 ![MIT](https://img.shields.io/badge/license-MIT-lightgray.svg)

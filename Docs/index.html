@@ -86,9 +86,9 @@
   <img src="https://github.com/luckymarmot/ThemeKit/raw/themekit-initial/Imgs/ThemeKit@2x.png" width="377" height="105" alt="ThemeKit" />
 </p>
 
-<p><img src="https://img.shields.io/badge/os-macOS%2010.10+-green.svg?style=flat" alt="macOS">
+<p><img src="https://img.shields.io/badge/os-macOS%2010.10%2B-green.svg?style=flat" alt="macOS">
 <img src="https://img.shields.io/badge/swift-3.0.x-green.svg?style=flat" alt="Swift3">
-<img src="https://img.shields.io/badge/release-1.0-blue.svg?style=flat" alt="macOS">
+<img src="https://img.shields.io/badge/release-1.0-blue.svg?style=flat" alt="Release">
 <img src="https://img.shields.io/badge/license-MIT-lightgray.svg" alt="MIT">
 <img src="https://img.shields.io/badge/dep-CocoaPods-orange.svg" alt="CocoaPods">
 <img src="https://img.shields.io/badge/dep-Carthage-orange.svg" alt="Carthage"></p>
@@ -225,9 +225,8 @@
     <span class="c1">//ThemeManager.lightTheme = ThemeManager.shared.theme(withIdentifier: PaperTheme.identifier)!</span>
     <span class="c1">//ThemeManager.darkTheme = ThemeManager.shared.theme(withIdentifier: "com.luckymarmot.ThemeKit.PurpleGreen")!</span>
 
-    <span class="c1">/// NOTE: You don't need to manually select a theme.</span>
-    <span class="c1">///       Theme selected from last app run is stored on `NSUSerDefaults`</span>
-    <span class="c1">///       and is automatically applied at startup.</span>
+    <span class="c1">/// Apply last applied theme (or the default theme, if no previous one)</span>
+    <span class="kt">ThemeManager</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">applyLastOrDefaultTheme</span><span class="p">()</span>
 
 <span class="p">}</span>    
 </code></pre>

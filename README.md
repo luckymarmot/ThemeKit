@@ -125,9 +125,8 @@ func applicationWillFinishLaunching(_ notification: Notification) {
 	//ThemeManager.lightTheme = ThemeManager.shared.theme(withIdentifier: PaperTheme.identifier)!
 	//ThemeManager.darkTheme = ThemeManager.shared.theme(withIdentifier: "com.luckymarmot.ThemeKit.PurpleGreen")!
 	
-	/// NOTE: You don't need to manually select a theme.
-	///       Theme selected from last app run is stored on `NSUSerDefaults`
-	///       and is automatically applied at startup.
+	/// Apply last applied theme (or the default theme, if no previous one)
+	ThemeManager.shared.applyLastOrDefaultTheme()
 	 
 }    
 ```

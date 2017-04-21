@@ -38,7 +38,7 @@ extension NSObject {
         
         // retrieve class method list
         var count: UInt32 = 0
-        let methods : UnsafeMutablePointer<Method?>! = class_copyMethodList(object_getClass(cls), &count)
+        let methods : UnsafeMutablePointer<Method?> = class_copyMethodList(object_getClass(cls), &count)
         
         // iterate class methods
         for i in 0..<count {

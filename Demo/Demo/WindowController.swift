@@ -17,8 +17,9 @@ class WindowController: NSWindowController {
         // Observe note selection change notifications
         NotificationCenter.default.addObserver(forName: .didChangeNoteSelection, object: nil, queue: nil) { (notification) in
             let obj = notification.object
-            if obj is NSViewController && (obj as! NSViewController).view.window == self.window,
-                let note: Note = notification.userInfo?["note"] as? Note {
+            if let note = notification.userInfo?["note"] as? Note,
+                let viewController = obj as? NSViewController,
+                viewController.view.window == self.window {
                 self.updateTitle(note)
             }
         }
@@ -26,8 +27,9 @@ class WindowController: NSWindowController {
         // Observe note text edit notifications
         NotificationCenter.default.addObserver(forName: .didEditNoteText, object: nil, queue: nil) { (notification) in
             let obj = notification.object
-            if obj is NSViewController && (obj as! NSViewController).view.window == self.window,
-                let note: Note = notification.userInfo?["note"] as? Note {
+            if let note = notification.userInfo?["note"] as? Note,
+                let viewController = obj as? NSViewController,
+                viewController.view.window == self.window {
                 self.updateTitle(note)
             }
         }

@@ -40,7 +40,8 @@ class ContentViewController: NSViewController, NSTextDelegate {
         // Observe note selection change notifications
         NotificationCenter.default.addObserver(forName: .didChangeNoteSelection, object: nil, queue: nil) { (notification) in
             let obj = notification.object
-            if obj is NSViewController && (obj as! NSViewController).view.window == self.view.window {
+            if let viewController = obj as? NSViewController,
+                viewController.view.window == self.view.window {
                 self.representedObject = notification.userInfo?["note"]
             }
         }
@@ -91,8 +92,9 @@ class ContentViewController: NSViewController, NSTextDelegate {
     // MARK: NSTextDelegate
     
     public func textDidChange(_ notification: Notification) {
-        if let note = representedObject as? Note {
-            note.text = contentTextView.string!
+        if let note = representedObject as? Note,
+            let text = contentTextView.string {
+            note.text = text
             note.lastModified = Date()
             NotificationCenter.default.post(name: .didEditNoteText, object: self, userInfo: ["note": note])
         }

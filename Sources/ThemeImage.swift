@@ -182,13 +182,12 @@ open class ThemeImage : NSImage {
         let cacheKey = CacheKey(selector: selector, theme: theme)
         var image = _cachedThemeImages.object(forKey: cacheKey)
         
-        if image == nil && theme is NSObject {
+        if image == nil, let nsTheme = theme as? NSObject {
             // Theme provides this asset from optional function themeAsset()?
             image = theme.themeAsset?(NSStringFromSelector(selector)) as? NSImage
             
             // Theme provides this asset from an instance method?
-            let nsTheme = theme as! NSObject
-            if image == nil && nsTheme.responds(to: selector) {
+            if image == nil, nsTheme.responds(to: selector) {
                 image = nsTheme.perform(selector).takeUnretainedValue() as? NSImage
             }
             
@@ -225,8 +224,8 @@ open class ThemeImage : NSImage {
     @objc(imageForView:selector:)
     public class func image(for view: NSView, selector: Selector) -> NSImage {
         // if a custom window theme was set, use the appropriate asset
-        if view.window?.windowTheme != nil {
-            return ThemeImage.image(for: (view.window?.windowTheme)!, selector: selector)
+        if let windowTheme = view.window?.windowTheme {
+            return ThemeImage.image(for: windowTheme, selector: selector)
         }
         
         let theme = ThemeManager.shared.effectiveTheme
@@ -275,7 +274,9 @@ open class ThemeImage : NSImage {
         super.init(coder: aDecoder)
         
         if aDecoder.allowsKeyedCoding {
-            themeImageSelector = NSSelectorFromString((aDecoder.decodeObject(forKey: "themeImageSelector") as? String)!)
+            if let themeImageSelectorString = aDecoder.decodeObject(forKey: "themeImageSelector") as? String {
+                themeImageSelector = NSSelectorFromString(themeImageSelectorString)
+            }
         }
         else {
             themeImageSelector = NSSelectorFromString((aDecoder.decodeObject() as? String)!)
@@ -288,11 +289,13 @@ open class ThemeImage : NSImage {
     open override func encode(with aCoder: NSCoder) {
         super.encode(with: aCoder)
         
-        if aCoder.allowsKeyedCoding {
-            aCoder.encode(NSStringFromSelector(themeImageSelector!), forKey: "themeImageSelector")
-        }
-        else {
-            aCoder.encode(NSStringFromSelector(themeImageSelector!))
+        if let selector = themeImageSelector {
+            if aCoder.allowsKeyedCoding {
+                aCoder.encode(NSStringFromSelector(selector), forKey: "themeImageSelector")
+            }
+            else {
+                aCoder.encode(NSStringFromSelector(selector))
+            }
         }
     }
     
@@ -305,7 +308,9 @@ open class ThemeImage : NSImage {
         }
         
         // Recache resolved image
-        resolvedThemeImage = ThemeImage.image(for: ThemeManager.shared.effectiveTheme, selector: themeImageSelector!)
+        if let selector = themeImageSelector {
+            resolvedThemeImage = ThemeImage.image(for: ThemeManager.shared.effectiveTheme, selector: selector)
+        }
     }
     
     /// Clear all caches.

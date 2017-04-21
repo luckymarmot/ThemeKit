@@ -46,8 +46,8 @@ extension NSColor {
         let theme = ThemeManager.shared.effectiveTheme
         
         // `UserTheme`: check `hasThemeAsset(_:)` method
-        if theme is UserTheme {
-            return (theme as! UserTheme).hasThemeAsset(colorNameComponent)
+        if let userTheme = theme as? UserTheme {
+            return userTheme.hasThemeAsset(colorNameComponent)
         }
             
         // native themes: look up for an instance method

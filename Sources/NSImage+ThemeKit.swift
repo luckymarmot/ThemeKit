@@ -47,18 +47,21 @@ extension NSImage {
     internal func averageColor() -> NSColor {
         // setup a single-pixel image
         let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
-        let bitmapData = malloc(4)
         let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue | CGBitmapInfo.byteOrder32Big.rawValue)
-        let context = CGContext(data: bitmapData, width: 1, height: 1, bitsPerComponent: 8, bytesPerRow: 4, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)
+        guard let bitmapData = malloc(4),
+            let context = CGContext(data: bitmapData, width: 1, height: 1, bitsPerComponent: 8, bytesPerRow: 4, space: colorSpace, bitmapInfo: bitmapInfo.rawValue),
+            let cgImage = self.cgImage(forProposedRect: nil, context: NSGraphicsContext(cgContext: context, flipped: false), hints: nil) else {
+            return NSColor.white
+        }
         
         // draw the image into a 1x1 image
-        context?.draw(self.cgImage(forProposedRect: nil, context: NSGraphicsContext(cgContext: context!, flipped: false), hints: nil)!, in: CGRect(x: 0, y: 0, width: 1, height: 1))
+        context.draw(cgImage, in: CGRect(x: 0, y: 0, width: 1, height: 1))
         
         // extract byte colors from single-pixel image
-        let red = bitmapData?.load(fromByteOffset: 0, as: UInt8.self) ?? 0
-        let green = bitmapData?.load(fromByteOffset: 1, as: UInt8.self) ?? 0
-        let blue = bitmapData?.load(fromByteOffset: 2, as: UInt8.self) ?? 0
-        let alpha = bitmapData?.load(fromByteOffset: 3, as: UInt8.self) ?? 0
+        let red = bitmapData.load(fromByteOffset: 0, as: UInt8.self)
+        let green = bitmapData.load(fromByteOffset: 1, as: UInt8.self)
+        let blue = bitmapData.load(fromByteOffset: 2, as: UInt8.self)
+        let alpha = bitmapData.load(fromByteOffset: 3, as: UInt8.self)
         
         // build "average color"
         let modifier = alpha > 0 ? CGFloat(alpha) / 255.0 : 1.0

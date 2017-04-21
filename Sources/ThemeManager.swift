@@ -37,8 +37,9 @@ public class ThemeManager: NSObject {
         
         // Observe and theme new windows (before being displayed onscreen)
         NotificationCenter.default.addObserver(forName: NSNotification.Name.NSWindowDidUpdate, object: nil, queue: nil) { (notification) in
-            let window = notification.object as! NSWindow?
-            window?.themeIfCompliantWithWindowThemePolicy()
+            if let window = notification.object as? NSWindow {
+                window.themeIfCompliantWithWindowThemePolicy()
+            }
         }
 
         // Observe current theme on User Defaults
@@ -114,9 +115,10 @@ public class ThemeManager: NSObject {
             
             // Developer native themes (conforming to NSObject, Theme)
             for cls in NSObject.classesImplementingProtocol(Theme.self) {
-                if cls !== LightTheme.self && cls !== DarkTheme.self && cls !== SystemTheme.self && cls !== UserTheme.self {
-                    let themeClass = cls as! NSObject.Type
-                    available.append(themeClass.init() as! Theme)
+                if cls !== LightTheme.self && cls !== DarkTheme.self && cls !== SystemTheme.self && cls !== UserTheme.self,
+                    let themeClass = cls as? NSObject.Type,
+                    let theme = themeClass.init() as? Theme {
+                    available.append(theme)
                 }
             }
             
@@ -125,7 +127,7 @@ public class ThemeManager: NSObject {
             
             cachedThemes = available
         }
-        return cachedThemes!
+        return cachedThemes ?? []
     }
     
     /// List all user themes (`UserTheme` class, loaded from `.theme` files)
@@ -142,7 +144,7 @@ public class ThemeManager: NSObject {
             
             cachedUserThemes = available
         }
-        return cachedUserThemes!
+        return cachedUserThemes ?? []
     }
     
     /// Cached themes list (private use).
@@ -235,10 +237,10 @@ public class ThemeManager: NSObject {
             _userThemesFolderSource?.cancel()
             
             // Observe User Themes folder via CGD dispatch sources
-            if userThemesFolderURL != nil && userThemesFolderURL! != oldValue {
+            if let url = userThemesFolderURL, url != oldValue {
                 // Create folder if needed
                 do {
-                    try FileManager.default.createDirectory(at: userThemesFolderURL!, withIntermediateDirectories: true, attributes: nil)
+                    try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
                 } catch let error as NSError {
                     print("Unable to create `Themes` directory: \(error.debugDescription)")
                     userThemesFolderURL = nil
@@ -246,7 +248,7 @@ public class ThemeManager: NSObject {
                 }
                 
                 // Initialize file descriptor
-                let fileDescriptor = open((userThemesFolderURL!.path as NSString).fileSystemRepresentation, O_EVTONLY)
+                let fileDescriptor = open((url.path as NSString).fileSystemRepresentation, O_EVTONLY)
                 guard fileDescriptor >= 0 else { return }
                 
                 // Initialize dispatch queue
@@ -282,14 +284,16 @@ public class ThemeManager: NSObject {
     
     /// List of user themes file names.
     private var userThemesFileNames: [String] {
-        guard userThemesFolderURL != nil && FileManager.default.fileExists(atPath: userThemesFolderURL!.path, isDirectory: nil) else {
+        guard let url = userThemesFolderURL, FileManager.default.fileExists(atPath: url.path, isDirectory: nil) else {
             return []
         }
-        let folderFiles = try! FileManager.default.contentsOfDirectory(atPath: userThemesFolderURL!.path) as NSArray
-        let themeFileNames = folderFiles.filtered(using: NSPredicate(format: "self ENDSWITH '.theme'", argumentArray: nil))
-        return themeFileNames.map({ (fileName: Any) -> String in
-            return fileName as! String
-        })
+        if let folderFiles = try? FileManager.default.contentsOfDirectory(atPath: url.path) as NSArray {
+            let themeFileNames = folderFiles.filtered(using: NSPredicate(format: "self ENDSWITH '.theme'", argumentArray: nil))
+            return themeFileNames.map({ (fileName: Any) -> String in
+                return fileName as! String
+            })
+        }
+        return []
     }
     
     /// Dispatch queue for monitoring the user themes folder.

@@ -41,12 +41,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let projectRootURL = URL(fileURLWithPath: workingDirectory, isDirectory: true).deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent().appendingPathComponent("Themes")
             ThemeManager.shared.userThemesFolderURL = projectRootURL
         }
-        else {
+        else if let bundleResourcePath = Bundle.main.resourcePath {
             // otherwise, just point to the bundled Resources folder
-            ThemeManager.shared.userThemesFolderURL = URL(fileURLWithPath: Bundle.main.resourcePath!)
+            ThemeManager.shared.userThemesFolderURL = URL(fileURLWithPath: bundleResourcePath)
         }
         // let users know about our choosen user themes folder
-        NSLog("ThemeManager.shared.userThemesFolderURL: %@", ThemeManager.shared.userThemesFolderURL!.path)
+        if let userThemesFolderURL = ThemeManager.shared.userThemesFolderURL {
+            NSLog("ThemeManager.shared.userThemesFolderURL: %@", userThemesFolderURL.path)
+        }
         
         // 2.3 You can define the default light and dark theme, used for `ThemeManager.systemTheme`
         //ThemeManager.lightTheme = ThemeManager.shared.theme(withIdentifier: PaperTheme.identifier)!
@@ -90,8 +92,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func switchTheme(_ menuItem: NSMenuItem) {
         guard menuItem.representedObject != nil else { return }
         
-        ThemeManager.shared.theme = menuItem.representedObject! as! Theme
-        updateThemeMenu()
+        if let theme = menuItem.representedObject as? Theme {
+            ThemeManager.shared.theme = theme
+            updateThemeMenu()
+        }
     }
     
     
@@ -114,8 +118,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func newWindowForTab(_ sender: Any?) {
         let storyBoard = NSStoryboard(name: "Main", bundle:nil)
-        let windowController = storyBoard.instantiateController(withIdentifier: "WindowController") as! NSWindowController
-        windowController.showWindow(self)
+        if let windowController = storyBoard.instantiateController(withIdentifier: "WindowController") as? NSWindowController {
+            windowController.showWindow(self)
+        }
     }
     
     

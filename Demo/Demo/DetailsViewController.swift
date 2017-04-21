@@ -39,7 +39,8 @@ class DetailsViewController: NSViewController {
         // Observe note selection change notifications
         NotificationCenter.default.addObserver(forName: .didChangeNoteSelection, object: nil, queue: nil) { (notification) in
             let obj = notification.object
-            if obj is NSViewController && (obj as! NSViewController).view.window == self.view.window {
+            if let viewController = obj as? NSViewController,
+                viewController.view.window == self.view.window {
                 self.representedObject = notification.userInfo?["note"]
             }
         }
@@ -47,7 +48,8 @@ class DetailsViewController: NSViewController {
         // Observe note text edit notifications
         NotificationCenter.default.addObserver(forName: .didEditNoteText, object: nil, queue: nil) { (notification) in
             let obj = notification.object
-            if obj is NSViewController && (obj as! NSViewController).view.window == self.view.window {
+            if let viewController = obj as? NSViewController,
+                viewController.view.window == self.view.window {
                 self.representedObject = notification.userInfo?["note"]
             }
         }

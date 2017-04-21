@@ -151,49 +151,66 @@ public class UserTheme: NSObject, Theme {
     /// - parameter from: A theme file (`.theme`) URL.
     private func loadThemeFile(from: URL) {
         // Load contents from theme file
-        let themeContents = try! String(contentsOf: from, encoding: String.Encoding.utf8)
+        if let themeContents = try? String(contentsOf: from, encoding: String.Encoding.utf8) {
         
-        // Split content into lines
-        var lineCharset = CharacterSet(charactersIn: ";")
-        lineCharset.formUnion(CharacterSet.newlines)
-        let lines:[String] = themeContents.components(separatedBy: lineCharset)
-        
-        // Parse lines
-        for line in lines {
-            // Trim
-            let trimmedLine = line.trimmingCharacters(in: CharacterSet.whitespaces)
+            // Split content into lines
+            var lineCharset = CharacterSet(charactersIn: ";")
+            lineCharset.formUnion(CharacterSet.newlines)
+            let lines:[String] = themeContents.components(separatedBy: lineCharset)
             
-            // Skip comments
-            if trimmedLine.hasPrefix("#") || trimmedLine.hasPrefix("//") {
-                continue
+            // Parse lines
+            for line in lines {
+                // Trim
+                let trimmedLine = line.trimmingCharacters(in: CharacterSet.whitespaces)
+                
+                // Skip comments
+                if trimmedLine.hasPrefix("#") || trimmedLine.hasPrefix("//") {
+                    continue
+                }
+                
+                // Assign theme key-values (lazy evaluation)
+                let assignment = trimmedLine.components(separatedBy: "=")
+                if assignment.count == 2 {
+                    let key = assignment[0].trimmingCharacters(in: CharacterSet.whitespaces)
+                    let value = assignment[1].trimmingCharacters(in: CharacterSet.whitespaces)
+                    _keyValues.setObject(value, forKey: key as NSString)
+                }
             }
             
-            // Assign theme key-values (lazy evaluation)
-            let assignment = trimmedLine.components(separatedBy: "=")
-            if assignment.count == 2 {
-                let key = assignment[0].trimmingCharacters(in: CharacterSet.whitespaces)
-                let value = assignment[1].trimmingCharacters(in: CharacterSet.whitespaces)
-                _keyValues.setObject(value, forKey: key as NSString)
+            // Initialize properties with evaluated values from file
+            
+            // Identifier
+            if let identifierString = themeAsset("displayName") as? String {
+                identifier = identifierString
+            }
+            else {
+                identifier = "{identifier: is mising}"
+            }
+            
+            // Display Name
+            if let displayNameString = themeAsset("displayName") as? String {
+                displayName = displayNameString
+            }
+            else {
+                displayName = "{displayName: is mising}"
+            }
+            
+            // Short Display Name
+            if let shortDisplayNameString = themeAsset("shortDisplayName") as? String {
+                shortDisplayName = shortDisplayNameString
+            }
+            else {
+                shortDisplayName = "{shortDisplayName: is mising}"
+            }
+            
+            // Dark?
+            if let isDarkThemeString = themeAsset("darkTheme") as? String {
+                isDarkTheme = NSString(string: isDarkThemeString).boolValue
+            }
+            else {
+                isDarkTheme = false
             }
         }
-        
-        // Initialize properties with evaluated values from file
-        
-        // Identifier
-        let _identifier = themeAsset("identifier")
-        identifier = _identifier is String ? _identifier as! String : "{identifier: is missing}"
-       
-        // Display Name
-        let _displayName = themeAsset("displayName")
-        displayName = _displayName is String ? _displayName as! String : "{displayName: is mising}"
-        
-        // Short Display Name
-        let _shortDisplayName = themeAsset("shortDisplayName")
-        shortDisplayName = _shortDisplayName is String ? _shortDisplayName as! String : "{shortDisplayName: is mising}"
-        
-        // Dark?
-        let _isDarkTheme = themeAsset("darkTheme")
-        isDarkTheme = _isDarkTheme is String ? NSString(string: (_isDarkTheme as? String)!).boolValue : false
     }
     
     override public var description : String {

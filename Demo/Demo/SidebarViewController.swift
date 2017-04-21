@@ -99,8 +99,9 @@ class SidebarViewController: NSViewController, NSOutlineViewDataSource, NSOutlin
     
     /// Delete a note
     @IBAction override func deleteNote(_ sender: NSButton){
-        if outlineView.selectedRow > 0 && outlineView.selectedRow <= notes.count
-            , let note = outlineView.item(atRow: outlineView.selectedRow) as? Note {
+        if outlineView.selectedRow > 0 && outlineView.selectedRow <= notes.count,
+            let note = outlineView.item(atRow: outlineView.selectedRow) as? Note,
+            let window = view.window {
             // ask user
             let alert = NSAlert()
             alert.messageText = "Delete \"\(note.title)\"?"
@@ -108,7 +109,7 @@ class SidebarViewController: NSViewController, NSOutlineViewDataSource, NSOutlin
             alert.addButton(withTitle: "Delete")
             alert.addButton(withTitle: "Cancel")
             alert.alertStyle = .warning
-            alert.beginSheetModal(for: view.window!, completionHandler: { (modalResponse) in
+            alert.beginSheetModal(for: window, completionHandler: { (modalResponse) in
                 if modalResponse == NSAlertFirstButtonReturn {
                     // delete note
                     self.notes.remove(at: self.outlineView.selectedRow - 1)
@@ -173,7 +174,9 @@ class SidebarViewController: NSViewController, NSOutlineViewDataSource, NSOutlin
         }
         else {
             cellView = outlineView.make(withIdentifier: "DataCell", owner: self) as? NSTableCellView
-            cellView?.textField?.stringValue = (item as! Note).title
+            if let note = item as? Note {
+                cellView?.textField?.stringValue = note.title
+            }
             cellView?.textField?.textColor = NSColor.labelColor
             cellView?.textField?.delegate = self
         }

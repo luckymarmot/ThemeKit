@@ -177,12 +177,11 @@ open class ThemeGradient : NSGradient {
         let cacheKey = CacheKey(selector: selector, theme: theme)
         var gradient = _cachedThemeGradients.object(forKey: cacheKey)
         
-        if gradient == nil && theme is NSObject {
+        if gradient == nil, let nsTheme = theme as? NSObject {
             // Theme provides this asset from optional function themeAsset()?
             gradient = theme.themeAsset?(NSStringFromSelector(selector)) as? NSGradient
             
             // Theme provides this asset from an instance method?
-            let nsTheme = theme as! NSObject
             if gradient == nil && nsTheme.responds(to: selector) {
                 gradient = nsTheme.perform(selector).takeUnretainedValue() as? NSGradient
             }
@@ -220,8 +219,8 @@ open class ThemeGradient : NSGradient {
     @objc(gradientForView:selector:)
     public class func gradient(for view: NSView, selector: Selector) -> NSGradient {
         // if a custom window theme was set, use the appropriate asset
-        if view.window?.windowTheme != nil {
-            return ThemeGradient.gradient(for: (view.window?.windowTheme)!, selector: selector)
+        if let windowTheme = view.window?.windowTheme {
+            return ThemeGradient.gradient(for: windowTheme, selector: selector)
         }
         
         let theme = ThemeManager.shared.effectiveTheme

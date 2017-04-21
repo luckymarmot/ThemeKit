@@ -222,8 +222,8 @@ open class ThemeColor : NSColor {
         let cacheKey = CacheKey(selector: selector, theme: theme)
         var color = _cachedThemeColors.object(forKey: cacheKey)
         
-        if color == nil && theme is NSObject {
-            let nsTheme = theme as! NSObject
+        if color == nil,
+            let nsTheme = theme as? NSObject {
             
             // Theme provides this asset from optional function themeAsset()?
             color = theme.themeAsset?(NSStringFromSelector(selector)) as? NSColor
@@ -282,8 +282,8 @@ open class ThemeColor : NSColor {
     @objc(colorForView:selector:)
     public class func color(for view: NSView, selector: Selector) -> NSColor {
         // if a custom window theme was set, use the appropriate asset
-        if view.window?.windowTheme != nil {
-            return ThemeColor.color(for: (view.window?.windowTheme)!, selector: selector)
+        if let windowTheme = view.window?.windowTheme {
+            return ThemeColor.color(for: windowTheme, selector: selector)
         }
         
         let theme = ThemeManager.shared.effectiveTheme
@@ -348,10 +348,14 @@ open class ThemeColor : NSColor {
         super.init(coder: aDecoder)
         
         if aDecoder.allowsKeyedCoding {
-            themeColorSelector = NSSelectorFromString((aDecoder.decodeObject(forKey: "themeColorSelector") as? String)!)
+            if let themeColorSelectorString = aDecoder.decodeObject(forKey: "themeColorSelector") as? String {
+                themeColorSelector = NSSelectorFromString(themeColorSelectorString)
+            }
         }
         else {
-            themeColorSelector = NSSelectorFromString((aDecoder.decodeObject() as? String)!)
+            if let themeColorSelectorString = aDecoder.decodeObject() as? String {
+                themeColorSelector = NSSelectorFromString(themeColorSelectorString)
+            }
         }
         
         recacheColor()
@@ -379,12 +383,12 @@ open class ThemeColor : NSColor {
         
         // Recache resolved color
         let newColor = ThemeColor.color(for: ThemeManager.shared.effectiveTheme, selector: themeColorSelector)
-        if themeColorSpace == nil {
-            resolvedThemeColor = newColor
+        if let colorSpace = themeColorSpace {
+            let convertedColor = newColor.usingColorSpace(colorSpace)
+            resolvedThemeColor = convertedColor ?? newColor
         }
         else {
-            let convertedColor = newColor.usingColorSpace(themeColorSpace!)
-            resolvedThemeColor = convertedColor ?? newColor
+            resolvedThemeColor = newColor
         }
         
         // Recache average color of pattern image, if appropriate

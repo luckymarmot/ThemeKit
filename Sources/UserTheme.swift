@@ -180,7 +180,7 @@ public class UserTheme: NSObject, Theme {
             // Initialize properties with evaluated values from file
             
             // Identifier
-            if let identifierString = themeAsset("displayName") as? String {
+            if let identifierString = themeAsset("identifier") as? String {
                 identifier = identifierString
             }
             else {

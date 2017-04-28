@@ -463,7 +463,8 @@ public class ThemeManager: NSObject {
             
             // If we are switching light-to-light or dark-to-dark themes, macOS won't
             // refresh appearance on controls => need to 'tilt' appearance to force refresh!
-            if oldEffectiveTheme.isLightTheme == newEffectiveTheme.isLightTheme && _theme != nil {
+            // Additionally, we need to "force refresh" on initial theming.
+            if oldEffectiveTheme.isLightTheme == newEffectiveTheme.isLightTheme || _theme == nil {
                 // Switch to "inverted" theme (light -> dark, dark -> light)
                 applyAndPropagate(oldEffectiveTheme.isLightTheme ? ThemeManager.darkTheme : ThemeManager.lightTheme)
             }

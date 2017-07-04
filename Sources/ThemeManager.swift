@@ -67,7 +67,7 @@ public class ThemeManager: NSObject {
         }
         set(newTheme) {
             // Apply theme
-            if _theme == nil || newTheme != _theme! || newTheme is UserTheme {
+            if _theme == nil || newTheme.effectiveTheme != _theme! || newTheme.effectiveTheme.isUserTheme {
                 applyTheme(newTheme)
             }
             
@@ -108,10 +108,18 @@ public class ThemeManager: NSObject {
         if cachedThemes == nil {
             var available = [Theme]()
             
+            // Append theme to the list, reloading if user theme
+            func appendTheme(_ theme: Theme) {
+                if theme.isUserTheme, let userTheme = theme as? UserTheme {
+                    userTheme.reload()
+                }
+                available.append(theme)
+            }
+            
             // Builtin themes
-            available.append(ThemeManager.lightTheme)
-            available.append(ThemeManager.darkTheme)
-            available.append(ThemeManager.systemTheme)
+            appendTheme(ThemeManager.lightTheme)
+            appendTheme(ThemeManager.darkTheme)
+            appendTheme(ThemeManager.systemTheme)
             
             // Developer native themes (conforming to NSObject, Theme)
             for cls in NSObject.classesImplementingProtocol(Theme.self) {
@@ -207,7 +215,7 @@ public class ThemeManager: NSObject {
     ///
     /// - parameter notification: A `.didChangeSystemTheme` notification.
     @objc private func systemThemeDidChange(_ notification: Notification) {
-        if theme.isAutoTheme {
+        if theme.isSystemTheme {
             applyTheme(theme)
         }
     }
@@ -275,7 +283,7 @@ public class ThemeManager: NSObject {
                 didChangeValue(forKey: #keyPath(themes))
                 
                 // Re-apply current theme if user theme
-                if theme is UserTheme {
+                if theme.effectiveTheme.isUserTheme {
                     applyLastOrDefaultTheme()
                 }
             }
@@ -309,7 +317,7 @@ public class ThemeManager: NSObject {
         cachedThemes = nil
         cachedUserThemes = nil
         
-        if effectiveTheme is UserTheme {
+        if effectiveTheme.isUserTheme {
             applyLastOrDefaultTheme()
         }
     

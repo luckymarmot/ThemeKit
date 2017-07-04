@@ -86,6 +86,9 @@ public class UserTheme: NSObject, Theme {
     /// Is this a dark theme?
     public var isDarkTheme: Bool = false
     
+    /// File URL.
+    public var fileURL: URL?
+    
     /// Dictionary with key/values pairs read from the .theme file
     private var _keyValues: NSMutableDictionary = NSMutableDictionary();
     
@@ -110,7 +113,17 @@ public class UserTheme: NSObject, Theme {
         super.init()
         
         // Load file
+        fileURL = themeFileURL
         loadThemeFile(from: themeFileURL)
+    }
+    
+    /// Reloads user theme from file.
+    public func reload() {
+        if let url = fileURL {
+            _keyValues.removeAllObjects()
+            _evaluatedKeyValues.removeAllObjects()
+            loadThemeFile(from: url)
+        }
     }
     
     // MARK: -

@@ -77,10 +77,16 @@ public extension Theme {
         return !isDarkTheme
     }
     
-    /// Does theme automatically resolve to `ThemeManager.lightTheme` or 
-    /// `ThemeManager.darkTheme`, accordingly to **System Preferences > General > Appearance**?
-    public var isAutoTheme: Bool {
+    /// Is this the system theme? If true, theme automatically resolve to
+    /// `ThemeManager.lightTheme` or `ThemeManager.darkTheme`, accordingly to
+    /// **System Preferences > General > Appearance**.
+    public var isSystemTheme: Bool {
         return identifier == SystemTheme.identifier
+    }
+    
+    /// Is this a user theme?
+    public var isUserTheme: Bool {
+        return self is UserTheme
     }
     
     /// Apply theme (make it the current one).
@@ -117,7 +123,7 @@ public extension Theme {
     /// system theme, respecting **System Preferences > General > Appearance** 
     /// (in that case it will be either `ThemeManager.lightTheme` or `ThemeManager.darkTheme`).
     var effectiveTheme: Theme {
-        if isAutoTheme {
+        if isSystemTheme {
             return isDarkTheme ? ThemeManager.darkTheme : ThemeManager.lightTheme
         }
         else {

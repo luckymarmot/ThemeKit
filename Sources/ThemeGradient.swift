@@ -282,7 +282,7 @@ open class ThemeGradient : NSGradient {
     /// You should not need to manually call this function.
     open func recacheGradient() {
         // If it is a UserTheme we actually want to discard theme cached values
-        if ThemeManager.shared.effectiveTheme is UserTheme {
+        if ThemeManager.shared.effectiveTheme.isUserTheme {
             ThemeGradient.emptyCache()
         }
         

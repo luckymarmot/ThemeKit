@@ -168,13 +168,25 @@ open class ThemeColor : NSColor {
     
     /// `ThemeColor` color selector used as theme instance method for same selector
     /// or, if inexistent, as argument in the theme instance method `themeAsset(_:)`.
-    public var themeColorSelector: Selector = #selector(getter: NSColor.clear)
+    public var themeColorSelector: Selector = #selector(getter: NSColor.clear) {
+        didSet {
+            // recache color now and on theme change
+            recacheColor()
+            registerThemeChangeNotifications()
+        }
+    }
     
     /// Resolved color from current theme (dynamically changes with the current theme).
     public lazy var resolvedThemeColor: NSColor = NSColor.clear
     
     /// Theme color space (if specified).
-    private var themeColorSpace: NSColorSpace?
+    private var themeColorSpace: NSColorSpace? {
+        didSet {
+            // recache color now and on theme change
+            recacheColor()
+            registerThemeChangeNotifications()
+        }
+    }
     
     /// Average color of pattern image from resolved color (nil for non-pattern image colors)
     private var themePatternImageAverageColor: NSColor = NSColor.clear
@@ -327,50 +339,24 @@ open class ThemeColor : NSColor {
     /// - parameter colorSpace: An optional `NSColorSpace`.
     ///
     /// - returns: A `ThemeColor` instance in the specified colorspace.
-    init(with selector: Selector, colorSpace: NSColorSpace!) {
+    convenience init(with selector: Selector, colorSpace: NSColorSpace!) {
+        self.init()
+        
+        // initialize properties
         themeColorSelector = selector
         themeColorSpace = colorSpace
-        super.init()
+        
+        // cache color
         recacheColor()
+        
+        // recache color on theme change
+        registerThemeChangeNotifications()
+    }
+    
+    /// Register to recache on theme changes.
+    func registerThemeChangeNotifications() {
+        NotificationCenter.default.removeObserver(self, name: .didChangeTheme, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(recacheColor), name: .didChangeTheme, object: nil)
-
-    }
-    
-    required convenience public init(colorLiteralRed red: Float, green: Float, blue: Float, alpha: Float) {
-        fatalError("init(colorLiteralRed:green:blue:alpha:) has not been implemented")
-    }
-    
-    required public init?(pasteboardPropertyList propertyList: Any, ofType type: String) {
-        fatalError("init(pasteboardPropertyList:ofType:) has not been implemented")
-    }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        if aDecoder.allowsKeyedCoding {
-            if let themeColorSelectorString = aDecoder.decodeObject(forKey: "themeColorSelector") as? String {
-                themeColorSelector = NSSelectorFromString(themeColorSelectorString)
-            }
-        }
-        else {
-            if let themeColorSelectorString = aDecoder.decodeObject() as? String {
-                themeColorSelector = NSSelectorFromString(themeColorSelectorString)
-            }
-        }
-        
-        recacheColor()
-        NotificationCenter.default.addObserver(self, selector: #selector(recacheColor), name: .didChangeTheme, object: nil)
-    }
-
-    open override func encode(with aCoder: NSCoder) {
-        super.encode(with: aCoder)
-        
-        if aCoder.allowsKeyedCoding {
-            aCoder.encode(NSStringFromSelector(themeColorSelector), forKey: "themeColorSelector")
-        }
-        else {
-            aCoder.encode(NSStringFromSelector(themeColorSelector))
-        }
     }
     
     /// Forces dynamic color resolution into `resolvedThemeColor` and cache it.

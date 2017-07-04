@@ -142,7 +142,13 @@ open class ThemeImage : NSImage {
     
     /// `ThemeImage` image selector used as theme instance method for same
     /// selector or, if inexistent, as argument in the theme instance method `themeAsset(_:)`.
-    public var themeImageSelector: Selector?
+    public var themeImageSelector: Selector? {
+        didSet {
+            // recache image now and on theme change
+            recacheImage()
+            registerThemeChangeNotifications()
+        }
+    }
     
     /// Resolved Image from current theme (dynamically changes with the current theme).
     public var resolvedThemeImage: NSImage = NSImage(size: NSZeroSize)
@@ -252,51 +258,23 @@ open class ThemeImage : NSImage {
     /// - parameter selector: A image selector.
     ///
     /// - returns: A `ThemeImage` instance.
-    init(with selector: Selector) {
+    convenience init(with selector: Selector) {
+        self.init(size: NSZeroSize)
+        
+        // initialize properties
         themeImageSelector = selector
-        resolvedThemeImage = NSImage(size: NSZeroSize)
         
-        super.init(size: NSZeroSize)
-        
+        // cache image
         recacheImage()
+        
+        // recache on theme change
+        registerThemeChangeNotifications()
+    }
+    
+    /// Register to recache on theme changes.
+    func registerThemeChangeNotifications() {
+        NotificationCenter.default.removeObserver(self, name: .didChangeTheme, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(recacheImage), name: .didChangeTheme, object: nil)
-    }
-    
-    required convenience public init(imageLiteralResourceName name: String) {
-        fatalError("init(imageLiteralResourceName:) has not been implemented")
-    }
-    
-    required public init?(pasteboardPropertyList propertyList: Any, ofType type: String) {
-        fatalError("init(pasteboardPropertyList:ofType:) has not been implemented")
-    }
-    
-    required public init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        if aDecoder.allowsKeyedCoding {
-            if let themeImageSelectorString = aDecoder.decodeObject(forKey: "themeImageSelector") as? String {
-                themeImageSelector = NSSelectorFromString(themeImageSelectorString)
-            }
-        }
-        else {
-            themeImageSelector = NSSelectorFromString((aDecoder.decodeObject() as? String)!)
-        }
-        
-        recacheImage()
-        NotificationCenter.default.addObserver(self, selector: #selector(recacheImage), name: .didChangeTheme, object: nil)
-    }
-    
-    open override func encode(with aCoder: NSCoder) {
-        super.encode(with: aCoder)
-        
-        if let selector = themeImageSelector {
-            if aCoder.allowsKeyedCoding {
-                aCoder.encode(NSStringFromSelector(selector), forKey: "themeImageSelector")
-            }
-            else {
-                aCoder.encode(NSStringFromSelector(selector))
-            }
-        }
     }
     
     /// Forces dynamic color resolution into `resolvedThemeImage` and cache it.

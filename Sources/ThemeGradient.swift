@@ -141,7 +141,13 @@ open class ThemeGradient : NSGradient {
     
     /// `ThemeGradient` gradient selector used as theme instance method for same
     /// selector or, if inexistent, as argument in the theme instance method `themeAsset(_:)`.
-    public var themeGradientSelector: Selector
+    public var themeGradientSelector: Selector? {
+        didSet {
+            // recache gradient now and on theme change
+            recacheGradient()
+            registerThemeChangeNotifications()
+        }
+    }
     
     /// Resolved gradient from current theme (dynamically changes with the current theme).
     public var resolvedThemeGradient: NSGradient
@@ -248,18 +254,28 @@ open class ThemeGradient : NSGradient {
     ///
     /// - returns: A `ThemeGradient` instance.
     init(with selector: Selector) {
+        // initialize properties
         themeGradientSelector = selector
         let defaultColor = ThemeManager.shared.effectiveTheme.defaultFallbackBackgroundColor
         resolvedThemeGradient = NSGradient(starting: defaultColor, ending: defaultColor)!
         
         super.init(colors: [defaultColor, defaultColor], atLocations: [0.0, 1.0], colorSpace: NSColorSpace.genericRGB)!
         
+        // cache gradient
         recacheGradient()
-        NotificationCenter.default.addObserver(self, selector: #selector(recacheGradient), name: .didChangeTheme, object: nil)
+        
+        // recache on theme change
+        registerThemeChangeNotifications()
     }
     
     required public init(coder decoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    /// Register to recache on theme changes.
+    func registerThemeChangeNotifications() {
+        NotificationCenter.default.removeObserver(self, name: .didChangeTheme, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(recacheGradient), name: .didChangeTheme, object: nil)
     }
     
     /// Forces dynamic gradient resolution into `resolvedThemeGradient` and cache it.
@@ -271,7 +287,9 @@ open class ThemeGradient : NSGradient {
         }
         
         // Recache resolved color
-        resolvedThemeGradient = ThemeGradient.gradient(for: ThemeManager.shared.effectiveTheme, selector: themeGradientSelector)
+        if let selector = themeGradientSelector {
+            resolvedThemeGradient = ThemeGradient.gradient(for: ThemeManager.shared.effectiveTheme, selector: selector)
+        }
     }
     
     /// Clear all caches.
@@ -319,9 +337,5 @@ open class ThemeGradient : NSGradient {
     
     override open func interpolatedColor(atLocation location: CGFloat) -> NSColor {
         return resolvedThemeGradient.interpolatedColor(atLocation: location)
-    }
-    
-    override open var description: String {
-        return "\(super.description): \(NSStringFromSelector(themeGradientSelector))"
     }
 }

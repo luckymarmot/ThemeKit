@@ -721,11 +721,32 @@
                                         <action selector="deleteNote:" target="Oky-zY-oP4" id="mV3-Uw-EJu"/>
                                     </connections>
                                 </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="9B92EFEB-4657-4355-9D11-2375BD60ECE0" explicitItemIdentifier="editTheme" label="Edit Theme" paletteLabel="Edit Theme" tag="3" id="2RV-dP-2SW">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="36" height="34"/>
+                                    <size key="maxSize" width="65" height="34"/>
+                                    <button key="view" verticalHuggingPriority="750" tag="3" id="kV0-Sj-0Wj">
+                                        <rect key="frame" x="7" y="14" width="54" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="push" title="Edit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fZj-4L-qCK">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="addNote:" target="Oky-zY-oP4" id="15M-LG-xhQ"/>
+                                        </connections>
+                                    </button>
+                                    <connections>
+                                        <action selector="editTheme:" target="B8D-0N-5wS" id="zdX-uy-QZL"/>
+                                        <binding destination="B8D-0N-5wS" name="enabled" keyPath="canEditTheme" id="rSl-Ma-ze6"/>
+                                    </connections>
+                                </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="yKB-iY-YUK"/>
                                 <toolbarItem reference="3lQ-5V-mzk"/>
                                 <toolbarItem reference="FpX-bJ-7Ui"/>
+                                <toolbarItem reference="2RV-dP-2SW"/>
                             </defaultToolbarItems>
                         </toolbar>
                     </window>

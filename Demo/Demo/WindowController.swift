@@ -33,9 +33,28 @@ class WindowController: NSWindowController {
                 self.updateTitle(note)
             }
         }
+        
+        // Observe theme change notifications
+        NotificationCenter.default.addObserver(forName: .didChangeTheme, object: nil, queue: nil) { (notification) in
+            self.willChangeValue(forKey: "canEditTheme")
+            self.didChangeValue(forKey: "canEditTheme")
+        }
     }
     
     func updateTitle(_ note: Note) {
         self.window?.title = "\(note.title) - ThemeKit Demo"
     }
+    
+    var canEditTheme: Bool {
+        return ThemeManager.shared.theme.isUserTheme
+    }
+    
+    @IBAction func editTheme(_ sender: Any) {
+        if ThemeManager.shared.theme.isUserTheme,
+            let userTheme = ThemeManager.shared.theme as? UserTheme,
+            let userThemeURL = userTheme.fileURL {
+            NSWorkspace.shared().open(userThemeURL)
+        }
+    }
+    
 }

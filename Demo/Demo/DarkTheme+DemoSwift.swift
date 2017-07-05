@@ -47,8 +47,8 @@ extension DarkTheme {
     }
     
     /// Notes details image
-    var detailsImage: NSImage {
-        return NSImage(named: "moon")!
+    var detailsImage: NSImage? {
+        return NSImage(named: "moon")
     }
     
 }

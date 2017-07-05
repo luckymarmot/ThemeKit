@@ -47,8 +47,8 @@ extension LightTheme {
     }
     
     /// Notes details image
-    var detailsImage: NSImage {
-        return NSImage(named: "sun")!
+    var detailsImage: NSImage? {
+        return NSImage(named: "sun")
     }
     
 }

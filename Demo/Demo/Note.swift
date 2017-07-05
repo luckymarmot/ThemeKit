@@ -12,13 +12,13 @@ import Foundation
 class Note: NSObject, NSCoding {
     
     /// Note title.
-    var title: String
+    var title: String = ""
     
     /// Note text.
-    var text: String
+    var text: String = ""
     
     /// Last modified date.
-    var lastModified: Date
+    var lastModified: Date = Date()
     
     // Character count.
     var textCharacterCount: Int {
@@ -48,9 +48,15 @@ class Note: NSObject, NSCoding {
     }
     
     public required init?(coder aDecoder: NSCoder) {
-        title = aDecoder.decodeObject(forKey: "title") as! String
-        text = aDecoder.decodeObject(forKey: "text") as! String
-        lastModified = aDecoder.decodeObject(forKey: "lastModified") as! Date
+        if let title = aDecoder.decodeObject(forKey: "title") as? String {
+            self.title = title
+        }
+        if let text = aDecoder.decodeObject(forKey: "text") as? String {
+            self.text = text
+        }
+        if let lastModified = aDecoder.decodeObject(forKey: "lastModified") as? Date {
+            self.lastModified = lastModified
+        }
     }
     
 }

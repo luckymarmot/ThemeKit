@@ -48,7 +48,10 @@ class PaperTheme: NSObject, Theme {
     
     /// Notes text background color
     var contentBackgroundColor: NSColor {
-        return NSColor(patternImage: Bundle.main.image(forResource: "paper")!)
+        guard let paperImage = Bundle.main.image(forResource: "paper") else {
+            return defaultFallbackBackgroundColor
+        }
+        return NSColor(patternImage: paperImage)
     }
     
     /// Rainbow gradient (used between title and text)
@@ -72,8 +75,8 @@ class PaperTheme: NSObject, Theme {
     }
     
     /// Notes details image
-    var detailsImage: NSImage {
-        return NSImage(named: "file_doc")!
+    var detailsImage: NSImage? {
+        return NSImage(named: "file_doc")
     }
     
     

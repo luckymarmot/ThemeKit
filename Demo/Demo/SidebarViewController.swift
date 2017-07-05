@@ -17,8 +17,9 @@ class SidebarViewController: NSViewController, NSOutlineViewDataSource, NSOutlin
         super.viewDidLoad()
         
         // Keep a reference on app delegate
-        let appDelegate = NSApplication.shared().delegate as! AppDelegate
-        appDelegate.sidebarViewController = self
+        if let appDelegate = NSApplication.shared().delegate as? AppDelegate {
+            appDelegate.sidebarViewController = self
+        }
         
         // Load last notes
         loadNotes()
@@ -71,7 +72,9 @@ class SidebarViewController: NSViewController, NSOutlineViewDataSource, NSOutlin
             ]
         }
         
-        notes = newNotes!
+        if let nonEmptyNotes = newNotes {
+            notes = nonEmptyNotes
+        }
     }
     
     /// Reset to original notes

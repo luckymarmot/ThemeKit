@@ -51,9 +51,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         // 2.3 You can define the default light and dark theme, used for `ThemeManager.systemTheme`
-        //ThemeManager.lightTheme = ThemeManager.shared.theme(withIdentifier: PaperTheme.identifier)!
-        //ThemeManager.darkTheme = ThemeManager.shared.theme(withIdentifier: "com.luckymarmot.ThemeKit.PurpleGreen")!
-        
+        //if let paperTheme = ThemeManager.shared.theme(withIdentifier: PaperTheme.identifier) {
+        //    ThemeManager.lightTheme = paperTheme
+        //}
+        //if let purpleGreenTheme = ThemeManager.shared.theme(withIdentifier: "com.luckymarmot.ThemeKit.PurpleGreen") {
+        //    ThemeManager.darkTheme = purpleGreenTheme
+        //}
+    
         // 2.4 Set default theme (default: macOS theme `ThemeManager.systemTheme`)
         ThemeManager.defaultTheme = ThemeManager.lightTheme
         
@@ -153,9 +157,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 extension NSApplication {
     
-    static var sidebarViewController: SidebarViewController {
-        let appDelegate = NSApplication.shared().delegate as! AppDelegate
-        return appDelegate.sidebarViewController!
+    static var sidebarViewController: SidebarViewController? {
+        if let appDelegate = NSApplication.shared().delegate as? AppDelegate {
+            return appDelegate.sidebarViewController
+        }
+        return nil
     }
     
 }

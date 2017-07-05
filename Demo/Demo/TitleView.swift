@@ -33,26 +33,27 @@ class TitleView: NSView, NSTextFieldDelegate {
         NotificationCenter.default.addObserver(forName: .didChangeNoteSelection, object: nil, queue: nil) { (notification) in
             let obj = notification.object
             if let viewController = obj as? NSViewController,
-                viewController.view.window == self.window {
-                self.note = notification.userInfo?["note"] as? Note;
+                viewController.view.window == self.window,
+                let note = notification.userInfo?["note"] as? Note {
                 
-                if self.note != nil {
-                    self.titleTextField.stringValue = (self.note?.title)!
-                }
+                self.note = note
+                self.titleTextField.stringValue = note.title
             }
         }
         
         // Observe note title change notifications
         NotificationCenter.default.addObserver(forName: .didEditNoteTitle, object: nil, queue: nil) { (notification) in
-            if self.note != nil {
-                self.titleTextField.stringValue = (self.note?.title)!
+            if let note = self.note {
+                self.titleTextField.stringValue = note.title
             }
         }
     }
     
     /// Drawing code
     override func draw(_ dirtyRect: NSRect) {
-        guard note?.title != nil else { return }
+        guard note?.title != nil else {
+            return
+        }
         
         // Fill with content background
         ThemeColor.contentBackgroundColor.set()
@@ -69,12 +70,12 @@ class TitleView: NSView, NSTextFieldDelegate {
     // MARK: NSTextDelegate
     
     override func controlTextDidChange(_ obj: Notification) {
-        guard note != nil else {
+        guard let note = self.note else {
             return
         }
-        note!.title = titleTextField.stringValue
-        note!.lastModified = Date()
-        NotificationCenter.default.post(name: .didEditNoteTitle, object: self, userInfo: ["note" : note!])
+        note.title = titleTextField.stringValue
+        note.lastModified = Date()
+        NotificationCenter.default.post(name: .didEditNoteTitle, object: self, userInfo: ["note" : note])
     }
     
 }

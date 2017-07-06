@@ -133,16 +133,16 @@ extension NSDictionary {
             match.numberOfRanges == 11 {
             
             // Starting color
-            let red1 = Float(stringValue.substring(withNSRange: match.rangeAt(2))) ?? 1.0 / 255
-            let green1 = Float(stringValue.substring(withNSRange: match.rangeAt(3))) ?? 1.0 / 255
-            let blue1 = Float(stringValue.substring(withNSRange: match.rangeAt(4))) ?? 1.0 / 255
+            let red1 = (Float(stringValue.substring(withNSRange: match.rangeAt(2))) ?? 255) / 255
+            let green1 = (Float(stringValue.substring(withNSRange: match.rangeAt(3))) ?? 255) / 255
+            let blue1 = (Float(stringValue.substring(withNSRange: match.rangeAt(4))) ?? 255) / 255
             let alpha1 = Float(stringValue.substring(withNSRange: match.rangeAt(5))) ?? 1.0
             let color1 = NSColor(red: CGFloat(red1), green: CGFloat(green1), blue: CGFloat(blue1), alpha: CGFloat(alpha1))
 
             // Ending color
-            let red2 = Float(stringValue.substring(withNSRange: match.rangeAt(7))) ?? 1.0 / 255
-            let green2 = Float(stringValue.substring(withNSRange: match.rangeAt(8))) ?? 1.0 / 255
-            let blue2 = Float(stringValue.substring(withNSRange: match.rangeAt(9))) ?? 1.0 / 255
+            let red2 = (Float(stringValue.substring(withNSRange: match.rangeAt(7))) ?? 255) / 255
+            let green2 = (Float(stringValue.substring(withNSRange: match.rangeAt(8))) ?? 255) / 255
+            let blue2 = (Float(stringValue.substring(withNSRange: match.rangeAt(9))) ?? 255) / 255
             let alpha2 = Float(stringValue.substring(withNSRange: match.rangeAt(10))) ?? 1.0
             let color2 = NSColor(red: CGFloat(red2), green: CGFloat(green2), blue: CGFloat(blue2), alpha: CGFloat(alpha2))
             
@@ -155,9 +155,9 @@ extension NSDictionary {
             let match = NSDictionary.colorRegExpr?.firstMatch(in: stringValue, options:NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSMakeRange(0, stringValue.characters.count)),
             match.numberOfRanges == 5 {
             
-            let red = Float(stringValue.substring(withNSRange: match.rangeAt(1))) ?? 1.0 / 255
-            let green = Float(stringValue.substring(withNSRange: match.rangeAt(2))) ?? 1.0 / 255
-            let blue = Float(stringValue.substring(withNSRange: match.rangeAt(3))) ?? 1.0 / 255
+            let red = (Float(stringValue.substring(withNSRange: match.rangeAt(1))) ?? 255) / 255
+            let green = (Float(stringValue.substring(withNSRange: match.rangeAt(2))) ?? 255) / 255
+            let blue = (Float(stringValue.substring(withNSRange: match.rangeAt(3))) ?? 255) / 255
             let alpha = Float(stringValue.substring(withNSRange: match.rangeAt(4))) ?? 1.0
             
             // Color

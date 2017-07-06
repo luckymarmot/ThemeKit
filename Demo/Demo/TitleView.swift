@@ -61,7 +61,9 @@ class TitleView: NSView, NSTextFieldDelegate {
         
         // Draw gradient
         let gradientFrame = NSMakeRect(4, 0, NSWidth(bounds) - 8, 4)
-        ThemeGradient.rainbowGradient.draw(in: gradientFrame, angle: 0)
+        if let gradient = ThemeGradient.rainbowGradient {
+            gradient.draw(in: gradientFrame, angle: 0)
+        }
         
     }
     

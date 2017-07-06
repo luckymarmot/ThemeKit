@@ -109,8 +109,8 @@ public extension Theme {
     
     /// Default gradient to be used on fallback situations when
     /// no `fallbackForegroundColor` was specified by the theme.
-    var defaultFallbackGradient: NSGradient {
-        return NSGradient(starting: defaultFallbackBackgroundColor, ending: defaultFallbackBackgroundColor)!
+    var defaultFallbackGradient: NSGradient? {
+        return NSGradient(starting: defaultFallbackBackgroundColor, ending: defaultFallbackBackgroundColor)
     }
     
     /// Default image to be used on fallback situations when

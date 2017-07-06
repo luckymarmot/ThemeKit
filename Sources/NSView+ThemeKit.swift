@@ -22,8 +22,7 @@ extension NSView {
         
         // search deeper
         for subview: NSView in self.subviews {
-            let foundView = subview.deepSubview(withClassName: className)
-            if foundView != nil {
+            if let foundView = subview.deepSubview(withClassName: className) {
                 return foundView
             }
         }

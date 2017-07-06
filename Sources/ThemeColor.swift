@@ -247,23 +247,7 @@ open class ThemeColor : NSColor {
             
             // Otherwise, use fallback colors
             if color == nil {
-                let selectorString = NSStringFromSelector(selector)
-                if selectorString.contains("Background") {
-                    // try with theme provided `fallbackBackgroundColor`
-                    color = theme.fallbackBackgroundColor ?? theme.themeAsset?("fallbackBackgroundColor") as? NSColor
-                    if color == nil {
-                        // otherwise just use default fallback color
-                        color = theme.defaultFallbackBackgroundColor
-                    }
-                }
-                else {
-                    // try with theme provided `fallbackForegroundColor`
-                    color = theme.fallbackForegroundColor ?? theme.themeAsset?("fallbackForegroundColor") as? NSColor
-                    if color == nil {
-                        // otherwise just use default fallback color
-                        color = theme.defaultFallbackForegroundColor
-                    }
-                }
+                color = fallbackColor(for: theme, selector: selector)
             }
             
             // Store as Calibrated RGB if not a pattern image
@@ -272,10 +256,12 @@ open class ThemeColor : NSColor {
             }
             
             // Cache it
-            _cachedThemeColors.setObject(color!, forKey: cacheKey)
+            if let themeColor = color {
+                _cachedThemeColors.setObject(themeColor, forKey: cacheKey)
+            }
         }
         
-        return color!
+        return color ?? fallbackColor(for: theme, selector: selector)
     }
     
     /// Current theme color, but respecting view appearance and any window
@@ -317,7 +303,7 @@ open class ThemeColor : NSColor {
         return ThemeColor.color(with: selector)
     }
     
-    /// Returns a new `ThemeColor` for the fiven selector in the specified colorspace.
+    /// Returns a new `ThemeColor` for the given selector in the specified colorspace.
     ///
     /// - parameter selector:   A color selector.
     /// - parameter colorSpace: An optional `NSColorSpace`.
@@ -325,12 +311,15 @@ open class ThemeColor : NSColor {
     /// - returns: A `ThemeColor` instance in the specified colorspace.
     class func color(with selector: Selector, colorSpace: NSColorSpace?) -> ThemeColor {
         let cacheKey = CacheKey(selector: selector, colorSpace: colorSpace)
-        var color = _cachedColors.object(forKey: cacheKey)
-        if color == nil {
-            color = ThemeColor(with: selector, colorSpace: colorSpace)
-            _cachedColors.setObject(color!, forKey: cacheKey)
+        
+        if let cachedColor = _cachedColors.object(forKey: cacheKey) {
+            return cachedColor
         }
-        return color!
+        else {
+            let color = ThemeColor(with: selector, colorSpace: colorSpace)
+            _cachedColors.setObject(color, forKey: cacheKey)
+            return color
+        }
     }
     
     /// Returns a new `ThemeColor` for the fiven selector in the specified colorpsace.
@@ -339,7 +328,7 @@ open class ThemeColor : NSColor {
     /// - parameter colorSpace: An optional `NSColorSpace`.
     ///
     /// - returns: A `ThemeColor` instance in the specified colorspace.
-    convenience init(with selector: Selector, colorSpace: NSColorSpace!) {
+    convenience init(with selector: Selector, colorSpace: NSColorSpace?) {
         self.init()
         
         // initialize properties
@@ -388,6 +377,37 @@ open class ThemeColor : NSColor {
         _cachedThemeColors.removeAllObjects()
     }
     
+    /// Fallback color for a specific theme and selector.
+    class func fallbackColor(for theme: Theme, selector: Selector) -> NSColor {
+        var fallbackColor: NSColor?
+        let selectorString = NSStringFromSelector(selector)
+        
+        if selectorString.contains("Background") {
+            // try with theme provided `fallbackBackgroundColor` method
+            if let themeFallbackColor = theme.fallbackBackgroundColor as? NSColor {
+                fallbackColor = themeFallbackColor
+            }
+            // try with theme asset `fallbackBackgroundColor`
+            if fallbackColor == nil, let themeAsset = theme.themeAsset?("fallbackBackgroundColor") as? NSColor {
+                fallbackColor = themeAsset
+            }
+            // otherwise just use default fallback color
+            return fallbackColor ?? theme.defaultFallbackBackgroundColor
+        }
+        else {
+            // try with theme provided `fallbackForegroundColor` method
+            if let themeFallbackColor = theme.fallbackForegroundColor as? NSColor {
+                fallbackColor = themeFallbackColor
+            }
+            // try with theme asset `fallbackForegroundColor`
+            if fallbackColor == nil, let themeAsset = theme.themeAsset?("fallbackForegroundColor") as? NSColor {
+                fallbackColor = themeAsset
+            }
+            // otherwise just use default fallback color
+            return fallbackColor ?? theme.defaultFallbackForegroundColor
+        }
+    }
+    
     
     // MARK:- NSColor Overrides
     
@@ -414,22 +434,22 @@ open class ThemeColor : NSColor {
         
         let newColorSpace: NSColorSpace
         if colorSpace == NSCalibratedWhiteColorSpace {
-            newColorSpace = NSColorSpace.genericGray
+            newColorSpace = .genericGray
         }
         else if colorSpace == NSCalibratedRGBColorSpace {
-            newColorSpace = NSColorSpace.genericRGB
+            newColorSpace = .genericRGB
         }
         else if colorSpace == NSDeviceWhiteColorSpace {
-            newColorSpace = NSColorSpace.deviceGray
+            newColorSpace = .deviceGray
         }
         else if colorSpace == NSDeviceRGBColorSpace {
-            newColorSpace = NSColorSpace.deviceRGB
+            newColorSpace = .deviceRGB
         }
         else if colorSpace == NSDeviceCMYKColorSpace {
-            newColorSpace = NSColorSpace.deviceCMYK
+            newColorSpace = .deviceCMYK
         }
         else if colorSpace == NSCustomColorSpace {
-            newColorSpace = NSColorSpace.genericRGB
+            newColorSpace = .genericRGB
         }
         else {
             /* unsupported colorspace conversion */
@@ -453,82 +473,115 @@ open class ThemeColor : NSColor {
     
     override open func getComponents(_ components: UnsafeMutablePointer<CGFloat>) {
         let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
-        color.usingColorSpace(NSColorSpace.genericRGB)?.getComponents(components)
+        color.usingColorSpace(.genericRGB)?.getComponents(components)
     }
     
     override open var redComponent: CGFloat {
         let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
-        return (color.usingColorSpace(NSColorSpace.genericRGB)?.redComponent)!
+        if let rgbColor = color.usingColorSpace(.genericRGB) {
+            return rgbColor.redComponent
+        }
+        return 0.0
     }
     
     override open var greenComponent: CGFloat {
         let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
-        return (color.usingColorSpace(NSColorSpace.genericRGB)?.greenComponent)!
+        if let rgbColor = color.usingColorSpace(.genericRGB) {
+            return rgbColor.greenComponent
+        }
+        return 0.0
     }
     
     override open var blueComponent: CGFloat {
         let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
-        return (color.usingColorSpace(NSColorSpace.genericRGB)?.blueComponent)!
+        if let rgbColor = color.usingColorSpace(.genericRGB) {
+            return rgbColor.blueComponent
+        }
+        return 0.0
     }
     
     override open func getRed(_ red: UnsafeMutablePointer<CGFloat>?, green: UnsafeMutablePointer<CGFloat>?, blue: UnsafeMutablePointer<CGFloat>?, alpha: UnsafeMutablePointer<CGFloat>?) {
         let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
-        color.usingColorSpace(NSColorSpace.genericRGB)?.getRed(red, green: green, blue: blue, alpha: alpha)
+        color.usingColorSpace(.genericRGB)?.getRed(red, green: green, blue: blue, alpha: alpha)
     }
     
     override open var cyanComponent: CGFloat {
         let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
-        return (color.usingColorSpace(NSColorSpace.genericCMYK)?.cyanComponent)!
+        if let cmykColor = color.usingColorSpace(.genericCMYK) {
+            return cmykColor.cyanComponent
+        }
+        return 0.0
     }
     
     override open var magentaComponent: CGFloat {
         let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
-        return (color.usingColorSpace(NSColorSpace.genericCMYK)?.magentaComponent)!
+        if let cmykColor = color.usingColorSpace(.genericCMYK) {
+            return cmykColor.magentaComponent
+        }
+        return 0.0
     }
     
     override open var yellowComponent: CGFloat {
         let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
-        return (color.usingColorSpace(NSColorSpace.genericCMYK)?.yellowComponent)!
+        if let cmykColor = color.usingColorSpace(.genericCMYK) {
+            return cmykColor.yellowComponent
+        }
+        return 0.0
     }
     
     override open var blackComponent: CGFloat {
         let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
-        return (color.usingColorSpace(NSColorSpace.genericCMYK)?.blackComponent)!
+        if let cmykColor = color.usingColorSpace(.genericCMYK) {
+            return cmykColor.blackComponent
+        }
+        return 0.0
     }
     
     override open func getCyan(_ cyan: UnsafeMutablePointer<CGFloat>?, magenta: UnsafeMutablePointer<CGFloat>?, yellow: UnsafeMutablePointer<CGFloat>?, black: UnsafeMutablePointer<CGFloat>?, alpha: UnsafeMutablePointer<CGFloat>?) {
         let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
-        color.usingColorSpace(NSColorSpace.genericCMYK)?.getCyan(cyan, magenta: magenta, yellow: yellow, black: black, alpha: alpha)
+        color.usingColorSpace(.genericCMYK)?.getCyan(cyan, magenta: magenta, yellow: yellow, black: black, alpha: alpha)
     }
     
     override open var whiteComponent: CGFloat {
         let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
-        return (color.usingColorSpace(NSColorSpace.genericGray)?.whiteComponent)!
+        if let grayColor = color.usingColorSpace(.genericGray) {
+            return grayColor.whiteComponent
+        }
+        return 0.0
     }
     
     override open func getWhite(_ white: UnsafeMutablePointer<CGFloat>?, alpha: UnsafeMutablePointer<CGFloat>?) {
         let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
-        color.usingColorSpace(NSColorSpace.genericGray)?.getWhite(white, alpha: alpha)
+        color.usingColorSpace(.genericGray)?.getWhite(white, alpha: alpha)
     }
     
     override open var hueComponent: CGFloat {
         let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
-        return (color.usingColorSpace(NSColorSpace.genericRGB)?.hueComponent)!
+        if let rgbColor = color.usingColorSpace(.genericRGB) {
+            return rgbColor.hueComponent
+        }
+        return 0.0
     }
     
     override open var saturationComponent: CGFloat {
         let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
-        return (color.usingColorSpace(NSColorSpace.genericRGB)?.saturationComponent)!
+        if let rgbColor = color.usingColorSpace(.genericRGB) {
+            return rgbColor.saturationComponent
+        }
+        return 0.0
     }
     
     override open var brightnessComponent: CGFloat {
         let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
-        return (color.usingColorSpace(NSColorSpace.genericRGB)?.brightnessComponent)!
+        if let rgbColor = color.usingColorSpace(.genericRGB) {
+            return rgbColor.brightnessComponent
+        }
+        return 0.0
     }
     
     override open func getHue(_ hue: UnsafeMutablePointer<CGFloat>?, saturation: UnsafeMutablePointer<CGFloat>?, brightness: UnsafeMutablePointer<CGFloat>?, alpha: UnsafeMutablePointer<CGFloat>?) {
         let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
-        color.usingColorSpace(NSColorSpace.genericRGB)?.getHue(hue, saturation: saturation, brightness: brightness, alpha: alpha)
+        color.usingColorSpace(.genericRGB)?.getHue(hue, saturation: saturation, brightness: brightness, alpha: alpha)
     }
     
     override open func highlight(withLevel val: CGFloat) -> NSColor? {

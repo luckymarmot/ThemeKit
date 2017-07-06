@@ -48,7 +48,7 @@ public extension NSWindow {
     }
     
     /// Returns the current effective appearance (read-only).
-    public var windowEffectiveThemeAppearance: NSAppearance {
+    public var windowEffectiveThemeAppearance: NSAppearance? {
         return windowEffectiveTheme.isLightTheme ? ThemeManager.shared.lightAppearance : ThemeManager.shared.darkAppearance
     }
     
@@ -147,9 +147,12 @@ public extension NSWindow {
     // MARK:- Window screenshots
     
     /// Take window screenshot.
-    internal func takeScreenshot() -> NSImage {
-        let cgImage = CGWindowListCreateImage(CGRect.null, .optionIncludingWindow, CGWindowID(windowNumber), .boundsIgnoreFraming)
-        let image = NSImage(cgImage: cgImage!, size: frame.size)
+    internal func takeScreenshot() -> NSImage? {
+        guard let cgImage = CGWindowListCreateImage(CGRect.null, .optionIncludingWindow, CGWindowID(windowNumber), .boundsIgnoreFraming) else {
+            return nil
+        }
+        
+        let image = NSImage(cgImage: cgImage, size: frame.size)
         image.cacheMode = NSImageCacheMode.never
         image.size = frame.size
         return image
@@ -157,9 +160,6 @@ public extension NSWindow {
     
     /// Create a window with a screenshot of current window.
     internal func makeScreenshotWindow() -> NSWindow {
-        // Take window screenshot
-        let screenshot = takeScreenshot()
-        
         // Create "image-window"
         let window = NSWindow(contentRect: frame, styleMask: NSWindowStyleMask.borderless, backing: NSBackingStoreType.buffered, defer: true)
         window.isOpaque = false
@@ -168,10 +168,14 @@ public extension NSWindow {
         window.collectionBehavior = NSWindowCollectionBehavior.stationary
         window.titlebarAppearsTransparent = true
         
-        // Add image view
-        let imageView = NSImageView(frame: NSMakeRect(0, 0, screenshot.size.width, screenshot.size.height))
-        imageView.image = screenshot
-        window.contentView?.addSubview(imageView)
+        // Take window screenshot
+        if let screenshot = takeScreenshot(),
+            let parentView = window.contentView {
+            // Add image view
+            let imageView = NSImageView(frame: NSMakeRect(0, 0, screenshot.size.width, screenshot.size.height))
+            imageView.image = screenshot
+            parentView.addSubview(imageView)
+        }
         
         return window
     }
@@ -267,22 +271,23 @@ public extension NSWindow {
     
     /// Update tab bar appearance (if needed).
     private func themeTabBar() {
-        let _tabBar: NSView? = tabBar
-        guard _tabBar != nil && isTabBarVisible && _tabBar!.appearance != windowEffectiveThemeAppearance else {
+        guard let _tabBar = tabBar,
+            isTabBarVisible && _tabBar.appearance != windowEffectiveThemeAppearance else {
             return
         }
-        
+            
         // Change tabbar appearance
-        _tabBar!.appearance = windowEffectiveThemeAppearance
-        
+        _tabBar.appearance = windowEffectiveThemeAppearance
+            
         // Refresh its subviews
-        for tabBarSubview: NSView in (tabBar?.subviews)! {
+        for tabBarSubview: NSView in _tabBar.subviews {
             tabBarSubview.needsDisplay = true
         }
-        
+            
         // Also, make sure tabbar is on top (this also properly refreshes it)
-        let tabbarSuperview = _tabBar!.superview
-        tabbarSuperview?.addSubview(_tabBar!)
+        if let tabbarSuperview = _tabBar.superview {
+            tabbarSuperview.addSubview(_tabBar)
+        }
     }
     
     

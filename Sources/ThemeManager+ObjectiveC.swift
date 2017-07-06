@@ -76,14 +76,19 @@ public extension ThemeManager {
             }
         }
         set(value) {
-            if value == nil {
-                windowThemePolicy = .themeAllWindows
-            }
-            else if value!.count > 0 {
-                windowThemePolicy = .doNotThemeSomeWindows(windowClasses: value!)
+            if let newValue = value {
+                if newValue.count > 0 {
+                    // theme some if value > 0
+                    windowThemePolicy = .doNotThemeSomeWindows(windowClasses: newValue)
+                }
+                else {
+                    // theme none if value is 0
+                    windowThemePolicy = .doNotThemeWindows
+                }
             }
             else {
-                windowThemePolicy = .doNotThemeWindows
+                // theme all windows if value is nil
+                windowThemePolicy = .themeAllWindows
             }
         }
     }
@@ -108,14 +113,19 @@ public extension ThemeManager {
             }
         }
         set(value) {
-            if value == nil {
-                windowThemePolicy = .themeAllWindows
-            }
-            else if value!.count > 0 {
-                windowThemePolicy = .themeSomeWindows(windowClasses: value!)
+            if let newValue = value {
+                if newValue.count > 0 {
+                    // theme some if value > 0
+                    windowThemePolicy = .themeSomeWindows(windowClasses: newValue)
+                }
+                else {
+                    // theme none if value is 0
+                    windowThemePolicy = .doNotThemeWindows
+                }
             }
             else {
-                windowThemePolicy = .doNotThemeWindows
+                // theme all windows if value is nil
+                windowThemePolicy = .themeAllWindows
             }
         }
     }

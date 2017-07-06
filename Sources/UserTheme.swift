@@ -136,9 +136,10 @@ public class UserTheme: NSObject, Theme {
     /// - returns: The theme value for the specified key.
     public func themeAsset(_ key: String) -> Any? {
         var value = _evaluatedKeyValues[key]
-        if value == nil {
-            value = _keyValues.evaluatedObject(key: key)
-            _evaluatedKeyValues.setObject(value as Any, forKey: key as NSString)
+        if value == nil,
+            let evaluatedValue = _keyValues.evaluatedObject(key: key) {
+            value = evaluatedValue
+            _evaluatedKeyValues.setObject(evaluatedValue, forKey: key as NSString)
         }
         return value
     }

@@ -71,7 +71,7 @@ extension NSDictionary {
     // MARK: Evaluation
     
     /// Evaluate object for the specified key as theme asset (`NSColor`, `NSGradient`, `NSImage`, ...).
-    func evaluatedObject(key: String) -> AnyObject! {
+    func evaluatedObject(key: String) -> AnyObject? {
         // Resolve any variables
         let stringValue = evaluatedString(key: key)
         
@@ -83,137 +83,134 @@ extension NSDictionary {
     // MARK: Internal evaluation functions
     
     /// Evaluate object for the specified key as string.
-    private func evaluatedString(key: String) -> String! {
-        guard self[key] != nil else {
+    private func evaluatedString(key: String) -> String? {
+        guard let stringValue = self[key] as? String else {
             return nil
         }
         
-        var value = self[key] as! String
-        if self[key] is String {
-            var stringValue = (self[key] as! String)
-            
-            // Resolve any variables
-            var rangeOffset = 0
-            NSDictionary.varsRegExpr?.enumerateMatches(in: stringValue, options: NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSMakeRange(0, stringValue.characters.count), using: { (match, flags, stop) in
-                var range = match?.rangeAt(1)
-                range?.location += rangeOffset
+        // Resolve any variables
+        var evaluatedStringValue = stringValue
+        var rangeOffset = 0
+        NSDictionary.varsRegExpr?.enumerateMatches(in: stringValue, options: NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSMakeRange(0, stringValue.characters.count), using: { (match, flags, stop) in
+            if let matchRange = match?.rangeAt(1) {
+                var range = matchRange
+                range.location += rangeOffset
                 
                 // Extract variable
-                let start = range!.location + 1
-                let end = start + range!.length - 2
-                guard start < value.characters.count && end < value.characters.count else { return }
-                let variable = value[start..<end]
+                let start = range.location + 1
+                let end = start + range.length - 2
+                guard start < stringValue.characters.count && end < stringValue.characters.count else { return }
+                let variable = stringValue[start..<end]
                 
                 // Evaluated value
-                var variableValue = evaluatedString(key: variable)
-                if variableValue != nil {
-                    value = value.replacingCharacters(inNSRange: range!, with: variableValue!)
-                
+                if let variableValue = evaluatedString(key: variable) {
+                    evaluatedStringValue = stringValue.replacingCharacters(inNSRange: range, with: variableValue)
+                    
                     // Move offset forward
-                    rangeOffset = variableValue!.characters.count - (range?.length)!
+                    rangeOffset = variableValue.characters.count - range.length
                 }
                 else {
                     // Move offset forward
-                    rangeOffset = (range?.length)!
+                    rangeOffset = range.length
                 }
-            })
-        }
-        return value
+            }
+        })
+        
+        return evaluatedStringValue
     }
     
     /// Evaluate object as theme asset (`NSColor`, `NSGradient`, `NSImage`, ...).
-    private func evaluatedObjectAsThemeAsset(value: AnyObject) -> AnyObject {
-        var object = value
-        if (object is String) {
-            var stringValue = (object as! String)
-            
-            // linear-gradient(color1, color2)
-            let match = NSDictionary.linearGradRegExpr?.firstMatch(in: stringValue, options:NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSMakeRange(0, stringValue.characters.count))
-            if match?.numberOfRanges == 11 {
-                // Starting color
-                let red1 = Float(stringValue.substring(withNSRange: match!.rangeAt(2)))! / 255
-                let green1 = Float(stringValue.substring(withNSRange: match!.rangeAt(3)))! / 255
-                let blue1 = Float(stringValue.substring(withNSRange: match!.rangeAt(4)))! / 255
-                let alpha1 = Float(stringValue.substring(withNSRange: match!.rangeAt(5))) ?? 1.0
-                let color1 = NSColor(red: CGFloat(red1), green: CGFloat(green1), blue: CGFloat(blue1), alpha: CGFloat(alpha1))
-
-                // Ending color
-                let red2 = Float(stringValue.substring(withNSRange: match!.rangeAt(7)))! / 255
-                let green2 = Float(stringValue.substring(withNSRange: match!.rangeAt(8)))! / 255
-                let blue2 = Float(stringValue.substring(withNSRange: match!.rangeAt(9)))! / 255
-                let alpha2 = Float(stringValue.substring(withNSRange: match!.rangeAt(10))) ?? 1.0
-                let color2 = NSColor(red: CGFloat(red2), green: CGFloat(green2), blue: CGFloat(blue2), alpha: CGFloat(alpha2))
-                
-                // Gradient
-                object = NSGradient(starting: color1, ending: color2)!
-            }
-            
-            // rgb/rgba color
-            if (object is String) {
-                var stringValue = (object as! String)
-                let match = NSDictionary.colorRegExpr?.firstMatch(in: stringValue, options:NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSMakeRange(0, stringValue.characters.count))
-                if match?.numberOfRanges == 5 {
-                    let red = Float(stringValue.substring(withNSRange: match!.rangeAt(1)))! / 255
-                    let green = Float(stringValue.substring(withNSRange: match!.rangeAt(2)))! / 255
-                    let blue = Float(stringValue.substring(withNSRange: match!.rangeAt(3)))! / 255
-                    let alpha = Float(stringValue.substring(withNSRange: match!.rangeAt(4))) ?? 1.0
-                    
-                    // Color
-                    object = NSColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: CGFloat(alpha))
-                }
-            }
-            
-            // pattern
-            if (object is String) {
-                var stringValue = (object as! String)
-                let match = NSDictionary.patternRegExpr?.firstMatch(in: stringValue, options:NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSMakeRange(0, stringValue.characters.count))
-                if match?.numberOfRanges == 6 {
-                    let isNamedType = stringValue.substring(withNSRange: match!.rangeAt(2)) == "named"
-                    let imageName = stringValue.substring(withNSRange: match!.rangeAt(3))
-                    let isFileType = stringValue.substring(withNSRange: match!.rangeAt(4)) == "file"
-                    let imageFileName = stringValue.substring(withNSRange: match!.rangeAt(5))
-                    
-                    // Pattern image
-                    var pattern: NSImage
-                    if isNamedType {
-                        pattern = NSImage(named: imageName) ?? NSImage(size: NSZeroSize)
-                    }
-                    else if isFileType, let imageURL = ThemeManager.shared.userThemesFolderURL?.appendingPathComponent(imageFileName) {
-                        pattern = NSImage(contentsOf: imageURL) ?? NSImage(size: NSZeroSize)
-                    }
-                    else {
-                        pattern = NSImage(size: NSZeroSize)
-                    }
-                    object = NSColor(patternImage: pattern)
-                }
-            }
-            
-            // image
-            if (object is String) {
-                var stringValue = (object as! String)
-                let match = NSDictionary.imageRegExpr?.firstMatch(in: stringValue, options:NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSMakeRange(0, stringValue.characters.count))
-                if match?.numberOfRanges == 6 {
-                    let isNamedType = stringValue.substring(withNSRange: match!.rangeAt(2)) == "named"
-                    let imageName = stringValue.substring(withNSRange: match!.rangeAt(3))
-                    let isFileType = stringValue.substring(withNSRange: match!.rangeAt(4)) == "file"
-                    let imageFileName = stringValue.substring(withNSRange: match!.rangeAt(5))
-                    
-                    // Image
-                    if isNamedType {
-                        object = NSImage(named: imageName) ?? NSImage(size: NSZeroSize)
-                    }
-                    else if isFileType, let imageURL = ThemeManager.shared.userThemesFolderURL?.appendingPathComponent(imageFileName) {
-                        object = NSImage(contentsOf: imageURL) ?? NSImage(size: NSZeroSize)
-                    }
-                    else {
-                        object = NSImage(size: NSZeroSize)
-                    }
-                }
-            }
-            
+    private func evaluatedObjectAsThemeAsset(value: AnyObject) -> AnyObject? {
+        guard let stringValue = value as? String else {
+            // value is already evaluated as a non-string object
+            return value
         }
         
-        return object
+        var evaluatedObject: AnyObject? = value
+            
+        // linear-gradient(color1, color2)
+        if let match = NSDictionary.linearGradRegExpr?.firstMatch(in: stringValue, options:NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSMakeRange(0, stringValue.characters.count)),
+            match.numberOfRanges == 11 {
+            
+            // Starting color
+            let red1 = Float(stringValue.substring(withNSRange: match.rangeAt(2))) ?? 1.0 / 255
+            let green1 = Float(stringValue.substring(withNSRange: match.rangeAt(3))) ?? 1.0 / 255
+            let blue1 = Float(stringValue.substring(withNSRange: match.rangeAt(4))) ?? 1.0 / 255
+            let alpha1 = Float(stringValue.substring(withNSRange: match.rangeAt(5))) ?? 1.0
+            let color1 = NSColor(red: CGFloat(red1), green: CGFloat(green1), blue: CGFloat(blue1), alpha: CGFloat(alpha1))
+
+            // Ending color
+            let red2 = Float(stringValue.substring(withNSRange: match.rangeAt(7))) ?? 1.0 / 255
+            let green2 = Float(stringValue.substring(withNSRange: match.rangeAt(8))) ?? 1.0 / 255
+            let blue2 = Float(stringValue.substring(withNSRange: match.rangeAt(9))) ?? 1.0 / 255
+            let alpha2 = Float(stringValue.substring(withNSRange: match.rangeAt(10))) ?? 1.0
+            let color2 = NSColor(red: CGFloat(red2), green: CGFloat(green2), blue: CGFloat(blue2), alpha: CGFloat(alpha2))
+            
+            // Gradient
+            evaluatedObject = NSGradient(starting: color1, ending: color2)
+        }
+        
+        // rgb/rgba color
+        if evaluatedObject is String,
+            let match = NSDictionary.colorRegExpr?.firstMatch(in: stringValue, options:NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSMakeRange(0, stringValue.characters.count)),
+            match.numberOfRanges == 5 {
+            
+            let red = Float(stringValue.substring(withNSRange: match.rangeAt(1))) ?? 1.0 / 255
+            let green = Float(stringValue.substring(withNSRange: match.rangeAt(2))) ?? 1.0 / 255
+            let blue = Float(stringValue.substring(withNSRange: match.rangeAt(3))) ?? 1.0 / 255
+            let alpha = Float(stringValue.substring(withNSRange: match.rangeAt(4))) ?? 1.0
+            
+            // Color
+            evaluatedObject = NSColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: CGFloat(alpha))
+        }
+        
+        // pattern
+        if evaluatedObject is String,
+            let match = NSDictionary.patternRegExpr?.firstMatch(in: stringValue, options:NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSMakeRange(0, stringValue.characters.count)),
+            match.numberOfRanges == 6 {
+                
+            let isNamedType = stringValue.substring(withNSRange: match.rangeAt(2)) == "named"
+            let imageName = stringValue.substring(withNSRange: match.rangeAt(3))
+            let isFileType = stringValue.substring(withNSRange: match.rangeAt(4)) == "file"
+            let imageFileName = stringValue.substring(withNSRange: match.rangeAt(5))
+                
+            // Pattern image
+            var pattern: NSImage
+            if isNamedType {
+                pattern = NSImage(named: imageName) ?? NSImage(size: NSZeroSize)
+            }
+            else if isFileType, let imageURL = ThemeManager.shared.userThemesFolderURL?.appendingPathComponent(imageFileName) {
+                pattern = NSImage(contentsOf: imageURL) ?? NSImage(size: NSZeroSize)
+            }
+            else {
+                pattern = NSImage(size: NSZeroSize)
+            }
+            evaluatedObject = NSColor(patternImage: pattern)
+        }
+        
+        // image
+        if evaluatedObject is String,
+            let match = NSDictionary.imageRegExpr?.firstMatch(in: stringValue, options:NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSMakeRange(0, stringValue.characters.count)),
+            match.numberOfRanges == 6 {
+            
+            let isNamedType = stringValue.substring(withNSRange: match.rangeAt(2)) == "named"
+            let imageName = stringValue.substring(withNSRange: match.rangeAt(3))
+            let isFileType = stringValue.substring(withNSRange: match.rangeAt(4)) == "file"
+            let imageFileName = stringValue.substring(withNSRange: match.rangeAt(5))
+            
+            // Image
+            if isNamedType {
+                evaluatedObject = NSImage(named: imageName) ?? NSImage(size: NSZeroSize)
+            }
+            else if isFileType, let imageURL = ThemeManager.shared.userThemesFolderURL?.appendingPathComponent(imageFileName) {
+                evaluatedObject = NSImage(contentsOf: imageURL) ?? NSImage(size: NSZeroSize)
+            }
+            else {
+                evaluatedObject = NSImage(size: NSZeroSize)
+            }
+        }
+        
+        return evaluatedObject
     }
     
 }

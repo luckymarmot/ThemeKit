@@ -74,16 +74,16 @@ private var _cachedThemeImages: NSCache<NSNumber, NSImage> = NSCache()
      ```
      extension LightTheme {
      
-         var logoImage: NSImage {
-             return NSImage(named: "MyLightLogo")!
+         var logoImage: NSImage? {
+             return NSImage(named: "MyLightLogo")
          }
      
      }
      
      extension DarkTheme {
      
-         var logoImage: NSImage {
-             return NSImage(contentsOfFile: "somewhere/MyDarkLogo.png")!
+         var logoImage: NSImage? {
+             return NSImage(contentsOfFile: "somewhere/MyDarkLogo.png")
          }
      
      }
@@ -169,12 +169,15 @@ open class ThemeImage : NSImage {
     @objc(imageWithSelector:)
     public class func image(with selector: Selector) -> ThemeImage {
         let cacheKey = CacheKey(selector: selector)
-        var image = _cachedImages.object(forKey: cacheKey)
-        if image == nil {
-            image = ThemeImage(with: selector)
-            _cachedImages.setObject(image!, forKey: cacheKey)
+        
+        if let cachedImage = _cachedImages.object(forKey: cacheKey) {
+            return cachedImage
         }
-        return image!
+        else {
+            let image = ThemeImage(with: selector)
+            _cachedImages.setObject(image, forKey: cacheKey)
+            return image
+        }
     }
     
     /// Image for a specific theme.
@@ -184,7 +187,7 @@ open class ThemeImage : NSImage {
     ///
     /// - returns: Resolved image for specified selector on given theme.
     @objc(imageForTheme:selector:)
-    public class func image(for theme: Theme, selector: Selector) -> NSImage {
+    public class func image(for theme: Theme, selector: Selector) -> NSImage? {
         let cacheKey = CacheKey(selector: selector, theme: theme)
         var image = _cachedThemeImages.object(forKey: cacheKey)
         
@@ -199,19 +202,16 @@ open class ThemeImage : NSImage {
             
             // Otherwise, use fallback image
             if image == nil {
-                // try with theme provided `fallbackImage`
-                image = theme.fallbackImage ?? theme.themeAsset?("fallbackImage") as? NSImage
-                if image == nil {
-                    // otherwise just use default fallback image
-                    image = theme.defaultFallbackImage
-                }
+                image = fallbackImage(for: theme, selector: selector)
             }
             
             // Cache it
-            _cachedThemeImages.setObject(image!, forKey: cacheKey)
+            if let themeImage = image {
+                _cachedThemeImages.setObject(themeImage, forKey: cacheKey)
+            }
         }
         
-        return image!
+        return image
     }
     
     /// Current theme image, but respecting view appearance and any window 
@@ -228,7 +228,7 @@ open class ThemeImage : NSImage {
     ///
     /// - returns: Resolved image for specified selector on given view.
     @objc(imageForView:selector:)
-    public class func image(for view: NSView, selector: Selector) -> NSImage {
+    public class func image(for view: NSView, selector: Selector) -> NSImage? {
         // if a custom window theme was set, use the appropriate asset
         if let windowTheme = view.window?.windowTheme {
             return ThemeImage.image(for: windowTheme, selector: selector)
@@ -286,8 +286,9 @@ open class ThemeImage : NSImage {
         }
         
         // Recache resolved image
-        if let selector = themeImageSelector {
-            resolvedThemeImage = ThemeImage.image(for: ThemeManager.shared.effectiveTheme, selector: selector)
+        if let selector = themeImageSelector,
+            let newImage = ThemeImage.image(for: ThemeManager.shared.effectiveTheme, selector: selector) {
+            resolvedThemeImage = newImage
         }
     }
     
@@ -298,6 +299,24 @@ open class ThemeImage : NSImage {
         _cachedThemeImages.removeAllObjects()
     }
     
+    /// Fallback image for a specific theme and selector.
+    class func fallbackImage(for theme: Theme, selector: Selector) -> NSImage? {
+        var fallbackImage: NSImage?
+        
+        // try with theme provided `fallbackImage` method
+        if let themeFallbackImage = theme.fallbackImage as? NSImage {
+            fallbackImage = themeFallbackImage
+        }
+        // try with theme asset `fallbackImage`
+        if fallbackImage == nil, let themeAsset = theme.themeAsset?("fallbackImage") as? NSImage {
+            fallbackImage = themeAsset
+        }
+        // otherwise just use default fallback image
+        return fallbackImage ?? theme.defaultFallbackImage
+    }
+    
+    
+    // MARK:- NSImage Overrides
     
     override open var size: NSSize {
         get {

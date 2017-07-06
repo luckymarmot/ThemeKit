@@ -43,7 +43,7 @@ public class ThemeManager: NSObject {
         }
 
         // Observe current theme on User Defaults
-        NSUserDefaultsController.shared().addObserver(self, forKeyPath: themeChangeKVOKeyPath, options: NSKeyValueObservingOptions.init(rawValue: 0), context: nil)
+        NSUserDefaultsController.shared().addObserver(self, forKeyPath: themeChangeKVOKeyPath, options: NSKeyValueObservingOptions(rawValue: 0), context: nil)
         
         // Observe current system theme (macOS Apple Interface Theme)
         NotificationCenter.default.addObserver(self, selector: #selector(systemThemeDidChange(_:)), name: .didChangeSystemTheme, object: nil)
@@ -227,7 +227,7 @@ public class ThemeManager: NSObject {
     /// Location of user provided themes (.theme files).
     ///
     /// Ideally, this should be on a shared location, like `Application Support/{app_bundle_id}/Themes`
-    /// for example. Here's an example of how to get this folder:
+    /// for example. Here's an example of how to get this folder (*):
     ///
     /// ```swift
     /// public var applicationSupportUserThemesFolderURL: URL {
@@ -236,6 +236,8 @@ public class ThemeManager: NSObject {
     ///   return thisAppSupportURL.appendingPathComponent("Themes")
     /// }
     /// ```
+    ///
+    /// *: force wrapping (!) is for illustrative purposes only.
     ///
     /// You can also bundle these files with your application bundle, if you 
     /// don't want them to be changed.
@@ -298,7 +300,7 @@ public class ThemeManager: NSObject {
         if let folderFiles = try? FileManager.default.contentsOfDirectory(atPath: url.path) as NSArray {
             let themeFileNames = folderFiles.filtered(using: NSPredicate(format: "self ENDSWITH '.theme'", argumentArray: nil))
             return themeFileNames.map({ (fileName: Any) -> String in
-                return fileName as! String
+                return fileName as? String ?? ""
             })
         }
         return []
@@ -331,17 +333,17 @@ public class ThemeManager: NSObject {
     
     /// Appearance in use for effective theme.
     public var effectiveThemeAppearance: NSAppearance {
-        return effectiveTheme.isLightTheme ? lightAppearance : darkAppearance
+        return (effectiveTheme.isLightTheme ? lightAppearance : darkAppearance) ?? NSAppearance.current()
     }
     
     /// Convenience method to get the light appearance.
-    public var lightAppearance: NSAppearance {
-        return NSAppearance(named: NSAppearanceNameVibrantLight)!
+    public var lightAppearance: NSAppearance? {
+        return NSAppearance(named: NSAppearanceNameVibrantLight)
     }
     
     /// Convenience method to get the dark appearance.
-    public var darkAppearance: NSAppearance {
-        return NSAppearance(named: NSAppearanceNameVibrantDark)!
+    public var darkAppearance: NSAppearance? {
+        return NSAppearance(named: NSAppearanceNameVibrantDark)
     }
     
     // MARK: -

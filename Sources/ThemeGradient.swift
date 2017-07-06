@@ -150,7 +150,7 @@ open class ThemeGradient : NSGradient {
     }
     
     /// Resolved gradient from current theme (dynamically changes with the current theme).
-    public var resolvedThemeGradient: NSGradient
+    public var resolvedThemeGradient: NSGradient?
     
     
     // MARK: -
@@ -162,14 +162,17 @@ open class ThemeGradient : NSGradient {
     ///
     /// - returns: A `ThemeGradient` instance for the specified selector.
     @objc(gradientWithSelector:)
-    public class func gradient(with selector: Selector) -> ThemeGradient {
+    public class func gradient(with selector: Selector) -> ThemeGradient? {
         let cacheKey = CacheKey(selector: selector)
-        var gradient = _cachedGradients.object(forKey: cacheKey)
-        if gradient == nil {
-            gradient = ThemeGradient(with: selector)
-            _cachedGradients.setObject(gradient!, forKey: cacheKey)
+        
+        if let cachedGradient = _cachedGradients.object(forKey: cacheKey) {
+            return cachedGradient
         }
-        return gradient!
+        else if let gradient = ThemeGradient(with: selector) {
+            _cachedGradients.setObject(gradient, forKey: cacheKey)
+            return gradient
+        }
+        return nil
     }
     
     /// Gradient for a specific theme.
@@ -179,7 +182,7 @@ open class ThemeGradient : NSGradient {
     ///
     /// - returns: Resolved gradient for specified selector on given theme.
     @objc(gradientForTheme:selector:)
-    public class func gradient(for theme: Theme, selector: Selector) -> NSGradient {
+    public class func gradient(for theme: Theme, selector: Selector) -> NSGradient? {
         let cacheKey = CacheKey(selector: selector, theme: theme)
         var gradient = _cachedThemeGradients.object(forKey: cacheKey)
         
@@ -194,19 +197,16 @@ open class ThemeGradient : NSGradient {
             
             // Otherwise, use fallback gradient
             if gradient == nil {
-                // try with theme provided `fallbackGradient`
-                gradient = theme.fallbackGradient ?? theme.themeAsset?("fallbackGradient") as? NSGradient
-                if gradient == nil {
-                    // otherwise just use default fallback gradient
-                    gradient = theme.defaultFallbackGradient
-                }
+                gradient = fallbackGradient(for: theme, selector: selector)
             }
             
             // Cache it
-            _cachedThemeGradients.setObject(gradient!, forKey: cacheKey)
+            if let themeGradient = gradient {
+                _cachedThemeGradients.setObject(themeGradient, forKey: cacheKey)
+            }
         }
         
-        return gradient!
+        return gradient
     }
     
     /// Current theme gradient, but respecting view appearance and any window
@@ -223,7 +223,7 @@ open class ThemeGradient : NSGradient {
     ///
     /// - returns: Resolved gradient for specified selector on given view.
     @objc(gradientForView:selector:)
-    public class func gradient(for view: NSView, selector: Selector) -> NSGradient {
+    public class func gradient(for view: NSView, selector: Selector) -> NSGradient? {
         // if a custom window theme was set, use the appropriate asset
         if let windowTheme = view.window?.windowTheme {
             return ThemeGradient.gradient(for: windowTheme, selector: selector)
@@ -253,13 +253,13 @@ open class ThemeGradient : NSGradient {
     /// - parameter selector:   A gradient selector.
     ///
     /// - returns: A `ThemeGradient` instance.
-    init(with selector: Selector) {
+    init?(with selector: Selector) {
         // initialize properties
         themeGradientSelector = selector
         let defaultColor = ThemeManager.shared.effectiveTheme.defaultFallbackBackgroundColor
-        resolvedThemeGradient = NSGradient(starting: defaultColor, ending: defaultColor)!
+        resolvedThemeGradient = NSGradient(starting: defaultColor, ending: defaultColor)
         
-        super.init(colors: [defaultColor, defaultColor], atLocations: [0.0, 1.0], colorSpace: NSColorSpace.genericRGB)!
+        super.init(colors: [defaultColor, defaultColor], atLocations: [0.0, 1.0], colorSpace: NSColorSpace.genericRGB)
         
         // cache gradient
         recacheGradient()
@@ -287,8 +287,9 @@ open class ThemeGradient : NSGradient {
         }
         
         // Recache resolved color
-        if let selector = themeGradientSelector {
-            resolvedThemeGradient = ThemeGradient.gradient(for: ThemeManager.shared.effectiveTheme, selector: selector)
+        if let selector = themeGradientSelector,
+            let newGradient = ThemeGradient.gradient(for: ThemeManager.shared.effectiveTheme, selector: selector) {
+            resolvedThemeGradient = newGradient
         }
     }
     
@@ -299,43 +300,62 @@ open class ThemeGradient : NSGradient {
         _cachedThemeGradients.removeAllObjects()
     }
     
+    /// Fallback gradient for a specific theme and selector.
+    class func fallbackGradient(for theme: Theme, selector: Selector) -> NSGradient? {
+        var fallbackGradient: NSGradient?
+        
+        // try with theme provided `fallbackGradient` method
+        if let themeFallbackGradient = theme.fallbackGradient as? NSGradient {
+            fallbackGradient = themeFallbackGradient
+        }
+        // try with theme asset `fallbackGradient`
+        if fallbackGradient == nil, let themeAsset = theme.themeAsset?("fallbackGradient") as? NSGradient {
+            fallbackGradient = themeAsset
+        }
+        // otherwise just use default fallback gradient
+        return fallbackGradient ?? theme.defaultFallbackGradient
+    }
+    
+    
+    // MARK:- NSGradient Overrides
+    
     override open func draw(in rect: NSRect, angle: CGFloat) {
-        resolvedThemeGradient.draw(in: rect, angle: angle)
+        resolvedThemeGradient?.draw(in: rect, angle: angle)
     }
     
     override open func draw(in path: NSBezierPath, angle: CGFloat) {
-        resolvedThemeGradient.draw(in: path, angle: angle)
+        resolvedThemeGradient?.draw(in: path, angle: angle)
     }
     
     override open func draw(from startingPoint: NSPoint, to endingPoint: NSPoint, options: NSGradientDrawingOptions = []) {
-        resolvedThemeGradient.draw(from: startingPoint, to: endingPoint, options: options)
+        resolvedThemeGradient?.draw(from: startingPoint, to: endingPoint, options: options)
     }
     
     override open func draw(fromCenter startCenter: NSPoint, radius startRadius: CGFloat, toCenter endCenter: NSPoint, radius endRadius: CGFloat, options: NSGradientDrawingOptions = []) {
-        resolvedThemeGradient.draw(fromCenter: startCenter, radius: startRadius, toCenter: endCenter, radius: endRadius, options: options)
+        resolvedThemeGradient?.draw(fromCenter: startCenter, radius: startRadius, toCenter: endCenter, radius: endRadius, options: options)
     }
     
     override open func draw(in rect: NSRect, relativeCenterPosition: NSPoint) {
-        resolvedThemeGradient.draw(in: rect, relativeCenterPosition: relativeCenterPosition)
+        resolvedThemeGradient?.draw(in: rect, relativeCenterPosition: relativeCenterPosition)
     }
     
     override open func draw(in path: NSBezierPath, relativeCenterPosition: NSPoint) {
-        resolvedThemeGradient.draw(in: path, relativeCenterPosition: relativeCenterPosition)
+        resolvedThemeGradient?.draw(in: path, relativeCenterPosition: relativeCenterPosition)
     }
     
     override open var colorSpace: NSColorSpace {
-        return resolvedThemeGradient.colorSpace
+        return resolvedThemeGradient?.colorSpace ?? .genericRGB
     }
     
     override open var numberOfColorStops: Int {
-        return resolvedThemeGradient.numberOfColorStops
+        return resolvedThemeGradient?.numberOfColorStops ?? 0
     }
     
     override open func getColor(_ color: AutoreleasingUnsafeMutablePointer<NSColor>?, location: UnsafeMutablePointer<CGFloat>?, at index: Int) {
-        resolvedThemeGradient.getColor(color, location: location, at: index)
+        resolvedThemeGradient?.getColor(color, location: location, at: index)
     }
     
     override open func interpolatedColor(atLocation location: CGFloat) -> NSColor {
-        return resolvedThemeGradient.interpolatedColor(atLocation: location)
+        return resolvedThemeGradient?.interpolatedColor(atLocation: location) ?? NSColor.clear
     }
 }

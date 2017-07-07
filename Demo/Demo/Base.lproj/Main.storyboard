@@ -983,7 +983,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="404" height="262"/>
                             <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="ecO-4c-Vne">
                                 <rect key="frame" x="0.0" y="0.0" width="404" height="262"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <textView focusRingType="none" drawsBackground="NO" verticallyResizable="YES" fieldEditor="YES" findStyle="panel" incrementalSearchingEnabled="YES" allowsUndo="YES" smartInsertDelete="YES" id="Ngm-2I-WcI">
                                         <rect key="frame" x="0.0" y="0.0" width="404" height="262"/>

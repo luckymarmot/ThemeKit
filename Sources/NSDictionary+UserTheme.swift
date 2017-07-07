@@ -99,12 +99,12 @@ extension NSDictionary {
                 // Extract variable
                 let start = range.location + 1
                 let end = start + range.length - 2
-                guard start < stringValue.characters.count && end < stringValue.characters.count else { return }
-                let variable = stringValue[start..<end]
+                guard start < evaluatedStringValue.characters.count && end < evaluatedStringValue.characters.count else { return }
+                let variable = evaluatedStringValue[start..<end]
                 
                 // Evaluated value
                 if let variableValue = evaluatedString(key: variable) {
-                    evaluatedStringValue = stringValue.replacingCharacters(inNSRange: range, with: variableValue)
+                    evaluatedStringValue = evaluatedStringValue.replacingCharacters(inNSRange: range, with: variableValue)
                     
                     // Move offset forward
                     rangeOffset = variableValue.characters.count - range.length

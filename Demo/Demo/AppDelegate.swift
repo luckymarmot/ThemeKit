@@ -63,6 +63,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // 2.5 Apply last applied theme, or the default one
         ThemeManager.shared.applyLastOrDefaultTheme()
+        
     }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -101,6 +102,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             updateThemeMenu()
         }
     }
+    
+    // As a bonus, an hacky way of theming window titlebar is shown on
+    // `WindowController` for illustrative purposes.
     
     
     // MARK:-

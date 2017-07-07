@@ -11,6 +11,13 @@ import ThemeKit
 
 extension ThemeColor {
     
+    // MARK: WINDOW
+    
+    /// Window title bar color
+    static var windowTitleBarColor: ThemeColor {
+        return ThemeColor.color(with: #function)
+    }
+    
     // MARK: CONTENT
     
     /// Notes content title text color

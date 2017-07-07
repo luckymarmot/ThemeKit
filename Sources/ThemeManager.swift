@@ -211,6 +211,14 @@ public class ThemeManager: NSObject {
         (userDefaultsTheme ?? ThemeManager.defaultTheme).apply()
     }
     
+    /// Force-apply current `theme`.
+    ///
+    /// Normally you should not need to invoke this method, as this will
+    /// force-apply the same theme.
+    public func reApplyCurrentTheme() {
+        applyTheme(theme)
+    }
+    
     /// Apple Interface theme has changed.
     ///
     /// - parameter notification: A `.didChangeSystemTheme` notification.
@@ -436,7 +444,7 @@ public class ThemeManager: NSObject {
     /// Screenshot-windows used during theme animated transition.
     private var themeTransitionWindows: Set<NSWindow> = Set()
     
-    /// Apply a new `theme`
+    /// Apply a new `theme`.
     private func applyTheme(_ newTheme: Theme) {
         
         // Make theme effective

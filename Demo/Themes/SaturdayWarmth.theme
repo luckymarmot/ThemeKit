@@ -1,10 +1,10 @@
 // ************************** Credits *************************** //
-// Makes use of ColourLovers Pattern "saturday warmth"
-// by http://www.colourlovers.com/lover/logochic/loveNote
-// URL: http://www.colourlovers.com/pattern/582552/saturday_warmth
+// - "saturday warmth" pattern
+//   Author: http://www.colourlovers.com/lover/logochic/loveNote
+//   URL: http://www.colourlovers.com/pattern/582552/saturday_warmth
 
 // ************************* Theme Info ************************* //
-displayName = Saturday Warmth
+displayName = Saturday Warmth Theme
 shortDisplayName = Saturday Warmth
 identifier = com.luckymarmot.ThemeKit.SaturdayWarmth
 darkTheme = false

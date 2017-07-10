@@ -649,9 +649,9 @@
                                 <toolbarItem implicitItemIdentifier="A18573F1-3B52-4DBC-87C7-A31559D6488E" label="Theme" paletteLabel="Theme" id="FpX-bJ-7Ui">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="80" height="28"/>
-                                    <size key="maxSize" width="150" height="28"/>
+                                    <size key="maxSize" width="170" height="28"/>
                                     <popUpButton key="view" verticalHuggingPriority="750" id="bUH-7N-jM3">
-                                        <rect key="frame" x="0.0" y="14" width="125" height="28"/>
+                                        <rect key="frame" x="0.0" y="14" width="170" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
                                         <popUpButtonCell key="cell" type="roundTextured" title="Item 1" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="PA8-Em-lSp" id="c0J-0p-c1e">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -723,7 +723,7 @@
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="9B92EFEB-4657-4355-9D11-2375BD60ECE0" explicitItemIdentifier="editTheme" label="Edit Theme" paletteLabel="Edit Theme" tag="3" id="2RV-dP-2SW">
                                     <nil key="toolTip"/>
-                                    <size key="minSize" width="36" height="34"/>
+                                    <size key="minSize" width="36" height="32"/>
                                     <size key="maxSize" width="65" height="34"/>
                                     <button key="view" verticalHuggingPriority="750" tag="3" id="kV0-Sj-0Wj">
                                         <rect key="frame" x="7" y="14" width="54" height="32"/>

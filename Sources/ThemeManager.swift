@@ -294,7 +294,7 @@ public class ThemeManager: NSObject {
                 
                 // Re-apply current theme if user theme
                 if theme.effectiveTheme.isUserTheme {
-                    applyLastOrDefaultTheme()
+                    reApplyCurrentTheme()
                 }
             }
         }

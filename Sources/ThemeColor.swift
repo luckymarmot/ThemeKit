@@ -342,6 +342,10 @@ open class ThemeColor : NSColor {
         registerThemeChangeNotifications()
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .didChangeTheme, object: nil)
+    }
+    
     /// Register to recache on theme changes.
     func registerThemeChangeNotifications() {
         NotificationCenter.default.removeObserver(self, name: .didChangeTheme, object: nil)

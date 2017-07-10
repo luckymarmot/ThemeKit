@@ -272,6 +272,10 @@ open class ThemeGradient : NSGradient {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .didChangeTheme, object: nil)
+    }
+    
     /// Register to recache on theme changes.
     func registerThemeChangeNotifications() {
         NotificationCenter.default.removeObserver(self, name: .didChangeTheme, object: nil)

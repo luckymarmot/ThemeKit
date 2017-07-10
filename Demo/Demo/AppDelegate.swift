@@ -34,20 +34,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         //ThemeManager.shared.windowThemePolicy = .doNotThemeWindows
         
         // 2.2 User themes folder
-        let workingDirectory = FileManager.default.currentDirectoryPath
-        if workingDirectory != "/" {
-            // probably launching from Xcode, point to project `Themes` folder so
-            // users can easily test the live editing of `.theme` files
-            let projectRootURL = URL(fileURLWithPath: workingDirectory, isDirectory: true).deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent().appendingPathComponent("Themes")
-            ThemeManager.shared.userThemesFolderURL = projectRootURL
-        }
-        else if let bundleResourcePath = Bundle.main.resourcePath {
-            // otherwise, just point to the bundled Resources folder
+        if let bundleResourcePath = Bundle.main.resourcePath {
             ThemeManager.shared.userThemesFolderURL = URL(fileURLWithPath: bundleResourcePath)
-        }
-        // let users know about our choosen user themes folder
-        if let userThemesFolderURL = ThemeManager.shared.userThemesFolderURL {
-            NSLog("ThemeManager.shared.userThemesFolderURL: %@", userThemesFolderURL.path)
+            NSLog("ThemeManager.shared.userThemesFolderURL: %@", ThemeManager.shared.userThemesFolderURL?.path ?? "-")
         }
         
         // 2.3 You can define the default light and dark theme, used for `ThemeManager.systemTheme`

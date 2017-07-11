@@ -85,6 +85,16 @@ class ContentViewController: NSViewController, NSTextDelegate {
         DispatchQueue.main.async {
             self.contentTextView.enclosingScrollView?.verticalScroller?.layer?.backgroundColor = ThemeColor.contentBackgroundColor.cgColor
         }
+        
+        // If in fullscreen, need to re-focus current window
+        if let window = view.window {
+            let isWindowInFullScreen = window.styleMask.contains(.fullScreen) || window.className == "NSToolbarFullScreenWindow"
+            if isWindowInFullScreen {
+                DispatchQueue.main.async {
+                    window.makeKey()
+                }
+            }
+        }
     }
     
     

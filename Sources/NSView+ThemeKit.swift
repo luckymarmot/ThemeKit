@@ -15,7 +15,7 @@ extension NSView {
         
         // search level below (view subviews)
         for subview: NSView in self.subviews {
-            if (subview.className == className) {
+            if subview.className == className {
                 return subview
             }
         }

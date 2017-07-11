@@ -13,8 +13,13 @@ extension ThemeColor {
     
     // MARK: WINDOW
     
-    /// Window title bar color
-    static var windowTitleBarColor: ThemeColor {
+    /// Active window title bar color
+    static var windowTitleBarActiveColor: ThemeColor {
+        return ThemeColor.color(with: #function)
+    }
+    
+    /// Inactive window title bar color
+    static var windowTitleBarInactiveColor: ThemeColor {
         return ThemeColor.color(with: #function)
     }
     

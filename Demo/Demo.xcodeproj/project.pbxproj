@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		283F84621DA2CAF5000C5634 /* ThemeImage+DemoSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283F84611DA2CAF5000C5634 /* ThemeImage+DemoSwift.swift */; };
+		28598DF81F152A470066581D /* TitleBarOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28598DF71F152A470066581D /* TitleBarOverlayView.swift */; };
 		286D7F1F1F0F9203008EA0AA /* SaturdayWarmth.theme in Resources */ = {isa = PBXBuildFile; fileRef = 286D7F1E1F0F9096008EA0AA /* SaturdayWarmth.theme */; };
 		286D7F211F13785C008EA0AA /* LadyInDark.theme in Resources */ = {isa = PBXBuildFile; fileRef = 286D7F201F137836008EA0AA /* LadyInDark.theme */; };
 		289EBA821D9E6E6200561B3D /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289EBA811D9E6E6200561B3D /* TitleView.swift */; };
@@ -65,6 +66,7 @@
 
 /* Begin PBXFileReference section */
 		283F84611DA2CAF5000C5634 /* ThemeImage+DemoSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ThemeImage+DemoSwift.swift"; sourceTree = "<group>"; };
+		28598DF71F152A470066581D /* TitleBarOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleBarOverlayView.swift; sourceTree = "<group>"; };
 		286D7F1E1F0F9096008EA0AA /* SaturdayWarmth.theme */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; name = SaturdayWarmth.theme; path = Themes/SaturdayWarmth.theme; sourceTree = SOURCE_ROOT; };
 		286D7F201F137836008EA0AA /* LadyInDark.theme */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; name = LadyInDark.theme; path = Themes/LadyInDark.theme; sourceTree = SOURCE_ROOT; };
 		289EBA811D9E6E6200561B3D /* TitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 			children = (
 				289EBA811D9E6E6200561B3D /* TitleView.swift */,
 				289EBA881D9EE51E00561B3D /* DetailsView.swift */,
+				28598DF71F152A470066581D /* TitleBarOverlayView.swift */,
 			);
 			name = "Custom Views";
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 				28C0CFB81D9D673000530662 /* DarkTheme+DemoSwift.swift in Sources */,
 				28C0CFBA1D9D673000530662 /* ThemeColor+DemoSwift.swift in Sources */,
 				289EBA891D9EE51E00561B3D /* DetailsView.swift in Sources */,
+				28598DF81F152A470066581D /* TitleBarOverlayView.swift in Sources */,
 				28C0CFBB1D9D673000530662 /* ThemeGradient+DemoSwift.swift in Sources */,
 				28C0CFBF1D9D6D3600530662 /* NotificationName+Note.swift in Sources */,
 				28C0CFB91D9D673000530662 /* LightTheme+DemoSwift.swift in Sources */,

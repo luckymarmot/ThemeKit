@@ -39,59 +39,51 @@ class WindowController: NSWindowController {
             // update KVO property
             self.willChangeValue(forKey: "canEditTheme")
             self.didChangeValue(forKey: "canEditTheme")
-            
-            // update window color
-            self.updateWindowTitleBarColor()
-        }
-        
-        // Allow window titlebar theming
-        // Done on code for illustrative purposes (can be set on IB).
-        if let window = super.window {
-            window.styleMask.formUnion(.texturedBackground)
-            window.invalidateShadow()
-        }
-        
-        // HACK: Observe windows update so that we can force-apply a theme when a new
-        // window/tab is added. This is a workaround for a refresh issue occurring
-        // when attempting to theme the window (as in `updateWindowTitleBarColor()`),
-        // and should not be needed on normal cases.
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.NSWindowDidUpdate, object: nil, queue: nil) { (notification) in
-            let newWindowCount = NSApplication.shared().windows.filter { $0.title != "" }.count
-            if WindowController.windowCount != newWindowCount {
-                WindowController.windowCount = newWindowCount
-                ThemeManager.shared.reApplyCurrentTheme()
-            }
         }
     }
     
-    /// Private reference of number of windows.
-    private static var windowCount = NSApplication.shared().windows.filter { $0.title != "" }.count
+    /// Add titlebar overlay view.
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        if let titlebarView = self.titlebarView {
+            // create titlebar background overlay view
+            let overlayView = TitleBarOverlayView(frame: NSMakeRect(0, 0, 100, 100))
+            overlayView.translatesAutoresizingMaskIntoConstraints = false
+            
+            // add overlay view below everything else
+            titlebarView.addSubview(overlayView, positioned: .below, relativeTo: nil)
+            
+            // add constraints
+            let constraintViews = ["view":overlayView]
+            titlebarView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[view]-0-|", options: [.directionLeadingToTrailing], metrics: nil, views: constraintViews))
+            titlebarView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[view]-0-|", options: [.directionLeadingToTrailing], metrics: nil, views: constraintViews))
+            
+            // refresh it when key flag changes
+            NotificationCenter.default.addObserver(forName: .NSWindowDidBecomeKey, object: window, queue: nil, using: { _ in
+                overlayView.needsDisplay = true
+            })
+            NotificationCenter.default.addObserver(forName: .NSWindowDidResignKey, object: window, queue: nil, using: { _ in
+                overlayView.needsDisplay = true
+            })
+        }
+    }
+    
+    /// Find `NSTitlebarContainerView` view.
+    private var titlebarView: NSView? {
+        if let themeFrame = self.window?.contentView?.superview {
+            for subview in themeFrame.subviews {
+                if subview.className == "NSTitlebarContainerView" {
+                    return subview.subviews[0]
+                }
+            }
+        }
+        return nil
+    }
     
     /// Update window title with current note title.
     func updateTitle(_ note: Note) {
         self.window?.title = "\(note.title) - ThemeKit Demo"
-    }
-    
-    /// Update window titlebar color.
-    func updateWindowTitleBarColor() {
-        guard let window = super.window else {
-            return
-        }
-        
-        if let windowTitleBarColor = themeKit.theme.themeAsset?("windowTitleBarColor") as? NSColor {
-            // enable window theming
-            window.styleMask.formUnion(.texturedBackground)
-            window.backgroundColor = windowTitleBarColor
-            window.alphaValue = 0.9
-            window.alphaValue = 1.0
-        }
-        else {
-            // disable window theming
-            window.styleMask.subtract(.texturedBackground)
-            window.backgroundColor = nil
-            window.alphaValue = 0.9
-            window.alphaValue = 1.0
-        }
     }
     
     /// Can edit current theme (must be a `UserTheme`).

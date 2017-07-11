@@ -733,11 +733,11 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="addNote:" target="Oky-zY-oP4" id="15M-LG-xhQ"/>
+                                            <action selector="editTheme:" target="B8D-0N-5wS" id="dE9-cb-45w"/>
                                         </connections>
                                     </button>
                                     <connections>
-                                        <action selector="editTheme:" target="B8D-0N-5wS" id="zdX-uy-QZL"/>
+                                        <action selector="editTheme:" target="B8D-0N-5wS" id="J3n-eD-HaP"/>
                                         <binding destination="B8D-0N-5wS" name="enabled" keyPath="canEditTheme" id="rSl-Ma-ze6"/>
                                     </connections>
                                 </toolbarItem>

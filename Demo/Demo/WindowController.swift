@@ -104,7 +104,17 @@ class WindowController: NSWindowController {
         if ThemeManager.shared.theme.isUserTheme,
             let userTheme = ThemeManager.shared.theme as? UserTheme,
             let userThemeURL = userTheme.fileURL {
-            NSWorkspace.shared().open(userThemeURL)
+            
+            // check if there is any app associted with `.theme` extension
+            let userThemeCFURL:CFURL = userThemeURL as CFURL
+            if let _ = LSCopyDefaultApplicationURLForURL(userThemeCFURL, .editor, nil) {
+                NSWorkspace.shared().open(userThemeURL)
+            }
+            else {
+                // otherwise open with TextEdit
+                NSWorkspace.shared().openFile(userThemeURL.path, withApplication: "TextEdit", andDeactivate: true)
+            }
+            
         }
     }
     

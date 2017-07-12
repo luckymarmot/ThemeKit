@@ -10,8 +10,8 @@ identifier = com.luckymarmot.ThemeKit.LadyInDark
 darkTheme = true
 
 // *************************** Window ************************** //
-windowTitleBarActiveColor = pattern(named:ladyindark)
-windowTitleBarInactiveColor = $sexy.latex
+windowTitleBarActiveColor = $sexy.latex
+windowTitleBarInactiveColor = $intellektuelle.black
 
 // *************************** Content ************************** //
 contentTitleColor = $text.lightgray
@@ -21,7 +21,7 @@ rainbowGradient = linear-gradient($text.darkgray, $sexy.latex)
 
 // *************************** Details ************************** //
 detailsTitleColor = $text.gray
-detailsBackgroundColor = $sexy.latex
+detailsBackgroundColor = pattern(named:ladyindark)
 detailsImage = image(named:moon)
 
 // *********************** System Override ********************** //

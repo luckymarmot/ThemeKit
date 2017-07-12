@@ -34,6 +34,32 @@ class PaperTheme: NSObject, Theme {
     // MARK: -
     // MARK: Theme Assets
     
+    // MARK: WINDOW
+    
+    var windowTitleBarActiveColor: NSColor {
+       if _windowTitleBarActiveColor == nil,
+          let paperImage = self.paperImage {
+            // darken paper image
+            paperImage.lockFocus()
+            NSColor.init(white: 0.0, alpha: 0.05).setFill()
+            NSBezierPath(rect: NSMakeRect(0, 0, paperImage.size.width, paperImage.size.height)).fill()
+            paperImage.unlockFocus()
+            
+            _windowTitleBarActiveColor = NSColor(patternImage: paperImage)
+        }
+        
+        return _windowTitleBarActiveColor ?? defaultFallbackBackgroundColor
+    }
+    private var _windowTitleBarActiveColor: NSColor?
+    
+    var windowTitleBarInactiveColor: NSColor {
+        guard let paperImage = self.paperImage else {
+            return defaultFallbackBackgroundColor
+        }
+        return NSColor(patternImage: paperImage)
+    }
+    
+    
     // MARK: CONTENT
     
     /// Notes content title text color
@@ -48,11 +74,20 @@ class PaperTheme: NSObject, Theme {
     
     /// Notes text background color
     var contentBackgroundColor: NSColor {
-        guard let paperImage = Bundle.main.image(forResource: "paper") else {
-            return defaultFallbackBackgroundColor
+        if _contentBackgroundColor == nil,
+           let paperImage = self.paperImage {
+            // lighten paper image
+            paperImage.lockFocus()
+            NSColor.init(white: 1.0, alpha: 0.5).setFill()
+            NSBezierPath(rect: NSMakeRect(0, 0, paperImage.size.width, paperImage.size.height)).fill()
+            paperImage.unlockFocus()
+            
+            _contentBackgroundColor = NSColor(patternImage: paperImage)
         }
-        return NSColor(patternImage: paperImage)
+        
+        return _contentBackgroundColor ?? defaultFallbackBackgroundColor
     }
+    private var _contentBackgroundColor: NSColor?
     
     /// Rainbow gradient (used between title and text)
     var rainbowGradient: NSGradient? {
@@ -71,7 +106,10 @@ class PaperTheme: NSObject, Theme {
     
     /// Notes details background color
     var detailsBackgroundColor: NSColor {
-        return contentBackgroundColor
+        guard let paperImage = self.paperImage else {
+            return defaultFallbackBackgroundColor
+        }
+        return NSColor(patternImage: paperImage)
     }
     
     /// Notes details image
@@ -84,6 +122,13 @@ class PaperTheme: NSObject, Theme {
     
     var secondaryLabelColor: NSColor {
         return NSColor(calibratedRed: 0.18, green: 0.45, blue: 0.88, alpha: 1.0)
+    }
+    
+    
+    // MARK: SHARED
+    
+    var paperImage: NSImage? {
+        return Bundle.main.image(forResource: "paper")
     }
     
 }

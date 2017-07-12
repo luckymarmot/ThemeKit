@@ -191,14 +191,9 @@ open class ThemeImage : NSImage {
         let cacheKey = CacheKey(selector: selector, theme: theme)
         var image = _cachedThemeImages.object(forKey: cacheKey)
         
-        if image == nil, let nsTheme = theme as? NSObject {
-            // Theme provides this asset from optional function themeAsset()?
-            image = theme.themeAsset?(NSStringFromSelector(selector)) as? NSImage
-            
-            // Theme provides this asset from an instance method?
-            if image == nil, nsTheme.responds(to: selector) {
-                image = nsTheme.perform(selector).takeUnretainedValue() as? NSImage
-            }
+        if image == nil {
+            // Theme provides this asset?
+            image = theme.themeAsset(NSStringFromSelector(selector)) as? NSImage
             
             // Otherwise, use fallback image
             if image == nil {
@@ -312,7 +307,7 @@ open class ThemeImage : NSImage {
             fallbackImage = themeFallbackImage
         }
         // try with theme asset `fallbackImage`
-        if fallbackImage == nil, let themeAsset = theme.themeAsset?("fallbackImage") as? NSImage {
+        if fallbackImage == nil, let themeAsset = theme.themeAsset("fallbackImage") as? NSImage {
             fallbackImage = themeAsset
         }
         // otherwise just use default fallback image

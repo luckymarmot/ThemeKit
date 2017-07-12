@@ -234,16 +234,10 @@ open class ThemeColor : NSColor {
         let cacheKey = CacheKey(selector: selector, theme: theme)
         var color = _cachedThemeColors.object(forKey: cacheKey)
         
-        if color == nil,
-            let nsTheme = theme as? NSObject {
+        if color == nil {
             
-            // Theme provides this asset from optional function themeAsset()?
-            color = theme.themeAsset?(NSStringFromSelector(selector)) as? NSColor
-            
-            // Theme provides this asset from an instance method?
-            if color == nil && nsTheme.responds(to: selector) {
-                color = nsTheme.perform(selector).takeUnretainedValue() as? NSColor
-            }
+            // Theme provides this asset?
+            color = theme.themeAsset(NSStringFromSelector(selector)) as? NSColor
             
             // Otherwise, use fallback colors
             if color == nil {
@@ -392,7 +386,7 @@ open class ThemeColor : NSColor {
                 fallbackColor = themeFallbackColor
             }
             // try with theme asset `fallbackBackgroundColor`
-            if fallbackColor == nil, let themeAsset = theme.themeAsset?("fallbackBackgroundColor") as? NSColor {
+            if fallbackColor == nil, let themeAsset = theme.themeAsset("fallbackBackgroundColor") as? NSColor {
                 fallbackColor = themeAsset
             }
             // otherwise just use default fallback color
@@ -404,7 +398,7 @@ open class ThemeColor : NSColor {
                 fallbackColor = themeFallbackColor
             }
             // try with theme asset `fallbackForegroundColor`
-            if fallbackColor == nil, let themeAsset = theme.themeAsset?("fallbackForegroundColor") as? NSColor {
+            if fallbackColor == nil, let themeAsset = theme.themeAsset("fallbackForegroundColor") as? NSColor {
                 fallbackColor = themeAsset
             }
             // otherwise just use default fallback color

@@ -46,10 +46,6 @@ public protocol Theme: NSObjectProtocol {
     
     // MARK: Optional Methods/Properties
     
-    /// Optional: theme asset for the specified key (`ThemeColor`, `ThemeGradient`,
-    /// `ThemeImage` and, for `UserTheme`s only, also `String`).
-    @objc optional func themeAsset(_ key: String) -> Any?
-    
     /// Optional: foreground color to be used on when a foreground color is not provided
     /// by the theme.
     @objc optional var fallbackForegroundColor : NSColor? { get }
@@ -92,6 +88,43 @@ public extension Theme {
     /// Apply theme (make it the current one).
     public func apply() {
         ThemeManager.shared.theme = self
+    }
+    
+    /// Theme asset for the specified key. Supported assets are `NSColor`, `NSGradient`, `NSImage` and `NSString`.
+    ///
+    /// This function is overriden by `UserTheme`.
+    ///
+    /// - parameter key: A color name, gradient name, image name or a theme string
+    ///
+    /// - returns: The theme value for the specified key.
+    public func themeAsset(_ key: String) -> Any? {
+        // Because `Theme` is an @objc protocol, we cannot define this method on
+        // the protocol and a provide a default implementation on this extension,
+        // plus another on `UserTheme`. This is a workaround to accomplish it.
+        if let userTheme = self as? UserTheme {
+            return userTheme.themeAsset(key)
+        }
+        
+        let selector = NSSelectorFromString(key)
+        if let theme = self as? NSObject,
+            theme.responds(to: selector) {
+            return theme.perform(selector).takeUnretainedValue()
+        }
+        
+        return nil
+    }
+    
+    /// Checks if a theme asset is provided for the given key.
+    ///
+    /// Do not check for theme asset availability with `themeAsset(_:)`, use
+    /// this method instead, which is much faster.
+    /// This function is overriden by `UserTheme`.
+    ///
+    /// - parameter key: A color name, gradient name, image name or a theme string
+    ///
+    /// - returns: `true` if theme provides an asset for the given key; `false` otherwise.
+    public func hasThemeAsset(_ key: String) -> Bool {
+        return themeAsset(key) != nil
     }
     
     /// Default foreground color to be used on fallback situations when

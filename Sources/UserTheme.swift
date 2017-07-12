@@ -129,9 +129,9 @@ public class UserTheme: NSObject, Theme {
     // MARK: -
     // MARK: Theme Assets
     
-    /// Theme asset for the specified key. Supported assets are `NSColor`, `NSGradient` and `NSString`.
+    /// Theme asset for the specified key. Supported assets are `NSColor`, `NSGradient`, `NSImage` and `NSString`.
     ///
-    /// - parameter key: A color name, gradient name or a theme string
+    /// - parameter key: A color name, gradient name, image name or a theme string
     ///
     /// - returns: The theme value for the specified key.
     public func themeAsset(_ key: String) -> Any? {
@@ -149,7 +149,7 @@ public class UserTheme: NSObject, Theme {
     /// Do not check for theme asset availability with `themeAsset(_:)`, use
     /// this method instead, which is much faster.
     ///
-    /// - parameter key: A color name, gradient name or a theme string
+    /// - parameter key: A color name, gradient name, image name or a theme string
     ///
     /// - returns: `true` if theme provides an asset for the given key; `false` otherwise.
     public func hasThemeAsset(_ key: String) -> Bool {

@@ -186,14 +186,9 @@ open class ThemeGradient : NSGradient {
         let cacheKey = CacheKey(selector: selector, theme: theme)
         var gradient = _cachedThemeGradients.object(forKey: cacheKey)
         
-        if gradient == nil, let nsTheme = theme as? NSObject {
-            // Theme provides this asset from optional function themeAsset()?
-            gradient = theme.themeAsset?(NSStringFromSelector(selector)) as? NSGradient
-            
-            // Theme provides this asset from an instance method?
-            if gradient == nil && nsTheme.responds(to: selector) {
-                gradient = nsTheme.perform(selector).takeUnretainedValue() as? NSGradient
-            }
+        if gradient == nil {
+            // Theme provides this asset?
+            gradient = theme.themeAsset(NSStringFromSelector(selector)) as? NSGradient
             
             // Otherwise, use fallback gradient
             if gradient == nil {
@@ -313,7 +308,7 @@ open class ThemeGradient : NSGradient {
             fallbackGradient = themeFallbackGradient
         }
         // try with theme asset `fallbackGradient`
-        if fallbackGradient == nil, let themeAsset = theme.themeAsset?("fallbackGradient") as? NSGradient {
+        if fallbackGradient == nil, let themeAsset = theme.themeAsset("fallbackGradient") as? NSGradient {
             fallbackGradient = themeAsset
         }
         // otherwise just use default fallback gradient

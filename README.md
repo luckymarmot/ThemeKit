@@ -367,9 +367,9 @@ If the user opts for always showing the scrollbars on *System Preferences*, scro
 ### **I'm having font smoothing issues!**
 You may run into font smoothing issues, when you use text without a background color set. Bottom line is, always specify/draw a background when using/drawing text. 
 
-  1. For controls like `NSTextField`, `NSTextView`, etc:
+   1. For controls like `NSTextField`, `NSTextView`, etc:
    
-    Specify a background color on the control. E.g.,
+        Specify a background color on the control. E.g.,
 
         ```swift
         control.backgroundColor = NSColor.black
@@ -377,7 +377,7 @@ You may run into font smoothing issues, when you use text without a background c
 
   2. For custom text rendering:
 
-    First draw a background fill, then enable font smoothing and render your text. E.g.,
+        First draw a background fill, then enable font smoothing and render your text. E.g.,
 
         ```swift
         let context = NSGraphicsContext.current()?.cgContext
@@ -391,7 +391,7 @@ You may run into font smoothing issues, when you use text without a background c
         context?.restoreGState()
         ```
 
-    As a last solution - if you really can't draw a background color - you can disable font smoothing which can slightly improve text rendering:
+        As a last solution - if you really can't draw a background color - you can disable font smoothing which can slightly improve text rendering:
 
         ```swift
         let context = NSGraphicsContext.current()?.cgContext
@@ -405,11 +405,13 @@ You may run into font smoothing issues, when you use text without a background c
 
   3. For custom `NSButton`'s:
 
-    This is more tricky, as you will need to override private methods. If you are distributing your app on the Mac App Store, you must first check if this is allowed.
+        This is more tricky, as you will need to override private methods. If you are distributing your app on the Mac App Store, you must first check if this is allowed.
     
-    a) override the private method `_backgroundColorForFontSmoothing` to return your button background color.
+        a) override the private method `_backgroundColorForFontSmoothing` to return your button background color.
     
-    b) if (a) isn't sufficient, you will also need to override `_textAttributes` and change the dictionary returned from the `super` call to provide your background color for the key `NSBackgroundColorAttributeName`.
+        b) if (a) isn't sufficient, you will also need to override `_textAttributes` and change the dictionary returned from the `super` call to provide your background color for the key `NSBackgroundColorAttributeName`.
+
+
 
 ## License
 

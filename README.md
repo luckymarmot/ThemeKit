@@ -371,37 +371,37 @@ You may run into font smoothing issues, when you use text without a background c
    
     Specify a background color on the control. E.g.,
 
-    ```swift
-    control.backgroundColor = NSColor.black
-    ```
-    
+        ```swift
+        control.backgroundColor = NSColor.black
+        ```
+
   2. For custom text rendering:
 
     First draw a background fill, then enable font smoothing and render your text. E.g.,
 
-    ```swift
-    let context = NSGraphicsContext.current()?.cgContext
-    NSColor.black.set()
-    context?.fill(frame)
-    context?.saveGState()
-    context?.setShouldSmoothFonts(true)
+        ```swift
+        let context = NSGraphicsContext.current()?.cgContext
+        NSColor.black.set()
+        context?.fill(frame)
+        context?.saveGState()
+        context?.setShouldSmoothFonts(true)
         
-    // draw text...
-    
-    context?.restoreGState()
-    ``` 
+        // draw text...
+        
+        context?.restoreGState()
+        ```
 
     As a last solution - if you really can't draw a background color - you can disable font smoothing which can slightly improve text rendering:
 
-    ```swift
-    let context = NSGraphicsContext.current()?.cgContext
-    context?.saveGState()
-    context?.setShouldSmoothFonts(false)
+        ```swift
+        let context = NSGraphicsContext.current()?.cgContext
+        context?.saveGState()
+        context?.setShouldSmoothFonts(false)
         
-    // draw text...
-    
-    context?.restoreGState()
-   ```
+        // draw text...
+        
+        context?.restoreGState()
+        ```
 
   3. For custom `NSButton`'s:
 

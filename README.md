@@ -370,7 +370,7 @@ You may run into font smoothing issues, when you use text without a background c
   1. For controls like `NSTextField`, `NSTextView`, etc:
    
     Specify a background color on the control. E.g.,
-    
+
     ```swift
     control.backgroundColor = NSColor.black
     ```
@@ -378,8 +378,7 @@ You may run into font smoothing issues, when you use text without a background c
   2. For custom text rendering:
 
     First draw a background fill, then enable font smoothing and render your text. E.g.,
-    
-    
+
     ```swift
     let context = NSGraphicsContext.current()?.cgContext
     NSColor.black.set()
@@ -391,9 +390,9 @@ You may run into font smoothing issues, when you use text without a background c
     
 	context?.restoreGState()
     ``` 
-    
+
     As a last solution - if you really can't draw a background color - you can disable font smoothing which can slightly improve text rendering:
-    
+
     ```swift
     let context = NSGraphicsContext.current()?.cgContext
     context?.saveGState()
@@ -403,7 +402,7 @@ You may run into font smoothing issues, when you use text without a background c
     
 	context?.restoreGState()
    ```
-   
+
   3. For custom `NSButton`'s:
 
     This is more tricky, as you will need to override private methods. If you are distributing your app on the Mac App Store, you must first check if this is allowed.
@@ -416,4 +415,3 @@ You may run into font smoothing issues, when you use text without a background c
 
 *ThemeKit* is available under the MIT license. See the [LICENSE](LICENSE) file for more info.
 
-© 2016-2017 [Paw](https://paw.cloud) & [Nuno Grilo](http://nunogrilo.com)

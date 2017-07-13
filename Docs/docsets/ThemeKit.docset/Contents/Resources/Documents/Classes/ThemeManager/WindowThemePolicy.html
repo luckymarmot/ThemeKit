@@ -41,6 +41,9 @@
               <li class="nav-group-task">
                 <a href="../../Extensions/Notification.html">Notification</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../../Extensions/Notification/Name.html">– Name</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -77,6 +80,17 @@
               </li>
             </ul>
           </li>
+          <li class="nav-group-name">
+            <a href="../../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../../Extensions/NSWindow.html">NSWindow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Extensions/NSColor.html">NSColor</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <article class="main-content">
@@ -90,8 +104,7 @@
                 </div>
               </div>
             <p>Window theme policies that define which windows should be automatically themed, if any.</p>
-
-<p><a href='#swift' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='swift'>Swift</h2></p>
+<h2 id='swift' class='heading'>Swift</h2>
 
 <p>By default, all application windows will be themed (<code>.themeAllWindows</code>).</p>
 
@@ -103,11 +116,9 @@
 </ul>
 
 <p>E.g.:</p>
-
 <pre class="highlight plaintext"><code>ThemeManager.shared.windowThemePolicy = .themeSomeWindows(windowClasses: [CustomWindow.self])
 </code></pre>
-
-<p><a href='#objective-c' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='objective-c'>Objective-C</h2></p>
+<h2 id='objective-c' class='heading'>Objective-C</h2>
 
 <p>By default, all application windows will be themed (<code>.TKThemeManagerWindowThemePolicyThemeAllWindows</code>).</p>
 
@@ -121,24 +132,22 @@
 <p>If <code>.windowThemePolicy = TKThemeManagerWindowThemePolicyThemeSomeWindowClasses</code>
 is set, themable window class names can then be defined using
 <code>NSArray&lt;NSString*&gt;* themableWindowClassNames</code> property. E.g.:</p>
-
 <pre class="highlight plaintext"><code>[TKThemeManager sharedManager].windowThemePolicy = TKThemeManagerWindowThemePolicyThemeSomeWindowClasses;
 [TKThemeManager sharedManager].themableWindowClassNames = @[[CustomWindow class]];
 </code></pre>
-
-<p><a href='#nswindow-extension' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='nswindow-extension'>NSWindow Extension</h2></p>
+<h2 id='nswindow-extension' class='heading'>NSWindow Extension</h2>
 
 <ul>
-<li><p><code>NSWindow.theme()</code></p>
+<li><p><code><a href="../../Extensions/NSWindow.html#/s:FE8ThemeKitCSo8NSWindow5themeFT_T_">NSWindow.theme()</a></code></p>
 
 <p>Theme window if appearance needs update. Doesn&rsquo;t check for policy compliance.</p></li>
 <li><p><code>NSWindow.isCompliantWithWindowThemePolicy()</code></p>
 
 <p>Check if window complies to current policy.</p></li>
-<li><p><code>NSWindow.themeIfCompliantWithWindowThemePolicy()</code></p>
+<li><p><code><a href="../../Extensions/NSWindow.html#/s:FE8ThemeKitCSo8NSWindow37themeIfCompliantWithWindowThemePolicyFT_T_">NSWindow.themeIfCompliantWithWindowThemePolicy()</a></code></p>
 
 <p>Theme window if compliant to <code><a href="../../Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager17windowThemePolicyOS0_17WindowThemePolicy">windowThemePolicy</a></code> (and if appearance needs update).</p></li>
-<li><p><code>NSWindow.themeAllWindows()</code></p>
+<li><p><code><a href="../../Extensions/NSWindow.html#/s:ZFE8ThemeKitCSo8NSWindow15themeAllWindowsFT_T_">NSWindow.themeAllWindows()</a></code></p>
 
 <p>Theme all windows compliant to ThemeManager.windowThemePolicy (and if appearance needs update).</p></li>
 </ul>
@@ -172,7 +181,7 @@ is set, themable window class names can then be defined using
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L394">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L412">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -206,7 +215,7 @@ is set, themable window class names can then be defined using
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L396">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L414">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -240,7 +249,7 @@ is set, themable window class names can then be defined using
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L398">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L416">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -274,7 +283,7 @@ is set, themable window class names can then be defined using
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L400">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L418">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -284,8 +293,8 @@ is set, themable window class names can then be defined using
           </section>
         </section>
         <section id="footer">
-          <p>© 2016 <a class="link" href="https://paw.cloud" target="_blank" rel="external">Paw</a> under <a class="link" href="https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>© 2017 <a class="link" href="https://paw.cloud" target="_blank" rel="external">Paw</a> under <a class="link" href="https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

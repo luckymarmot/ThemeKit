@@ -41,6 +41,9 @@
               <li class="nav-group-task">
                 <a href="../Extensions/Notification.html">Notification</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Notification/Name.html">– Name</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -77,6 +80,17 @@
               </li>
             </ul>
           </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/NSWindow.html">NSWindow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/NSColor.html">NSColor</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <article class="main-content">
@@ -94,7 +108,6 @@ a new theme is make current.</p>
 
 <p>Theme-aware means you don&rsquo;t need to check any conditions when choosing which 
 color to draw or set on a control. E.g.:</p>
-
 <pre class="highlight plaintext"><code>myTextField.textColor = ThemeColor.myContentTextColor
 
 ThemeColor.myCircleFillColor.setFill()
@@ -107,8 +120,7 @@ the selected theme. Unless some drawing cache is being done, there&rsquo;s no ne
 refresh the UI after changing the current theme.</p>
 
 <p>You can also define a color to be a pattern image using <code>NSColor(patternImage:)</code>.</p>
-
-<p><a href='#defining-theme-aware-colors' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='defining-theme-aware-colors'>Defining theme-aware colors</h2></p>
+<h2 id='defining-theme-aware-colors' class='heading'>Defining theme-aware colors</h2>
 
 <p>The recommended way of adding your own dynamic colors is as follows:</p>
 
@@ -195,8 +207,7 @@ for each theme color class method defined on (1). E.g.:</p>
 <span class="n">brandColor</span> <span class="o">=</span> <span class="nf">rgba</span><span class="p">(</span><span class="mi">96</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
 </code></pre></li>
 </ol>
-
-<p><a href='#overriding-system-colors' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='overriding-system-colors'>Overriding system colors</h2></p>
+<h2 id='overriding-system-colors' class='heading'>Overriding system colors</h2>
 
 <p>Besides your own colors added as <code>ThemeColor</code> class methods, you can also override 
 <code>NSColor</code> class methods so that they return theme-aware colors. The procedure is
@@ -206,17 +217,16 @@ from <code><a href="../Protocols/Theme.html">Theme</a></code> subclasses will be
 In sum, calling <code>NSColor.labelColor</code> will return theme-aware colors.</p>
 
 <p>You can get the full list of available/overridable color methods (class methods)
-calling <code>NSColor.colorMethodNames()</code>.</p>
+calling <code><a href="../Extensions/NSColor.html#/s:ZFE8ThemeKitCSo7NSColor16colorMethodNamesFT_GSaSS_">NSColor.colorMethodNames()</a></code>.</p>
 
 <p>At any time, you can check if a system color is being overriden by current theme
-by checking the <code>NSColor.isThemeOverriden</code> property (e.g., <code>NSColor.labelColor.isThemeOverriden</code>).</p>
+by checking the <code><a href="../Extensions/NSColor.html#/s:vE8ThemeKitCSo7NSColor16isThemeOverridenSb">NSColor.isThemeOverriden</a></code> property (e.g., <code>NSColor.labelColor.isThemeOverriden</code>).</p>
 
 <p>When a theme does not override a system color, the original system color will be
 used instead. E.g., you have overrided <code>ThemeColor.labelColor</code>, but currently 
 applied theme does not implement <code>labelColor</code> -&gt; original <code>labelColor</code> will be
 used.</p>
-
-<p><a href='#fallback-colors' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='fallback-colors'>Fallback colors</h2></p>
+<h2 id='fallback-colors' class='heading'>Fallback colors</h2>
 
 <p>With the exception of system overrided named colors, which defaults to the original
 system provided named color when theme does not specifies it, unimplemented
@@ -263,7 +273,7 @@ or, if inexistent, as argument in the theme instance method <code>themeAsset(_:)
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeColor.swift#L171">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeColor.swift#L171-L177">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -293,7 +303,7 @@ or, if inexistent, as argument in the theme instance method <code>themeAsset(_:)
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeColor.swift#L174">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeColor.swift#L180">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -349,7 +359,6 @@ if unavailable, the result of calling <code>themeAsset(_:)</code> on the current
                               <td>
                                 <div>
                                   <p>Selector for color method.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -359,10 +368,9 @@ if unavailable, the result of calling <code>themeAsset(_:)</code> on the current
                       <div>
                         <h4>Return Value</h4>
                         <p>A <code>ThemeColor</code> instance for the specified selector.</p>
-
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeColor.swift#L195-L197">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeColor.swift#L207-L209">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -404,7 +412,6 @@ if unavailable, the result of calling <code>themeAsset(_:)</code> on the current
                               <td>
                                 <div>
                                   <p>A <code>Theme</code> instance.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -417,7 +424,6 @@ if unavailable, the result of calling <code>themeAsset(_:)</code> on the current
                               <td>
                                 <div>
                                   <p>A color selector.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -427,10 +433,9 @@ if unavailable, the result of calling <code>themeAsset(_:)</code> on the current
                       <div>
                         <h4>Return Value</h4>
                         <p>Resolved color for specified selector on given theme.</p>
-
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeColor.swift#L221-L267">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeColor.swift#L233-L259">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -451,7 +456,7 @@ if unavailable, the result of calling <code>themeAsset(_:)</code> on the current
                         <p>Current theme color, but respecting view appearance and any window
 specific theme (if set).</p>
 
-<p>If a <code>NSWindow.windowTheme</code> was set, it will be used instead.
+<p>If a <code><a href="../Extensions/NSWindow.html#/s:vE8ThemeKitCSo8NSWindow11windowThemeGSqPS_5Theme__">NSWindow.windowTheme</a></code> was set, it will be used instead.
 Some views may be using a different appearance than the theme appearance.
 In thoses cases, color won&rsquo;t be resolved using current theme, but from 
 either <code>lightTheme</code> or <code>darkTheme</code>, depending of whether view appearance
@@ -479,7 +484,6 @@ is light or dark, respectively.</p>
                               <td>
                                 <div>
                                   <p>A <code>NSView</code> instance.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -492,7 +496,6 @@ is light or dark, respectively.</p>
                               <td>
                                 <div>
                                   <p>A color selector.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -502,10 +505,9 @@ is light or dark, respectively.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>Resolved color for specified selector on given view.</p>
-
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeColor.swift#L283-L306">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeColor.swift#L275-L298">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -536,7 +538,7 @@ You should not need to manually call this function.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeColor.swift#L378-L396">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeColor.swift#L351-L369">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -567,7 +569,7 @@ You should not need to manually call this function.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeColor.swift#L400-L403">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeColor.swift#L373-L376">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -577,8 +579,8 @@ You should not need to manually call this function.</p>
           </section>
         </section>
         <section id="footer">
-          <p>© 2016 <a class="link" href="https://paw.cloud" target="_blank" rel="external">Paw</a> under <a class="link" href="https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>© 2017 <a class="link" href="https://paw.cloud" target="_blank" rel="external">Paw</a> under <a class="link" href="https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

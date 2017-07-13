@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Notification Extension Reference</title>
+    <title>NSColor Extension Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Extension/Notification" class="dashAnchor"></a>
-    <a title="Notification Extension Reference"></a>
+    <a name="//apple_ref/swift/Extension/NSColor" class="dashAnchor"></a>
+    <a title="NSColor Extension Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">ThemeKit Docs</a></p>
@@ -23,7 +23,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">ThemeKit Reference</a>
         <img id="carat" src="../img/carat.png" />
-        Notification Extension Reference
+        NSColor Extension Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -96,18 +96,26 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Notification</h1>
-            
+            <h1>NSColor</h1>
+            <p><code>NSColor</code> ThemeKit extension to help on when overriding colors in <code><a href="../Classes/ThemeColor.html">ThemeColor</a></code> extensions.</p>
+
           </section>
           <section class="section task-group-section">
             <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Color%20override"></a>
+                <a name="//apple_ref/swift/Section/Color override" class="dashAnchor"></a>
+                <a href="#/Color%20override">
+                  <h3 class="section-name">Color override</h3>
+                </a>
+              </div>
               <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:V10Foundation12Notification4Name"></a>
-                    <a name="//apple_ref/swift/Extension/Name" class="dashAnchor"></a>
-                    <a class="token" href="#/s:V10Foundation12Notification4Name">Name</a>
+                    <a name="/s:vE8ThemeKitCSo7NSColor16isThemeOverridenSb"></a>
+                    <a name="//apple_ref/swift/Property/isThemeOverriden" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vE8ThemeKitCSo7NSColor16isThemeOverridenSb">isThemeOverriden</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -115,9 +123,50 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Notifications defined by <code>ThemeKit</code>.</p>
+                        <p>Check if color is being overriden in a ThemeColor extension.</p>
 
-                        <a href="../Extensions/Notification/Name.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isThemeOverriden</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/NSColor+ThemeKit.swift#L37-L60">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFE8ThemeKitCSo7NSColor16colorMethodNamesFT_GSaSS_"></a>
+                    <a name="//apple_ref/swift/Method/colorMethodNames()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFE8ThemeKitCSo7NSColor16colorMethodNamesFT_GSaSS_">colorMethodNames()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get all <code>NSColor</code> color methods.
+Overridable class methods (can be overriden in <code><a href="../Classes/ThemeColor.html">ThemeColor</a></code> extension).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">colorMethodNames</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/NSColor+ThemeKit.swift#L64-L69">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

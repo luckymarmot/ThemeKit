@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>LightTheme Class Reference</title>
+    <title>NSWindow Extension Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Class/LightTheme" class="dashAnchor"></a>
-    <a title="LightTheme Class Reference"></a>
+    <a name="//apple_ref/swift/Extension/NSWindow" class="dashAnchor"></a>
+    <a title="NSWindow Extension Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">ThemeKit Docs</a></p>
@@ -23,7 +23,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">ThemeKit Reference</a>
         <img id="carat" src="../img/carat.png" />
-        LightTheme Class Reference
+        NSWindow Extension Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -96,25 +96,26 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>LightTheme</h1>
-              <div class="declaration">
-                <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">LightTheme</span><span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span></code></pre>
-
-                </div>
-              </div>
-            <p>Light theme (default).</p>
+            <h1>NSWindow</h1>
+            <p><code>NSWindow</code> ThemeKit extension.</p>
 
           </section>
           <section class="section task-group-section">
             <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Properties"></a>
+                <a name="//apple_ref/swift/Section/Properties" class="dashAnchor"></a>
+                <a href="#/Properties">
+                  <h3 class="section-name">Properties</h3>
+                </a>
+              </div>
               <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZvC8ThemeKit10LightTheme10identifierSS"></a>
-                    <a name="//apple_ref/swift/Variable/identifier" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvC8ThemeKit10LightTheme10identifierSS">identifier</a>
+                    <a name="/s:vE8ThemeKitCSo8NSWindow11windowThemeGSqPS_5Theme__"></a>
+                    <a name="//apple_ref/swift/Property/windowTheme" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vE8ThemeKitCSo8NSWindow11windowThemeGSqPS_5Theme__">windowTheme</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -122,19 +123,35 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Light theme identifier (static).</p>
+                        <p>Any window specific theme.</p>
+
+<p>This is, usually, <code>nil</code>, which means the current global theme will be used.
+Please note that when using window specific themes, only the associated
+<code>NSAppearance</code> will be automatically set. All theme aware assets (<code><a href="../Classes/ThemeColor.html">ThemeColor</a></code>,
+<code><a href="../Classes/ThemeGradient.html">ThemeGradient</a></code> and <code><a href="../Classes/ThemeImage.html">ThemeImage</a></code>) should call methods that returns a
+resolved color instead (which means they don&rsquo;t change with the theme change,
+you need to observe theme changes manually, and set colors afterwards):</p>
+
+<ul>
+<li><code>ThemeColor.color(for view:, selector:)</code></li>
+<li><code>ThemeGradient.gradient(for view:, selector:)</code></li>
+<li><code>ThemeImage.image(for view:, selector:)</code></li>
+</ul>
+
+<p>Additionaly, please note that system overriden colors (<code>NSColor.*</code>) will
+always use the global theme.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"com.luckymarmot.ThemeKit.LightTheme"</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">windowTheme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/LightTheme.swift#L16">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/NSWindow+ThemeKit.swift#L34-L42">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -142,9 +159,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC8ThemeKit10LightTheme10identifierSS"></a>
-                    <a name="//apple_ref/swift/Property/identifier" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC8ThemeKit10LightTheme10identifierSS">identifier</a>
+                    <a name="/s:vE8ThemeKitCSo8NSWindow20windowEffectiveThemePS_5Theme_"></a>
+                    <a name="//apple_ref/swift/Property/windowEffectiveTheme" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vE8ThemeKitCSo8NSWindow20windowEffectiveThemePS_5Theme_">windowEffectiveTheme</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -152,19 +169,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Unique theme identifier.</p>
+                        <p>Returns the current effective theme (read-only).</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kt">LightTheme</span><span class="o">.</span><span class="n"><a href="../Classes/LightTheme.html#/s:ZvC8ThemeKit10LightTheme10identifierSS">identifier</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">windowEffectiveTheme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/LightTheme.swift#L19">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/NSWindow+ThemeKit.swift#L45-L47">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -172,9 +189,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC8ThemeKit10LightTheme11displayNameSS"></a>
-                    <a name="//apple_ref/swift/Property/displayName" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC8ThemeKit10LightTheme11displayNameSS">displayName</a>
+                    <a name="/s:vE8ThemeKitCSo8NSWindow30windowEffectiveThemeAppearanceGSqCSo12NSAppearance_"></a>
+                    <a name="//apple_ref/swift/Property/windowEffectiveThemeAppearance" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vE8ThemeKitCSo8NSWindow30windowEffectiveThemeAppearanceGSqCSo12NSAppearance_">windowEffectiveThemeAppearance</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -182,19 +199,60 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Theme display name.</p>
+                        <p>Returns the current effective appearance (read-only).</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">displayName</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"Light Theme"</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">windowEffectiveThemeAppearance</span><span class="p">:</span> <span class="kt">NSAppearance</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/LightTheme.swift#L22">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/NSWindow+ThemeKit.swift#L50-L52">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Theming"></a>
+                <a name="//apple_ref/swift/Section/Theming" class="dashAnchor"></a>
+                <a href="#/Theming">
+                  <h3 class="section-name">Theming</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FE8ThemeKitCSo8NSWindow5themeFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/theme()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FE8ThemeKitCSo8NSWindow5themeFT_T_">theme()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Theme window if needed.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">theme</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/NSWindow+ThemeKit.swift#L59-L70">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -202,9 +260,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC8ThemeKit10LightTheme16shortDisplayNameSS"></a>
-                    <a name="//apple_ref/swift/Property/shortDisplayName" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC8ThemeKit10LightTheme16shortDisplayNameSS">shortDisplayName</a>
+                    <a name="/s:FE8ThemeKitCSo8NSWindow37themeIfCompliantWithWindowThemePolicyFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/themeIfCompliantWithWindowThemePolicy()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FE8ThemeKitCSo8NSWindow37themeIfCompliantWithWindowThemePolicyFT_T_">themeIfCompliantWithWindowThemePolicy()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -212,19 +270,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Theme short display name.</p>
+                        <p>Theme window if compliant to ThemeManager.windowThemePolicy (and if needed).</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">shortDisplayName</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"Light"</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">themeIfCompliantWithWindowThemePolicy</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/LightTheme.swift#L25">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/NSWindow+ThemeKit.swift#L73-L77">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -232,9 +290,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC8ThemeKit10LightTheme11isDarkThemeSb"></a>
-                    <a name="//apple_ref/swift/Property/isDarkTheme" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC8ThemeKit10LightTheme11isDarkThemeSb">isDarkTheme</a>
+                    <a name="/s:ZFE8ThemeKitCSo8NSWindow15themeAllWindowsFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/themeAllWindows()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFE8ThemeKitCSo8NSWindow15themeAllWindowsFT_T_">themeAllWindows()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -242,19 +300,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Is this a dark theme?</p>
+                        <p>Theme all windows compliant to ThemeManager.windowThemePolicy (and if needed).</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isDarkTheme</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">themeAllWindows</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/LightTheme.swift#L28">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/NSWindow+ThemeKit.swift#L80-L84">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

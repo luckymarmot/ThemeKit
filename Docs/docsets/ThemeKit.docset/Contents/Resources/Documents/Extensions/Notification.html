@@ -41,6 +41,9 @@
               <li class="nav-group-task">
                 <a href="../Extensions/Notification.html">Notification</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Notification/Name.html">– Name</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -77,18 +80,23 @@
               </li>
             </ul>
           </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/NSWindow.html">NSWindow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/NSColor.html">NSColor</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <article class="main-content">
         <section>
           <section class="section">
             <h1>Notification</h1>
-              <div class="declaration">
-                <div class="language">
-                  <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Notification</span> <span class="p">:</span> <span class="kt">ReferenceConvertible</span><span class="p">,</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">Hashable</span></code></pre>
-
-                </div>
-              </div>
             
           </section>
           <section class="section task-group-section">
@@ -97,9 +105,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZvE8ThemeKitVCSo14NSNotification4Name15willChangeThemeS1_"></a>
-                    <a name="//apple_ref/swift/Variable/willChangeTheme" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvE8ThemeKitVCSo14NSNotification4Name15willChangeThemeS1_">willChangeTheme</a>
+                    <a name="/s:V10Foundation12Notification4Name"></a>
+                    <a name="//apple_ref/swift/Extension/Name" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V10Foundation12Notification4Name">Name</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -107,109 +115,9 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>ThemeKit notification sent when current theme is about to change.</p>
+                        <p>Notifications defined by <code>ThemeKit</code>.</p>
 
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">willChangeTheme</span> <span class="o">=</span> <span class="kt">Notification</span><span class="o">.</span><span class="kt">Name</span><span class="p">(</span><span class="s">"ThemeKitWillChangeThemeNotification"</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/NotificationName+ThemeKit.swift#L17">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:ZvE8ThemeKitVCSo14NSNotification4Name14didChangeThemeS1_"></a>
-                    <a name="//apple_ref/swift/Variable/didChangeTheme" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvE8ThemeKitVCSo14NSNotification4Name14didChangeThemeS1_">didChangeTheme</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>ThemeKit notification sent when current theme did change.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">didChangeTheme</span> <span class="o">=</span> <span class="kt">Notification</span><span class="o">.</span><span class="kt">Name</span><span class="p">(</span><span class="s">"ThemeKitDidChangeThemeNotification"</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/NotificationName+ThemeKit.swift#L20">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:ZvE8ThemeKitVCSo14NSNotification4Name20didChangeSystemThemeS1_"></a>
-                    <a name="//apple_ref/swift/Variable/didChangeSystemTheme" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvE8ThemeKitVCSo14NSNotification4Name20didChangeSystemThemeS1_">didChangeSystemTheme</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>ThemeKit notification sent when system theme did change (System Preference &gt; General &gt; Appearance).</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">didChangeSystemTheme</span> <span class="o">=</span> <span class="kt">Notification</span><span class="o">.</span><span class="kt">Name</span><span class="p">(</span><span class="s">"ThemeKitDidChangeSystemThemeNotification"</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/NotificationName+ThemeKit.swift#L23">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:ZvE8ThemeKitVCSo14NSNotification4Name28didChangeAppleInterfaceThemeS1_"></a>
-                    <a name="//apple_ref/swift/Variable/didChangeAppleInterfaceTheme" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvE8ThemeKitVCSo14NSNotification4Name28didChangeAppleInterfaceThemeS1_">didChangeAppleInterfaceTheme</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>System notification sent when System Preference for dark mode changes.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">static</span> <span class="k">let</span> <span class="nv">didChangeAppleInterfaceTheme</span> <span class="o">=</span> <span class="kt">Notification</span><span class="o">.</span><span class="kt">Name</span><span class="p">(</span><span class="s">"AppleInterfaceThemeChangedNotification"</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/NotificationName+ThemeKit.swift#L26">Show on GitHub</a>
+                        <a href="../Extensions/Notification/Name.html" class="slightly-smaller">See more</a>
                       </div>
                     </section>
                   </div>
@@ -219,8 +127,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>© 2016 <a class="link" href="https://paw.cloud" target="_blank" rel="external">Paw</a> under <a class="link" href="https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>© 2017 <a class="link" href="https://paw.cloud" target="_blank" rel="external">Paw</a> under <a class="link" href="https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

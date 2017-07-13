@@ -41,6 +41,9 @@
               <li class="nav-group-task">
                 <a href="../Extensions/Notification.html">Notification</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Notification/Name.html">– Name</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -74,6 +77,17 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/ThemeImage.html">ThemeImage</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/NSWindow.html">NSWindow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/NSColor.html">NSColor</a>
               </li>
             </ul>
           </li>
@@ -111,7 +125,6 @@
 </ul>
 
 <p>Example <code>.theme</code> file:</p>
-
 <pre class="highlight ruby"><code><span class="sr">//</span> <span class="o">*************************</span> <span class="no">Theme</span> <span class="no">Info</span> <span class="o">*************************</span> <span class="sr">//</span>
 <span class="n">displayName</span> <span class="o">=</span> <span class="no">My</span> <span class="no">Theme</span> <span class="mi">1</span>
 <span class="n">identifier</span> <span class="o">=</span> <span class="n">com</span><span class="p">.</span><span class="nf">luckymarmot</span><span class="o">.</span><span class="no">ThemeKit</span><span class="o">.</span><span class="no">MyTheme1</span>
@@ -275,6 +288,77 @@ gradients and images, respectively.</p>
                     </section>
                   </div>
                 </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8ThemeKit9UserTheme7fileURLGSqV10Foundation3URL_"></a>
+                    <a name="//apple_ref/swift/Property/fileURL" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8ThemeKit9UserTheme7fileURLGSqV10Foundation3URL_">fileURL</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>File URL.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fileURL</span><span class="p">:</span> <span class="kt">URL</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/UserTheme.swift#L90">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Initialization"></a>
+                <a name="//apple_ref/swift/Section/Initialization" class="dashAnchor"></a>
+                <a href="#/Initialization">
+                  <h3 class="section-name">Initialization</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8ThemeKit9UserTheme6reloadFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/reload()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8ThemeKit9UserTheme6reloadFT_T_">reload()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Reloads user theme from file.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">reload</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/UserTheme.swift#L121-L127">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
               </ul>
             </div>
             <div class="task-group">
@@ -299,7 +383,7 @@ gradients and images, respectively.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Theme asset for the specified key. Supported assets are <code>NSColor</code>, <code>NSGradient</code> and <code>NSString</code>.</p>
+                        <p>Theme asset for the specified key. Supported assets are <code>NSColor</code>, <code>NSGradient</code>, <code>NSImage</code> and <code>NSString</code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -322,8 +406,7 @@ gradients and images, respectively.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>A color name, gradient name or a theme string</p>
-
+                                  <p>A color name, gradient name, image name or a theme string</p>
                                 </div>
                               </td>
                             </tr>
@@ -333,10 +416,9 @@ gradients and images, respectively.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>The theme value for the specified key.</p>
-
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/UserTheme.swift#L124-L131">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/UserTheme.swift#L137-L145">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -380,8 +462,7 @@ this method instead, which is much faster.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>A color name, gradient name or a theme string</p>
-
+                                  <p>A color name, gradient name, image name or a theme string</p>
                                 </div>
                               </td>
                             </tr>
@@ -391,10 +472,9 @@ this method instead, which is much faster.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p><code>true</code> if theme provides an asset for the given key; <code>false</code> otherwise.</p>
-
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/UserTheme.swift#L141-L143">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/UserTheme.swift#L155-L157">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -404,8 +484,8 @@ this method instead, which is much faster.</p>
           </section>
         </section>
         <section id="footer">
-          <p>© 2016 <a class="link" href="https://paw.cloud" target="_blank" rel="external">Paw</a> under <a class="link" href="https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>© 2017 <a class="link" href="https://paw.cloud" target="_blank" rel="external">Paw</a> under <a class="link" href="https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

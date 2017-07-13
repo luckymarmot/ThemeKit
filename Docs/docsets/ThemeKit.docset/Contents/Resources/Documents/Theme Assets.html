@@ -40,6 +40,9 @@
               <li class="nav-group-task">
                 <a href="Extensions/Notification.html">Notification</a>
               </li>
+              <li class="nav-group-task">
+                <a href="Extensions/Notification/Name.html">– Name</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -76,6 +79,17 @@
               </li>
             </ul>
           </li>
+          <li class="nav-group-name">
+            <a href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Extensions/NSWindow.html">NSWindow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/NSColor.html">NSColor</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <article class="main-content">
@@ -105,7 +119,6 @@ a new theme is make current.</p>
 
 <p>Theme-aware means you don&rsquo;t need to check any conditions when choosing which 
 color to draw or set on a control. E.g.:</p>
-
 <pre class="highlight plaintext"><code>myTextField.textColor = ThemeColor.myContentTextColor
 
 ThemeColor.myCircleFillColor.setFill()
@@ -118,8 +131,7 @@ the selected theme. Unless some drawing cache is being done, there&rsquo;s no ne
 refresh the UI after changing the current theme.</p>
 
 <p>You can also define a color to be a pattern image using <code>NSColor(patternImage:)</code>.</p>
-
-<p><a href='#defining-theme-aware-colors' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='defining-theme-aware-colors'>Defining theme-aware colors</h2></p>
+<h2 id='defining-theme-aware-colors' class='heading'>Defining theme-aware colors</h2>
 
 <p>The recommended way of adding your own dynamic colors is as follows:</p>
 
@@ -206,8 +218,7 @@ for each theme color class method defined on (1). E.g.:</p>
 <span class="n">brandColor</span> <span class="o">=</span> <span class="nf">rgba</span><span class="p">(</span><span class="mi">96</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
 </code></pre></li>
 </ol>
-
-<p><a href='#overriding-system-colors' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='overriding-system-colors'>Overriding system colors</h2></p>
+<h2 id='overriding-system-colors' class='heading'>Overriding system colors</h2>
 
 <p>Besides your own colors added as <code>ThemeColor</code> class methods, you can also override 
 <code>NSColor</code> class methods so that they return theme-aware colors. The procedure is
@@ -217,17 +228,16 @@ from <code><a href="Protocols/Theme.html">Theme</a></code> subclasses will be us
 In sum, calling <code>NSColor.labelColor</code> will return theme-aware colors.</p>
 
 <p>You can get the full list of available/overridable color methods (class methods)
-calling <code>NSColor.colorMethodNames()</code>.</p>
+calling <code><a href="Extensions/NSColor.html#/s:ZFE8ThemeKitCSo7NSColor16colorMethodNamesFT_GSaSS_">NSColor.colorMethodNames()</a></code>.</p>
 
 <p>At any time, you can check if a system color is being overriden by current theme
-by checking the <code>NSColor.isThemeOverriden</code> property (e.g., <code>NSColor.labelColor.isThemeOverriden</code>).</p>
+by checking the <code><a href="Extensions/NSColor.html#/s:vE8ThemeKitCSo7NSColor16isThemeOverridenSb">NSColor.isThemeOverriden</a></code> property (e.g., <code>NSColor.labelColor.isThemeOverriden</code>).</p>
 
 <p>When a theme does not override a system color, the original system color will be
 used instead. E.g., you have overrided <code>ThemeColor.labelColor</code>, but currently 
 applied theme does not implement <code>labelColor</code> -&gt; original <code>labelColor</code> will be
 used.</p>
-
-<p><a href='#fallback-colors' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='fallback-colors'>Fallback colors</h2></p>
+<h2 id='fallback-colors' class='heading'>Fallback colors</h2>
 
 <p>With the exception of system overrided named colors, which defaults to the original
 system provided named color when theme does not specifies it, unimplemented
@@ -248,7 +258,7 @@ These too, can be customized per theme.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeColor.swift#L164-L566">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeColor.swift#L164-L603">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -275,15 +285,13 @@ whenever a new theme is make current.</p>
 
 <p>Theme-aware means you don&rsquo;t need to check any conditions when choosing which
 gradient to draw. E.g.:</p>
-
 <pre class="highlight plaintext"><code>ThemeGradient.rainbowGradient.draw(in: bounds, angle: 0)
 </code></pre>
 
 <p>The drawing code will draw with different gradient depending on the selected 
 theme. Unless some drawing cache is being done, there&rsquo;s no need to refresh the
 UI after changing the current theme.</p>
-
-<p><a href='#defining-theme-aware-gradients' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='defining-theme-aware-gradients'>Defining theme-aware gradients</h2></p>
+<h2 id='defining-theme-aware-gradients' class='heading'>Defining theme-aware gradients</h2>
 
 <p>The recommended way of adding your own dynamic gradients is as follows:</p>
 
@@ -371,8 +379,7 @@ orangeSky = rgb(160, 90, 45, .5)
 brandGradient = linear-gradient($orangeSky, rgb(200, 140, 60))
 </code></pre></li>
 </ol>
-
-<p><a href='#fallback-colors' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='fallback-colors'>Fallback colors</h2></p>
+<h2 id='fallback-colors' class='heading'>Fallback colors</h2>
 
 <p>Unimplemented properties/methods on target theme class will default to
 <code>fallbackGradient</code>. This too, can be customized per theme.</p>
@@ -390,7 +397,7 @@ brandGradient = linear-gradient($orangeSky, rgb(200, 140, 60))
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeGradient.swift#L137-L327">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeGradient.swift#L137-L360">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -417,15 +424,13 @@ whenever a new theme is make current.</p>
 
 <p>Theme-aware means you don&rsquo;t need to check any conditions when choosing which
 image to draw. E.g.:</p>
-
 <pre class="highlight plaintext"><code>ThemeImage.logoImage.draw(in: bounds)
 </code></pre>
 
 <p>The drawing code will draw with different image depending on the selected
 theme. Unless some drawing cache is being done, there&rsquo;s no need to refresh the
 UI after changing the current theme.</p>
-
-<p><a href='#defining-theme-aware-images' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='defining-theme-aware-images'>Defining theme-aware images</h2></p>
+<h2 id='defining-theme-aware-images' class='heading'>Defining theme-aware images</h2>
 
 <p>The recommended way of adding your own dynamic images is as follows:</p>
 
@@ -465,16 +470,16 @@ instance methods for each theme image class method defined on (1). E.g.:</p>
 <p>In Swift:</p>
 <pre class="highlight plaintext"><code>extension LightTheme {
 
-    var logoImage: NSImage {
-        return NSImage(named: "MyLightLogo")!
+    var logoImage: NSImage? {
+        return NSImage(named: "MyLightLogo")
     }
 
 }
 
 extension DarkTheme {
 
-    var logoImage: NSImage {
-        return NSImage(contentsOfFile: "somewhere/MyDarkLogo.png")!
+    var logoImage: NSImage? {
+        return NSImage(contentsOfFile: "somewhere/MyDarkLogo.png")
     }
 
 }
@@ -513,8 +518,7 @@ logoImage = image(named:MyLogo)
 //logoImage = image(file:../some/path/MyLogo.png)
 </code></pre></li>
 </ol>
-
-<p><a href='#fallback-images' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='fallback-images'>Fallback images</h2></p>
+<h2 id='fallback-images' class='heading'>Fallback images</h2>
 
 <p>Unimplemented properties/methods on target theme class will default to
 <code>fallbackImage</code>. This too, can be customized per theme.</p>
@@ -532,7 +536,7 @@ logoImage = image(named:MyLogo)
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeImage.swift#L138-L537">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeImage.swift#L138-L533">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -542,8 +546,8 @@ logoImage = image(named:MyLogo)
           </section>
         </section>
         <section id="footer">
-          <p>© 2016 <a class="link" href="https://paw.cloud" target="_blank" rel="external">Paw</a> under <a class="link" href="https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>© 2017 <a class="link" href="https://paw.cloud" target="_blank" rel="external">Paw</a> under <a class="link" href="https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

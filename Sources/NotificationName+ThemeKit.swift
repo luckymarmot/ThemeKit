@@ -22,6 +22,6 @@ public extension Notification.Name {
     /// ThemeKit notification sent when system theme did change (System Preference > General > Appearance).
     public static let didChangeSystemTheme = Notification.Name("ThemeKitDidChangeSystemThemeNotification")
     
-    /// System notification sent when System Preference for dark mode changes.
+    /// Convenience property for the system notification sent when System Preference for dark mode changes.
     static let didChangeAppleInterfaceTheme = Notification.Name("AppleInterfaceThemeChangedNotification")
 }

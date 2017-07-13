@@ -41,6 +41,9 @@
               <li class="nav-group-task">
                 <a href="../Extensions/Notification.html">Notification</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Notification/Name.html">– Name</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -77,6 +80,17 @@
               </li>
             </ul>
           </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/NSWindow.html">NSWindow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/NSColor.html">NSColor</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <article class="main-content">
@@ -94,15 +108,13 @@ whenever a new theme is make current.</p>
 
 <p>Theme-aware means you don&rsquo;t need to check any conditions when choosing which
 image to draw. E.g.:</p>
-
 <pre class="highlight plaintext"><code>ThemeImage.logoImage.draw(in: bounds)
 </code></pre>
 
 <p>The drawing code will draw with different image depending on the selected
 theme. Unless some drawing cache is being done, there&rsquo;s no need to refresh the
 UI after changing the current theme.</p>
-
-<p><a href='#defining-theme-aware-images' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='defining-theme-aware-images'>Defining theme-aware images</h2></p>
+<h2 id='defining-theme-aware-images' class='heading'>Defining theme-aware images</h2>
 
 <p>The recommended way of adding your own dynamic images is as follows:</p>
 
@@ -142,16 +154,16 @@ instance methods for each theme image class method defined on (1). E.g.:</p>
 <p>In Swift:</p>
 <pre class="highlight plaintext"><code>extension LightTheme {
 
-    var logoImage: NSImage {
-        return NSImage(named: "MyLightLogo")!
+    var logoImage: NSImage? {
+        return NSImage(named: "MyLightLogo")
     }
 
 }
 
 extension DarkTheme {
 
-    var logoImage: NSImage {
-        return NSImage(contentsOfFile: "somewhere/MyDarkLogo.png")!
+    var logoImage: NSImage? {
+        return NSImage(contentsOfFile: "somewhere/MyDarkLogo.png")
     }
 
 }
@@ -190,8 +202,7 @@ logoImage = image(named:MyLogo)
 //logoImage = image(file:../some/path/MyLogo.png)
 </code></pre></li>
 </ol>
-
-<p><a href='#fallback-images' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='fallback-images'>Fallback images</h2></p>
+<h2 id='fallback-images' class='heading'>Fallback images</h2>
 
 <p>Unimplemented properties/methods on target theme class will default to
 <code>fallbackImage</code>. This too, can be customized per theme.</p>
@@ -235,7 +246,7 @@ selector or, if inexistent, as argument in the theme instance method <code>theme
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeImage.swift#L145">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeImage.swift#L145-L151">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -265,7 +276,7 @@ selector or, if inexistent, as argument in the theme instance method <code>theme
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeImage.swift#L148">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeImage.swift#L154">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -321,7 +332,6 @@ if unavailable, the result of calling <code>themeAsset(_:)</code> on the current
                               <td>
                                 <div>
                                   <p>Selector for image method.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -331,10 +341,9 @@ if unavailable, the result of calling <code>themeAsset(_:)</code> on the current
                       <div>
                         <h4>Return Value</h4>
                         <p>A <code>ThemeImage</code> instance for the specified selector.</p>
-
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeImage.swift#L164-L172">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeImage.swift#L170-L181">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -342,9 +351,9 @@ if unavailable, the result of calling <code>themeAsset(_:)</code> on the current
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFC8ThemeKit10ThemeImage5imageFT3forPS_5Theme_8selectorV10ObjectiveC8Selector_CSo7NSImage"></a>
+                    <a name="/s:ZFC8ThemeKit10ThemeImage5imageFT3forPS_5Theme_8selectorV10ObjectiveC8Selector_GSqCSo7NSImage_"></a>
                     <a name="//apple_ref/swift/Method/image(for:selector:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC8ThemeKit10ThemeImage5imageFT3forPS_5Theme_8selectorV10ObjectiveC8Selector_CSo7NSImage">image(for:selector:)</a>
+                    <a class="token" href="#/s:ZFC8ThemeKit10ThemeImage5imageFT3forPS_5Theme_8selectorV10ObjectiveC8Selector_GSqCSo7NSImage_">image(for:selector:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -359,7 +368,7 @@ if unavailable, the result of calling <code>themeAsset(_:)</code> on the current
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">image</span><span class="p">(</span><span class="k">for</span> <span class="nv">theme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">NSImage</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">image</span><span class="p">(</span><span class="k">for</span> <span class="nv">theme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">NSImage</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -376,7 +385,6 @@ if unavailable, the result of calling <code>themeAsset(_:)</code> on the current
                               <td>
                                 <div>
                                   <p>A <code>Theme</code> instance.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -389,7 +397,6 @@ if unavailable, the result of calling <code>themeAsset(_:)</code> on the current
                               <td>
                                 <div>
                                   <p>An image selector.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -399,10 +406,9 @@ if unavailable, the result of calling <code>themeAsset(_:)</code> on the current
                       <div>
                         <h4>Return Value</h4>
                         <p>Resolved image for specified selector on given theme.</p>
-
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeImage.swift#L181-L209">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeImage.swift#L190-L210">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -410,9 +416,9 @@ if unavailable, the result of calling <code>themeAsset(_:)</code> on the current
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFC8ThemeKit10ThemeImage5imageFT3forCSo6NSView8selectorV10ObjectiveC8Selector_CSo7NSImage"></a>
+                    <a name="/s:ZFC8ThemeKit10ThemeImage5imageFT3forCSo6NSView8selectorV10ObjectiveC8Selector_GSqCSo7NSImage_"></a>
                     <a name="//apple_ref/swift/Method/image(for:selector:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC8ThemeKit10ThemeImage5imageFT3forCSo6NSView8selectorV10ObjectiveC8Selector_CSo7NSImage">image(for:selector:)</a>
+                    <a class="token" href="#/s:ZFC8ThemeKit10ThemeImage5imageFT3forCSo6NSView8selectorV10ObjectiveC8Selector_GSqCSo7NSImage_">image(for:selector:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -423,7 +429,7 @@ if unavailable, the result of calling <code>themeAsset(_:)</code> on the current
                         <p>Current theme image, but respecting view appearance and any window 
 specific theme (if set).</p>
 
-<p>If a <code>NSWindow.windowTheme</code> was set, it will be used instead.
+<p>If a <code><a href="../Extensions/NSWindow.html#/s:vE8ThemeKitCSo8NSWindow11windowThemeGSqPS_5Theme__">NSWindow.windowTheme</a></code> was set, it will be used instead.
 Some views may be using a different appearance than the theme appearance.
 In thoses cases, image won&rsquo;t be resolved using current theme, but from
 either <code>lightTheme</code> or <code>darkTheme</code>, depending of whether view appearance
@@ -434,7 +440,7 @@ is light or dark, respectively.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">image</span><span class="p">(</span><span class="k">for</span> <span class="nv">view</span><span class="p">:</span> <span class="kt">NSView</span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">NSImage</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">image</span><span class="p">(</span><span class="k">for</span> <span class="nv">view</span><span class="p">:</span> <span class="kt">NSView</span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">NSImage</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -451,7 +457,6 @@ is light or dark, respectively.</p>
                               <td>
                                 <div>
                                   <p>A <code>NSView</code> instance.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -464,7 +469,6 @@ is light or dark, respectively.</p>
                               <td>
                                 <div>
                                   <p>An image selector.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -474,10 +478,9 @@ is light or dark, respectively.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>Resolved image for specified selector on given view.</p>
-
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeImage.swift#L225-L248">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeImage.swift#L226-L249">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -508,7 +511,7 @@ You should not need to manually call this function.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeImage.swift#L304-L314">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeImage.swift#L281-L292">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -539,7 +542,7 @@ You should not need to manually call this function.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeImage.swift#L318-L321">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeImage.swift#L296-L299">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -549,8 +552,8 @@ You should not need to manually call this function.</p>
           </section>
         </section>
         <section id="footer">
-          <p>© 2016 <a class="link" href="https://paw.cloud" target="_blank" rel="external">Paw</a> under <a class="link" href="https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>© 2017 <a class="link" href="https://paw.cloud" target="_blank" rel="external">Paw</a> under <a class="link" href="https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

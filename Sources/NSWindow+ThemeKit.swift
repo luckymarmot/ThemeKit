@@ -9,13 +9,12 @@
 import Foundation
 
 /**
- `NSWindow` extensions.
- Jazzy will fail to generate documentation for this extension.
- Check https://github.com/realm/jazzy/pull/508 and https://github.com/realm/jazzy/issues/502
+ `NSWindow` ThemeKit extension.
  */
 public extension NSWindow {
     
-    // MARK:- Public
+    // MARK: -
+    // MARK: Properties
     
     /// Any window specific theme.
     ///
@@ -51,6 +50,10 @@ public extension NSWindow {
     public var windowEffectiveThemeAppearance: NSAppearance? {
         return windowEffectiveTheme.isLightTheme ? ThemeManager.shared.lightAppearance : ThemeManager.shared.darkAppearance
     }
+    
+    
+    // MARK: -
+    // MARK: Theming
     
     /// Theme window if needed.
     public func theme() {

@@ -41,6 +41,9 @@
               <li class="nav-group-task">
                 <a href="../Extensions/Notification.html">Notification</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Notification/Name.html">– Name</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -77,6 +80,17 @@
               </li>
             </ul>
           </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/NSWindow.html">NSWindow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/NSColor.html">NSColor</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <article class="main-content">
@@ -94,15 +108,13 @@ whenever a new theme is make current.</p>
 
 <p>Theme-aware means you don&rsquo;t need to check any conditions when choosing which
 gradient to draw. E.g.:</p>
-
 <pre class="highlight plaintext"><code>ThemeGradient.rainbowGradient.draw(in: bounds, angle: 0)
 </code></pre>
 
 <p>The drawing code will draw with different gradient depending on the selected 
 theme. Unless some drawing cache is being done, there&rsquo;s no need to refresh the
 UI after changing the current theme.</p>
-
-<p><a href='#defining-theme-aware-gradients' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='defining-theme-aware-gradients'>Defining theme-aware gradients</h2></p>
+<h2 id='defining-theme-aware-gradients' class='heading'>Defining theme-aware gradients</h2>
 
 <p>The recommended way of adding your own dynamic gradients is as follows:</p>
 
@@ -190,8 +202,7 @@ orangeSky = rgb(160, 90, 45, .5)
 brandGradient = linear-gradient($orangeSky, rgb(200, 140, 60))
 </code></pre></li>
 </ol>
-
-<p><a href='#fallback-colors' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='fallback-colors'>Fallback colors</h2></p>
+<h2 id='fallback-colors' class='heading'>Fallback colors</h2>
 
 <p>Unimplemented properties/methods on target theme class will default to
 <code>fallbackGradient</code>. This too, can be customized per theme.</p>
@@ -212,9 +223,9 @@ brandGradient = linear-gradient($orangeSky, rgb(200, 140, 60))
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC8ThemeKit13ThemeGradient21themeGradientSelectorV10ObjectiveC8Selector"></a>
+                    <a name="/s:vC8ThemeKit13ThemeGradient21themeGradientSelectorGSqV10ObjectiveC8Selector_"></a>
                     <a name="//apple_ref/swift/Property/themeGradientSelector" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC8ThemeKit13ThemeGradient21themeGradientSelectorV10ObjectiveC8Selector">themeGradientSelector</a>
+                    <a class="token" href="#/s:vC8ThemeKit13ThemeGradient21themeGradientSelectorGSqV10ObjectiveC8Selector_">themeGradientSelector</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -230,12 +241,12 @@ selector or, if inexistent, as argument in the theme instance method <code>theme
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">themeGradientSelector</span><span class="p">:</span> <span class="kt">Selector</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">themeGradientSelector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeGradient.swift#L144">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeGradient.swift#L144-L150">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -243,9 +254,9 @@ selector or, if inexistent, as argument in the theme instance method <code>theme
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC8ThemeKit13ThemeGradient21resolvedThemeGradientCSo10NSGradient"></a>
+                    <a name="/s:vC8ThemeKit13ThemeGradient21resolvedThemeGradientGSqCSo10NSGradient_"></a>
                     <a name="//apple_ref/swift/Property/resolvedThemeGradient" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC8ThemeKit13ThemeGradient21resolvedThemeGradientCSo10NSGradient">resolvedThemeGradient</a>
+                    <a class="token" href="#/s:vC8ThemeKit13ThemeGradient21resolvedThemeGradientGSqCSo10NSGradient_">resolvedThemeGradient</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -260,12 +271,12 @@ selector or, if inexistent, as argument in the theme instance method <code>theme
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">resolvedThemeGradient</span><span class="p">:</span> <span class="kt">NSGradient</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">resolvedThemeGradient</span><span class="p">:</span> <span class="kt">NSGradient</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeGradient.swift#L147">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeGradient.swift#L153">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -284,9 +295,9 @@ selector or, if inexistent, as argument in the theme instance method <code>theme
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFC8ThemeKit13ThemeGradient8gradientFT4withV10ObjectiveC8Selector_S0_"></a>
+                    <a name="/s:ZFC8ThemeKit13ThemeGradient8gradientFT4withV10ObjectiveC8Selector_GSqS0__"></a>
                     <a name="//apple_ref/swift/Method/gradient(with:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC8ThemeKit13ThemeGradient8gradientFT4withV10ObjectiveC8Selector_S0_">gradient(with:)</a>
+                    <a class="token" href="#/s:ZFC8ThemeKit13ThemeGradient8gradientFT4withV10ObjectiveC8Selector_GSqS0__">gradient(with:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -301,7 +312,7 @@ selector or, if inexistent, as argument in the theme instance method <code>theme
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">gradient</span><span class="p">(</span><span class="n">with</span> <span class="nv">selector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">ThemeGradient</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">gradient</span><span class="p">(</span><span class="n">with</span> <span class="nv">selector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">ThemeGradient</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -318,7 +329,6 @@ selector or, if inexistent, as argument in the theme instance method <code>theme
                               <td>
                                 <div>
                                   <p>Selector for color method.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -328,10 +338,9 @@ selector or, if inexistent, as argument in the theme instance method <code>theme
                       <div>
                         <h4>Return Value</h4>
                         <p>A <code>ThemeGradient</code> instance for the specified selector.</p>
-
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeGradient.swift#L159-L167">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeGradient.swift#L165-L176">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -339,9 +348,9 @@ selector or, if inexistent, as argument in the theme instance method <code>theme
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFC8ThemeKit13ThemeGradient8gradientFT3forPS_5Theme_8selectorV10ObjectiveC8Selector_CSo10NSGradient"></a>
+                    <a name="/s:ZFC8ThemeKit13ThemeGradient8gradientFT3forPS_5Theme_8selectorV10ObjectiveC8Selector_GSqCSo10NSGradient_"></a>
                     <a name="//apple_ref/swift/Method/gradient(for:selector:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC8ThemeKit13ThemeGradient8gradientFT3forPS_5Theme_8selectorV10ObjectiveC8Selector_CSo10NSGradient">gradient(for:selector:)</a>
+                    <a class="token" href="#/s:ZFC8ThemeKit13ThemeGradient8gradientFT3forPS_5Theme_8selectorV10ObjectiveC8Selector_GSqCSo10NSGradient_">gradient(for:selector:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -356,7 +365,7 @@ selector or, if inexistent, as argument in the theme instance method <code>theme
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">gradient</span><span class="p">(</span><span class="k">for</span> <span class="nv">theme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">NSGradient</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">gradient</span><span class="p">(</span><span class="k">for</span> <span class="nv">theme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">NSGradient</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -373,7 +382,6 @@ selector or, if inexistent, as argument in the theme instance method <code>theme
                               <td>
                                 <div>
                                   <p>A <code>Theme</code> instance.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -386,7 +394,6 @@ selector or, if inexistent, as argument in the theme instance method <code>theme
                               <td>
                                 <div>
                                   <p>A gradient selector.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -396,10 +403,9 @@ selector or, if inexistent, as argument in the theme instance method <code>theme
                       <div>
                         <h4>Return Value</h4>
                         <p>Resolved gradient for specified selector on given theme.</p>
-
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeGradient.swift#L176-L204">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeGradient.swift#L185-L205">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -407,9 +413,9 @@ selector or, if inexistent, as argument in the theme instance method <code>theme
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFC8ThemeKit13ThemeGradient8gradientFT3forCSo6NSView8selectorV10ObjectiveC8Selector_CSo10NSGradient"></a>
+                    <a name="/s:ZFC8ThemeKit13ThemeGradient8gradientFT3forCSo6NSView8selectorV10ObjectiveC8Selector_GSqCSo10NSGradient_"></a>
                     <a name="//apple_ref/swift/Method/gradient(for:selector:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC8ThemeKit13ThemeGradient8gradientFT3forCSo6NSView8selectorV10ObjectiveC8Selector_CSo10NSGradient">gradient(for:selector:)</a>
+                    <a class="token" href="#/s:ZFC8ThemeKit13ThemeGradient8gradientFT3forCSo6NSView8selectorV10ObjectiveC8Selector_GSqCSo10NSGradient_">gradient(for:selector:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -420,7 +426,7 @@ selector or, if inexistent, as argument in the theme instance method <code>theme
                         <p>Current theme gradient, but respecting view appearance and any window
 specific theme (if set).</p>
 
-<p>If a <code>NSWindow.windowTheme</code> was set, it will be used instead.
+<p>If a <code><a href="../Extensions/NSWindow.html#/s:vE8ThemeKitCSo8NSWindow11windowThemeGSqPS_5Theme__">NSWindow.windowTheme</a></code> was set, it will be used instead.
 Some views may be using a different appearance than the theme appearance.
 In thoses cases, gradient won&rsquo;t be resolved using current theme, but from
 either <code>lightTheme</code> or <code>darkTheme</code>, depending of whether view appearance
@@ -431,7 +437,7 @@ is light or dark, respectively.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">gradient</span><span class="p">(</span><span class="k">for</span> <span class="nv">view</span><span class="p">:</span> <span class="kt">NSView</span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">NSGradient</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">gradient</span><span class="p">(</span><span class="k">for</span> <span class="nv">view</span><span class="p">:</span> <span class="kt">NSView</span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">NSGradient</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -448,7 +454,6 @@ is light or dark, respectively.</p>
                               <td>
                                 <div>
                                   <p>A <code>NSView</code> instance.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -461,7 +466,6 @@ is light or dark, respectively.</p>
                               <td>
                                 <div>
                                   <p>A gradient selector.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -471,10 +475,9 @@ is light or dark, respectively.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>Resolved gradient for specified selector on given view.</p>
-
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeGradient.swift#L220-L243">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeGradient.swift#L221-L244">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -492,7 +495,7 @@ is light or dark, respectively.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Forces dynamic gradient resolution into <code><a href="../Classes/ThemeGradient.html#/s:vC8ThemeKit13ThemeGradient21resolvedThemeGradientCSo10NSGradient">resolvedThemeGradient</a></code> and cache it.
+                        <p>Forces dynamic gradient resolution into <code><a href="../Classes/ThemeGradient.html#/s:vC8ThemeKit13ThemeGradient21resolvedThemeGradientGSqCSo10NSGradient_">resolvedThemeGradient</a></code> and cache it.
 You should not need to manually call this function.</p>
 
                       </div>
@@ -505,7 +508,7 @@ You should not need to manually call this function.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeGradient.swift#L267-L275">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeGradient.swift#L282-L293">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -536,7 +539,7 @@ You should not need to manually call this function.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeGradient.swift#L279-L282">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeGradient.swift#L297-L300">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -546,8 +549,8 @@ You should not need to manually call this function.</p>
           </section>
         </section>
         <section id="footer">
-          <p>© 2016 <a class="link" href="https://paw.cloud" target="_blank" rel="external">Paw</a> under <a class="link" href="https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>© 2017 <a class="link" href="https://paw.cloud" target="_blank" rel="external">Paw</a> under <a class="link" href="https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

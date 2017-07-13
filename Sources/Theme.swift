@@ -86,6 +86,8 @@ public extension Theme {
     }
     
     /// Apply theme (make it the current one).
+    ///
+    /// Equivalent of calling `ThemeManager.shared.theme = aTheme`.
     public func apply() {
         ThemeManager.shared.theme = self
     }
@@ -116,8 +118,6 @@ public extension Theme {
     
     /// Checks if a theme asset is provided for the given key.
     ///
-    /// Do not check for theme asset availability with `themeAsset(_:)`, use
-    /// this method instead, which is much faster.
     /// This function is overriden by `UserTheme`.
     ///
     /// - parameter key: A color name, gradient name, image name or a theme string

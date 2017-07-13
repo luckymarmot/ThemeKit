@@ -9,14 +9,15 @@
 import Foundation
 
 /**
- `NSColor` extensions.
- Jazzy will fail to generate documentation for this extension.
- Check https://github.com/realm/jazzy/pull/508 and https://github.com/realm/jazzy/issues/502
+ `NSColor` ThemeKit extension to help on when overriding colors in `ThemeColor` extensions.
  */
 extension NSColor {
     
+    // MARK: -
+    // MARK: Color override
+    
     /// Swizzle NSColor in case we are replacing system colors by themable colors.
-    public static func swizzleNSColor() {
+    static func swizzleNSColor() {
         swizzleNSColorOnce
     }
     
@@ -32,7 +33,7 @@ extension NSColor {
         swizzleInstanceMethod(cls: NSClassFromString("NSDynamicSystemColor"), selector: #selector(setStroke), withSelector: #selector(themeKitSetStroke))
     }()
     
-    /// Check if a given color string is overriden in a ThemeColor extension.
+    /// Check if color is being overriden in a ThemeColor extension.
     public var isThemeOverriden: Bool {
         
         // check if `NSColor` provides this color

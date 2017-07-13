@@ -3,7 +3,7 @@
 </p>
 
 ![macOS](https://img.shields.io/badge/os-macOS%2010.10%2B-green.svg?style=flat)
-![Swift3](https://img.shields.io/badge/swift-3.0.x-green.svg?style=flat)
+![Swift3](https://img.shields.io/badge/swift-3.2-green.svg?style=flat)
 ![Release](https://img.shields.io/badge/release-1.0-blue.svg?style=flat)
 ![MIT](https://img.shields.io/badge/license-MIT-lightgray.svg)
 ![CocoaPods](https://img.shields.io/badge/dep-CocoaPods-orange.svg)
@@ -11,9 +11,9 @@
 
 ## Summary
 
-*ThemeKit* is a lightweight theming library completly written in Swift 3 that provides theming capabilities to both Swift 3 and Objective-C macOS applications.
+*ThemeKit* is a lightweight theming library completly written in Swift 3.2 that provides theming capabilities to both Swift 3.2/4 and Objective-C macOS applications.
 
-*ThemeKit* is brought to you with ❤️ by the [Paw](https://paw.cloud) team.
+*ThemeKit* is brought to you with ❤️ by [Nuno Grilo](http://nunogrilo.com) and the [Paw](http://paw.cloud) [team](https://github.com/orgs/luckymarmot/people).
 
 <p align="left">
   <img src="https://github.com/luckymarmot/ThemeKit/raw/themekit-initial/Imgs/ThemeKit.gif" width="675" height="390" alt="ThemeKit Animated Demo" />
@@ -38,7 +38,7 @@
 
 ## Features
 
-- Written in Swift 3
+- Written in Swift 3.2
 - Optional configuration, none required
 - Neglected performance impact
 - Automatically theme windows (configurable)
@@ -335,6 +335,9 @@ Please refer to [`UserTheme`](https://opensource.paw.cloud/themekit/docs/Classes
 
 
 ## FAQ
+
+### **Can the window titlebar/toolbar/tabbar be themed?**
+Yes - please check one way to do it on the Demo project.
 
 ### **Can controls be tinted with different colors?**
 Other than the colors set by the inherited appearance - light (dark text on light background) or dark (light text on dark background) - natively, it is not possible to specify different colors for the text and/or background fills of controls (buttons, popups, etc).

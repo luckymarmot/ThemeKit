@@ -388,7 +388,7 @@ You may run into font smoothing issues, when you use text without a background c
         
     // draw text...
     
-	context?.restoreGState()
+    context?.restoreGState()
     ``` 
 
     As a last solution - if you really can't draw a background color - you can disable font smoothing which can slightly improve text rendering:
@@ -400,7 +400,7 @@ You may run into font smoothing issues, when you use text without a background c
         
     // draw text...
     
-	context?.restoreGState()
+    context?.restoreGState()
    ```
 
   3. For custom `NSButton`'s:

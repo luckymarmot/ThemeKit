@@ -229,7 +229,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
 				LastUpgradeCheck = 0900;
-				ORGANIZATIONNAME = "Paw Inc.";
+				ORGANIZATIONNAME = "Paw & Nuno Grilo";
 				TargetAttributes = {
 					28C0CF8D1D9D191400530662 = {
 						CreatedOnToolsVersion = 8.0;

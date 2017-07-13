@@ -1,9 +1,9 @@
 # About
 module: ThemeKit
-author: Nuno Grilo & Paw Inc.
+author: Paw & Nuno Grilo
 author_url: https://nunogrilo.com
 readme: README.md
-copyright: '© 2017 [Paw](https://paw.cloud) under [MIT License](https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE).'
+copyright: '© 2016-2017 [Paw](https://paw.cloud) & [Nuno Grilo](http://nunogrilo.com) under [MIT License](https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE).'
 
 # URLs
 github_url: https://github.com/luckymarmot/ThemeKit

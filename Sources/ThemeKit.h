@@ -3,7 +3,7 @@
 //  ThemeKit
 //
 //  Created by Nuno Grilo on 21/09/2016.
-//  Copyright © 2016 Paw Inc. All rights reserved.
+//  Copyright © 2016-2017 Paw & Nuno Grilo. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>

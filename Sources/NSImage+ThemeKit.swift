@@ -3,7 +3,7 @@
 //  ThemeKit
 //
 //  Converted to Swift 3 by Nuno Grilo on 02/10/2016.
-//  Copyright © 2016 Paw Inc. All rights reserved.
+//  Copyright © 2016 Paw & Nuno Grilo. All rights reserved.
 //
 
 /*

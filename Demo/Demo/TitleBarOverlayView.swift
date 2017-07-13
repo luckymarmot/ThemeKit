@@ -3,7 +3,7 @@
 //  Demo
 //
 //  Created by Nuno Grilo on 11/07/2017.
-//  Copyright © 2017 Paw Inc. All rights reserved.
+//  Copyright © 2017 Paw & Nuno Grilo. All rights reserved.
 //
 
 import Cocoa

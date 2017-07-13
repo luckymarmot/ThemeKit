@@ -97,6 +97,16 @@ class WindowController: NSWindowController {
             let userTheme = ThemeManager.shared.theme as? UserTheme,
             let userThemeURL = userTheme.fileURL {
             
+            guard FileManager.default.isWritableFile(atPath: userThemeURL.path) else {
+                let alert = NSAlert()
+                alert.messageText = "Theme file is not writable."
+                alert.informativeText = "If you're lunching Demo from the Downloads folder, move it to another place and try again."
+                alert.alertStyle = NSAlertStyle.critical
+                alert.addButton(withTitle: "OK")
+                alert.runModal()
+                return
+            }
+            
             // check if there is any app associted with `.theme` extension
             let userThemeCFURL:CFURL = userThemeURL as CFURL
             if let _ = LSCopyDefaultApplicationURLForURL(userThemeCFURL, .editor, nil) {

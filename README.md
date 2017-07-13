@@ -18,7 +18,7 @@
 <p align="left">
   <img src="https://github.com/luckymarmot/ThemeKit/raw/themekit-initial/Imgs/ThemeKit.gif" width="675" height="390" alt="ThemeKit Animated Demo" />
 </p>
-Download [Demo binary](https://github.com/luckymarmot/ThemeKit/raw/themekit-initial/Demo/Bin/Demo-1.0.zip) and give it a try!
+Download the [ThemeKit Demo](https://github.com/luckymarmot/ThemeKit/raw/themekit-initial/Demo/Bin/Demo.zip) binary and give it a try!
 
 ## Table of Contents
 * [Summary](#summary)

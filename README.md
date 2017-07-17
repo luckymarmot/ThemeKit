@@ -16,7 +16,7 @@
 *ThemeKit* is brought to you with ❤️ by [Nuno Grilo](http://nunogrilo.com) and the [Paw](http://paw.cloud) [team](https://github.com/orgs/luckymarmot/people).
 
 <p align="left">
-  <img src="https://github.com/luckymarmot/ThemeKit/raw/themekit-initial/Imgs/ThemeKit.gif" width="675" height="390" alt="ThemeKit Animated Demo" />
+  <img src="https://github.com/luckymarmot/ThemeKit/raw/themekit-initial/Imgs/ThemeKit.gif" width="675" height="378" alt="ThemeKit Animated Demo" />
 </p>
 
 Download the [ThemeKit Demo](https://github.com/luckymarmot/ThemeKit/raw/themekit-initial/Demo/Bin/Demo.zip) binary and give it a try!

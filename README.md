@@ -11,7 +11,7 @@
 
 ## Summary
 
-*ThemeKit* is a lightweight theming library completly written in Swift 3.2 that provides theming capabilities to both Swift 3.2+ and Objective-C macOS applications.
+*ThemeKit* is a lightweight theming library completly written in Swift that provides theming capabilities to both Swift 3.2+ and Objective-C macOS applications.
 
 *ThemeKit* is brought to you with ❤️ by [Nuno Grilo](http://nunogrilo.com) and the [Paw](http://paw.cloud) [team](https://github.com/orgs/luckymarmot/people).
 
@@ -48,7 +48,7 @@ Download the [ThemeKit Demo](https://github.com/luckymarmot/ThemeKit/raw/master/
   - [`LightTheme`](http://themekit.nunogrilo.com/Classes/LightTheme.html) (default macOS appearance)
   - [`DarkTheme`](http://themekit.nunogrilo.com/Classes/DarkTheme.html)
   - [`SystemTheme`](http://themekit.nunogrilo.com/Classes/SystemTheme.html) (default theme). Dynamically resolves to `ThemeManager.lightTheme` or `ThemeManager.darkTheme`, depending on the *"System Preferences > General > Appearance"*.
-  - Support for custom themes ([`Theme`](http://themekit.nunogrilo.com/Classes/Theme.html))
+  - Support for custom themes ([`Theme`](http://themekit.nunogrilo.com/Protocols/Theme.html))
   - Support for user-defined themes ([`UserTheme`](http://themekit.nunogrilo.com/Classes/UserTheme.html))
 - Theme-aware assets:
   - [`ThemeColor`](http://themekit.nunogrilo.com/Classes/ThemeColor.html): colors that dynamically change with the theme
@@ -99,7 +99,7 @@ func applicationWillFinishLaunching(_ notification: Notification) {
 
 ### Advanced Usage
 
-The following code will define which windows should be automatically themed ([`WindowThemePolicy`](http://themekit.nunogrilo.com/Classes/ThemeKit/WindowThemePolicy.html)) and add support for user themes ([`UserTheme`](http://themekit.nunogrilo.com/Classes/UserTheme.html)):
+The following code will define which windows should be automatically themed ([`WindowThemePolicy`](http://themekit.nunogrilo.com/Classes/ThemeManager/WindowThemePolicy.html)) and add support for user themes ([`UserTheme`](http://themekit.nunogrilo.com/Classes/UserTheme.html)):
 
 ```swift
 func applicationWillFinishLaunching(_ notification: Notification) {
@@ -156,7 +156,7 @@ NotificationCenter.default.addObserver(self, selector: #selector(changedTheme(_:
 
 Additionaly, the following properties are KVO compliant:
 
-- [`ThemeManager.shared.theme`](http://themekit.nunogrilo.com/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager6themesGSaPS_5Theme__)
+- [`ThemeManager.shared.theme`](http://themekit.nunogrilo.com/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager5themePS_5Theme_)
 - [`ThemeManager.shared.effectiveTheme`](http://themekit.nunogrilo.com/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager14effectiveThemePS_5Theme_)
 - [`ThemeManager.shared.themes`](http://themekit.nunogrilo.com/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager6themesGSaPS_5Theme__)
 - [`ThemeManager.shared.userThemes`](http://themekit.nunogrilo.com/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager10userThemesGSaPS_5Theme__)
@@ -177,28 +177,23 @@ public override func observeValue(forKeyPath keyPath: String?, of object: Any?, 
 
 #### Manually theming windows
 
-In case ([`WindowThemePolicy`](http://themekit.nunogrilo.com/Classes/ThemeKit/WindowThemePolicy.html)) was NOT set to `.themeAllWindows`, you may need to manually theme a window. You can use our `NSWindow` extension for that:
+In case ([`WindowThemePolicy`](http://themekit.nunogrilo.com/Classes/ThemeManager/WindowThemePolicy.html)) was NOT set to `.themeAllWindows`, you may need to manually theme a window. You can use our `NSWindow` extension for that:
 
-##### NSWindow Extension
+##### [NSWindow Extension](http://themekit.nunogrilo.com/Extensions/NSWindow.html)
 
-- `NSWindow.theme()`
+- [`NSWindow.theme()`](http://themekit.nunogrilo.com/Extensions/NSWindow.html#/s:FE8ThemeKitCSo8NSWindow5themeFT_T_)
 
 	Theme window if appearance needs update. Doesn't check for policy compliance.
 
-
-- `NSWindow.isCompliantWithWindowThemePolicy()`
-
-	Check if window complies to current policy.
-
-- `NSWindow.themeIfCompliantWithWindowThemePolicy()`
+- [`NSWindow.themeIfCompliantWithWindowThemePolicy()`](http://themekit.nunogrilo.com/Extensions/NSWindow.html#/s:FE8ThemeKitCSo8NSWindow37themeIfCompliantWithWindowThemePolicyFT_T_)
 
 	Theme window if compliant to `ThemeManager.shared.windowThemePolicy` (and if appearance needs update).
 
-- `NSWindow.themeAllWindows()`
+- [`NSWindow.themeAllWindows()`](http://themekit.nunogrilo.com/Extensions/NSWindow.html#/s:ZFE8ThemeKitCSo8NSWindow15themeAllWindowsFT_T_)
 
 	Theme all windows compliant to `ThemeManager.shared.windowThemePolicy` (and if appearance needs update).
 	
-- `NSWindow.windowTheme`
+- [`NSWindow.windowTheme`](http://themekit.nunogrilo.com/Extensions/NSWindow.html#/s:vE8ThemeKitCSo8NSWindow11windowThemeGSqPS_5Theme__)
 
 	Any window specific theme.
    This is, usually, `nil`, which means the current global theme will be used.
@@ -210,11 +205,11 @@ In case ([`WindowThemePolicy`](http://themekit.nunogrilo.com/Classes/ThemeKit/Wi
 
    	Additionaly, please note that system overriden colors (`NSColor.*`) will always use the global theme.
 
-- `NSWindow.windowEffectiveTheme`
+- [`NSWindow.windowEffectiveTheme`](http://themekit.nunogrilo.com/Extensions/NSWindow.html#/s:vE8ThemeKitCSo8NSWindow20windowEffectiveThemePS_5Theme_)
 
 	Returns the current effective theme (read-only).
 
-- `NSWindow.windowEffectiveThemeAppearance`
+- [`NSWindow.windowEffectiveThemeAppearance`](http://themekit.nunogrilo.com/Extensions/NSWindow.html#/s:vE8ThemeKitCSo8NSWindow30windowEffectiveThemeAppearanceGSqCSo12NSAppearance_)
 
 	Returns the current effective appearance (read-only).
 
@@ -231,7 +226,9 @@ For example, a project defines a `ThemeColor.brandColor` color. This will resolv
 - `ThemeColor.brandColor` will resolve to `NSColor.white` if the dark theme is selected
 - `ThemeColor.brandColor` will resolve to `rgba(100, 50, 0, 0.5)` for some user-defined theme ([`UserTheme`](http://themekit.nunogrilo.com/Classes/UserTheme.html))
 
-Similarly, defining a `ThemeColor.labelColor` will override `NSColor.labelColor` (`ThemeColor` is a subclass of `NSColor`), and *ThemeKit* will allow `labelColor` to be customized on a per-theme basis as well.
+Similarly, defining a `ThemeColor.labelColor` will override `NSColor.labelColor` (`ThemeColor` is a subclass of `NSColor`), and *ThemeKit* will allow `labelColor` to be customized on a per-theme basis as well. 
+
+The [NSColor Extension](http://themekit.nunogrilo.com/Extensions/NSColor.html) may be useful when overriding colors in ThemeColor extensions.
 
 ### Fallback Assets
 
@@ -251,7 +248,7 @@ Please refer to [`ThemeColor`](http://themekit.nunogrilo.com/Classes/ThemeColor.
 ## Creating Themes
 
 ### Native Themes
-For creating additional themes, you only need to create a class that conforms to the [`Theme`](http://themekit.nunogrilo.com/Classes/Theme.html) protocol and extends `NSObject`.
+For creating additional themes, you only need to create a class that conforms to the [`Theme`](http://themekit.nunogrilo.com/Protocols/Theme.html) protocol and extends `NSObject`.
 
 Sample theme:
 

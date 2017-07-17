@@ -108,7 +108,7 @@
 <img src="https://img.shields.io/badge/dep-Carthage-orange.svg" alt="Carthage"></p>
 <h2 id='summary' class='heading'>Summary</h2>
 
-<p><em>ThemeKit</em> is a lightweight theming library completly written in Swift 3.2 that provides theming capabilities to both Swift 3.2+ and Objective-C macOS applications.</p>
+<p><em>ThemeKit</em> is a lightweight theming library completly written in Swift that provides theming capabilities to both Swift 3.2+ and Objective-C macOS applications.</p>
 
 <p><em>ThemeKit</em> is brought to you with ❤️ by <a href="http://nunogrilo.com">Nuno Grilo</a> and the <a href="http://paw.cloud">Paw</a> <a href="https://github.com/orgs/luckymarmot/people">team</a>.</p>
 
@@ -158,7 +158,7 @@
 <li><a href="http://themekit.nunogrilo.com/Classes/LightTheme.html"><code>LightTheme</code></a> (default macOS appearance)</li>
 <li><a href="http://themekit.nunogrilo.com/Classes/DarkTheme.html"><code>DarkTheme</code></a></li>
 <li><a href="http://themekit.nunogrilo.com/Classes/SystemTheme.html"><code>SystemTheme</code></a> (default theme). Dynamically resolves to <code>ThemeManager.lightTheme</code> or <code>ThemeManager.darkTheme</code>, depending on the <em><q>System Preferences > General > Appearance</q></em>.</li>
-<li>Support for custom themes (<a href="http://themekit.nunogrilo.com/Classes/Theme.html"><code>Theme</code></a>)</li>
+<li>Support for custom themes (<a href="http://themekit.nunogrilo.com/Protocols/Theme.html"><code>Theme</code></a>)</li>
 <li>Support for user-defined themes (<a href="http://themekit.nunogrilo.com/Classes/UserTheme.html"><code>UserTheme</code></a>)</li>
 </ul></li>
 <li>Theme-aware assets:
@@ -215,7 +215,7 @@
 </code></pre>
 <h3 id='advanced-usage' class='heading'>Advanced Usage</h3>
 
-<p>The following code will define which windows should be automatically themed (<a href="http://themekit.nunogrilo.com/Classes/ThemeKit/WindowThemePolicy.html"><code>WindowThemePolicy</code></a>) and add support for user themes (<a href="http://themekit.nunogrilo.com/Classes/UserTheme.html"><code>UserTheme</code></a>):</p>
+<p>The following code will define which windows should be automatically themed (<a href="http://themekit.nunogrilo.com/Classes/ThemeManager/WindowThemePolicy.html"><code>WindowThemePolicy</code></a>) and add support for user themes (<a href="http://themekit.nunogrilo.com/Classes/UserTheme.html"><code>UserTheme</code></a>):</p>
 <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">applicationWillFinishLaunching</span><span class="p">(</span><span class="n">_</span> <span class="nv">notification</span><span class="p">:</span> <span class="kt">Notification</span><span class="p">)</span> <span class="p">{</span>
 
     <span class="c1">/// Define default theme.</span>
@@ -270,7 +270,7 @@
 <p>Additionaly, the following properties are KVO compliant:</p>
 
 <ul>
-<li><a href="http://themekit.nunogrilo.com/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager6themesGSaPS_5Theme__"><code>ThemeManager.shared.theme</code></a></li>
+<li><a href="http://themekit.nunogrilo.com/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager5themePS_5Theme_"><code>ThemeManager.shared.theme</code></a></li>
 <li><a href="http://themekit.nunogrilo.com/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager14effectiveThemePS_5Theme_"><code>ThemeManager.shared.effectiveTheme</code></a></li>
 <li><a href="http://themekit.nunogrilo.com/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager6themesGSaPS_5Theme__"><code>ThemeManager.shared.themes</code></a></li>
 <li><a href="http://themekit.nunogrilo.com/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager10userThemesGSaPS_5Theme__"><code>ThemeManager.shared.userThemes</code></a></li>
@@ -288,23 +288,20 @@
 </code></pre>
 <h4 id='manually-theming-windows' class='heading'>Manually theming windows</h4>
 
-<p>In case (<a href="http://themekit.nunogrilo.com/Classes/ThemeKit/WindowThemePolicy.html"><code>WindowThemePolicy</code></a>) was NOT set to <code>.themeAllWindows</code>, you may need to manually theme a window. You can use our <code>NSWindow</code> extension for that:</p>
-<h5 id='nswindow-extension' class='heading'>NSWindow Extension</h5>
+<p>In case (<a href="http://themekit.nunogrilo.com/Classes/ThemeManager/WindowThemePolicy.html"><code>WindowThemePolicy</code></a>) was NOT set to <code>.themeAllWindows</code>, you may need to manually theme a window. You can use our <code>NSWindow</code> extension for that:</p>
+<h5 id='a-href-http-themekit-nunogrilo-com-extensions-nswindow-html-nswindow-extension-a' class='heading'><a href="http://themekit.nunogrilo.com/Extensions/NSWindow.html">NSWindow Extension</a></h5>
 
 <ul>
-<li><p><code>NSWindow.theme()</code></p>
+<li><p><a href="http://themekit.nunogrilo.com/Extensions/NSWindow.html#/s:FE8ThemeKitCSo8NSWindow5themeFT_T_"><code>NSWindow.theme()</code></a></p>
 
 <p>Theme window if appearance needs update. Doesn&rsquo;t check for policy compliance.</p></li>
-<li><p><code>NSWindow.isCompliantWithWindowThemePolicy()</code></p>
-
-<p>Check if window complies to current policy.</p></li>
-<li><p><code>NSWindow.themeIfCompliantWithWindowThemePolicy()</code></p>
+<li><p><a href="http://themekit.nunogrilo.com/Extensions/NSWindow.html#/s:FE8ThemeKitCSo8NSWindow37themeIfCompliantWithWindowThemePolicyFT_T_"><code>NSWindow.themeIfCompliantWithWindowThemePolicy()</code></a></p>
 
 <p>Theme window if compliant to <code>ThemeManager.shared.windowThemePolicy</code> (and if appearance needs update).</p></li>
-<li><p><code>NSWindow.themeAllWindows()</code></p>
+<li><p><a href="http://themekit.nunogrilo.com/Extensions/NSWindow.html#/s:ZFE8ThemeKitCSo8NSWindow15themeAllWindowsFT_T_"><code>NSWindow.themeAllWindows()</code></a></p>
 
 <p>Theme all windows compliant to <code>ThemeManager.shared.windowThemePolicy</code> (and if appearance needs update).</p></li>
-<li><p><code>NSWindow.windowTheme</code></p>
+<li><p><a href="http://themekit.nunogrilo.com/Extensions/NSWindow.html#/s:vE8ThemeKitCSo8NSWindow11windowThemeGSqPS_5Theme__"><code>NSWindow.windowTheme</code></a></p>
 
 <p>Any window specific theme.
 This is, usually, <code>nil</code>, which means the current global theme will be used.
@@ -317,10 +314,10 @@ Please note that when using window specific themes, only the associated <code>NS
 </ul>
 
 <p>Additionaly, please note that system overriden colors (<code>NSColor.*</code>) will always use the global theme.</p></li>
-<li><p><code>NSWindow.windowEffectiveTheme</code></p>
+<li><p><a href="http://themekit.nunogrilo.com/Extensions/NSWindow.html#/s:vE8ThemeKitCSo8NSWindow20windowEffectiveThemePS_5Theme_"><code>NSWindow.windowEffectiveTheme</code></a></p>
 
 <p>Returns the current effective theme (read-only).</p></li>
-<li><p><code>NSWindow.windowEffectiveThemeAppearance</code></p>
+<li><p><a href="http://themekit.nunogrilo.com/Extensions/NSWindow.html#/s:vE8ThemeKitCSo8NSWindow30windowEffectiveThemeAppearanceGSqCSo12NSAppearance_"><code>NSWindow.windowEffectiveThemeAppearance</code></a></p>
 
 <p>Returns the current effective appearance (read-only).</p></li>
 </ul>
@@ -338,7 +335,9 @@ Please note that when using window specific themes, only the associated <code>NS
 <li><code>ThemeColor.brandColor</code> will resolve to <code>rgba(100, 50, 0, 0.5)</code> for some user-defined theme (<a href="http://themekit.nunogrilo.com/Classes/UserTheme.html"><code>UserTheme</code></a>)</li>
 </ul>
 
-<p>Similarly, defining a <code>ThemeColor.labelColor</code> will override <code>NSColor.labelColor</code> (<code>ThemeColor</code> is a subclass of <code>NSColor</code>), and <em>ThemeKit</em> will allow <code>labelColor</code> to be customized on a per-theme basis as well.</p>
+<p>Similarly, defining a <code>ThemeColor.labelColor</code> will override <code>NSColor.labelColor</code> (<code>ThemeColor</code> is a subclass of <code>NSColor</code>), and <em>ThemeKit</em> will allow <code>labelColor</code> to be customized on a per-theme basis as well. </p>
+
+<p>The <a href="http://themekit.nunogrilo.com/Extensions/NSColor.html">NSColor Extension</a> may be useful when overriding colors in ThemeColor extensions.</p>
 <h3 id='fallback-assets' class='heading'>Fallback Assets</h3>
 
 <p>ThemeKit provides a simple fallback mechanism when looking up assets in current theme. It will search for assets, in order:</p>
@@ -360,7 +359,7 @@ Please note that when using window specific themes, only the associated <code>NS
 <h2 id='creating-themes' class='heading'>Creating Themes</h2>
 <h3 id='native-themes' class='heading'>Native Themes</h3>
 
-<p>For creating additional themes, you only need to create a class that conforms to the <a href="http://themekit.nunogrilo.com/Classes/Theme.html"><code>Theme</code></a> protocol and extends <code>NSObject</code>.</p>
+<p>For creating additional themes, you only need to create a class that conforms to the <a href="http://themekit.nunogrilo.com/Protocols/Theme.html"><code>Theme</code></a> protocol and extends <code>NSObject</code>.</p>
 
 <p>Sample theme:</p>
 <pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">Cocoa</span>

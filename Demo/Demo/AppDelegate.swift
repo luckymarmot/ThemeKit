@@ -81,6 +81,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             themeMenu.addItem(item)
             counter += 1
         }
+        
+        // Add separator
+        themeMenu.addItem(NSMenuItem.separator())
+        
+        // Add slideshow
+        let slideshowItem = NSMenuItem(title: "Slideshow", action: #selector(startStopThemeSlideshow), keyEquivalent: "0")
+        slideshowItem.state = slideshowTimerOn ? NSOnState : NSOffState
+        themeMenu.addItem(slideshowItem)
     }
     
     @IBAction func switchTheme(_ menuItem: NSMenuItem) {
@@ -92,7 +100,59 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    // As a bonus, an hacky way of theming window titlebar is shown on
+    
+    // MARK:-
+    // MARK: Theme Slideshow
+    
+    /// Slideshow timer.
+    private var slideshowTimer: Timer?
+    
+    /// Slideshow state.
+    private var slideshowTimerOn: Bool {
+        return (slideshowTimer?.isValid ?? false)
+    }
+    
+    /// Themes used on slideshow. Indices from `ThemeManager.shared.themes`.
+    private static let slideshowAllThemeIndices = [0, 1, 3, 4, 5, 6]
+    private static let slideshowAnimatedGIFThemeIndices = [0, 1, 3, 5]
+    private static let slideshowThemeIndices = AppDelegate.slideshowAllThemeIndices
+    
+    /// Start/stop theme slideshow.
+    func startStopThemeSlideshow() {
+        if slideshowTimerOn {
+            slideshowTimer?.invalidate()
+            slideshowTimer = nil
+        }
+        else {
+            slideshowTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(nextSlideshowTheme), userInfo: nil, repeats: true)
+        }
+    }
+    
+    /// Apply next slideshow theme.
+    func nextSlideshowTheme() {
+        let themes = ThemeManager.shared.themes
+        guard themes.count > 0 else {
+            startStopThemeSlideshow()
+            return
+        }
+        
+        // Determine next theme
+        var nextIndex = AppDelegate.slideshowThemeIndices[0]
+        if let currentThemeIndex = themes.index(where: { $0 === ThemeManager.shared.theme }),
+            let currentSlideshowIndex = AppDelegate.slideshowThemeIndices.index(of: currentThemeIndex),
+            currentSlideshowIndex + 1 < AppDelegate.slideshowThemeIndices.count {
+            nextIndex = AppDelegate.slideshowThemeIndices[currentSlideshowIndex + 1]
+        }
+        
+        // Apply theme
+        if nextIndex >= themes.count {
+            nextIndex = 0
+        }
+        ThemeManager.shared.theme = themes[nextIndex]
+        updateThemeMenu()
+    }
+    
+    // As a bonus, a way of theming window titlebar is shown on
     // `WindowController` for illustrative purposes.
     
     

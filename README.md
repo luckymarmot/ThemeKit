@@ -133,6 +133,8 @@ func applicationWillFinishLaunching(_ notification: Notification) {
 }    
 ```
 
+Please check the **Demo** application source code for a more complete usage example of *ThemeKit*.
+
 #### Observing theme changes
 
 ThemeKit provides the following notifications:

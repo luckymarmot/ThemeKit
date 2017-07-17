@@ -246,6 +246,8 @@
 
 <span class="p">}</span>    
 </code></pre>
+
+<p>Please check the <strong>Demo</strong> application source code for a more complete usage example of <em>ThemeKit</em>.</p>
 <h4 id='observing-theme-changes' class='heading'>Observing theme changes</h4>
 
 <p>ThemeKit provides the following notifications:</p>
@@ -468,10 +470,14 @@ Please note that when using window specific themes, only the associated <code>NS
 
 <ol>
 <li><p>For controls like <code>NSTextField</code>, <code>NSTextView</code>, etc:</p>
+<pre class="highlight plaintext"><code>Specify a background color on the control. E.g.,
 
-<p>Specify a background color on the control. E.g.,</p>
-<pre class="highlight swift"><code><span class="n">control</span><span class="o">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="kt">NSColor</span><span class="o">.</span><span class="n">black</span>
-</code></pre></li>
+```swift
+control.backgroundColor = NSColor.black
+```
+</code></pre>
+
+<ol>
 <li><p>For custom text rendering:</p>
 
 <p>First draw a background fill, then enable font smoothing and render your text. E.g.,</p>
@@ -502,6 +508,7 @@ Please note that when using window specific themes, only the associated <code>NS
 <p>a) override the private method <code>_backgroundColorForFontSmoothing</code> to return your button background color.</p>
 
 <p>b) if (a) isn&rsquo;t sufficient, you will also need to override <code>_textAttributes</code> and change the dictionary returned from the <code>super</code> call to provide your background color for the key <code>NSBackgroundColorAttributeName</code>.</p></li>
+</ol></li>
 </ol>
 <h2 id='license' class='heading'>License</h2>
 

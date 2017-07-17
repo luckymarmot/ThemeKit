@@ -110,13 +110,15 @@
 
 <p><em>ThemeKit</em> is a lightweight theming library completly written in Swift that provides theming capabilities to both Swift 3.2+ and Objective-C macOS applications.</p>
 
-<p><em>ThemeKit</em> is brought to you with ❤️ by <a href="http://nunogrilo.com">Nuno Grilo</a> and the <a href="http://paw.cloud">Paw</a> <a href="https://github.com/orgs/luckymarmot/people">team</a>.</p>
+<p><em>ThemeKit</em> is brought to you with ❤️ by <a href="http://nunogrilo.com">Nuno Grilo</a> and the <a href="https://paw.cloud">Paw</a> <a href="https://github.com/orgs/luckymarmot/people">team</a>.</p>
 
 <p align="left">
   <img src="https://github.com/luckymarmot/ThemeKit/raw/master/Imgs/ThemeKit.gif" width="675" height="378" alt="ThemeKit Animated Demo" />
 </p>
 
 <p>Download the <a href="https://github.com/luckymarmot/ThemeKit/raw/master/Demo/Bin/Demo.zip">ThemeKit Demo</a> binary and give it a try!</p>
+
+<p>Check the <a href="http://themekit.nunogrilo.com">ThemeKit Docs</a>.</p>
 <h2 id='table-of-contents' class='heading'>Table of Contents</h2>
 
 <ul>
@@ -439,9 +441,13 @@ Please note that when using window specific themes, only the associated <code>NS
 
 <p>Please refer to <a href="http://themekit.nunogrilo.com/Classes/UserTheme.html"><code>UserTheme</code></a> for more information.</p>
 <h2 id='faq' class='heading'>FAQ</h2>
+<h3 id='strong-where-can-i-find-the-api-documentation-strong' class='heading'><strong>Where can I find the API documentation?</strong></h3>
+
+<p>Documentation can be found <a href="http://themekit.nunogrilo.com">here</a>. You can also <a href="dash-feed://http%3A%2F%2Fthemekit%2Enunogrilo%2Ecom%2Fdocsets%2FThemeKit%2Exml">install it</a> on <a href="https://kapeli.com/dash">Dash</a>.</p>
 <h3 id='strong-can-the-window-titlebar-toolbar-tabbar-be-themed-strong' class='heading'><strong>Can the window titlebar/toolbar/tabbar be themed?</strong></h3>
 
-<p>Yes - please check one way to do it on the Demo project.</p>
+<p>Yes - please check one way to do it on the <a href="https://github.com/luckymarmot/ThemeKit/tree/master/Demo">Demo project</a>.
+Basically, a <a href="https://github.com/luckymarmot/ThemeKit/blob/master/Demo/Demo/TitleBarOverlayView.swift">TitleBarOverlayView</a> view is added <em>below</em> the window title bar, <a href="https://github.com/luckymarmot/ThemeKit/blob/master/Demo/Demo/WindowController.swift#L45-L82">as shown on the WindowController</a> controller.</p>
 <h3 id='strong-can-controls-be-tinted-with-different-colors-strong' class='heading'><strong>Can controls be tinted with different colors?</strong></h3>
 
 <p>Other than the colors set by the inherited appearance - light (dark text on light background) or dark (light text on dark background) - natively, it is not possible to specify different colors for the text and/or background fills of controls (buttons, popups, etc).</p>

@@ -13,13 +13,15 @@
 
 *ThemeKit* is a lightweight theming library completly written in Swift that provides theming capabilities to both Swift 3.2+ and Objective-C macOS applications.
 
-*ThemeKit* is brought to you with ❤️ by [Nuno Grilo](http://nunogrilo.com) and the [Paw](http://paw.cloud) [team](https://github.com/orgs/luckymarmot/people).
+*ThemeKit* is brought to you with ❤️ by [Nuno Grilo](http://nunogrilo.com) and the [Paw](https://paw.cloud) [team](https://github.com/orgs/luckymarmot/people).
 
 <p align="left">
   <img src="https://github.com/luckymarmot/ThemeKit/raw/master/Imgs/ThemeKit.gif" width="675" height="378" alt="ThemeKit Animated Demo" />
 </p>
 
 Download the [ThemeKit Demo](https://github.com/luckymarmot/ThemeKit/raw/master/Demo/Bin/Demo.zip) binary and give it a try!
+
+Check the [ThemeKit Docs](http://themekit.nunogrilo.com).
 
 ## Table of Contents
 * [Summary](#summary)
@@ -337,8 +339,12 @@ Please refer to [`UserTheme`](http://themekit.nunogrilo.com/Classes/UserTheme.ht
 
 ## FAQ
 
+### **Where can I find the API documentation?**
+Documentation can be found [here](http://themekit.nunogrilo.com). You can also [install it](dash-feed://http%3A%2F%2Fthemekit%2Enunogrilo%2Ecom%2Fdocsets%2FThemeKit%2Exml) on [Dash](https://kapeli.com/dash).
+
 ### **Can the window titlebar/toolbar/tabbar be themed?**
-Yes - please check one way to do it on the Demo project.
+Yes - please check one way to do it on the [Demo project](https://github.com/luckymarmot/ThemeKit/tree/master/Demo).
+Basically, a [TitleBarOverlayView](https://github.com/luckymarmot/ThemeKit/blob/master/Demo/Demo/TitleBarOverlayView.swift) view is added *below* the window title bar, [as shown on the WindowController](https://github.com/luckymarmot/ThemeKit/blob/master/Demo/Demo/WindowController.swift#L45-L82) controller.
 
 ### **Can controls be tinted with different colors?**
 Other than the colors set by the inherited appearance - light (dark text on light background) or dark (light text on dark background) - natively, it is not possible to specify different colors for the text and/or background fills of controls (buttons, popups, etc).

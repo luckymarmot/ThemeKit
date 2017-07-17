@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>UserTheme Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/UserTheme" class="dashAnchor"></a>
+    <a title="UserTheme Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">ThemeKit Docs</a></p>
+        <p class="header-right"><a href="https://github.com/luckymarmot/ThemeKit"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right"><a href="dash-feed://http%3A%2F%2Fthemekit%2Enunogrilo%2Ecom%2Fdocsets%2FThemeKit%2Exml"><img src="../img/dash.png"/>Install in Dash</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">ThemeKit Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        UserTheme Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../ThemeKit.html">ThemeKit</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/ThemeManager.html">ThemeManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ThemeManager/WindowThemePolicy.html">– WindowThemePolicy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Notification.html">Notification</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Notification/Name.html">– Name</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Themes.html">Themes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Theme.html">Theme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LightTheme.html">LightTheme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DarkTheme.html">DarkTheme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SystemTheme.html">SystemTheme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UserTheme.html">UserTheme</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Theme Assets.html">Theme Assets</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/ThemeColor.html">ThemeColor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ThemeGradient.html">ThemeGradient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ThemeImage.html">ThemeImage</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/NSWindow.html">NSWindow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/NSColor.html">NSColor</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>UserTheme</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">UserTheme</span><span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span></code></pre>
+
+                </div>
+              </div>
+            <p>A <code><a href="../Protocols/Theme.html">Theme</a></code> class wrapping a user provided theme file (<code>.theme</code>).</p>
+
+<p>To enable user themes, set theme folder on <code><a href="../Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager19userThemesFolderURLGSqV10Foundation3URL_">ThemeManager.userThemesFolderURL</a></code>.</p>
+
+<p>Notes about <code>.theme</code> files:</p>
+
+<ul>
+<li>lines starting with <code>#</code> or <code>//</code> will be treated as comments, thus, ignored;</li>
+<li>non-comment lines consists on simple variable/value assignments (eg, <code>variable = value</code>);</li>
+<li><code>variable</code> name can contain characters <code>[a-zA-Z0-9_-.]+</code>;</li>
+<li>custom variables can be specified (eg, <code>myBackgroundColor = ...</code>);</li>
+<li>theming properties match the class methods of <code><a href="../Classes/ThemeColor.html">ThemeColor</a></code>, <code><a href="../Classes/ThemeGradient.html">ThemeGradient</a></code> and <code><a href="../Classes/ThemeImage.html">ThemeImage</a></code> (eg, <code>labelColor</code>);</li>
+<li>variables can be referenced by prefixing them with <code>$</code> (eg, <code>mainBorderColor = $commonBorderColor</code>);</li>
+<li>colors are defined using <code>rgb(255, 255, 255)</code> or <code>rgba(255, 255, 255, 1.0)</code> (case insensitive);</li>
+<li>gradients are defined using <code>linear-gradient(color1, color2)</code> (where colors are defined as above; case insensitive);</li>
+<li>pattern images are defined using <code>pattern(named:xxxx)</code> (named images) or <code>pattern(file:../dddd/xxxx.yyy)</code> (filesystem images);</li>
+<li>images are defined using <code>image(named:xxxx)</code> (named images) or <code>image(file:../dddd/xxxx.yyy)</code> (filesystem images);</li>
+<li><code><a href="../Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager6themesGSaPS_5Theme__">ThemeManager.themes</a></code> property is automatically updated when there are changes on the user themes folder;</li>
+<li>file changes are applied on-the-fly, if it corresponds to the currently applied theme.</li>
+</ul>
+
+<p>Example <code>.theme</code> file:</p>
+<pre class="highlight ruby"><code><span class="sr">//</span> <span class="o">*************************</span> <span class="no">Theme</span> <span class="no">Info</span> <span class="o">*************************</span> <span class="sr">//</span>
+<span class="n">displayName</span> <span class="o">=</span> <span class="no">My</span> <span class="no">Theme</span> <span class="mi">1</span>
+<span class="n">identifier</span> <span class="o">=</span> <span class="n">com</span><span class="p">.</span><span class="nf">luckymarmot</span><span class="o">.</span><span class="no">ThemeKit</span><span class="o">.</span><span class="no">MyTheme1</span>
+<span class="n">darkTheme</span> <span class="o">=</span> <span class="kp">true</span>
+
+<span class="sr">//</span> <span class="o">*********************</span> <span class="no">Colors</span> <span class="o">&amp;</span> <span class="no">Gradients</span> <span class="o">*********************</span> <span class="sr">//</span>
+<span class="c1"># define color for `ThemeColor.brandColor`</span>
+<span class="n">brandColor</span> <span class="o">=</span> <span class="vg">$blue</span>
+<span class="c1"># define a new color for `NSColor.labelColor` (overriding)</span>
+<span class="n">labelColor</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mi">111</span><span class="p">)</span>
+<span class="c1"># define gradient for `ThemeGradient.brandGradient`</span>
+<span class="n">brandGradient</span> <span class="o">=</span> <span class="n">linear</span><span class="o">-</span><span class="n">gradient</span><span class="p">(</span><span class="vg">$orange</span><span class="p">.</span><span class="nf">sky</span><span class="p">,</span> <span class="n">rgba</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">1</span><span class="o">.</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="sr">//</span> <span class="o">*********************</span> <span class="no">Images</span> <span class="o">&amp;</span> <span class="no">Patterns</span> <span class="o">**********************</span> <span class="sr">//</span>
+<span class="c1"># define pattern image from named image "paper" for color `ThemeColor.contentBackgroundColor`</span>
+<span class="n">contentBackgroundColor</span> <span class="o">=</span> <span class="n">pattern</span><span class="p">(</span><span class="n">named</span><span class="ss">:paper</span><span class="p">)</span>
+<span class="c1"># define pattern image from filesystem (relative to user themes folder) for color `ThemeColor.bottomBackgroundColor`</span>
+<span class="n">bottomBackgroundColor</span> <span class="o">=</span> <span class="n">pattern</span><span class="p">(</span><span class="n">file</span><span class="p">:.</span><span class="nf">.</span><span class="o">/</span><span class="n">some</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">some</span><span class="o">-</span><span class="n">file</span><span class="p">.</span><span class="nf">png</span><span class="p">)</span>
+<span class="c1"># use named image "apple"</span>
+<span class="n">namedImage</span> <span class="o">=</span> <span class="n">image</span><span class="p">(</span><span class="n">named</span><span class="ss">:apple</span><span class="p">)</span>
+<span class="c1"># use image from filesystem (relative to user themes folder)</span>
+<span class="n">fileImage</span> <span class="o">=</span> <span class="n">image</span><span class="p">(</span><span class="n">file</span><span class="p">:.</span><span class="nf">.</span><span class="o">/</span><span class="n">some</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">some</span><span class="o">-</span><span class="n">file</span><span class="p">.</span><span class="nf">jpg</span><span class="p">)</span>
+
+<span class="sr">//</span> <span class="o">***********************</span> <span class="no">Common</span> <span class="no">Colors</span> <span class="o">************************</span> <span class="sr">//</span>
+<span class="n">blue</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">170</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+<span class="n">orange</span><span class="p">.</span><span class="nf">sky</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="o">.</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="sr">//</span> <span class="o">**********************</span> <span class="no">Fallback</span> <span class="no">Assets</span> <span class="o">***********************</span> <span class="sr">//</span>
+<span class="n">fallbackForegroundColor</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">1</span><span class="o">.</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">fallbackBackgroundColor</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">190</span><span class="p">)</span>
+<span class="n">fallbackGradient</span> <span class="o">=</span> <span class="n">linear</span><span class="o">-</span><span class="n">gradient</span><span class="p">(</span><span class="vg">$blue</span><span class="p">,</span> <span class="n">rgba</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">1</span><span class="o">.</span><span class="mi">0</span><span class="p">))</span>
+</code></pre>
+
+<p>With the exception of system overrided named colors (e.g., <code>labelColor</code>), which
+defaults to the original system provided named color, unimplemented properties 
+on theme file will default to <code>-fallbackForegroundColor</code>, <code>-fallbackBackgroundColor</code>,
+<code>-fallbackGradient</code> and <code>-fallbackImage</code>, for foreground color, background color,
+gradients and images, respectively.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8ThemeKit9UserTheme10identifierSS"></a>
+                    <a name="//apple_ref/swift/Property/identifier" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8ThemeKit9UserTheme10identifierSS">identifier</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Unique theme identifier.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"{Theme-Not-Loaded}"</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/UserTheme.swift#L78">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8ThemeKit9UserTheme11displayNameSS"></a>
+                    <a name="//apple_ref/swift/Property/displayName" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8ThemeKit9UserTheme11displayNameSS">displayName</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Theme display name.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">displayName</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"Theme Not Loaded"</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/UserTheme.swift#L81">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8ThemeKit9UserTheme16shortDisplayNameSS"></a>
+                    <a name="//apple_ref/swift/Property/shortDisplayName" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8ThemeKit9UserTheme16shortDisplayNameSS">shortDisplayName</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Theme short display name.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">shortDisplayName</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"Not Loaded"</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/UserTheme.swift#L84">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8ThemeKit9UserTheme11isDarkThemeSb"></a>
+                    <a name="//apple_ref/swift/Property/isDarkTheme" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8ThemeKit9UserTheme11isDarkThemeSb">isDarkTheme</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Is this a dark theme?</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isDarkTheme</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/UserTheme.swift#L87">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8ThemeKit9UserTheme7fileURLGSqV10Foundation3URL_"></a>
+                    <a name="//apple_ref/swift/Property/fileURL" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8ThemeKit9UserTheme7fileURLGSqV10Foundation3URL_">fileURL</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>File URL.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fileURL</span><span class="p">:</span> <span class="kt">URL</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/UserTheme.swift#L90">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Initialization"></a>
+                <a name="//apple_ref/swift/Section/Initialization" class="dashAnchor"></a>
+                <a href="#/Initialization">
+                  <h3 class="section-name">Initialization</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8ThemeKit9UserTheme6reloadFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/reload()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8ThemeKit9UserTheme6reloadFT_T_">reload()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Reloads user theme from file.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">reload</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/UserTheme.swift#L121-L127">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Theme%20Assets"></a>
+                <a name="//apple_ref/swift/Section/Theme Assets" class="dashAnchor"></a>
+                <a href="#/Theme%20Assets">
+                  <h3 class="section-name">Theme Assets</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8ThemeKit9UserTheme10themeAssetFSSGSqP__"></a>
+                    <a name="//apple_ref/swift/Method/themeAsset(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8ThemeKit9UserTheme10themeAssetFSSGSqP__">themeAsset(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Theme asset for the specified key. Supported assets are <code>NSColor</code>, <code>NSGradient</code>, <code>NSImage</code> and <code>NSString</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">themeAsset</span><span class="p">(</span><span class="n">_</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>key</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A color name, gradient name, image name or a theme string</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The theme value for the specified key.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/UserTheme.swift#L137-L145">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8ThemeKit9UserTheme13hasThemeAssetFSSSb"></a>
+                    <a name="//apple_ref/swift/Method/hasThemeAsset(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8ThemeKit9UserTheme13hasThemeAssetFSSSb">hasThemeAsset(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Checks if a theme asset is provided for the given key.</p>
+
+<p>Do not check for theme asset availability with <code><a href="../Classes/UserTheme.html#/s:FC8ThemeKit9UserTheme10themeAssetFSSGSqP__">themeAsset(_:)</a></code>, use
+this method instead, which is much faster.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">hasThemeAsset</span><span class="p">(</span><span class="n">_</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>key</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A color name, gradient name, image name or a theme string</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>true</code> if theme provides an asset for the given key; <code>false</code> otherwise.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/UserTheme.swift#L155-L157">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>© 2016-2017 <a class="link" href="https://paw.cloud" target="_blank" rel="external">Paw</a> &amp; <a class="link" href="http://nunogrilo.com" target="_blank" rel="external">Nuno Grilo</a> under <a class="link" href="https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

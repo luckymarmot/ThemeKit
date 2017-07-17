@@ -1,0 +1,38 @@
+// ************************** Credits *************************** //
+// - "saturday warmth" pattern
+//   Author: http://www.colourlovers.com/lover/logochic/loveNote
+//   URL: http://www.colourlovers.com/pattern/582552/saturday_warmth
+
+// ************************* Theme Info ************************* //
+displayName = Saturday Warmth Theme
+shortDisplayName = Saturday Warmth
+identifier = com.luckymarmot.ThemeKit.SaturdayWarmth
+darkTheme = false
+
+// *************************** Window ************************** //
+windowTitleBarActiveColor = $black.tea
+windowTitleBarInactiveColor = rgba(252, 235, 182, 0.60)
+
+// *************************** Content ************************** //
+contentTitleColor = $history
+contentTextColor = $history
+contentBackgroundColor = $white
+rainbowGradient = linear-gradient($full.orange, $tweaked.turqouise)
+
+// *************************** Details ************************** //
+detailsTitleColor = $tweaked.turqouise
+detailsBackgroundColor = $black.tea
+detailsImage = image(named:saturday_warmth)
+
+// *********************** Colors ******************************* //
+black.tea = rgb(252, 235, 182)
+history = rgb(94, 65, 47)
+full.orange = rgb(240, 120, 24)
+tweaked.turqouise = rgb(120, 192, 168)
+joystiq.gold = rgb(240, 168, 48)
+clear = rgba(0,0,0,0)
+white = rgb(255,255,255)
+
+// ********************** Fallback Assets *********************** //
+fallbackForegroundColor = $history
+fallbackGradient = linear-gradient($history, $full.orange)

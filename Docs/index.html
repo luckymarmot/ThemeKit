@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ThemeKit  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a title="ThemeKit  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html">ThemeKit Docs</a></p>
+        <p class="header-right"><a href="https://github.com/luckymarmot/ThemeKit"><img src="img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right"><a href="dash-feed://http%3A%2F%2Fthemekit%2Enunogrilo%2Ecom%2Fdocsets%2FThemeKit%2Exml"><img src="img/dash.png"/>Install in Dash</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html">ThemeKit Reference</a>
+        <img id="carat" src="img/carat.png" />
+        ThemeKit  Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="ThemeKit.html">ThemeKit</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/ThemeManager.html">ThemeManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/ThemeManager/WindowThemePolicy.html">– WindowThemePolicy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/Notification.html">Notification</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/Notification/Name.html">– Name</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Themes.html">Themes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Protocols/Theme.html">Theme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/LightTheme.html">LightTheme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/DarkTheme.html">DarkTheme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/SystemTheme.html">SystemTheme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/UserTheme.html">UserTheme</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Theme Assets.html">Theme Assets</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/ThemeColor.html">ThemeColor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/ThemeGradient.html">ThemeGradient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/ThemeImage.html">ThemeImage</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Extensions/NSWindow.html">NSWindow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/NSColor.html">NSColor</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            
+            <p align="left" style="margin-top: 20px;">
+  <img src="https://github.com/luckymarmot/ThemeKit/raw/master/Imgs/ThemeKit@2x.png" width="377" height="105" alt="ThemeKit" />
+</p>
+
+<p><img src="https://img.shields.io/badge/os-macOS%2010.10%2B-green.svg?style=flat" alt="macOS">
+<img src="https://img.shields.io/badge/swift-3.2-green.svg?style=flat" alt="Swift3">
+<img src="https://img.shields.io/badge/release-1.0-blue.svg?style=flat" alt="Release">
+<img src="https://img.shields.io/badge/license-MIT-lightgray.svg" alt="MIT">
+<img src="https://img.shields.io/badge/dep-CocoaPods-orange.svg" alt="CocoaPods">
+<img src="https://img.shields.io/badge/dep-Carthage-orange.svg" alt="Carthage"></p>
+<h2 id='summary' class='heading'>Summary</h2>
+
+<p><em>ThemeKit</em> is a lightweight theming library completly written in Swift 3.2 that provides theming capabilities to both Swift 3.2+ and Objective-C macOS applications.</p>
+
+<p><em>ThemeKit</em> is brought to you with ❤️ by <a href="http://nunogrilo.com">Nuno Grilo</a> and the <a href="http://paw.cloud">Paw</a> <a href="https://github.com/orgs/luckymarmot/people">team</a>.</p>
+
+<p align="left">
+  <img src="https://github.com/luckymarmot/ThemeKit/raw/master/Imgs/ThemeKit.gif" width="675" height="378" alt="ThemeKit Animated Demo" />
+</p>
+
+<p>Download the <a href="https://github.com/luckymarmot/ThemeKit/raw/master/Demo/Bin/Demo.zip">ThemeKit Demo</a> binary and give it a try!</p>
+<h2 id='table-of-contents' class='heading'>Table of Contents</h2>
+
+<ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#usage">Usage</a>
+
+<ul>
+<li><a href="#simple-usage">Simple Usage</a></li>
+<li><a href="#advanced-usage">Advanced Usage</a>
+
+<ul>
+<li><a href="#observing-theme-changes">Observing theme changes</a></li>
+<li><a href="#manually-theming-windows">Manually theming windows</a></li>
+<li><a href="#nswindow-extension">NSWindow extension</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#theme-aware-assets">Theme-aware Assets</a></li>
+<li><a href="#creating-themes">Creating Themes</a>
+
+<ul>
+<li><a href="#native-themes">Native Themes</a></li>
+<li><a href="#user-themes">User Themes</a></li>
+</ul></li>
+<li><a href="#faq">FAQ</a></li>
+<li><a href="#license">License</a></li>
+</ul>
+<h2 id='features' class='heading'>Features</h2>
+
+<ul>
+<li>Written in Swift 3.2</li>
+<li>Optional configuration, none required</li>
+<li>Neglected performance impact</li>
+<li>Automatically theme windows (configurable)</li>
+<li>Themes:
+
+<ul>
+<li><a href="http://themekit.nunogrilo.com/Classes/LightTheme.html"><code>LightTheme</code></a> (default macOS appearance)</li>
+<li><a href="http://themekit.nunogrilo.com/Classes/DarkTheme.html"><code>DarkTheme</code></a></li>
+<li><a href="http://themekit.nunogrilo.com/Classes/SystemTheme.html"><code>SystemTheme</code></a> (default theme). Dynamically resolves to <code>ThemeManager.lightTheme</code> or <code>ThemeManager.darkTheme</code>, depending on the <em><q>System Preferences > General > Appearance</q></em>.</li>
+<li>Support for custom themes (<a href="http://themekit.nunogrilo.com/Classes/Theme.html"><code>Theme</code></a>)</li>
+<li>Support for user-defined themes (<a href="http://themekit.nunogrilo.com/Classes/UserTheme.html"><code>UserTheme</code></a>)</li>
+</ul></li>
+<li>Theme-aware assets:
+
+<ul>
+<li><a href="http://themekit.nunogrilo.com/Classes/ThemeColor.html"><code>ThemeColor</code></a>: colors that dynamically change with the theme</li>
+<li><a href="http://themekit.nunogrilo.com/Classes/ThemeGradient.html"><code>ThemeGradient</code></a>: gradients that dynamically change with the theme</li>
+<li><a href="http://themekit.nunogrilo.com/Classes/ThemeImage.html"><code>ThemeImage</code></a>: images that dynamically change with the theme</li>
+<li>Optional override of <code>NSColor</code> named colors (e.g., <code>labelColor</code>) to dynamically change with the theme</li>
+</ul></li>
+</ul>
+<h2 id='installation' class='heading'>Installation</h2>
+
+<p>There are multiple options to inlcude <em>ThemeKit</em> on your project:</p>
+
+<ul>
+<li><a href="https://cocoapods.org">CocoaPods</a>: add to your <code>Podfile</code>:</li>
+</ul>
+<pre class="highlight plaintext"><code>  use_frameworks!
+  pod 'ThemeKit', '~&gt; 1.0'
+</code></pre>
+
+<ul>
+<li><a href="https://github.com/Carthage/Carthage">Carthage</a>:</li>
+</ul>
+<pre class="highlight plaintext"><code>  github "luckymarmot/ThemeKit"
+</code></pre>
+
+<ul>
+<li>Manually:
+
+<ul>
+<li>Either add <code>ThemeKit.framework</code> on your project</li>
+<li>Or, manually add source files from the <code>ThemeKit\</code> folder to your project</li>
+</ul></li>
+</ul>
+<h2 id='usage' class='heading'>Usage</h2>
+<h3 id='simple-usage' class='heading'>Simple Usage</h3>
+
+<p>At its simpler usage, applications can be themed with a single line command:</p>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">applicationWillFinishLaunching</span><span class="p">(</span><span class="n">_</span> <span class="nv">notification</span><span class="p">:</span> <span class="kt">Notification</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="c1">/// Apply the dark theme</span>
+    <span class="kt">ThemeManager</span><span class="o">.</span><span class="n">darkTheme</span><span class="o">.</span><span class="nf">apply</span><span class="p">()</span>
+
+    <span class="c1">/// or, the light theme</span>
+    <span class="c1">//ThemeManager.lightTheme.apply()</span>
+
+    <span class="c1">/// or, the 'system' theme, which dynamically changes to light or dark, </span>
+    <span class="c1">/// respecting *System Preferences &gt; General &gt; Appearance* setting.</span>
+    <span class="c1">//ThemeManager.systemTheme.apply()</span>
+
+<span class="p">}</span>
+</code></pre>
+<h3 id='advanced-usage' class='heading'>Advanced Usage</h3>
+
+<p>The following code will define which windows should be automatically themed (<a href="http://themekit.nunogrilo.com/Classes/ThemeKit/WindowThemePolicy.html"><code>WindowThemePolicy</code></a>) and add support for user themes (<a href="http://themekit.nunogrilo.com/Classes/UserTheme.html"><code>UserTheme</code></a>):</p>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">applicationWillFinishLaunching</span><span class="p">(</span><span class="n">_</span> <span class="nv">notification</span><span class="p">:</span> <span class="kt">Notification</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="c1">/// Define default theme.</span>
+    <span class="c1">/// Used on first run. Default: `SystemTheme`.</span>
+    <span class="c1">/// Note: `SystemTheme` is a special theme that resolves to `ThemeManager.lightTheme` or `ThemeManager.darkTheme`,</span>
+    <span class="c1">/// depending on the macOS preference at 'System Preferences &gt; General &gt; Appearance'.</span>
+    <span class="kt">ThemeManager</span><span class="o">.</span><span class="n">defaultTheme</span> <span class="o">=</span> <span class="kt">ThemeManager</span><span class="o">.</span><span class="n">lightTheme</span>
+
+    <span class="c1">/// Define window theme policy.</span>
+    <span class="kt">ThemeManager</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="n">windowThemePolicy</span> <span class="o">=</span> <span class="o">.</span><span class="n">themeAllWindows</span>
+    <span class="c1">//ThemeManager.shared.windowThemePolicy = .themeSomeWindows(windowClasses: [MyWindow.self])</span>
+    <span class="c1">//ThemeManager.shared.windowThemePolicy = .doNotThemeSomeWindows(windowClasses: [NSPanel.self])</span>
+    <span class="c1">//ThemeManager.shared.windowThemePolicy = .doNotThemeWindows</span>
+
+    <span class="c1">/// Enable &amp; configure user themes.</span>
+    <span class="c1">/// Will use folder `(...)/Application Support/{your_app_bundle_id}/Themes`.</span>
+    <span class="k">let</span> <span class="nv">applicationSupportURLs</span> <span class="o">=</span> <span class="kt">NSSearchPathForDirectoriesInDomains</span><span class="p">(</span><span class="o">.</span><span class="n">applicationSupportDirectory</span><span class="p">,</span> <span class="o">.</span><span class="n">userDomainMask</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+    <span class="k">let</span> <span class="nv">thisAppSupportURL</span> <span class="o">=</span> <span class="kt">URL</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">fileURLWithPath</span><span class="p">:</span> <span class="n">applicationSupportURLs</span><span class="o">.</span><span class="n">first</span><span class="o">!</span><span class="p">)</span><span class="o">.</span><span class="nf">appendingPathComponent</span><span class="p">(</span><span class="kt">Bundle</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">bundleIdentifier</span><span class="o">!</span><span class="p">)</span>
+    <span class="k">let</span> <span class="nv">userThemesFolderURL</span> <span class="o">=</span> <span class="n">thisAppSupportURL</span><span class="o">.</span><span class="nf">appendingPathComponent</span><span class="p">(</span><span class="s">"Themes"</span><span class="p">)</span>
+    <span class="kt">ThemeManager</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="n">userThemesFolderURL</span> <span class="o">=</span> <span class="n">userThemesFolderURL</span>
+
+    <span class="c1">/// Change the default light and dark theme, used when `SystemTheme` is selected.</span>
+    <span class="c1">//ThemeManager.lightTheme = ThemeManager.shared.theme(withIdentifier: PaperTheme.identifier)!</span>
+    <span class="c1">//ThemeManager.darkTheme = ThemeManager.shared.theme(withIdentifier: "com.luckymarmot.ThemeKit.PurpleGreen")!</span>
+
+    <span class="c1">/// Apply last applied theme (or the default theme, if no previous one)</span>
+    <span class="kt">ThemeManager</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">applyLastOrDefaultTheme</span><span class="p">()</span>
+
+<span class="p">}</span>    
+</code></pre>
+
+<p>Please check the <strong>Demo</strong> application source code for a more complete usage example of <em>ThemeKit</em>.</p>
+<h4 id='observing-theme-changes' class='heading'>Observing theme changes</h4>
+
+<p>ThemeKit provides the following notifications:</p>
+
+<ul>
+<li><code>Notification.Name.willChangeTheme</code> is sent when current theme is about to change</li>
+<li><code>Notification.Name.didChangeTheme</code> is sent when current theme did change</li>
+<li><code>Notification.Name.didChangeSystemTheme</code> is sent when system theme did change (System Preference &gt; General)</li>
+</ul>
+
+<p>Example:</p>
+<pre class="highlight swift"><code><span class="c1">// Register to be notified of theme changes</span>
+<span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="err">#</span><span class="nf">selector</span><span class="p">(</span><span class="nf">changedTheme</span><span class="p">(</span><span class="nv">_</span><span class="p">:)),</span> <span class="nv">name</span><span class="p">:</span> <span class="o">.</span><span class="n">didChangeTheme</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+
+<span class="kd">@objc</span> <span class="kd">private</span> <span class="kd">func</span> <span class="nf">changedTheme</span><span class="p">(</span><span class="n">_</span> <span class="nv">notification</span><span class="p">:</span> <span class="kt">Notification</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Additionaly, the following properties are KVO compliant:</p>
+
+<ul>
+<li><a href="http://themekit.nunogrilo.com/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager6themesGSaPS_5Theme__"><code>ThemeManager.shared.theme</code></a></li>
+<li><a href="http://themekit.nunogrilo.com/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager14effectiveThemePS_5Theme_"><code>ThemeManager.shared.effectiveTheme</code></a></li>
+<li><a href="http://themekit.nunogrilo.com/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager6themesGSaPS_5Theme__"><code>ThemeManager.shared.themes</code></a></li>
+<li><a href="http://themekit.nunogrilo.com/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager10userThemesGSaPS_5Theme__"><code>ThemeManager.shared.userThemes</code></a></li>
+</ul>
+
+<p>Example:</p>
+<pre class="highlight swift"><code><span class="c1">// Register for KVO changes on ThemeManager.shared.effectiveTheme</span>
+<span class="kt">ThemeManager</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">forKeyPath</span><span class="p">:</span> <span class="s">"effectiveTheme"</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="kt">NSKeyValueObservingOptions</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="mi">0</span><span class="p">),</span> <span class="nv">context</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+
+<span class="kd">public</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">observeValue</span><span class="p">(</span><span class="n">forKeyPath</span> <span class="nv">keyPath</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="n">of</span> <span class="nv">object</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?,</span> <span class="nv">change</span><span class="p">:</span> <span class="p">[</span><span class="kt">NSKeyValueChangeKey</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]?,</span> <span class="nv">context</span><span class="p">:</span> <span class="kt">UnsafeMutableRawPointer</span><span class="p">?)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">keyPath</span> <span class="o">==</span> <span class="s">"effectiveTheme"</span> <span class="p">{</span>
+        <span class="c1">// ...</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<h4 id='manually-theming-windows' class='heading'>Manually theming windows</h4>
+
+<p>In case (<a href="http://themekit.nunogrilo.com/Classes/ThemeKit/WindowThemePolicy.html"><code>WindowThemePolicy</code></a>) was NOT set to <code>.themeAllWindows</code>, you may need to manually theme a window. You can use our <code>NSWindow</code> extension for that:</p>
+<h5 id='nswindow-extension' class='heading'>NSWindow Extension</h5>
+
+<ul>
+<li><p><code>NSWindow.theme()</code></p>
+
+<p>Theme window if appearance needs update. Doesn&rsquo;t check for policy compliance.</p></li>
+<li><p><code>NSWindow.isCompliantWithWindowThemePolicy()</code></p>
+
+<p>Check if window complies to current policy.</p></li>
+<li><p><code>NSWindow.themeIfCompliantWithWindowThemePolicy()</code></p>
+
+<p>Theme window if compliant to <code>ThemeManager.shared.windowThemePolicy</code> (and if appearance needs update).</p></li>
+<li><p><code>NSWindow.themeAllWindows()</code></p>
+
+<p>Theme all windows compliant to <code>ThemeManager.shared.windowThemePolicy</code> (and if appearance needs update).</p></li>
+<li><p><code>NSWindow.windowTheme</code></p>
+
+<p>Any window specific theme.
+This is, usually, <code>nil</code>, which means the current global theme will be used.
+Please note that when using window specific themes, only the associated <code>NSAppearance</code> will be automatically set. All theme aware assets (<code>ThemeColor</code>, <code>ThemeGradient</code> and <code>ThemeImage</code>) should call methods that returns a resolved color instead (which means they don&rsquo;t change with the theme change, you need to observe theme changes manually, and set colors afterwards):</p>
+
+<ul>
+<li><code>ThemeColor.color(for view:, selector:)</code></li>
+<li><code>ThemeGradient.gradient(for view:, selector:)</code></li>
+<li><code>ThemeImage.image(for view:, selector:)</code></li>
+</ul>
+
+<p>Additionaly, please note that system overriden colors (<code>NSColor.*</code>) will always use the global theme.</p></li>
+<li><p><code>NSWindow.windowEffectiveTheme</code></p>
+
+<p>Returns the current effective theme (read-only).</p></li>
+<li><p><code>NSWindow.windowEffectiveThemeAppearance</code></p>
+
+<p>Returns the current effective appearance (read-only).</p></li>
+</ul>
+<h2 id='theme-aware-assets' class='heading'>Theme-aware Assets</h2>
+
+<p><a href="http://themekit.nunogrilo.com/Classes/ThemeColor.html"><code>ThemeColor</code></a>, <a href="http://themekit.nunogrilo.com/Classes/ThemeGradient.html"><code>ThemeGradient</code></a> and <a href="http://themekit.nunogrilo.com/Classes/ThemeImage.html"><code>ThemeImage</code></a> provides colors, gradients and images, respectively, that dynamically change with the current theme.</p>
+
+<p>Additionally, named colors from the <code>NSColor</code> class defined on the <code>ThemeColor</code> subclass extension will override the system ones, providing theme-aware colors.</p>
+
+<p>For example, a project defines a <code>ThemeColor.brandColor</code> color. This will resolve to different colors at runtime, depending on the selected theme:</p>
+
+<ul>
+<li><code>ThemeColor.brandColor</code> will resolve to <code>NSColor.blue</code> if the light theme is selected</li>
+<li><code>ThemeColor.brandColor</code> will resolve to <code>NSColor.white</code> if the dark theme is selected</li>
+<li><code>ThemeColor.brandColor</code> will resolve to <code>rgba(100, 50, 0, 0.5)</code> for some user-defined theme (<a href="http://themekit.nunogrilo.com/Classes/UserTheme.html"><code>UserTheme</code></a>)</li>
+</ul>
+
+<p>Similarly, defining a <code>ThemeColor.labelColor</code> will override <code>NSColor.labelColor</code> (<code>ThemeColor</code> is a subclass of <code>NSColor</code>), and <em>ThemeKit</em> will allow <code>labelColor</code> to be customized on a per-theme basis as well.</p>
+<h3 id='fallback-assets' class='heading'>Fallback Assets</h3>
+
+<p>ThemeKit provides a simple fallback mechanism when looking up assets in current theme. It will search for assets, in order:</p>
+
+<ul>
+<li>the asset name, defined in theme (e.g., <code>myBackgroundColor</code>)</li>
+<li><code>fallbackForegroundColor</code>, <code>fallbackBackgroundColor</code>, <code>fallbackGradient</code> or <code>fallbackImage</code> defined in theme, depending if asset is a foreground/background color, gradient or image, respectively</li>
+<li><code>defaultFallbackForegroundColor</code>, <code>defaultFallbackBackgroundColor</code>, <code>fallbackGradient</code> or <code>defaultFallbackImage</code> defined internally, depending if asset is a foreground/background color, gradient or image, respectively</li>
+</ul>
+
+<p>However, for overrided system named colors, the fallback mechanism is different and simpler:</p>
+
+<ul>
+<li>the asset name, defined in theme (e.g., <code>labelColor</code>)</li>
+<li>original asset defined in system (e.g., <code>NSColor.labelColor</code>)</li>
+</ul>
+
+<p>Please refer to <a href="http://themekit.nunogrilo.com/Classes/ThemeColor.html"><code>ThemeColor</code></a>, <a href="http://themekit.nunogrilo.com/Classes/ThemeGradient.html"><code>ThemeGradient</code></a> and <a href="http://themekit.nunogrilo.com/Classes/ThemeImage.html"><code>ThemeImage</code></a> for more information.</p>
+<h2 id='creating-themes' class='heading'>Creating Themes</h2>
+<h3 id='native-themes' class='heading'>Native Themes</h3>
+
+<p>For creating additional themes, you only need to create a class that conforms to the <a href="http://themekit.nunogrilo.com/Classes/Theme.html"><code>Theme</code></a> protocol and extends <code>NSObject</code>.</p>
+
+<p>Sample theme:</p>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">Cocoa</span>
+<span class="kd">import</span> <span class="kt">ThemeKit</span>
+
+<span class="kd">class</span> <span class="kt">MyOwnTheme</span><span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">Theme</span> <span class="p">{</span>
+
+    <span class="c1">/// Light theme identifier (static).</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"com.luckymarmot.ThemeKit.MyOwnTheme"</span>
+
+    <span class="c1">/// Unique theme identifier.</span>
+    <span class="kd">public</span> <span class="k">var</span> <span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kt">MyOwnTheme</span><span class="o">.</span><span class="n">identifier</span>
+
+    <span class="c1">/// Theme display name.</span>
+    <span class="kd">public</span> <span class="k">var</span> <span class="nv">displayName</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"My Own Theme"</span>
+
+    <span class="c1">/// Theme short display name.</span>
+    <span class="kd">public</span> <span class="k">var</span> <span class="nv">shortDisplayName</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"My Own"</span>
+
+    <span class="c1">/// Is this a dark theme?</span>
+    <span class="kd">public</span> <span class="k">var</span> <span class="nv">isDarkTheme</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span>
+
+    <span class="c1">/// Description (optional).</span>
+    <span class="kd">public</span> <span class="k">override</span> <span class="k">var</span> <span class="nv">description</span> <span class="p">:</span> <span class="kt">String</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s">"&lt;</span><span class="se">\(</span><span class="kt">MyOwnTheme</span><span class="o">.</span><span class="k">self</span><span class="se">)</span><span class="s">: </span><span class="se">\(</span><span class="nf">themeDescription</span><span class="p">(</span><span class="k">self</span><span class="p">)</span><span class="se">)</span><span class="s">&gt;"</span>
+    <span class="p">}</span>
+
+    <span class="c1">// MARK: -</span>
+    <span class="c1">// MARK: Theme Assets</span>
+
+    <span class="c1">// Here you can define the instance methods for the class methods defined </span>
+    <span class="c1">// on `ThemeColor`, `ThemeGradient` and `ThemeImage`, if any. Check</span>
+    <span class="c1">// documentation of these classes for more details.</span>
+<span class="p">}</span>
+</code></pre>
+<h3 id='user-themes' class='heading'>User Themes</h3>
+
+<p>ThemeKit also supports definition of additional themes with simple text files (<code>.theme</code> files). Example of a very basic <code>.theme</code> file:</p>
+<pre class="highlight ruby"><code><span class="sr">//</span> <span class="o">*************************</span> <span class="no">Theme</span> <span class="no">Info</span> <span class="o">*************************</span> <span class="sr">//</span>
+<span class="n">displayName</span> <span class="o">=</span> <span class="no">My</span> <span class="no">Theme</span> <span class="mi">1</span>
+<span class="n">identifier</span> <span class="o">=</span> <span class="n">com</span><span class="p">.</span><span class="nf">luckymarmot</span><span class="o">.</span><span class="no">ThemeKit</span><span class="o">.</span><span class="no">MyTheme1</span>
+<span class="n">darkTheme</span> <span class="o">=</span> <span class="kp">true</span>
+
+<span class="sr">//</span> <span class="o">*********************</span> <span class="no">Colors</span> <span class="o">&amp;</span> <span class="no">Gradients</span> <span class="o">*********************</span> <span class="sr">//</span>
+<span class="c1"># define color for `ThemeColor.brandColor`</span>
+<span class="n">brandColor</span> <span class="o">=</span> <span class="vg">$blue</span>
+<span class="c1"># define a new color for `NSColor.labelColor` (overriding)</span>
+<span class="n">labelColor</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mi">111</span><span class="p">)</span>
+<span class="c1"># define gradient for `ThemeGradient.brandGradient`</span>
+<span class="n">brandGradient</span> <span class="o">=</span> <span class="n">linear</span><span class="o">-</span><span class="n">gradient</span><span class="p">(</span><span class="vg">$orange</span><span class="p">.</span><span class="nf">sky</span><span class="p">,</span> <span class="n">rgba</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">1</span><span class="o">.</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="sr">//</span> <span class="o">*********************</span> <span class="no">Images</span> <span class="o">&amp;</span> <span class="no">Patterns</span> <span class="o">**********************</span> <span class="sr">//</span>
+<span class="c1"># define pattern image from named image "paper" for color `ThemeColor.contentBackgroundColor`</span>
+<span class="n">contentBackgroundColor</span> <span class="o">=</span> <span class="n">pattern</span><span class="p">(</span><span class="n">named</span><span class="ss">:paper</span><span class="p">)</span>
+<span class="c1"># define pattern image from filesystem (relative to user themes folder) for color `ThemeColor.bottomBackgroundColor`</span>
+<span class="n">bottomBackgroundColor</span> <span class="o">=</span> <span class="n">pattern</span><span class="p">(</span><span class="n">file</span><span class="p">:.</span><span class="nf">.</span><span class="o">/</span><span class="n">some</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">some</span><span class="o">-</span><span class="n">file</span><span class="p">.</span><span class="nf">png</span><span class="p">)</span>
+<span class="c1"># define image using named image "apple"</span>
+<span class="n">namedImage</span> <span class="o">=</span> <span class="n">image</span><span class="p">(</span><span class="n">named</span><span class="ss">:apple</span><span class="p">)</span>
+<span class="c1"># define image using from filesystem (relative to user themes folder)</span>
+<span class="n">fileImage</span> <span class="o">=</span> <span class="n">image</span><span class="p">(</span><span class="n">file</span><span class="p">:.</span><span class="nf">.</span><span class="o">/</span><span class="n">some</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">some</span><span class="o">-</span><span class="n">file</span><span class="p">.</span><span class="nf">jpg</span><span class="p">)</span>
+
+<span class="sr">//</span> <span class="o">***********************</span> <span class="no">Common</span> <span class="no">Colors</span> <span class="o">************************</span> <span class="sr">//</span>
+<span class="n">blue</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">170</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+<span class="n">orange</span><span class="p">.</span><span class="nf">sky</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="o">.</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="sr">//</span> <span class="o">**********************</span> <span class="no">Fallback</span> <span class="no">Assets</span> <span class="o">***********************</span> <span class="sr">//</span>
+<span class="n">fallbackForegroundColor</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">1</span><span class="o">.</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">fallbackBackgroundColor</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">190</span><span class="p">)</span>
+<span class="n">fallbackGradient</span> <span class="o">=</span> <span class="n">linear</span><span class="o">-</span><span class="n">gradient</span><span class="p">(</span><span class="vg">$blue</span><span class="p">,</span> <span class="n">rgba</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">1</span><span class="o">.</span><span class="mi">0</span><span class="p">))</span>
+
+</code></pre>
+
+<p>To enable support for user themes, just need to set the location for them:</p>
+<pre class="highlight swift"><code><span class="c1">// Setup ThemeKit user themes folder</span>
+<span class="kt">ThemeManager</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="n">userThemesFolderURL</span> <span class="o">=</span> <span class="c1">//...</span>
+</code></pre>
+
+<p>Please refer to <a href="http://themekit.nunogrilo.com/Classes/UserTheme.html"><code>UserTheme</code></a> for more information.</p>
+<h2 id='faq' class='heading'>FAQ</h2>
+<h3 id='strong-can-the-window-titlebar-toolbar-tabbar-be-themed-strong' class='heading'><strong>Can the window titlebar/toolbar/tabbar be themed?</strong></h3>
+
+<p>Yes - please check one way to do it on the Demo project.</p>
+<h3 id='strong-can-controls-be-tinted-with-different-colors-strong' class='heading'><strong>Can controls be tinted with different colors?</strong></h3>
+
+<p>Other than the colors set by the inherited appearance - light (dark text on light background) or dark (light text on dark background) - natively, it is not possible to specify different colors for the text and/or background fills of controls (buttons, popups, etc).</p>
+
+<p>For simple cases, overriding <code>NSColor</code> can be sufficient: for example, <code>NSColor.labelColor</code> is a named color used for text labels; overriding it will allow to have all labels themed accordingly. You can get a list of all overridable named colors (class method names) with <code>NSColor.colorMethodNames()</code>.</p>
+
+<p>For more complex cases, like views/controls with custom drawing, please refer to next question.</p>
+<h3 id='strong-can-i-make-custom-drawing-views-controls-theme-aware-strong' class='heading'><strong>Can I make custom drawing views/controls theme-aware?</strong></h3>
+
+<p>Yes, you can! Implement your own custom controls drawing using <a href="#theme-aware-assets">Theme-aware Assets</a> (<code>ThemeColor</code> and <code>ThemeGradient</code>) so that your controls drawing will always adapt to your current theme&hellip; automatically!</p>
+
+<p>In case needed (for example, if drawing is being cached), you can observe when theme changes to refresh the UI or to perform any theme related operation. Check <em><q>Observing theme changes</q></em> on <a href="#usage">Usage</a> section above.</p>
+<h3 id='strong-scrollbars-appear-all-white-on-dark-themes-strong' class='heading'><strong>Scrollbars appear all white on dark themes!</strong></h3>
+
+<p>If the user opts for always showing the scrollbars on <em>System Preferences</em>, scrollbars may render all white on dark themes. To bypass this, we need to observe for theme changes and change its background color directly. E.g.,</p>
+<pre class="highlight swift"><code>   <span class="n">scrollView</span><span class="p">?</span><span class="o">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="kt">ThemeColor</span><span class="o">.</span><span class="n">myBackgroundColor</span>
+   <span class="n">scrollView</span><span class="p">?</span><span class="o">.</span><span class="n">wantsLayer</span> <span class="o">=</span> <span class="kc">true</span>
+   <span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="nv">forName</span><span class="p">:</span> <span class="o">.</span><span class="n">didChangeTheme</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">queue</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">note</span><span class="p">)</span> <span class="k">in</span>
+     <span class="n">scrollView</span><span class="p">?</span><span class="o">.</span><span class="n">verticalScroller</span><span class="p">?</span><span class="o">.</span><span class="n">layer</span><span class="p">?</span><span class="o">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="kt">ThemeColor</span><span class="o">.</span><span class="n">myBackgroundColor</span><span class="o">.</span><span class="n">cgColor</span>
+   <span class="p">}</span>
+</code></pre>
+<h3 id='strong-i-39-m-having-font-smoothing-issues-strong' class='heading'><strong>I&rsquo;m having font smoothing issues!</strong></h3>
+
+<p>You may run into font smoothing issues, when you use text without a background color set. Bottom line is, always specify/draw a background when using/drawing text. </p>
+
+<ol>
+<li><p>For controls like <code>NSTextField</code>, <code>NSTextView</code>, etc:</p>
+<pre class="highlight plaintext"><code>Specify a background color on the control. E.g.,
+
+```swift
+control.backgroundColor = NSColor.black
+```
+</code></pre>
+
+<ol>
+<li><p>For custom text rendering:</p>
+
+<p>First draw a background fill, then enable font smoothing and render your text. E.g.,</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">context</span> <span class="o">=</span> <span class="kt">NSGraphicsContext</span><span class="o">.</span><span class="nf">current</span><span class="p">()?</span><span class="o">.</span><span class="n">cgContext</span>
+<span class="kt">NSColor</span><span class="o">.</span><span class="n">black</span><span class="o">.</span><span class="nf">set</span><span class="p">()</span>
+<span class="n">context</span><span class="p">?</span><span class="o">.</span><span class="nf">fill</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+<span class="n">context</span><span class="p">?</span><span class="o">.</span><span class="nf">saveGState</span><span class="p">()</span>
+<span class="n">context</span><span class="p">?</span><span class="o">.</span><span class="nf">setShouldSmoothFonts</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+
+<span class="c1">// draw text...</span>
+
+<span class="n">context</span><span class="p">?</span><span class="o">.</span><span class="nf">restoreGState</span><span class="p">()</span>
+</code></pre>
+
+<p>As a last solution - if you really can&rsquo;t draw a background color - you can disable font smoothing which can slightly improve text rendering:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">context</span> <span class="o">=</span> <span class="kt">NSGraphicsContext</span><span class="o">.</span><span class="nf">current</span><span class="p">()?</span><span class="o">.</span><span class="n">cgContext</span>
+<span class="n">context</span><span class="p">?</span><span class="o">.</span><span class="nf">saveGState</span><span class="p">()</span>
+<span class="n">context</span><span class="p">?</span><span class="o">.</span><span class="nf">setShouldSmoothFonts</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+
+<span class="c1">// draw text...</span>
+
+<span class="n">context</span><span class="p">?</span><span class="o">.</span><span class="nf">restoreGState</span><span class="p">()</span>
+</code></pre></li>
+<li><p>For custom <code>NSButton</code>&rsquo;s:</p>
+
+<p>This is more tricky, as you will need to override private methods. If you are distributing your app on the Mac App Store, you must first check if this is allowed.</p>
+
+<p>a) override the private method <code>_backgroundColorForFontSmoothing</code> to return your button background color.</p>
+
+<p>b) if (a) isn&rsquo;t sufficient, you will also need to override <code>_textAttributes</code> and change the dictionary returned from the <code>super</code> call to provide your background color for the key <code>NSBackgroundColorAttributeName</code>.</p></li>
+</ol></li>
+</ol>
+<h2 id='license' class='heading'>License</h2>
+
+<p><em>ThemeKit</em> is available under the MIT license. See the <a href="LICENSE">LICENSE</a> file for more info.</p>
+
+          </section>
+        </section>
+        <section id="footer">
+          <p>© 2016-2017 <a class="link" href="https://paw.cloud" target="_blank" rel="external">Paw</a> &amp; <a class="link" href="http://nunogrilo.com" target="_blank" rel="external">Nuno Grilo</a> under <a class="link" href="https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

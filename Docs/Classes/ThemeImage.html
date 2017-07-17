@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ThemeImage Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/ThemeImage" class="dashAnchor"></a>
+    <a title="ThemeImage Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">ThemeKit Docs</a></p>
+        <p class="header-right"><a href="https://github.com/luckymarmot/ThemeKit"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right"><a href="dash-feed://http%3A%2F%2Fthemekit%2Enunogrilo%2Ecom%2Fdocsets%2FThemeKit%2Exml"><img src="../img/dash.png"/>Install in Dash</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">ThemeKit Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        ThemeImage Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../ThemeKit.html">ThemeKit</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/ThemeManager.html">ThemeManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ThemeManager/WindowThemePolicy.html">– WindowThemePolicy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Notification.html">Notification</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Notification/Name.html">– Name</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Themes.html">Themes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Theme.html">Theme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LightTheme.html">LightTheme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DarkTheme.html">DarkTheme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SystemTheme.html">SystemTheme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UserTheme.html">UserTheme</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Theme Assets.html">Theme Assets</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/ThemeColor.html">ThemeColor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ThemeGradient.html">ThemeGradient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ThemeImage.html">ThemeImage</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/NSWindow.html">NSWindow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/NSColor.html">NSColor</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>ThemeImage</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">ThemeImage</span> <span class="p">:</span> <span class="kt">NSImage</span></code></pre>
+
+                </div>
+              </div>
+            <p><code>ThemeImage</code> is a <code>NSImage</code> subclass that dynamically changes its colors
+whenever a new theme is make current.</p>
+
+<p>Theme-aware means you don&rsquo;t need to check any conditions when choosing which
+image to draw. E.g.:</p>
+<pre class="highlight plaintext"><code>ThemeImage.logoImage.draw(in: bounds)
+</code></pre>
+
+<p>The drawing code will draw with different image depending on the selected
+theme. Unless some drawing cache is being done, there&rsquo;s no need to refresh the
+UI after changing the current theme.</p>
+<h2 id='defining-theme-aware-images' class='heading'>Defining theme-aware images</h2>
+
+<p>The recommended way of adding your own dynamic images is as follows:</p>
+
+<ol>
+<li><p><strong>Add a <code>ThemeImage</code> class extension</strong> (or <code>TKThemeImage</code> category on
+Objective-C) to add class methods for your images. E.g.:</p>
+
+<p>In Swift:</p>
+<pre class="highlight plaintext"><code>extension ThemeImage {
+
+    static var logoImage: ThemeImage {
+        return ThemeImage.image(with: #function)
+    }
+
+}
+</code></pre>
+
+<p>In Objective-C:</p>
+<pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">TKThemeImage</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
+
+<span class="err">+</span> <span class="err">(</span><span class="nc">TKThemeImage</span><span class="o">*</span><span class="p">)</span><span class="n">logoImage</span><span class="p">;</span>
+
+<span class="k">@end</span>
+
+<span class="k">@implementation</span> <span class="nc">TKThemeImage</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
+
+<span class="err">+</span> <span class="err">(</span><span class="nc">TKThemeImage</span><span class="o">*</span><span class="p">)</span><span class="n">logoImage</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">TKThemeImage</span> <span class="nf">imageWithSelector</span><span class="p">:</span><span class="n">_cmd</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">@end</span>
+</code></pre></li>
+<li><p><strong>Add Class Extensions on any <code><a href="../Protocols/Theme.html">Theme</a></code> you want to support</strong> (e.g., <code><a href="../Classes/LightTheme.html">LightTheme</a></code>
+and <code><a href="../Classes/DarkTheme.html">DarkTheme</a></code> - <code>TKLightTheme</code> and <code>TKDarkTheme</code> on Objective-C) to provide 
+instance methods for each theme image class method defined on (1). E.g.:</p>
+
+<p>In Swift:</p>
+<pre class="highlight plaintext"><code>extension LightTheme {
+
+    var logoImage: NSImage? {
+        return NSImage(named: "MyLightLogo")
+    }
+
+}
+
+extension DarkTheme {
+
+    var logoImage: NSImage? {
+        return NSImage(contentsOfFile: "somewhere/MyDarkLogo.png")
+    }
+
+}
+</code></pre>
+
+<p>In Objective-C:</p>
+<pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">TKLightTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span> <span class="err">@</span><span class="nc">end</span>
+
+<span class="k">@implementation</span> <span class="nc">TKLightTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
+
+<span class="err">-</span> <span class="err">(</span><span class="nc">NSImage</span><span class="o">*</span><span class="p">)</span><span class="n">logoImage</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">NSImage</span> <span class="nf">imageNamed</span><span class="p">:</span><span class="s">@"MyLightLogo"</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">@end</span>
+
+<span class="k">@interface</span> <span class="nc">TKDarkTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span> <span class="err">@</span><span class="nc">end</span>
+
+<span class="k">@implementation</span> <span class="nc">TKDarkTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
+
+<span class="err">-</span> <span class="err">(</span><span class="nc">NSImage</span><span class="o">*</span><span class="p">)</span><span class="n">logoImage</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">NSImage</span> <span class="nf">alloc</span><span class="p">]</span> <span class="n">initWithContentsOfFile</span><span class="o">:</span><span class="s">@"somewhere/MyDarkLogo.png"</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">@end</span>
+</code></pre></li>
+<li><p>If supporting <code><a href="../Classes/UserTheme.html">UserTheme</a></code>&rsquo;s, <strong>define properties on user theme files</strong> (<code>.theme</code>)
+for each theme image class method defined on (1). E.g.:</p>
+<pre class="highlight plaintext"><code>displayName = Sample User Theme
+identifier = com.luckymarmot.ThemeKit.SampleUserTheme
+darkTheme = false
+
+logoImage = image(named:MyLogo)
+//logoImage = image(file:../some/path/MyLogo.png)
+</code></pre></li>
+</ol>
+<h2 id='fallback-images' class='heading'>Fallback images</h2>
+
+<p>Unimplemented properties/methods on target theme class will default to
+<code>fallbackImage</code>. This too, can be customized per theme.</p>
+
+<p>Please check <code><a href="../Classes/ThemeColor.html">ThemeColor</a></code> for theme-aware colors and <code><a href="../Classes/ThemeGradient.html">ThemeGradient</a></code> for theme-aware gradients.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Properties"></a>
+                <a name="//apple_ref/swift/Section/Properties" class="dashAnchor"></a>
+                <a href="#/Properties">
+                  <h3 class="section-name">Properties</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8ThemeKit10ThemeImage18themeImageSelectorGSqV10ObjectiveC8Selector_"></a>
+                    <a name="//apple_ref/swift/Property/themeImageSelector" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8ThemeKit10ThemeImage18themeImageSelectorGSqV10ObjectiveC8Selector_">themeImageSelector</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p><code>ThemeImage</code> image selector used as theme instance method for same
+selector or, if inexistent, as argument in the theme instance method <code>themeAsset(_:)</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">themeImageSelector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeImage.swift#L145-L151">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8ThemeKit10ThemeImage18resolvedThemeImageCSo7NSImage"></a>
+                    <a name="//apple_ref/swift/Property/resolvedThemeImage" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8ThemeKit10ThemeImage18resolvedThemeImageCSo7NSImage">resolvedThemeImage</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Resolved Image from current theme (dynamically changes with the current theme).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">resolvedThemeImage</span><span class="p">:</span> <span class="kt">NSImage</span> <span class="o">=</span> <span class="kt">NSImage</span><span class="p">(</span><span class="nv">size</span><span class="p">:</span> <span class="kt">NSZeroSize</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeImage.swift#L154">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Creating%20Images"></a>
+                <a name="//apple_ref/swift/Section/Creating Images" class="dashAnchor"></a>
+                <a href="#/Creating%20Images">
+                  <h3 class="section-name">Creating Images</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC8ThemeKit10ThemeImage5imageFT4withV10ObjectiveC8Selector_S0_"></a>
+                    <a name="//apple_ref/swift/Method/image(with:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC8ThemeKit10ThemeImage5imageFT4withV10ObjectiveC8Selector_S0_">image(with:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a new ThemeImage instance for the specified selector.</p>
+
+<p>Returns an image returned by calling <code>selector</code> on current theme as an instance method or,
+if unavailable, the result of calling <code>themeAsset(_:)</code> on the current theme.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">image</span><span class="p">(</span><span class="n">with</span> <span class="nv">selector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">ThemeImage</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>selector</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Selector for image method.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code>ThemeImage</code> instance for the specified selector.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeImage.swift#L170-L181">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC8ThemeKit10ThemeImage5imageFT3forPS_5Theme_8selectorV10ObjectiveC8Selector_GSqCSo7NSImage_"></a>
+                    <a name="//apple_ref/swift/Method/image(for:selector:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC8ThemeKit10ThemeImage5imageFT3forPS_5Theme_8selectorV10ObjectiveC8Selector_GSqCSo7NSImage_">image(for:selector:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Image for a specific theme.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">image</span><span class="p">(</span><span class="k">for</span> <span class="nv">theme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">NSImage</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>theme</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A <code>Theme</code> instance.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>selector</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An image selector.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Resolved image for specified selector on given theme.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeImage.swift#L190-L210">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC8ThemeKit10ThemeImage5imageFT3forCSo6NSView8selectorV10ObjectiveC8Selector_GSqCSo7NSImage_"></a>
+                    <a name="//apple_ref/swift/Method/image(for:selector:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC8ThemeKit10ThemeImage5imageFT3forCSo6NSView8selectorV10ObjectiveC8Selector_GSqCSo7NSImage_">image(for:selector:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Current theme image, but respecting view appearance and any window 
+specific theme (if set).</p>
+
+<p>If a <code><a href="../Extensions/NSWindow.html#/s:vE8ThemeKitCSo8NSWindow11windowThemeGSqPS_5Theme__">NSWindow.windowTheme</a></code> was set, it will be used instead.
+Some views may be using a different appearance than the theme appearance.
+In thoses cases, image won&rsquo;t be resolved using current theme, but from
+either <code>lightTheme</code> or <code>darkTheme</code>, depending of whether view appearance
+is light or dark, respectively.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">image</span><span class="p">(</span><span class="k">for</span> <span class="nv">view</span><span class="p">:</span> <span class="kt">NSView</span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">NSImage</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>view</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A <code>NSView</code> instance.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>selector</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An image selector.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Resolved image for specified selector on given view.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeImage.swift#L226-L249">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8ThemeKit10ThemeImage12recacheImageFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/recacheImage()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8ThemeKit10ThemeImage12recacheImageFT_T_">recacheImage()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Forces dynamic color resolution into <code><a href="../Classes/ThemeImage.html#/s:vC8ThemeKit10ThemeImage18resolvedThemeImageCSo7NSImage">resolvedThemeImage</a></code> and cache it.
+You should not need to manually call this function.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">recacheImage</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeImage.swift#L281-L292">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC8ThemeKit10ThemeImage10emptyCacheFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/emptyCache()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC8ThemeKit10ThemeImage10emptyCacheFT_T_">emptyCache()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Clear all caches.
+You should not need to manually call this function.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">static</span> <span class="n">open</span> <span class="kd">func</span> <span class="nf">emptyCache</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeImage.swift#L296-L299">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>© 2016-2017 <a class="link" href="https://paw.cloud" target="_blank" rel="external">Paw</a> &amp; <a class="link" href="http://nunogrilo.com" target="_blank" rel="external">Nuno Grilo</a> under <a class="link" href="https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

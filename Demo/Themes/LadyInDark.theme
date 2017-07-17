@@ -1,0 +1,44 @@
+// ************************** Credits *************************** //
+// - "Lady in dark" pattern
+//   Author: http://www.colourlovers.com/lover/Tenshiko/loveNote
+//   URL: http://www.colourlovers.com/pattern/1758170/Lady_in_dark
+
+// ************************* Theme Info ************************* //
+displayName = Lady in Dark Theme
+shortDisplayName = Lady in Dark
+identifier = com.luckymarmot.ThemeKit.LadyInDark
+darkTheme = true
+
+// *************************** Window ************************** //
+windowTitleBarActiveColor = $sexy.latex
+windowTitleBarInactiveColor = $intellektuelle.black
+
+// *************************** Content ************************** //
+contentTitleColor = $text.lightgray
+contentTextColor = $text.gray
+contentBackgroundColor = $take.a.bow
+rainbowGradient = linear-gradient($text.darkgray, $sexy.latex) 
+
+// *************************** Details ************************** //
+detailsTitleColor = $text.gray
+detailsBackgroundColor = pattern(named:ladyindark)
+detailsImage = image(named:moon)
+
+// *********************** System Override ********************** //
+secondaryLabelColor = $text.darkgray
+
+// ************** 'Lady in dark' Pattern Colors ***************** //
+sexy.latex = rgb(15, 15, 15)
+take.a.bow = rgb(23, 23, 23)
+dislike.black = rgb(28, 28, 28)
+intellektuelle.black = rgb(36, 36, 36)
+coal.mine = rgb(44, 44, 44)
+
+// *********************** Common Colors ************************ //
+text.darkgray = rgb(85, 85, 85)
+text.gray = rgb(107, 107, 107)
+text.lightgray = rgb(187, 187, 187)
+
+// ********************** Fallback Assets *********************** //
+fallbackForegroundColor = $text.lightgray
+fallbackGradient = $rainbowGradient

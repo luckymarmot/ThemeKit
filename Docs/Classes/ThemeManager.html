@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ThemeManager Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/ThemeManager" class="dashAnchor"></a>
+    <a title="ThemeManager Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">ThemeKit Docs</a></p>
+        <p class="header-right"><a href="https://github.com/luckymarmot/ThemeKit"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right"><a href="dash-feed://http%3A%2F%2Fthemekit%2Enunogrilo%2Ecom%2Fdocsets%2FThemeKit%2Exml"><img src="../img/dash.png"/>Install in Dash</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">ThemeKit Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        ThemeManager Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../ThemeKit.html">ThemeKit</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/ThemeManager.html">ThemeManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ThemeManager/WindowThemePolicy.html">– WindowThemePolicy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Notification.html">Notification</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Notification/Name.html">– Name</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Themes.html">Themes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Theme.html">Theme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LightTheme.html">LightTheme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DarkTheme.html">DarkTheme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SystemTheme.html">SystemTheme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UserTheme.html">UserTheme</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Theme Assets.html">Theme Assets</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/ThemeColor.html">ThemeColor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ThemeGradient.html">ThemeGradient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ThemeImage.html">ThemeImage</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/NSWindow.html">NSWindow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/NSColor.html">NSColor</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>ThemeManager</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ThemeManager</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                </div>
+              </div>
+            <p>Use <code>ThemeManager</code> shared instance to perform app-wide theming related operations,
+such as:</p>
+
+<ul>
+<li>Get information about current theme/appearance</li>
+<li>Change current <code>theme</code> (can also be changed from <code>NSUserDefaults</code>)</li>
+<li>List available themes</li>
+<li>Define <code>ThemeKit</code> behaviour</li>
+</ul>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC8ThemeKit12ThemeManager6sharedS0_"></a>
+                    <a name="//apple_ref/swift/Variable/shared" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC8ThemeKit12ThemeManager6sharedS0_">shared</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>ThemeManager shared manager.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">shared</span> <span class="o">=</span> <span class="kt">ThemeManager</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L27">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Themes"></a>
+                <a name="//apple_ref/swift/Section/Themes" class="dashAnchor"></a>
+                <a href="#/Themes">
+                  <h3 class="section-name">Themes</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8ThemeKit12ThemeManager5themePS_5Theme_"></a>
+                    <a name="//apple_ref/swift/Property/theme" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8ThemeKit12ThemeManager5themePS_5Theme_">theme</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets or returns the current theme.</p>
+
+<p>This property is KVO compliant. Value is stored on user defaults under key
+<code><a href="../Classes/ThemeManager.html#/s:ZvC8ThemeKit12ThemeManager20userDefaultsThemeKeySS">userDefaultsThemeKey</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">theme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L64-L81">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8ThemeKit12ThemeManager14effectiveThemePS_5Theme_"></a>
+                    <a name="//apple_ref/swift/Property/effectiveTheme" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8ThemeKit12ThemeManager14effectiveThemePS_5Theme_">effectiveTheme</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the current effective theme (read-only).</p>
+
+<p>This property is KVO compliant. This can return a different result than
+<code><a href="../Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager5themePS_5Theme_">theme</a></code>, as if current theme is set to <code><a href="../Classes/SystemTheme.html">SystemTheme</a></code>, effective theme
+will be either <code><a href="../Classes/ThemeManager.html#/s:ZvC8ThemeKit12ThemeManager10lightThemePS_5Theme_">lightTheme</a></code> or <code><a href="../Classes/ThemeManager.html#/s:ZvC8ThemeKit12ThemeManager9darkThemePS_5Theme_">darkTheme</a></code>, respecting user preference at
+<strong>System Preferences &gt; General &gt; Appearance</strong>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">effectiveTheme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L93-L95">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8ThemeKit12ThemeManager6themesGSaPS_5Theme__"></a>
+                    <a name="//apple_ref/swift/Property/themes" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8ThemeKit12ThemeManager6themesGSaPS_5Theme__">themes</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>List all available themes:</p>
+
+<ul>
+<li>Built-in <code><a href="../Classes/ThemeManager.html#/s:ZvC8ThemeKit12ThemeManager10lightThemePS_5Theme_">lightTheme</a></code></li>
+<li>Built-in <code><a href="../Classes/ThemeManager.html#/s:ZvC8ThemeKit12ThemeManager9darkThemePS_5Theme_">darkTheme</a></code></li>
+<li>Built-in <code><a href="../Classes/ThemeManager.html#/s:ZvC8ThemeKit12ThemeManager11systemThemeCS_11SystemTheme">systemTheme</a></code></li>
+<li>All native themes (extending <code>NSObject</code> and conforming to <code><a href="../Protocols/Theme.html">Theme</a></code> protocol)</li>
+<li>All user themes (loaded from <code><a href="../Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager5themePS_5Theme_">.theme</a></code> files)</li>
+</ul>
+
+<p>This property is KVO compliant and will change when changes occur on user
+themes folder.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">themes</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/Theme.html">Theme</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L107-L139">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8ThemeKit12ThemeManager10userThemesGSaPS_5Theme__"></a>
+                    <a name="//apple_ref/swift/Property/userThemes" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8ThemeKit12ThemeManager10userThemesGSaPS_5Theme__">userThemes</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>List all user themes (<code><a href="../Classes/UserTheme.html">UserTheme</a></code> class, loaded from <code><a href="../Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager5themePS_5Theme_">.theme</a></code> files)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">userThemes</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/Theme.html">Theme</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L142-L156">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC8ThemeKit12ThemeManager10lightThemePS_5Theme_"></a>
+                    <a name="//apple_ref/swift/Variable/lightTheme" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC8ThemeKit12ThemeManager10lightThemePS_5Theme_">lightTheme</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Convenience method for accessing the light theme.</p>
+
+<p>This property can be changed so that <code><a href="../Classes/SystemTheme.html">SystemTheme</a></code> resolves to this theme
+instead of the default <code><a href="../Classes/LightTheme.html">LightTheme</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">lightTheme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span> <span class="o">=</span> <span class="kt"><a href="../Classes/LightTheme.html">LightTheme</a></span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L168">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC8ThemeKit12ThemeManager9darkThemePS_5Theme_"></a>
+                    <a name="//apple_ref/swift/Variable/darkTheme" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC8ThemeKit12ThemeManager9darkThemePS_5Theme_">darkTheme</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Convenience method for accessing the dark theme.</p>
+
+<p>This property can be changed so that <code><a href="../Classes/SystemTheme.html">SystemTheme</a></code> resolves to this theme
+instead of the default <code><a href="../Classes/DarkTheme.html">DarkTheme</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">darkTheme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span> <span class="o">=</span> <span class="kt"><a href="../Classes/DarkTheme.html">DarkTheme</a></span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L174">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC8ThemeKit12ThemeManager11systemThemeCS_11SystemTheme"></a>
+                    <a name="//apple_ref/swift/Variable/systemTheme" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC8ThemeKit12ThemeManager11systemThemeCS_11SystemTheme">systemTheme</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Convenience method for accessing the theme that dynamically changes to
+<code><a href="../Classes/ThemeManager.html#/s:ZvC8ThemeKit12ThemeManager10lightThemePS_5Theme_">ThemeManager.lightTheme</a></code> or <code><a href="../Classes/ThemeManager.html#/s:ZvC8ThemeKit12ThemeManager9darkThemePS_5Theme_">ThemeManager.darkTheme</a></code>, respecting user preference
+at <strong>System Preferences &gt; General &gt; Appearance</strong>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">systemTheme</span> <span class="o">=</span> <span class="kt"><a href="../Classes/SystemTheme.html">SystemTheme</a></span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L179">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC8ThemeKit12ThemeManager12defaultThemePS_5Theme_"></a>
+                    <a name="//apple_ref/swift/Variable/defaultTheme" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC8ThemeKit12ThemeManager12defaultThemePS_5Theme_">defaultTheme</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set/get default theme to be used on the first run (default: <code><a href="../Classes/ThemeManager.html#/s:ZvC8ThemeKit12ThemeManager11systemThemeCS_11SystemTheme">ThemeManager.systemTheme</a></code>).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultTheme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span> <span class="o">=</span> <span class="kt">ThemeManager</span><span class="o">.</span><span class="n"><a href="../Classes/ThemeManager.html#/s:ZvC8ThemeKit12ThemeManager11systemThemeCS_11SystemTheme">systemTheme</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L182">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8ThemeKit12ThemeManager5themeFT14withIdentifierGSqSS__GSqPS_5Theme__"></a>
+                    <a name="//apple_ref/swift/Method/theme(withIdentifier:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8ThemeKit12ThemeManager5themeFT14withIdentifierGSqSS__GSqPS_5Theme__">theme(withIdentifier:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get the theme with specified identifier.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">theme</span><span class="p">(</span><span class="n">withIdentifier</span> <span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>identifier</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The unique <code>Theme.identifier</code> string.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The <code><a href="../Protocols/Theme.html">Theme</a></code> instance with the given identifier.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L189-L198">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC8ThemeKit12ThemeManager20userDefaultsThemeKeySS"></a>
+                    <a name="//apple_ref/swift/Variable/userDefaultsThemeKey" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC8ThemeKit12ThemeManager20userDefaultsThemeKeySS">userDefaultsThemeKey</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>User defaults key for current <code><a href="../Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager5themePS_5Theme_">theme</a></code>.</p>
+
+<p>Current <code>theme.identifier</code> will be stored under the <code>&quot;ThemeKitTheme&quot;</code> <code>NSUserDefaults</code> key.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">static</span> <span class="kd">public</span> <span class="k">let</span> <span class="nv">userDefaultsThemeKey</span> <span class="o">=</span> <span class="s">"ThemeKitTheme"</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L203">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8ThemeKit12ThemeManager23applyLastOrDefaultThemeFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/applyLastOrDefaultTheme()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8ThemeKit12ThemeManager23applyLastOrDefaultThemeFT_T_">applyLastOrDefaultTheme()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Apply last applied theme, or default, if none.</p>
+
+<p>Get last applied theme from user defaults and load it. If no theme was
+previously applied, load the default theme (<code><a href="../Classes/ThemeManager.html#/s:ZvC8ThemeKit12ThemeManager12defaultThemePS_5Theme_">ThemeManager.defaultTheme</a></code>).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">applyLastOrDefaultTheme</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L209-L212">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8ThemeKit12ThemeManager19reApplyCurrentThemeFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/reApplyCurrentTheme()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8ThemeKit12ThemeManager19reApplyCurrentThemeFT_T_">reApplyCurrentTheme()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Force-apply current <code><a href="../Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager5themePS_5Theme_">theme</a></code>.</p>
+
+<p>Normally you should not need to invoke this method, as this will
+force-apply the same theme.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">reApplyCurrentTheme</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L218-L220">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/User%20Themes%20(%60.theme%60%20files)"></a>
+                <a name="//apple_ref/swift/Section/User Themes (`.theme` files)" class="dashAnchor"></a>
+                <a href="#/User%20Themes%20(%60.theme%60%20files)">
+                  <h3 class="section-name">User Themes (`.theme` files)</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8ThemeKit12ThemeManager19userThemesFolderURLGSqV10Foundation3URL_"></a>
+                    <a name="//apple_ref/swift/Property/userThemesFolderURL" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8ThemeKit12ThemeManager19userThemesFolderURLGSqV10Foundation3URL_">userThemesFolderURL</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Location of user provided themes (.theme files).</p>
+
+<p>Ideally, this should be on a shared location, like <code>Application Support/{app_bundle_id}/Themes</code>
+for example. Here&rsquo;s an example of how to get this folder (*):</p>
+<pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">applicationSupportUserThemesFolderURL</span><span class="p">:</span> <span class="kt">URL</span> <span class="p">{</span>
+  <span class="k">let</span> <span class="nv">applicationSupportURLs</span> <span class="o">=</span> <span class="kt">NSSearchPathForDirectoriesInDomains</span><span class="p">(</span><span class="o">.</span><span class="n">applicationSupportDirectory</span><span class="p">,</span> <span class="o">.</span><span class="n">userDomainMask</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+  <span class="k">let</span> <span class="nv">thisAppSupportURL</span> <span class="o">=</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">fileURLWithPath</span><span class="p">:</span> <span class="n">applicationSupportURLs</span><span class="o">.</span><span class="n">first</span><span class="o">!</span><span class="p">)</span><span class="o">.</span><span class="nf">appendingPathComponent</span><span class="p">(</span><span class="kt">Bundle</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">bundleIdentifier</span><span class="o">!</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">thisAppSupportURL</span><span class="o">.</span><span class="nf">appendingPathComponent</span><span class="p">(</span><span class="s">"Themes"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>*: force wrapping (!) is for illustrative purposes only.</p>
+
+<p>You can also bundle these files with your application bundle, if you 
+don&rsquo;t want them to be changed.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">userThemesFolderURL</span><span class="p">:</span> <span class="kt">URL</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L252-L301">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Appearances"></a>
+                <a name="//apple_ref/swift/Section/Appearances" class="dashAnchor"></a>
+                <a href="#/Appearances">
+                  <h3 class="section-name">Appearances</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8ThemeKit12ThemeManager24effectiveThemeAppearanceCSo12NSAppearance"></a>
+                    <a name="//apple_ref/swift/Property/effectiveThemeAppearance" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8ThemeKit12ThemeManager24effectiveThemeAppearanceCSo12NSAppearance">effectiveThemeAppearance</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Appearance in use for effective theme.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">effectiveThemeAppearance</span><span class="p">:</span> <span class="kt">NSAppearance</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L343-L345">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8ThemeKit12ThemeManager15lightAppearanceGSqCSo12NSAppearance_"></a>
+                    <a name="//apple_ref/swift/Property/lightAppearance" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8ThemeKit12ThemeManager15lightAppearanceGSqCSo12NSAppearance_">lightAppearance</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Convenience method to get the light appearance.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">lightAppearance</span><span class="p">:</span> <span class="kt">NSAppearance</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L348-L350">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8ThemeKit12ThemeManager14darkAppearanceGSqCSo12NSAppearance_"></a>
+                    <a name="//apple_ref/swift/Property/darkAppearance" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8ThemeKit12ThemeManager14darkAppearanceGSqCSo12NSAppearance_">darkAppearance</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Convenience method to get the dark appearance.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">darkAppearance</span><span class="p">:</span> <span class="kt">NSAppearance</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L353-L355">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Window%20Theming%20Policy"></a>
+                <a name="//apple_ref/swift/Section/Window Theming Policy" class="dashAnchor"></a>
+                <a href="#/Window%20Theming%20Policy">
+                  <h3 class="section-name">Window Theming Policy</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:OC8ThemeKit12ThemeManager17WindowThemePolicy"></a>
+                    <a name="//apple_ref/swift/Enum/WindowThemePolicy" class="dashAnchor"></a>
+                    <a class="token" href="#/s:OC8ThemeKit12ThemeManager17WindowThemePolicy">WindowThemePolicy</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Window theme policies that define which windows should be automatically themed, if any.</p>
+<h2 id='swift' class='heading'>Swift</h2>
+
+<p>By default, all application windows will be themed (<code>.themeAllWindows</code>).</p>
+
+<ul>
+<li>themeAllWindows:   Theme all application windows, except <code>NSPanel</code> subclasses (default).</li>
+<li>themeSomeWindows:  Only theme windows of the specified classes.</li>
+<li>doNotThemeSomeWindows: Do not theme windows of the specified classes.</li>
+<li>doNotThemeWindows: Do not theme any window.E.g.:</li>
+</ul>
+
+<p>E.g.:</p>
+<pre class="highlight plaintext"><code>ThemeManager.shared.windowThemePolicy = .themeSomeWindows(windowClasses: [CustomWindow.self])
+</code></pre>
+<h2 id='objective-c' class='heading'>Objective-C</h2>
+
+<p>By default, all application windows will be themed (<code>.TKThemeManagerWindowThemePolicyThemeAllWindows</code>).</p>
+
+<ul>
+<li>TKThemeManagerWindowThemePolicyThemeAllWindows:   Theme all application windows (default).</li>
+<li>TKThemeManagerWindowThemePolicyThemeSomeWindowClasses:  Only theme windows of the specified classes.</li>
+<li>TKThemeManagerWindowThemePolicyDoNotThemeSomeWindowClasses:  Do not theme windows of the specified classes.</li>
+<li>TKThemeManagerWindowThemePolicyDoNotThemeWindows: Do not theme any window.</li>
+</ul>
+
+<p>If <code>.windowThemePolicy = TKThemeManagerWindowThemePolicyThemeSomeWindowClasses</code>
+is set, themable window class names can then be defined using
+<code>NSArray&lt;NSString*&gt;* themableWindowClassNames</code> property. E.g.:</p>
+<pre class="highlight plaintext"><code>[TKThemeManager sharedManager].windowThemePolicy = TKThemeManagerWindowThemePolicyThemeSomeWindowClasses;
+[TKThemeManager sharedManager].themableWindowClassNames = @[[CustomWindow class]];
+</code></pre>
+<h2 id='nswindow-extension' class='heading'>NSWindow Extension</h2>
+
+<ul>
+<li><p><code><a href="../Extensions/NSWindow.html#/s:FE8ThemeKitCSo8NSWindow5themeFT_T_">NSWindow.theme()</a></code></p>
+
+<p>Theme window if appearance needs update. Doesn&rsquo;t check for policy compliance.</p></li>
+<li><p><code>NSWindow.isCompliantWithWindowThemePolicy()</code></p>
+
+<p>Check if window complies to current policy.</p></li>
+<li><p><code><a href="../Extensions/NSWindow.html#/s:FE8ThemeKitCSo8NSWindow37themeIfCompliantWithWindowThemePolicyFT_T_">NSWindow.themeIfCompliantWithWindowThemePolicy()</a></code></p>
+
+<p>Theme window if compliant to <code><a href="../Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager17windowThemePolicyOS0_17WindowThemePolicy">windowThemePolicy</a></code> (and if appearance needs update).</p></li>
+<li><p><code><a href="../Extensions/NSWindow.html#/s:ZFE8ThemeKitCSo8NSWindow15themeAllWindowsFT_T_">NSWindow.themeAllWindows()</a></code></p>
+
+<p>Theme all windows compliant to ThemeManager.windowThemePolicy (and if appearance needs update).</p></li>
+</ul>
+
+                        <a href="../Classes/ThemeManager/WindowThemePolicy.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">WindowThemePolicy</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L410-L419">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8ThemeKit12ThemeManager17windowThemePolicyOS0_17WindowThemePolicy"></a>
+                    <a name="//apple_ref/swift/Property/windowThemePolicy" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8ThemeKit12ThemeManager17windowThemePolicyOS0_17WindowThemePolicy">windowThemePolicy</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Current window theme policy.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">windowThemePolicy</span><span class="p">:</span> <span class="kt"><a href="../Classes/ThemeManager/WindowThemePolicy.html">WindowThemePolicy</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">themeAllWindows</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L422">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Notifications"></a>
+                <a name="//apple_ref/swift/Section/Notifications" class="dashAnchor"></a>
+                <a href="#/Notifications">
+                  <h3 class="section-name">Notifications</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC8ThemeKit12ThemeManager27willChangeThemeNotificationVCSo14NSNotification4Name"></a>
+                    <a name="//apple_ref/swift/Variable/willChangeThemeNotification" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC8ThemeKit12ThemeManager27willChangeThemeNotificationVCSo14NSNotification4Name">willChangeThemeNotification</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>ThemeKit notification sent when current theme is about to change.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">willChangeThemeNotification</span> <span class="o">=</span> <span class="kt">Notification</span><span class="o">.</span><span class="kt">Name</span><span class="o">.</span><span class="n">willChangeTheme</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L558">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC8ThemeKit12ThemeManager26didChangeThemeNotificationVCSo14NSNotification4Name"></a>
+                    <a name="//apple_ref/swift/Variable/didChangeThemeNotification" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC8ThemeKit12ThemeManager26didChangeThemeNotificationVCSo14NSNotification4Name">didChangeThemeNotification</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>ThemeKit notification sent when current theme did change.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">didChangeThemeNotification</span> <span class="o">=</span> <span class="kt">Notification</span><span class="o">.</span><span class="kt">Name</span><span class="o">.</span><span class="n">didChangeTheme</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L561">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC8ThemeKit12ThemeManager32didChangeSystemThemeNotificationVCSo14NSNotification4Name"></a>
+                    <a name="//apple_ref/swift/Variable/didChangeSystemThemeNotification" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC8ThemeKit12ThemeManager32didChangeSystemThemeNotificationVCSo14NSNotification4Name">didChangeSystemThemeNotification</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>ThemeKit notification sent when system theme did change (System Preference &gt; General &gt; Appearance).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">didChangeSystemThemeNotification</span> <span class="o">=</span> <span class="kt">Notification</span><span class="o">.</span><span class="kt">Name</span><span class="o">.</span><span class="n">didChangeSystemTheme</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L564">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>© 2016-2017 <a class="link" href="https://paw.cloud" target="_blank" rel="external">Paw</a> &amp; <a class="link" href="http://nunogrilo.com" target="_blank" rel="external">Nuno Grilo</a> under <a class="link" href="https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

@@ -1,0 +1,46 @@
+# About
+module: ThemeKit
+author: Paw & Nuno Grilo
+author_url: https://nunogrilo.com
+readme: README.md
+copyright: '© 2016-2017 [Paw](https://paw.cloud) & [Nuno Grilo](http://nunogrilo.com) under [MIT License](https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE).'
+
+# URLs
+github_url: https://github.com/luckymarmot/ThemeKit
+root_url: http://themekit.nunogrilo.com
+github_file_prefix: https://github.com/luckymarmot/ThemeKit
+
+# Generation
+clean: true
+output: Docs
+min_acl: public
+hide_documentation_coverage: true
+skip_undocumented: true
+exclude:
+  - "Demo*/*.*"
+  - "**/*ObjC.swift"
+  - "**/*ObjectiveC.swift"
+  - "**/NSDictionary+UserTheme.swift"
+
+# Navigation
+custom_categories:
+  - name: ThemeKit
+    children:    
+    - ThemeManager
+    - Notification
+  - name: Themes
+    children:    
+    - Theme
+    - LightTheme
+    - DarkTheme
+    - SystemTheme
+    - UserTheme
+  - name: Theme Assets
+    children:    
+    - ThemeColor
+    - ThemeGradient 
+    - ThemeImage
+  - name: Extensions
+    children:
+    - NSWindow
+    - NSColor

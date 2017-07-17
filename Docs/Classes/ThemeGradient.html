@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ThemeGradient Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/ThemeGradient" class="dashAnchor"></a>
+    <a title="ThemeGradient Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">ThemeKit Docs</a></p>
+        <p class="header-right"><a href="https://github.com/luckymarmot/ThemeKit"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right"><a href="dash-feed://http%3A%2F%2Fthemekit%2Enunogrilo%2Ecom%2Fdocsets%2FThemeKit%2Exml"><img src="../img/dash.png"/>Install in Dash</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">ThemeKit Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        ThemeGradient Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../ThemeKit.html">ThemeKit</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/ThemeManager.html">ThemeManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ThemeManager/WindowThemePolicy.html">– WindowThemePolicy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Notification.html">Notification</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Notification/Name.html">– Name</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Themes.html">Themes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Theme.html">Theme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LightTheme.html">LightTheme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DarkTheme.html">DarkTheme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SystemTheme.html">SystemTheme</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UserTheme.html">UserTheme</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Theme Assets.html">Theme Assets</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/ThemeColor.html">ThemeColor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ThemeGradient.html">ThemeGradient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ThemeImage.html">ThemeImage</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/NSWindow.html">NSWindow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/NSColor.html">NSColor</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>ThemeGradient</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">ThemeGradient</span> <span class="p">:</span> <span class="kt">NSGradient</span></code></pre>
+
+                </div>
+              </div>
+            <p><code>ThemeGradient</code> is a <code>NSGradient</code> subclass that dynamically changes its colors 
+whenever a new theme is make current.</p>
+
+<p>Theme-aware means you don&rsquo;t need to check any conditions when choosing which
+gradient to draw. E.g.:</p>
+<pre class="highlight plaintext"><code>ThemeGradient.rainbowGradient.draw(in: bounds, angle: 0)
+</code></pre>
+
+<p>The drawing code will draw with different gradient depending on the selected 
+theme. Unless some drawing cache is being done, there&rsquo;s no need to refresh the
+UI after changing the current theme.</p>
+<h2 id='defining-theme-aware-gradients' class='heading'>Defining theme-aware gradients</h2>
+
+<p>The recommended way of adding your own dynamic gradients is as follows:</p>
+
+<ol>
+<li><p><strong>Add a <code>ThemeGradient</code> class extension</strong> (or <code>TKThemeGradient</code> category on
+Objective-C) to add class methods for your gradients. E.g.:</p>
+
+<p>In Swift:</p>
+<pre class="highlight plaintext"><code>extension ThemeGradient {
+
+    static var brandGradient: ThemeGradient {
+       return ThemeGradient.gradient(with: #function)
+    }
+
+}
+</code></pre>
+
+<p>In Objective-C:</p>
+<pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">TKThemeGradient</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
+
+<span class="err">+</span> <span class="err">(</span><span class="nc">TKThemeGradient</span><span class="o">*</span><span class="p">)</span><span class="n">brandGradient</span><span class="p">;</span>
+
+<span class="k">@end</span>
+
+<span class="k">@implementation</span> <span class="nc">TKThemeGradient</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
+
+<span class="err">+</span> <span class="err">(</span><span class="nc">TKThemeGradient</span><span class="o">*</span><span class="p">)</span><span class="n">brandGradient</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="p">[</span><span class="n">TKThemeGradient</span> <span class="nf">gradientWithSelector</span><span class="p">:</span><span class="n">_cmd</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">@end</span>
+</code></pre></li>
+<li><p><strong>Add Class Extensions on any <code><a href="../Protocols/Theme.html">Theme</a></code> you want to support</strong> (e.g., <code><a href="../Classes/LightTheme.html">LightTheme</a></code>
+and <code><a href="../Classes/DarkTheme.html">DarkTheme</a></code> - <code>TKLightTheme</code> and <code>TKDarkTheme</code> on Objective-C) to provide
+instance methods for each theme gradient class method defined on (1). E.g.:</p>
+
+<p>In Swift:</p>
+<pre class="highlight plaintext"><code>extension LightTheme {
+
+    var brandGradient: NSGradient {
+       return NSGradient(starting: NSColor.white, ending: NSColor.black)
+    }
+
+    }
+
+    extension DarkTheme {
+
+    var brandGradient: NSGradient {
+       return NSGradient(starting: NSColor.black, ending: NSColor.white)
+    }
+
+}
+</code></pre>
+
+<p>In Objective-C:</p>
+<pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">TKLightTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span> <span class="err">@</span><span class="nc">end</span>
+
+<span class="k">@implementation</span> <span class="nc">TKLightTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
+
+<span class="err">-</span> <span class="err">(</span><span class="nc">NSGradient</span><span class="o">*</span><span class="p">)</span><span class="n">brandGradient</span>
+<span class="p">{</span>
+   <span class="k">return</span> <span class="p">[[</span><span class="n">NSGradient</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithStartingColor</span><span class="p">:[</span><span class="n">NSColor</span> <span class="nf">whiteColor</span><span class="p">]</span> <span class="nf">endingColor</span><span class="p">:[</span><span class="n">NSColor</span> <span class="nf">blackColor</span><span class="p">]];</span>
+<span class="p">}</span>
+
+<span class="k">@end</span>
+
+<span class="k">@interface</span> <span class="nc">TKDarkTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span> <span class="err">@</span><span class="nc">end</span>
+
+<span class="k">@implementation</span> <span class="nc">TKDarkTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
+
+<span class="err">-</span> <span class="err">(</span><span class="nc">NSGradient</span><span class="o">*</span><span class="p">)</span><span class="n">brandGradient</span>
+<span class="p">{</span>
+   <span class="k">return</span> <span class="p">[[</span><span class="n">NSGradient</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithStartingColor</span><span class="p">:[</span><span class="n">NSColor</span> <span class="nf">blackColor</span><span class="p">]</span> <span class="nf">endingColor</span><span class="p">:[</span><span class="n">NSColor</span> <span class="nf">whiteColor</span><span class="p">]];</span>
+<span class="p">}</span>
+
+<span class="k">@end</span>
+</code></pre></li>
+<li><p>If supporting <code><a href="../Classes/UserTheme.html">UserTheme</a></code>&rsquo;s, <strong>define properties on user theme files</strong> (<code>.theme</code>)
+for each theme gradient class method defined on (1). E.g.:</p>
+<pre class="highlight plaintext"><code>displayName = Sample User Theme
+identifier = com.luckymarmot.ThemeKit.SampleUserTheme
+darkTheme = false
+
+orangeSky = rgb(160, 90, 45, .5)
+brandGradient = linear-gradient($orangeSky, rgb(200, 140, 60))
+</code></pre></li>
+</ol>
+<h2 id='fallback-colors' class='heading'>Fallback colors</h2>
+
+<p>Unimplemented properties/methods on target theme class will default to
+<code>fallbackGradient</code>. This too, can be customized per theme.</p>
+
+<p>Please check <code><a href="../Classes/ThemeColor.html">ThemeColor</a></code> for theme-aware colors and <code><a href="../Classes/ThemeImage.html">ThemeImage</a></code> for theme-aware images.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Properties"></a>
+                <a name="//apple_ref/swift/Section/Properties" class="dashAnchor"></a>
+                <a href="#/Properties">
+                  <h3 class="section-name">Properties</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8ThemeKit13ThemeGradient21themeGradientSelectorGSqV10ObjectiveC8Selector_"></a>
+                    <a name="//apple_ref/swift/Property/themeGradientSelector" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8ThemeKit13ThemeGradient21themeGradientSelectorGSqV10ObjectiveC8Selector_">themeGradientSelector</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p><code>ThemeGradient</code> gradient selector used as theme instance method for same
+selector or, if inexistent, as argument in the theme instance method <code>themeAsset(_:)</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">themeGradientSelector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeGradient.swift#L144-L150">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8ThemeKit13ThemeGradient21resolvedThemeGradientGSqCSo10NSGradient_"></a>
+                    <a name="//apple_ref/swift/Property/resolvedThemeGradient" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8ThemeKit13ThemeGradient21resolvedThemeGradientGSqCSo10NSGradient_">resolvedThemeGradient</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Resolved gradient from current theme (dynamically changes with the current theme).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">resolvedThemeGradient</span><span class="p">:</span> <span class="kt">NSGradient</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeGradient.swift#L153">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Creating%20Gradients"></a>
+                <a name="//apple_ref/swift/Section/Creating Gradients" class="dashAnchor"></a>
+                <a href="#/Creating%20Gradients">
+                  <h3 class="section-name">Creating Gradients</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC8ThemeKit13ThemeGradient8gradientFT4withV10ObjectiveC8Selector_GSqS0__"></a>
+                    <a name="//apple_ref/swift/Method/gradient(with:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC8ThemeKit13ThemeGradient8gradientFT4withV10ObjectiveC8Selector_GSqS0__">gradient(with:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a new ThemeGradient instance for the specified selector.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">gradient</span><span class="p">(</span><span class="n">with</span> <span class="nv">selector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">ThemeGradient</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>selector</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Selector for color method.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code>ThemeGradient</code> instance for the specified selector.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeGradient.swift#L165-L176">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC8ThemeKit13ThemeGradient8gradientFT3forPS_5Theme_8selectorV10ObjectiveC8Selector_GSqCSo10NSGradient_"></a>
+                    <a name="//apple_ref/swift/Method/gradient(for:selector:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC8ThemeKit13ThemeGradient8gradientFT3forPS_5Theme_8selectorV10ObjectiveC8Selector_GSqCSo10NSGradient_">gradient(for:selector:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Gradient for a specific theme.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">gradient</span><span class="p">(</span><span class="k">for</span> <span class="nv">theme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">NSGradient</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>theme</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A <code>Theme</code> instance.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>selector</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A gradient selector.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Resolved gradient for specified selector on given theme.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeGradient.swift#L185-L205">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC8ThemeKit13ThemeGradient8gradientFT3forCSo6NSView8selectorV10ObjectiveC8Selector_GSqCSo10NSGradient_"></a>
+                    <a name="//apple_ref/swift/Method/gradient(for:selector:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC8ThemeKit13ThemeGradient8gradientFT3forCSo6NSView8selectorV10ObjectiveC8Selector_GSqCSo10NSGradient_">gradient(for:selector:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Current theme gradient, but respecting view appearance and any window
+specific theme (if set).</p>
+
+<p>If a <code><a href="../Extensions/NSWindow.html#/s:vE8ThemeKitCSo8NSWindow11windowThemeGSqPS_5Theme__">NSWindow.windowTheme</a></code> was set, it will be used instead.
+Some views may be using a different appearance than the theme appearance.
+In thoses cases, gradient won&rsquo;t be resolved using current theme, but from
+either <code>lightTheme</code> or <code>darkTheme</code>, depending of whether view appearance
+is light or dark, respectively.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">gradient</span><span class="p">(</span><span class="k">for</span> <span class="nv">view</span><span class="p">:</span> <span class="kt">NSView</span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">NSGradient</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>view</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A <code>NSView</code> instance.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>selector</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A gradient selector.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Resolved gradient for specified selector on given view.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeGradient.swift#L221-L244">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8ThemeKit13ThemeGradient15recacheGradientFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/recacheGradient()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8ThemeKit13ThemeGradient15recacheGradientFT_T_">recacheGradient()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Forces dynamic gradient resolution into <code><a href="../Classes/ThemeGradient.html#/s:vC8ThemeKit13ThemeGradient21resolvedThemeGradientGSqCSo10NSGradient_">resolvedThemeGradient</a></code> and cache it.
+You should not need to manually call this function.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">recacheGradient</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeGradient.swift#L282-L293">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC8ThemeKit13ThemeGradient10emptyCacheFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/emptyCache()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC8ThemeKit13ThemeGradient10emptyCacheFT_T_">emptyCache()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Clear all caches.
+You should not need to manually call this function.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">static</span> <span class="n">open</span> <span class="kd">func</span> <span class="nf">emptyCache</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeGradient.swift#L297-L300">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>© 2016-2017 <a class="link" href="https://paw.cloud" target="_blank" rel="external">Paw</a> &amp; <a class="link" href="http://nunogrilo.com" target="_blank" rel="external">Nuno Grilo</a> under <a class="link" href="https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

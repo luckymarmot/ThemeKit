@@ -1,0 +1,44 @@
+// ************************* Theme Info ************************* //
+displayName = Purple Green Theme
+shortDisplayName = Purple Green
+identifier = com.luckymarmot.ThemeKit.PurpleGreen
+darkTheme = true
+
+// *************************** Window ************************** //
+windowTitleBarActiveColor= $purple2
+windowTitleBarInactiveColor = $purple3
+
+// *************************** Content ************************** //
+contentTitleColor = $vivid.green
+contentTextColor = $dark.green
+contentBackgroundColor = $black1
+//contentBackgroundColor = pattern(named:paper)
+rainbowGradient = linear-gradient($purple, $vivid.green)
+
+// *************************** Details ************************** //
+detailsTitleColor = $dark.green
+detailsBackgroundColor = $purple2
+detailsImage = image(named:apple)
+//detailsImage2 = image(file:../some/path/some-file.jpg)
+
+// *********************** System Override ********************** //
+labelColor = $vivid.green
+secondaryLabelColor = $dark.green
+
+// *********************** Common Colors ************************ //
+blue = rgb(0, 170, 255)
+vivid.green = rgb(230, 255, 20)
+vivid.darker.green = rgb(200, 225, 0)
+dark.green = rgb(130, 155, 80)
+lime.green = rgb(250, 190, 45, .5)
+black1 = rgb(5, 25, 5)
+purple = rgb(175, 27, 230)
+purple2 = rgb(175, 27, 230, 0.25)
+purple3 = rgb(175, 27, 230, 0.15)
+lime.green2 = rgb(120, 233, 47)
+clear = rgb(0,0,0,0)
+
+// ********************** Fallback Assets *********************** //
+fallbackForegroundColor = rgb(255, 10, 90, 1.0)
+fallbackGradient = linear-gradient($blue, rgba(200, 140, 60, 1.0))
+

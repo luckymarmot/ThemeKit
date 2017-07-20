@@ -102,13 +102,13 @@
 
 <p><img src="https://img.shields.io/badge/os-macOS%2010.10%2B-green.svg?style=flat" alt="macOS">
 <img src="https://img.shields.io/badge/swift-3.2-green.svg?style=flat" alt="Swift3">
-<img src="https://img.shields.io/badge/release-1.0-blue.svg?style=flat" alt="Release">
+<img src="https://img.shields.io/badge/release-1.0.0-blue.svg?style=flat" alt="Release">
 <img src="https://img.shields.io/badge/license-MIT-lightgray.svg" alt="MIT">
 <img src="https://img.shields.io/badge/dep-CocoaPods-orange.svg" alt="CocoaPods">
 <img src="https://img.shields.io/badge/dep-Carthage-orange.svg" alt="Carthage"></p>
 <h2 id='summary' class='heading'>Summary</h2>
 
-<p><em>ThemeKit</em> is a lightweight theming library completly written in Swift that provides theming capabilities to both Swift 3.2+ and Objective-C macOS applications.</p>
+<p><em>ThemeKit</em> is a lightweight theming library completely written in Swift that provides theming capabilities to both Swift 3.2+ and Objective-C macOS applications.</p>
 
 <p><em>ThemeKit</em> is brought to you with ❤️ by <a href="http://nunogrilo.com">Nuno Grilo</a> and the <a href="https://paw.cloud">Paw</a> <a href="https://github.com/orgs/luckymarmot/people">team</a>.</p>
 
@@ -174,7 +174,7 @@
 </ul>
 <h2 id='installation' class='heading'>Installation</h2>
 
-<p>There are multiple options to inlcude <em>ThemeKit</em> on your project:</p>
+<p>There are multiple options to include <em>ThemeKit</em> on your project:</p>
 
 <ul>
 <li><a href="https://cocoapods.org">CocoaPods</a>: add to your <code>Podfile</code>:</li>
@@ -269,7 +269,7 @@
 <span class="p">}</span>
 </code></pre>
 
-<p>Additionaly, the following properties are KVO compliant:</p>
+<p>Additionally, the following properties are KVO compliant:</p>
 
 <ul>
 <li><a href="http://themekit.nunogrilo.com/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager5themePS_5Theme_"><code>ThemeManager.shared.theme</code></a></li>
@@ -315,7 +315,7 @@ Please note that when using window specific themes, only the associated <code>NS
 <li><code>ThemeImage.image(for view:, selector:)</code></li>
 </ul>
 
-<p>Additionaly, please note that system overriden colors (<code>NSColor.*</code>) will always use the global theme.</p></li>
+<p>Additionally, please note that system overridden colors (<code>NSColor.*</code>) will always use the global theme.</p></li>
 <li><p><a href="http://themekit.nunogrilo.com/Extensions/NSWindow.html#/s:vE8ThemeKitCSo8NSWindow20windowEffectiveThemePS_5Theme_"><code>NSWindow.windowEffectiveTheme</code></a></p>
 
 <p>Returns the current effective theme (read-only).</p></li>
@@ -342,7 +342,7 @@ Please note that when using window specific themes, only the associated <code>NS
 <p>The <a href="http://themekit.nunogrilo.com/Extensions/NSColor.html">NSColor Extension</a> may be useful when overriding colors in ThemeColor extensions.</p>
 <h3 id='fallback-assets' class='heading'>Fallback Assets</h3>
 
-<p>ThemeKit provides a simple fallback mechanism when looking up assets in current theme. It will search for assets, in order:</p>
+<p>ThemeKit provides a simple fallback mechanism when looking up assets in the current theme. It will search for assets, in order:</p>
 
 <ul>
 <li>the asset name, defined in theme (e.g., <code>myBackgroundColor</code>)</li>
@@ -350,11 +350,11 @@ Please note that when using window specific themes, only the associated <code>NS
 <li><code>defaultFallbackForegroundColor</code>, <code>defaultFallbackBackgroundColor</code>, <code>fallbackGradient</code> or <code>defaultFallbackImage</code> defined internally, depending if asset is a foreground/background color, gradient or image, respectively</li>
 </ul>
 
-<p>However, for overrided system named colors, the fallback mechanism is different and simpler:</p>
+<p>However, for overridden system named colors, the fallback mechanism is different and simpler:</p>
 
 <ul>
 <li>the asset name, defined in theme (e.g., <code>labelColor</code>)</li>
-<li>original asset defined in system (e.g., <code>NSColor.labelColor</code>)</li>
+<li>original asset defined in the system (e.g., <code>NSColor.labelColor</code>)</li>
 </ul>
 
 <p>Please refer to <a href="http://themekit.nunogrilo.com/Classes/ThemeColor.html"><code>ThemeColor</code></a>, <a href="http://themekit.nunogrilo.com/Classes/ThemeGradient.html"><code>ThemeGradient</code></a> and <a href="http://themekit.nunogrilo.com/Classes/ThemeImage.html"><code>ThemeImage</code></a> for more information.</p>
@@ -471,7 +471,7 @@ Basically, a <a href="https://github.com/luckymarmot/ThemeKit/blob/master/Demo/D
 </code></pre>
 <h3 id='strong-i-39-m-having-font-smoothing-issues-strong' class='heading'><strong>I&rsquo;m having font smoothing issues!</strong></h3>
 
-<p>You may run into font smoothing issues, when you use text without a background color set. Bottom line is, always specify/draw a background when using/drawing text. </p>
+<p>You may run into font smoothing issues when you use text without a background color set. Bottom line is, always specify/draw a background when using/drawing text. </p>
 
 <ol>
 <li><p>For controls like <code>NSTextField</code>, <code>NSTextView</code>, etc:</p>

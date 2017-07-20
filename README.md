@@ -11,7 +11,7 @@
 
 ## Summary
 
-*ThemeKit* is a lightweight theming library completly written in Swift that provides theming capabilities to both Swift 3.2+ and Objective-C macOS applications.
+*ThemeKit* is a lightweight theming library completely written in Swift that provides theming capabilities to both Swift 3.2+ and Objective-C macOS applications.
 
 *ThemeKit* is brought to you with ❤️ by [Nuno Grilo](http://nunogrilo.com) and the [Paw](https://paw.cloud) [team](https://github.com/orgs/luckymarmot/people).
 
@@ -59,7 +59,7 @@ Check the [ThemeKit Docs](http://themekit.nunogrilo.com).
   - Optional override of `NSColor` named colors (e.g., `labelColor`) to dynamically change with the theme
 
 ## Installation
-There are multiple options to inlcude *ThemeKit* on your project:
+There are multiple options to include *ThemeKit* on your project:
 
 - [CocoaPods](https://cocoapods.org): add to your `Podfile`:
 
@@ -156,7 +156,7 @@ NotificationCenter.default.addObserver(self, selector: #selector(changedTheme(_:
 }
 ```
 
-Additionaly, the following properties are KVO compliant:
+Additionally, the following properties are KVO compliant:
 
 - [`ThemeManager.shared.theme`](http://themekit.nunogrilo.com/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager5themePS_5Theme_)
 - [`ThemeManager.shared.effectiveTheme`](http://themekit.nunogrilo.com/Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager14effectiveThemePS_5Theme_)
@@ -205,7 +205,7 @@ In case ([`WindowThemePolicy`](http://themekit.nunogrilo.com/Classes/ThemeManage
    	- `ThemeGradient.gradient(for view:, selector:)`
    	- `ThemeImage.image(for view:, selector:)`
 
-   	Additionaly, please note that system overriden colors (`NSColor.*`) will always use the global theme.
+   	Additionally, please note that system overridden colors (`NSColor.*`) will always use the global theme.
 
 - [`NSWindow.windowEffectiveTheme`](http://themekit.nunogrilo.com/Extensions/NSWindow.html#/s:vE8ThemeKitCSo8NSWindow20windowEffectiveThemePS_5Theme_)
 
@@ -234,16 +234,16 @@ The [NSColor Extension](http://themekit.nunogrilo.com/Extensions/NSColor.html) m
 
 ### Fallback Assets
 
-ThemeKit provides a simple fallback mechanism when looking up assets in current theme. It will search for assets, in order:
+ThemeKit provides a simple fallback mechanism when looking up assets in the current theme. It will search for assets, in order:
 
 - the asset name, defined in theme (e.g., `myBackgroundColor`)
 - `fallbackForegroundColor`, `fallbackBackgroundColor`, `fallbackGradient` or `fallbackImage` defined in theme, depending if asset is a foreground/background color, gradient or image, respectively
 - `defaultFallbackForegroundColor`, `defaultFallbackBackgroundColor`, `fallbackGradient` or `defaultFallbackImage` defined internally, depending if asset is a foreground/background color, gradient or image, respectively
 
-However, for overrided system named colors, the fallback mechanism is different and simpler:
+However, for overridden system named colors, the fallback mechanism is different and simpler:
 
 - the asset name, defined in theme (e.g., `labelColor`)
-- original asset defined in system (e.g., `NSColor.labelColor`)
+- original asset defined in the system (e.g., `NSColor.labelColor`)
 
 Please refer to [`ThemeColor`](http://themekit.nunogrilo.com/Classes/ThemeColor.html), [`ThemeGradient`](http://themekit.nunogrilo.com/Classes/ThemeGradient.html) and [`ThemeImage`](http://themekit.nunogrilo.com/Classes/ThemeImage.html) for more information.
 
@@ -370,7 +370,7 @@ If the user opts for always showing the scrollbars on *System Preferences*, scro
    ```
 
 ### **I'm having font smoothing issues!**
-You may run into font smoothing issues, when you use text without a background color set. Bottom line is, always specify/draw a background when using/drawing text. 
+You may run into font smoothing issues when you use text without a background color set. Bottom line is, always specify/draw a background when using/drawing text. 
 
    1. For controls like `NSTextField`, `NSTextView`, etc:
    

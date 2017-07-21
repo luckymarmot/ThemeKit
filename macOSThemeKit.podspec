@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name         = 'ThemeKit'
+  s.name         = 'macOSThemeKit'
   s.version      = '1.0.0'
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.summary      = 'macOS Theming Framework'

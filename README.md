@@ -65,7 +65,7 @@ There are multiple options to include *ThemeKit* on your project:
 
   ```
   use_frameworks!
-  pod 'ThemeKit', '~> 1.0'
+  pod 'macOSThemeKit', '~> 1.0'
   ```
   
 - [Carthage](https://github.com/Carthage/Carthage):

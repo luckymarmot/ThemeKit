@@ -115,10 +115,13 @@
 <p align="left">
   <img src="https://github.com/luckymarmot/ThemeKit/raw/master/Imgs/ThemeKit.gif" width="675" height="378" alt="ThemeKit Animated Demo" />
 </p>
+<h3 id='quickstart' class='heading'>QuickStart</h3>
 
-<p>Download the <a href="https://github.com/luckymarmot/ThemeKit/raw/master/Demo/Bin/Demo.zip">ThemeKit Demo</a> binary and give it a try!</p>
-
-<p>Check the <a href="http://themekit.nunogrilo.com">ThemeKit Docs</a>.</p>
+<ul>
+<li>Download the <a href="https://github.com/luckymarmot/ThemeKit/raw/master/Demo/Bin/Demo.zip">ThemeKit Demo</a> binary and give it a try!</li>
+<li>Read the <a href="https://medium.com/@nfgrilo/make-your-macos-app-themable-30dbfe4f5ef0">Make your macOS app themable</a> article (simple tutorial).</li>
+<li>Check the <a href="http://themekit.nunogrilo.com">ThemeKit Docs</a>.</li>
+</ul>
 <h2 id='table-of-contents' class='heading'>Table of Contents</h2>
 
 <ul>
@@ -180,7 +183,15 @@
 <li><a href="https://cocoapods.org">CocoaPods</a>: add to your <code>Podfile</code>:</li>
 </ul>
 <pre class="highlight plaintext"><code>  use_frameworks!
-  pod 'macOSThemeKit', '~&gt; 1.0'
+  target '[YOUR APP TARGET]' do
+      pod 'macOSThemeKit', '~&gt; 1.0.0'
+  end
+</code></pre>
+
+<p>When using CocoaPods, the ThemeKit module is named <code>macOSThemeKit</code>:</p>
+<pre class="highlight plaintext"><code>  import macOSThemeKit
+</code></pre>
+<pre class="highlight plaintext"><code>Please note that, because ThemeKit is (currently) written in Swift 3.2, if you are using Xcode 9, you will need to select the Swift 3.2 compiler (`SWIFT_VERSION`) for the `Pods` project.
 </code></pre>
 
 <ul>

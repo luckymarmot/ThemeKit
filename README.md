@@ -19,9 +19,12 @@
   <img src="https://github.com/luckymarmot/ThemeKit/raw/master/Imgs/ThemeKit.gif" width="675" height="378" alt="ThemeKit Animated Demo" />
 </p>
 
-Download the [ThemeKit Demo](https://github.com/luckymarmot/ThemeKit/raw/master/Demo/Bin/Demo.zip) binary and give it a try!
 
-Check the [ThemeKit Docs](http://themekit.nunogrilo.com).
+### QuickStart
+
+* Download the [ThemeKit Demo](https://github.com/luckymarmot/ThemeKit/raw/master/Demo/Bin/Demo.zip) binary and give it a try!
+* Read the [Make your macOS app themable](https://medium.com/@nfgrilo/make-your-macos-app-themable-30dbfe4f5ef0) article (simple tutorial). 
+* Check the [ThemeKit Docs](http://themekit.nunogrilo.com). 
 
 ## Table of Contents
 * [Summary](#summary)
@@ -63,10 +66,20 @@ There are multiple options to include *ThemeKit* on your project:
 
 - [CocoaPods](https://cocoapods.org): add to your `Podfile`:
 
-  ```
+  ```Podfile
   use_frameworks!
-  pod 'macOSThemeKit', '~> 1.0'
+  target '[YOUR APP TARGET]' do
+      pod 'macOSThemeKit', '~> 1.0.0'
+  end
   ```
+  When using CocoaPods, the ThemeKit module is named `macOSThemeKit`:
+  
+  ```
+  import macOSThemeKit
+  ```
+  
+	Please note that, because ThemeKit is (currently) written in Swift 3.2, if you are using Xcode 9, you will need to select the Swift 3.2 compiler (`SWIFT_VERSION`) for the `Pods` project.
+  
   
 - [Carthage](https://github.com/Carthage/Carthage):
 

@@ -212,6 +212,7 @@
 <h3 id='simple-usage' class='heading'>Simple Usage</h3>
 
 <p>At its simpler usage, applications can be themed with a single line command:</p>
+<h5 id='in-swift' class='heading'>In Swift:</h5>
 <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">applicationWillFinishLaunching</span><span class="p">(</span><span class="n">_</span> <span class="nv">notification</span><span class="p">:</span> <span class="kt">Notification</span><span class="p">)</span> <span class="p">{</span>
 
     <span class="c1">/// Apply the dark theme</span>
@@ -226,9 +227,19 @@
 
 <span class="p">}</span>
 </code></pre>
+<h5 id='in-objective-c' class='heading'>In Objective-C:</h5>
+<pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">applicationWillFinishLaunching</span><span class="p">:(</span><span class="n">NSNotification</span> <span class="o">*</span><span class="p">)</span><span class="nv">aNotification</span> <span class="p">{</span>
+
+    <span class="c1">// Apply the dark theme
+</span>    <span class="n">TKDarkTheme</span> <span class="o">*</span><span class="n">darkTheme</span> <span class="o">=</span> <span class="n">TKThemeManager</span><span class="p">.</span><span class="n">darkTheme</span><span class="p">;</span>
+    <span class="p">[[</span><span class="n">TKThemeManager</span> <span class="nf">sharedManager</span><span class="p">]</span> <span class="nf">setTheme</span><span class="p">:</span><span class="n">darkTheme</span><span class="p">];</span>
+
+<span class="p">}</span>
+</code></pre>
 <h3 id='advanced-usage' class='heading'>Advanced Usage</h3>
 
 <p>The following code will define which windows should be automatically themed (<a href="http://themekit.nunogrilo.com/Classes/ThemeManager/WindowThemePolicy.html"><code>WindowThemePolicy</code></a>) and add support for user themes (<a href="http://themekit.nunogrilo.com/Classes/UserTheme.html"><code>UserTheme</code></a>):</p>
+<h5 id='in-swift' class='heading'>In Swift:</h5>
 <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">applicationWillFinishLaunching</span><span class="p">(</span><span class="n">_</span> <span class="nv">notification</span><span class="p">:</span> <span class="kt">Notification</span><span class="p">)</span> <span class="p">{</span>
 
     <span class="c1">/// Define default theme.</span>
@@ -258,6 +269,39 @@
     <span class="kt">ThemeManager</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">applyLastOrDefaultTheme</span><span class="p">()</span>
 
 <span class="p">}</span>    
+</code></pre>
+<h5 id='in-objective-c' class='heading'>In Objective-C:</h5>
+<pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">applicationWillFinishLaunching</span><span class="p">:(</span><span class="n">NSNotification</span> <span class="o">*</span><span class="p">)</span><span class="nv">aNotification</span> <span class="p">{</span>
+
+    <span class="c1">/// Define default theme.
+</span>    <span class="c1">/// Used on first run. Default: `SystemTheme`.
+</span>    <span class="c1">/// Note: `SystemTheme` is a special theme that resolves to `ThemeManager.lightTheme` or `ThemeManager.darkTheme`,
+</span>    <span class="c1">/// depending on the macOS preference at 'System Preferences &gt; General &gt; Appearance'.
+</span>    <span class="p">[</span><span class="n">TKThemeManager</span> <span class="nf">setDefaultTheme</span><span class="p">:</span><span class="n">TKThemeManager</span><span class="p">.</span><span class="n">lightTheme</span><span class="p">];</span>
+
+    <span class="c1">/// Define window theme policy.
+</span>    <span class="p">[</span><span class="n">TKThemeManager</span> <span class="nf">sharedManager</span><span class="p">].</span><span class="n">windowThemePolicy</span> <span class="o">=</span> <span class="n">TKThemeManagerWindowThemePolicyThemeAllWindows</span><span class="p">;</span>
+    <span class="c1">//[TKThemeManager sharedManager].windowThemePolicy = TKThemeManagerWindowThemePolicyThemeSomeWindows;
+</span>    <span class="c1">//[TKThemeManager sharedManager].themableWindowClasses = [[MyWindow class]];
+</span>    <span class="c1">//[TKThemeManager sharedManager].windowThemePolicy = TKThemeManagerWindowThemePolicyDoNotThemeSomeWindows;
+</span>    <span class="c1">//[TKThemeManager sharedManager].notThemableWindowClasses = [[NSPanel class]];
+</span>    <span class="c1">//[TKThemeManager sharedManager].windowThemePolicy = TKThemeManagerWindowThemePolicyDoNotThemeWindows;
+</span>
+    <span class="c1">/// Enable &amp; configure user themes.
+</span>    <span class="c1">/// Will use folder `(...)/Application Support/{your_app_bundle_id}/Themes`.
+</span>    <span class="n">NSArray</span><span class="o">&lt;</span><span class="n">NSString</span><span class="o">*&gt;*</span> <span class="n">applicationSupportURLs</span> <span class="o">=</span> <span class="n">NSSearchPathForDirectoriesInDomains</span><span class="p">(</span><span class="n">NSApplicationSupportDirectory</span><span class="p">,</span> <span class="n">NSUserDomainMask</span><span class="p">,</span> <span class="nb">YES</span><span class="p">);</span>
+    <span class="n">NSURL</span><span class="o">*</span> <span class="n">thisAppSupportURL</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSURL</span> <span class="nf">fileURLWithPath</span><span class="p">:</span><span class="n">applicationSupportURLs</span><span class="p">.</span><span class="n">firstObject</span><span class="p">]</span> <span class="nf">URLByAppendingPathComponent</span><span class="p">:[</span><span class="n">NSBundle</span> <span class="nf">mainBundle</span><span class="p">].</span><span class="n">bundleIdentifier</span><span class="p">];</span>
+    <span class="n">NSURL</span><span class="o">*</span> <span class="n">userThemesFolderURL</span> <span class="o">=</span> <span class="p">[</span><span class="n">thisAppSupportURL</span> <span class="nf">URLByAppendingPathComponent</span><span class="p">:</span><span class="s">@"Themes"</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">TKThemeManager</span> <span class="nf">sharedManager</span><span class="p">].</span><span class="n">userThemesFolderURL</span> <span class="o">=</span> <span class="n">userThemesFolderURL</span><span class="p">;</span>
+
+    <span class="c1">/// Change the default light and dark theme, used when `SystemTheme` is selected.
+</span>    <span class="c1">//TKThemeManager.lightTheme = [[TKThemeManager sharedManager] themeWithIdentifier:PaperTheme.identifier];
+</span>    <span class="c1">//TKThemeManager.darkTheme = [[TKThemeManager sharedManager] themeWithIdentifier:@"com.luckymarmot.ThemeKit.PurpleGreen"];
+</span>
+    <span class="c1">/// Apply last applied theme (or the default theme, if no previous one)
+</span>    <span class="p">[[</span><span class="n">TKThemeManager</span> <span class="nf">sharedManager</span><span class="p">]</span> <span class="nf">applyLastOrDefaultTheme</span><span class="p">];</span>
+
+<span class="p">}</span>
 </code></pre>
 
 <p>Please check the <strong>Demo</strong> application source code for a more complete usage example of <em>ThemeKit</em>.</p>

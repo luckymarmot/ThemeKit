@@ -96,6 +96,8 @@ There are multiple options to include *ThemeKit* on your project:
 ### Simple Usage
 At its simpler usage, applications can be themed with a single line command:
 
+##### In Swift:
+
 ```swift
 func applicationWillFinishLaunching(_ notification: Notification) {
 	
@@ -112,9 +114,23 @@ func applicationWillFinishLaunching(_ notification: Notification) {
 }
 ```
 
+##### In Objective-C:
+
+```objc
+- (void)applicationWillFinishLaunching:(NSNotification *)aNotification {
+	
+	// Apply the dark theme
+	TKDarkTheme *darkTheme = TKThemeManager.darkTheme;
+	[[TKThemeManager sharedManager] setTheme:darkTheme];
+	
+}
+```
+
 ### Advanced Usage
 
 The following code will define which windows should be automatically themed ([`WindowThemePolicy`](http://themekit.nunogrilo.com/Classes/ThemeManager/WindowThemePolicy.html)) and add support for user themes ([`UserTheme`](http://themekit.nunogrilo.com/Classes/UserTheme.html)):
+
+##### In Swift:
 
 ```swift
 func applicationWillFinishLaunching(_ notification: Notification) {
@@ -146,6 +162,42 @@ func applicationWillFinishLaunching(_ notification: Notification) {
 	ThemeManager.shared.applyLastOrDefaultTheme()
 	 
 }    
+```
+
+##### In Objective-C:
+
+```objc
+- (void)applicationWillFinishLaunching:(NSNotification *)aNotification {
+
+    /// Define default theme.
+    /// Used on first run. Default: `SystemTheme`.
+    /// Note: `SystemTheme` is a special theme that resolves to `ThemeManager.lightTheme` or `ThemeManager.darkTheme`,
+    /// depending on the macOS preference at 'System Preferences > General > Appearance'.
+    [TKThemeManager setDefaultTheme:TKThemeManager.lightTheme];
+    
+    /// Define window theme policy.
+    [TKThemeManager sharedManager].windowThemePolicy = TKThemeManagerWindowThemePolicyThemeAllWindows;
+    //[TKThemeManager sharedManager].windowThemePolicy = TKThemeManagerWindowThemePolicyThemeSomeWindows;
+    //[TKThemeManager sharedManager].themableWindowClasses = [[MyWindow class]];
+    //[TKThemeManager sharedManager].windowThemePolicy = TKThemeManagerWindowThemePolicyDoNotThemeSomeWindows;
+    //[TKThemeManager sharedManager].notThemableWindowClasses = [[NSPanel class]];
+    //[TKThemeManager sharedManager].windowThemePolicy = TKThemeManagerWindowThemePolicyDoNotThemeWindows;
+    
+    /// Enable & configure user themes.
+    /// Will use folder `(...)/Application Support/{your_app_bundle_id}/Themes`.
+    NSArray<NSString*>* applicationSupportURLs = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+    NSURL* thisAppSupportURL = [[NSURL fileURLWithPath:applicationSupportURLs.firstObject] URLByAppendingPathComponent:[NSBundle mainBundle].bundleIdentifier];
+    NSURL* userThemesFolderURL = [thisAppSupportURL URLByAppendingPathComponent:@"Themes"];
+    [TKThemeManager sharedManager].userThemesFolderURL = userThemesFolderURL;
+    
+    /// Change the default light and dark theme, used when `SystemTheme` is selected.
+    //TKThemeManager.lightTheme = [[TKThemeManager sharedManager] themeWithIdentifier:PaperTheme.identifier];
+    //TKThemeManager.darkTheme = [[TKThemeManager sharedManager] themeWithIdentifier:@"com.luckymarmot.ThemeKit.PurpleGreen"];
+    
+    /// Apply last applied theme (or the default theme, if no previous one)
+    [[TKThemeManager sharedManager] applyLastOrDefaultTheme];
+    
+}
 ```
 
 Please check the **Demo** application source code for a more complete usage example of *ThemeKit*.

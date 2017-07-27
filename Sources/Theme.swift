@@ -66,9 +66,15 @@ public protocol Theme: NSObjectProtocol {
 /// These functions are available for all `Theme`s.
 public extension Theme {
     
-    // MARK: Convenient Methods/Properties
+    // MARK: Convenient Methods/Properties (Swift only)
     
     /// Is this a light theme?
+    ///
+    /// This method is not available from Objective-C. Alternative code:
+    ///
+    /// ```objc
+    /// !aTheme.isDarkTheme
+    /// ```
     public var isLightTheme: Bool {
         return !isDarkTheme
     }
@@ -76,18 +82,34 @@ public extension Theme {
     /// Is this the system theme? If true, theme automatically resolve to
     /// `ThemeManager.lightTheme` or `ThemeManager.darkTheme`, accordingly to
     /// **System Preferences > General > Appearance**.
+    ///
+    /// This method is not available from Objective-C. Alternative code:
+    ///
+    /// ```objc
+    /// [aTheme.identifier isEqualToString:TKSystemTheme.identifier]
+    /// ```
     public var isSystemTheme: Bool {
         return identifier == SystemTheme.identifier
     }
     
     /// Is this a user theme?
+    ///
+    /// This method is not available from Objective-C. Alternative code:
+    ///
+    /// ```objc
+    /// [aTheme isKindOfClass:[TKUserTheme class]]
+    /// ```
     public var isUserTheme: Bool {
         return self is UserTheme
     }
     
     /// Apply theme (make it the current one).
     ///
-    /// Equivalent of calling `ThemeManager.shared.theme = aTheme`.
+    /// This method is not available from Objective-C. Alternative code:
+    ///
+    /// ```objc
+    /// [[TKThemeManager sharedManager] setTheme:aTheme]
+    /// ```
     public func apply() {
         ThemeManager.shared.theme = self
     }
@@ -95,6 +117,8 @@ public extension Theme {
     /// Theme asset for the specified key. Supported assets are `NSColor`, `NSGradient`, `NSImage` and `NSString`.
     ///
     /// This function is overriden by `UserTheme`.
+    ///
+    /// This method is not available from Objective-C.
     ///
     /// - parameter key: A color name, gradient name, image name or a theme string
     ///
@@ -120,6 +144,8 @@ public extension Theme {
     ///
     /// This function is overriden by `UserTheme`.
     ///
+    /// This method is not available from Objective-C.
+    ///
     /// - parameter key: A color name, gradient name, image name or a theme string
     ///
     /// - returns: `true` if theme provides an asset for the given key; `false` otherwise.
@@ -129,6 +155,12 @@ public extension Theme {
     
     /// Default foreground color to be used on fallback situations when
     /// no `fallbackForegroundColor` was specified by the theme.
+    ///
+    /// This method is not available from Objective-C. Alternative code:
+    ///
+    /// ```objc
+    /// aTheme.isDarkTheme ? NSColor.whiteColor : NSColor.blackColor
+    /// ```
     var defaultFallbackForegroundColor: NSColor {
         return isLightTheme ? NSColor.black : NSColor.white
     }
@@ -136,18 +168,36 @@ public extension Theme {
     /// Default background color to be used on fallback situations when
     /// no `fallbackBackgroundColor` was specified by the theme (background color
     /// is a color method that contains `Background` in its name).
+    ///
+    /// This method is not available from Objective-C. Alternative code:
+    ///
+    /// ```objc
+    /// aTheme.isDarkTheme ? NSColor.blackColor : NSColor.whiteColor
+    /// ```
     var defaultFallbackBackgroundColor: NSColor {
         return isLightTheme ? NSColor.white : NSColor.black
     }
     
     /// Default gradient to be used on fallback situations when
     /// no `fallbackForegroundColor` was specified by the theme.
+    ///
+    /// This method is not available from Objective-C. Alternative code:
+    ///
+    /// ```objc
+    /// [[NSGradient alloc] initWithStartingColor:(aTheme.isDarkTheme ? NSColor.blackColor : NSColor.whiteColor) endingColor:(aTheme.isDarkTheme ? NSColor.whiteColor : NSColor.blackColor)]
+    /// ```
     var defaultFallbackGradient: NSGradient? {
         return NSGradient(starting: defaultFallbackBackgroundColor, ending: defaultFallbackBackgroundColor)
     }
     
     /// Default image to be used on fallback situations when
     /// no image was specified by the theme.
+    ///
+    /// This method is not available from Objective-C. Alternative code:
+    ///
+    /// ```objc
+    /// [[NSImage alloc] initWithSize:NSZeroSize]
+    /// ```
     var defaultFallbackImage: NSImage {
         return NSImage(size: NSZeroSize)
     }
@@ -155,6 +205,12 @@ public extension Theme {
     /// Effective theme, which can be different from itself if it represents the 
     /// system theme, respecting **System Preferences > General > Appearance** 
     /// (in that case it will be either `ThemeManager.lightTheme` or `ThemeManager.darkTheme`).
+    ///
+    /// This method is not available from Objective-C. Alternative code:
+    ///
+    /// ```objc
+    /// [aTheme.identifier isEqualToString:TKSystemTheme.identifier] ? (aTheme.isDarkTheme ? TKThemeManager.darkTheme : TKThemeManager.lightTheme) : aTheme;
+    /// ```
     var effectiveTheme: Theme {
         if isSystemTheme {
             return isDarkTheme ? ThemeManager.darkTheme : ThemeManager.lightTheme

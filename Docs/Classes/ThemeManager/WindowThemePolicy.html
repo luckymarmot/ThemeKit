@@ -106,13 +106,13 @@
             <p>Window theme policies that define which windows should be automatically themed, if any.</p>
 <h2 id='swift' class='heading'>Swift</h2>
 
-<p>By default, all application windows will be themed (<code>.themeAllWindows</code>).</p>
+<p>By default, all application windows (except <code>NSPanel</code>) will be themed (<code>.themeAllWindows</code>).</p>
 
 <ul>
-<li>themeAllWindows:   Theme all application windows, except <code>NSPanel</code> subclasses (default).</li>
-<li>themeSomeWindows:  Only theme windows of the specified classes.</li>
-<li>doNotThemeSomeWindows: Do not theme windows of the specified classes.</li>
-<li>doNotThemeWindows: Do not theme any window.E.g.:</li>
+<li><code>themeAllWindows</code>:   Theme all application windows, except <code>NSPanel</code> subclasses (default).</li>
+<li><code>themeSomeWindows</code>:  Only theme windows of the specified classes.</li>
+<li><code>doNotThemeSomeWindows</code>: Do not theme windows of the specified classes.</li>
+<li><code>doNotThemeWindows</code>: Do not theme any window.E.g.:</li>
 </ul>
 
 <p>E.g.:</p>
@@ -120,20 +120,18 @@
 </code></pre>
 <h2 id='objective-c' class='heading'>Objective-C</h2>
 
-<p>By default, all application windows will be themed (<code>.TKThemeManagerWindowThemePolicyThemeAllWindows</code>).</p>
+<p>By default, all application windows (except <code>NSPanel</code>) will be themed (<code>TKThemeManagerWindowThemePolicyThemeAllWindows</code>).</p>
 
 <ul>
-<li>TKThemeManagerWindowThemePolicyThemeAllWindows:   Theme all application windows (default).</li>
-<li>TKThemeManagerWindowThemePolicyThemeSomeWindowClasses:  Only theme windows of the specified classes.</li>
-<li>TKThemeManagerWindowThemePolicyDoNotThemeSomeWindowClasses:  Do not theme windows of the specified classes.</li>
-<li>TKThemeManagerWindowThemePolicyDoNotThemeWindows: Do not theme any window.</li>
+<li><code>TKThemeManagerWindowThemePolicyThemeAllWindows</code>:   Theme all application windows, except <code>NSPanel</code> subclasses (default).</li>
+<li><code>TKThemeManagerWindowThemePolicyThemeSomeWindows</code>:  Only theme windows of the specified classes (use <code>themableWindowClasses</code> property).</li>
+<li><code>TKThemeManagerWindowThemePolicyDoNotThemeSomeWindows</code>:  Do not theme windows of the specified classes (use <code>notThemableWindowClasses</code> property).</li>
+<li><code>TKThemeManagerWindowThemePolicyDoNotThemeWindows</code>: Do not theme any window.</li>
 </ul>
 
-<p>If <code>.windowThemePolicy = TKThemeManagerWindowThemePolicyThemeSomeWindowClasses</code>
-is set, themable window class names can then be defined using
-<code>NSArray&lt;NSString*&gt;* themableWindowClassNames</code> property. E.g.:</p>
-<pre class="highlight plaintext"><code>[TKThemeManager sharedManager].windowThemePolicy = TKThemeManagerWindowThemePolicyThemeSomeWindowClasses;
-[TKThemeManager sharedManager].themableWindowClassNames = @[[CustomWindow class]];
+<p>Example:</p>
+<pre class="highlight plaintext"><code>[TKThemeManager sharedManager].windowThemePolicy = TKThemeManagerWindowThemePolicyThemeSomeWindows;
+[TKThemeManager sharedManager].themableWindowClasses = @[[CustomWindow class]];
 </code></pre>
 <h2 id='nswindow-extension' class='heading'>NSWindow Extension</h2>
 
@@ -181,7 +179,7 @@ is set, themable window class names can then be defined using
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L412">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/blob/master/Sources/ThemeManager.swift#L409">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -215,7 +213,7 @@ is set, themable window class names can then be defined using
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L414">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/blob/master/Sources/ThemeManager.swift#L411">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -249,7 +247,7 @@ is set, themable window class names can then be defined using
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L416">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/blob/master/Sources/ThemeManager.swift#L413">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -283,7 +281,7 @@ is set, themable window class names can then be defined using
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/luckymarmot/ThemeKit/Sources/ThemeManager.swift#L418">Show on GitHub</a>
+                        <a href="https://github.com/luckymarmot/ThemeKit/blob/master/Sources/ThemeManager.swift#L415">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

@@ -361,12 +361,12 @@ public class ThemeManager: NSObject {
     ///
     /// Swift
     /// -----
-    /// By default, all application windows will be themed (`.themeAllWindows`).
+    /// By default, all application windows (except `NSPanel`) will be themed (`.themeAllWindows`).
     ///
-    /// - themeAllWindows:   Theme all application windows, except `NSPanel` subclasses (default).
-    /// - themeSomeWindows:  Only theme windows of the specified classes.
-    /// - doNotThemeSomeWindows: Do not theme windows of the specified classes.
-    /// - doNotThemeWindows: Do not theme any window.E.g.:
+    /// - `themeAllWindows`:   Theme all application windows, except `NSPanel` subclasses (default).
+    /// - `themeSomeWindows`:  Only theme windows of the specified classes.
+    /// - `doNotThemeSomeWindows`: Do not theme windows of the specified classes.
+    /// - `doNotThemeWindows`: Do not theme any window.E.g.:
     ///
     /// E.g.:
     ///
@@ -376,20 +376,17 @@ public class ThemeManager: NSObject {
     ///
     /// Objective-C
     /// -----------
-    /// By default, all application windows will be themed (`.TKThemeManagerWindowThemePolicyThemeAllWindows`).
+    /// By default, all application windows (except `NSPanel`) will be themed (`TKThemeManagerWindowThemePolicyThemeAllWindows`).
     ///
-    /// - TKThemeManagerWindowThemePolicyThemeAllWindows:   Theme all application windows (default).
-    /// - TKThemeManagerWindowThemePolicyThemeSomeWindowClasses:  Only theme windows of the specified classes.
-    /// - TKThemeManagerWindowThemePolicyDoNotThemeSomeWindowClasses:  Do not theme windows of the specified classes.
-    /// - TKThemeManagerWindowThemePolicyDoNotThemeWindows: Do not theme any window.
+    /// - `TKThemeManagerWindowThemePolicyThemeAllWindows`:   Theme all application windows, except `NSPanel` subclasses (default).
+    /// - `TKThemeManagerWindowThemePolicyThemeSomeWindows`:  Only theme windows of the specified classes (use `themableWindowClasses` property).
+    /// - `TKThemeManagerWindowThemePolicyDoNotThemeSomeWindows`:  Do not theme windows of the specified classes (use `notThemableWindowClasses` property).
+    /// - `TKThemeManagerWindowThemePolicyDoNotThemeWindows`: Do not theme any window.
     ///
-    /// If `.windowThemePolicy = TKThemeManagerWindowThemePolicyThemeSomeWindowClasses`
-    /// is set, themable window class names can then be defined using
-    /// `NSArray<NSString*>* themableWindowClassNames` property. E.g.:
-    ///
+    /// Example:
     /// ```
-    /// [TKThemeManager sharedManager].windowThemePolicy = TKThemeManagerWindowThemePolicyThemeSomeWindowClasses;
-    /// [TKThemeManager sharedManager].themableWindowClassNames = @[[CustomWindow class]];
+    /// [TKThemeManager sharedManager].windowThemePolicy = TKThemeManagerWindowThemePolicyThemeSomeWindows;
+    /// [TKThemeManager sharedManager].themableWindowClasses = @[[CustomWindow class]];
     /// ```
     ///
     /// NSWindow Extension

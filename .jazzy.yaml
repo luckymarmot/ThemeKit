@@ -8,7 +8,7 @@ copyright: '© 2016-2017 [Paw](https://paw.cloud) & [Nuno Grilo](http://nunogril
 # URLs
 github_url: https://github.com/luckymarmot/ThemeKit
 root_url: http://themekit.nunogrilo.com
-github_file_prefix: https://github.com/luckymarmot/ThemeKit
+github_file_prefix: https://github.com/luckymarmot/ThemeKit/blob/master
 
 # Generation
 clean: true

@@ -178,9 +178,9 @@ func applicationWillFinishLaunching(_ notification: Notification) {
     /// Define window theme policy.
     [TKThemeManager sharedManager].windowThemePolicy = TKThemeManagerWindowThemePolicyThemeAllWindows;
     //[TKThemeManager sharedManager].windowThemePolicy = TKThemeManagerWindowThemePolicyThemeSomeWindows;
-    //[TKThemeManager sharedManager].themableWindowClasses = [[MyWindow class]];
+    //[TKThemeManager sharedManager].themableWindowClasses = @[[MyWindow class]];
     //[TKThemeManager sharedManager].windowThemePolicy = TKThemeManagerWindowThemePolicyDoNotThemeSomeWindows;
-    //[TKThemeManager sharedManager].notThemableWindowClasses = [[NSPanel class]];
+    //[TKThemeManager sharedManager].notThemableWindowClasses = @[[NSPanel class]];
     //[TKThemeManager sharedManager].windowThemePolicy = TKThemeManagerWindowThemePolicyDoNotThemeWindows;
     
     /// Enable & configure user themes.

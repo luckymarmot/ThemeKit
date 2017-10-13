@@ -3,15 +3,15 @@
 </p>
 
 ![macOS](https://img.shields.io/badge/os-macOS%2010.10%2B-green.svg?style=flat)
-![Swift3](https://img.shields.io/badge/swift-3.2-green.svg?style=flat)
-![Release](https://img.shields.io/badge/release-1.0.0-blue.svg?style=flat)
+![Swift3](https://img.shields.io/badge/swift-4-green.svg?style=flat)
+![Release](https://img.shields.io/badge/release-1.1.0-blue.svg?style=flat)
 ![MIT](https://img.shields.io/badge/license-MIT-lightgray.svg)
 ![CocoaPods](https://img.shields.io/badge/dep-CocoaPods-orange.svg)
 ![Carthage](https://img.shields.io/badge/dep-Carthage-orange.svg)
 
 ## Summary
 
-*ThemeKit* is a lightweight theming library completely written in Swift that provides theming capabilities to both Swift 3.2+ and Objective-C macOS applications.
+*ThemeKit* is a lightweight theming library completely written in Swift that provides theming capabilities to both Swift 4 and Objective-C macOS applications.
 
 *ThemeKit* is brought to you with ❤️ by [Nuno Grilo](http://nunogrilo.com) and the [Paw](https://paw.cloud) [team](https://github.com/orgs/luckymarmot/people).
 
@@ -45,7 +45,7 @@
 
 ## Features
 
-- Written in Swift 3.2
+- Written in Swift 4
 - Optional configuration, none required
 - Neglected performance impact
 - Automatically theme windows (configurable)
@@ -69,9 +69,11 @@ There are multiple options to include *ThemeKit* on your project:
   ```Podfile
   use_frameworks!
   target '[YOUR APP TARGET]' do
-      pod 'macOSThemeKit', '~> 1.0.0'
+      pod 'macOSThemeKit', '~> 1.1.0'
   end
   ```
+  For **Swift 3.2**, use `pod 'macOSThemeKit', '1.0.0'` instead.
+  
   When using CocoaPods, the ThemeKit module is named `macOSThemeKit`:
   
   ```

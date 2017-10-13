@@ -135,13 +135,13 @@ Objective-C) to add class methods for your gradients. E.g.:</p>
 <p>In Objective-C:</p>
 <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">TKThemeGradient</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
 
-<span class="err">+</span> <span class="err">(</span><span class="nc">TKThemeGradient</span><span class="o">*</span><span class="p">)</span><span class="n">brandGradient</span><span class="p">;</span>
+<span class="k">+</span> <span class="p">(</span><span class="n">TKThemeGradient</span><span class="o">*</span><span class="p">)</span><span class="n">brandGradient</span><span class="p">;</span>
 
 <span class="k">@end</span>
 
 <span class="k">@implementation</span> <span class="nc">TKThemeGradient</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
 
-<span class="err">+</span> <span class="err">(</span><span class="nc">TKThemeGradient</span><span class="o">*</span><span class="p">)</span><span class="n">brandGradient</span> <span class="p">{</span>
+<span class="k">+</span> <span class="p">(</span><span class="n">TKThemeGradient</span><span class="o">*</span><span class="p">)</span><span class="n">brandGradient</span> <span class="p">{</span>
    <span class="k">return</span> <span class="p">[</span><span class="n">TKThemeGradient</span> <span class="nf">gradientWithSelector</span><span class="p">:</span><span class="n">_cmd</span><span class="p">];</span>
 <span class="p">}</span>
 
@@ -170,29 +170,29 @@ instance methods for each theme gradient class method defined on (1). E.g.:</p>
 </code></pre>
 
 <p>In Objective-C:</p>
-<pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">TKLightTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span> <span class="err">@</span><span class="nc">end</span>
+<pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">TKLightTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span> <span class="k">@end</span>
 
 <span class="k">@implementation</span> <span class="nc">TKLightTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
 
-<span class="err">-</span> <span class="err">(</span><span class="nc">NSGradient</span><span class="o">*</span><span class="p">)</span><span class="n">brandGradient</span>
+<span class="k">-</span> <span class="p">(</span><span class="n">NSGradient</span><span class="o">*</span><span class="p">)</span><span class="n">brandGradient</span>
 <span class="p">{</span>
    <span class="k">return</span> <span class="p">[[</span><span class="n">NSGradient</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithStartingColor</span><span class="p">:[</span><span class="n">NSColor</span> <span class="nf">whiteColor</span><span class="p">]</span> <span class="nf">endingColor</span><span class="p">:[</span><span class="n">NSColor</span> <span class="nf">blackColor</span><span class="p">]];</span>
 <span class="p">}</span>
 
 <span class="k">@end</span>
 
-<span class="k">@interface</span> <span class="nc">TKDarkTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span> <span class="err">@</span><span class="nc">end</span>
+<span class="k">@interface</span> <span class="nc">TKDarkTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span> <span class="k">@end</span>
 
 <span class="k">@implementation</span> <span class="nc">TKDarkTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
 
-<span class="err">-</span> <span class="err">(</span><span class="nc">NSGradient</span><span class="o">*</span><span class="p">)</span><span class="n">brandGradient</span>
+<span class="k">-</span> <span class="p">(</span><span class="n">NSGradient</span><span class="o">*</span><span class="p">)</span><span class="n">brandGradient</span>
 <span class="p">{</span>
    <span class="k">return</span> <span class="p">[[</span><span class="n">NSGradient</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithStartingColor</span><span class="p">:[</span><span class="n">NSColor</span> <span class="nf">blackColor</span><span class="p">]</span> <span class="nf">endingColor</span><span class="p">:[</span><span class="n">NSColor</span> <span class="nf">whiteColor</span><span class="p">]];</span>
 <span class="p">}</span>
 
 <span class="k">@end</span>
 </code></pre></li>
-<li><p>If supporting <code><a href="../Classes/UserTheme.html">UserTheme</a></code>&rsquo;s, <strong>define properties on user theme files</strong> (<code>.theme</code>)
+<li><p>If supporting <code><a href="../Classes/UserTheme.html">UserTheme</a></code>&lsquo;s, <strong>define properties on user theme files</strong> (<code>.theme</code>)
 for each theme gradient class method defined on (1). E.g.:</p>
 <pre class="highlight plaintext"><code>displayName = Sample User Theme
 identifier = com.luckymarmot.ThemeKit.SampleUserTheme
@@ -223,9 +223,9 @@ brandGradient = linear-gradient($orangeSky, rgb(200, 140, 60))
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC8ThemeKit13ThemeGradient21themeGradientSelectorGSqV10ObjectiveC8Selector_"></a>
+                    <a name="/c:@M@ThemeKit@objc(cs)TKThemeGradient(py)themeGradientSelector"></a>
                     <a name="//apple_ref/swift/Property/themeGradientSelector" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC8ThemeKit13ThemeGradient21themeGradientSelectorGSqV10ObjectiveC8Selector_">themeGradientSelector</a>
+                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKThemeGradient(py)themeGradientSelector">themeGradientSelector</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -241,7 +241,7 @@ selector or, if inexistent, as argument in the theme instance method <code>theme
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">themeGradientSelector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">themeGradientSelector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -254,9 +254,9 @@ selector or, if inexistent, as argument in the theme instance method <code>theme
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC8ThemeKit13ThemeGradient21resolvedThemeGradientGSqCSo10NSGradient_"></a>
+                    <a name="/c:@M@ThemeKit@objc(cs)TKThemeGradient(py)resolvedThemeGradient"></a>
                     <a name="//apple_ref/swift/Property/resolvedThemeGradient" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC8ThemeKit13ThemeGradient21resolvedThemeGradientGSqCSo10NSGradient_">resolvedThemeGradient</a>
+                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKThemeGradient(py)resolvedThemeGradient">resolvedThemeGradient</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -271,7 +271,7 @@ selector or, if inexistent, as argument in the theme instance method <code>theme
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">resolvedThemeGradient</span><span class="p">:</span> <span class="kt">NSGradient</span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">resolvedThemeGradient</span><span class="p">:</span> <span class="kt">NSGradient</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -295,9 +295,9 @@ selector or, if inexistent, as argument in the theme instance method <code>theme
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFC8ThemeKit13ThemeGradient8gradientFT4withV10ObjectiveC8Selector_GSqS0__"></a>
+                    <a name="/c:@M@ThemeKit@objc(cs)TKThemeGradient(cm)gradientWithSelector:"></a>
                     <a name="//apple_ref/swift/Method/gradient(with:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC8ThemeKit13ThemeGradient8gradientFT4withV10ObjectiveC8Selector_GSqS0__">gradient(with:)</a>
+                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKThemeGradient(cm)gradientWithSelector:">gradient(with:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -348,9 +348,9 @@ selector or, if inexistent, as argument in the theme instance method <code>theme
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFC8ThemeKit13ThemeGradient8gradientFT3forPS_5Theme_8selectorV10ObjectiveC8Selector_GSqCSo10NSGradient_"></a>
+                    <a name="/c:@M@ThemeKit@objc(cs)TKThemeGradient(cm)gradientForTheme:selector:"></a>
                     <a name="//apple_ref/swift/Method/gradient(for:selector:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC8ThemeKit13ThemeGradient8gradientFT3forPS_5Theme_8selectorV10ObjectiveC8Selector_GSqCSo10NSGradient_">gradient(for:selector:)</a>
+                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKThemeGradient(cm)gradientForTheme:selector:">gradient(for:selector:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -381,7 +381,7 @@ selector or, if inexistent, as argument in the theme instance method <code>theme
                               </td>
                               <td>
                                 <div>
-                                  <p>A <code>Theme</code> instance.</p>
+                                  <p>A <code><a href="../Protocols/Theme.html">Theme</a></code> instance.</p>
                                 </div>
                               </td>
                             </tr>
@@ -413,9 +413,9 @@ selector or, if inexistent, as argument in the theme instance method <code>theme
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFC8ThemeKit13ThemeGradient8gradientFT3forCSo6NSView8selectorV10ObjectiveC8Selector_GSqCSo10NSGradient_"></a>
+                    <a name="/c:@M@ThemeKit@objc(cs)TKThemeGradient(cm)gradientForView:selector:"></a>
                     <a name="//apple_ref/swift/Method/gradient(for:selector:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC8ThemeKit13ThemeGradient8gradientFT3forCSo6NSView8selectorV10ObjectiveC8Selector_GSqCSo10NSGradient_">gradient(for:selector:)</a>
+                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKThemeGradient(cm)gradientForView:selector:">gradient(for:selector:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -426,7 +426,7 @@ selector or, if inexistent, as argument in the theme instance method <code>theme
                         <p>Current theme gradient, but respecting view appearance and any window
 specific theme (if set).</p>
 
-<p>If a <code><a href="../Extensions/NSWindow.html#/s:vE8ThemeKitCSo8NSWindow11windowThemeGSqPS_5Theme__">NSWindow.windowTheme</a></code> was set, it will be used instead.
+<p>If a <code><a href="../Extensions/NSWindow.html#/c:@CM@ThemeKit@@objc(cs)NSWindow(py)windowTheme">NSWindow.windowTheme</a></code> was set, it will be used instead.
 Some views may be using a different appearance than the theme appearance.
 In thoses cases, gradient won&rsquo;t be resolved using current theme, but from
 either <code>lightTheme</code> or <code>darkTheme</code>, depending of whether view appearance
@@ -485,9 +485,9 @@ is light or dark, respectively.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC8ThemeKit13ThemeGradient15recacheGradientFT_T_"></a>
+                    <a name="/c:@M@ThemeKit@objc(cs)TKThemeGradient(im)recacheGradient"></a>
                     <a name="//apple_ref/swift/Method/recacheGradient()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC8ThemeKit13ThemeGradient15recacheGradientFT_T_">recacheGradient()</a>
+                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKThemeGradient(im)recacheGradient">recacheGradient()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -495,7 +495,7 @@ is light or dark, respectively.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Forces dynamic gradient resolution into <code><a href="../Classes/ThemeGradient.html#/s:vC8ThemeKit13ThemeGradient21resolvedThemeGradientGSqCSo10NSGradient_">resolvedThemeGradient</a></code> and cache it.
+                        <p>Forces dynamic gradient resolution into <code><a href="../Classes/ThemeGradient.html#/c:@M@ThemeKit@objc(cs)TKThemeGradient(py)resolvedThemeGradient">resolvedThemeGradient</a></code> and cache it.
 You should not need to manually call this function.</p>
 
                       </div>
@@ -503,7 +503,7 @@ You should not need to manually call this function.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">recacheGradient</span><span class="p">()</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="n">open</span> <span class="kd">func</span> <span class="nf">recacheGradient</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
@@ -516,9 +516,9 @@ You should not need to manually call this function.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFC8ThemeKit13ThemeGradient10emptyCacheFT_T_"></a>
+                    <a name="/c:@M@ThemeKit@objc(cs)TKThemeGradient(cm)emptyCache"></a>
                     <a name="//apple_ref/swift/Method/emptyCache()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC8ThemeKit13ThemeGradient10emptyCacheFT_T_">emptyCache()</a>
+                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKThemeGradient(cm)emptyCache">emptyCache()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -534,7 +534,7 @@ You should not need to manually call this function.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">static</span> <span class="n">open</span> <span class="kd">func</span> <span class="nf">emptyCache</span><span class="p">()</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">static</span> <span class="n">open</span> <span class="kd">func</span> <span class="nf">emptyCache</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
@@ -550,7 +550,7 @@ You should not need to manually call this function.</p>
         </section>
         <section id="footer">
           <p>© 2016-2017 <a class="link" href="https://paw.cloud" target="_blank" rel="external">Paw</a> &amp; <a class="link" href="http://nunogrilo.com" target="_blank" rel="external">Nuno Grilo</a> under <a class="link" href="https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

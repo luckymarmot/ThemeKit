@@ -105,7 +105,7 @@
               </div>
             <p>A <code><a href="../Protocols/Theme.html">Theme</a></code> class wrapping a user provided theme file (<code>.theme</code>).</p>
 
-<p>To enable user themes, set theme folder on <code><a href="../Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager19userThemesFolderURLGSqV10Foundation3URL_">ThemeManager.userThemesFolderURL</a></code>.</p>
+<p>To enable user themes, set theme folder on <code><a href="../Classes/ThemeManager.html#/c:@M@ThemeKit@objc(cs)TKThemeManager(py)userThemesFolderURL">ThemeManager.userThemesFolderURL</a></code>.</p>
 
 <p>Notes about <code>.theme</code> files:</p>
 
@@ -120,7 +120,7 @@
 <li>gradients are defined using <code>linear-gradient(color1, color2)</code> (where colors are defined as above; case insensitive);</li>
 <li>pattern images are defined using <code>pattern(named:xxxx)</code> (named images) or <code>pattern(file:../dddd/xxxx.yyy)</code> (filesystem images);</li>
 <li>images are defined using <code>image(named:xxxx)</code> (named images) or <code>image(file:../dddd/xxxx.yyy)</code> (filesystem images);</li>
-<li><code><a href="../Classes/ThemeManager.html#/s:vC8ThemeKit12ThemeManager6themesGSaPS_5Theme__">ThemeManager.themes</a></code> property is automatically updated when there are changes on the user themes folder;</li>
+<li><code><a href="../Classes/ThemeManager.html#/c:@M@ThemeKit@objc(cs)TKThemeManager(py)themes">ThemeManager.themes</a></code> property is automatically updated when there are changes on the user themes folder;</li>
 <li>file changes are applied on-the-fly, if it corresponds to the currently applied theme.</li>
 </ul>
 
@@ -171,9 +171,9 @@ gradients and images, respectively.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC8ThemeKit9UserTheme10identifierSS"></a>
+                    <a name="/c:@M@ThemeKit@objc(cs)TKUserTheme(py)identifier"></a>
                     <a name="//apple_ref/swift/Property/identifier" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC8ThemeKit9UserTheme10identifierSS">identifier</a>
+                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKUserTheme(py)identifier">identifier</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -201,9 +201,9 @@ gradients and images, respectively.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC8ThemeKit9UserTheme11displayNameSS"></a>
+                    <a name="/c:@M@ThemeKit@objc(cs)TKUserTheme(py)displayName"></a>
                     <a name="//apple_ref/swift/Property/displayName" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC8ThemeKit9UserTheme11displayNameSS">displayName</a>
+                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKUserTheme(py)displayName">displayName</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -231,9 +231,9 @@ gradients and images, respectively.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC8ThemeKit9UserTheme16shortDisplayNameSS"></a>
+                    <a name="/c:@M@ThemeKit@objc(cs)TKUserTheme(py)shortDisplayName"></a>
                     <a name="//apple_ref/swift/Property/shortDisplayName" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC8ThemeKit9UserTheme16shortDisplayNameSS">shortDisplayName</a>
+                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKUserTheme(py)shortDisplayName">shortDisplayName</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -261,9 +261,9 @@ gradients and images, respectively.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC8ThemeKit9UserTheme11isDarkThemeSb"></a>
+                    <a name="/c:@M@ThemeKit@objc(cs)TKUserTheme(py)isDarkTheme"></a>
                     <a name="//apple_ref/swift/Property/isDarkTheme" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC8ThemeKit9UserTheme11isDarkThemeSb">isDarkTheme</a>
+                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKUserTheme(py)isDarkTheme">isDarkTheme</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -291,9 +291,9 @@ gradients and images, respectively.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC8ThemeKit9UserTheme7fileURLGSqV10Foundation3URL_"></a>
+                    <a name="/c:@M@ThemeKit@objc(cs)TKUserTheme(py)fileURL"></a>
                     <a name="//apple_ref/swift/Property/fileURL" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC8ThemeKit9UserTheme7fileURLGSqV10Foundation3URL_">fileURL</a>
+                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKUserTheme(py)fileURL">fileURL</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -308,7 +308,7 @@ gradients and images, respectively.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fileURL</span><span class="p">:</span> <span class="kt">URL</span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">fileURL</span><span class="p">:</span> <span class="kt">URL</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -332,9 +332,9 @@ gradients and images, respectively.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC8ThemeKit9UserTheme6reloadFT_T_"></a>
+                    <a name="/c:@M@ThemeKit@objc(cs)TKUserTheme(im)reload"></a>
                     <a name="//apple_ref/swift/Method/reload()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC8ThemeKit9UserTheme6reloadFT_T_">reload()</a>
+                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKUserTheme(im)reload">reload()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -349,7 +349,7 @@ gradients and images, respectively.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">reload</span><span class="p">()</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">reload</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
@@ -373,9 +373,9 @@ gradients and images, respectively.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC8ThemeKit9UserTheme10themeAssetFSSGSqP__"></a>
+                    <a name="/c:@M@ThemeKit@objc(cs)TKUserTheme(im)themeAsset:"></a>
                     <a name="//apple_ref/swift/Method/themeAsset(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC8ThemeKit9UserTheme10themeAssetFSSGSqP__">themeAsset(_:)</a>
+                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKUserTheme(im)themeAsset:">themeAsset(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -390,7 +390,7 @@ gradients and images, respectively.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">themeAsset</span><span class="p">(</span><span class="n">_</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">themeAsset</span><span class="p">(</span><span class="n">_</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -426,9 +426,9 @@ gradients and images, respectively.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC8ThemeKit9UserTheme13hasThemeAssetFSSSb"></a>
+                    <a name="/c:@M@ThemeKit@objc(cs)TKUserTheme(im)hasThemeAsset:"></a>
                     <a name="//apple_ref/swift/Method/hasThemeAsset(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC8ThemeKit9UserTheme13hasThemeAssetFSSSb">hasThemeAsset(_:)</a>
+                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKUserTheme(im)hasThemeAsset:">hasThemeAsset(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -438,7 +438,7 @@ gradients and images, respectively.</p>
                       <div class="abstract">
                         <p>Checks if a theme asset is provided for the given key.</p>
 
-<p>Do not check for theme asset availability with <code><a href="../Classes/UserTheme.html#/s:FC8ThemeKit9UserTheme10themeAssetFSSGSqP__">themeAsset(_:)</a></code>, use
+<p>Do not check for theme asset availability with <code><a href="../Classes/UserTheme.html#/c:@M@ThemeKit@objc(cs)TKUserTheme(im)themeAsset:">themeAsset(_:)</a></code>, use
 this method instead, which is much faster.</p>
 
                       </div>
@@ -446,7 +446,7 @@ this method instead, which is much faster.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">hasThemeAsset</span><span class="p">(</span><span class="n">_</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">hasThemeAsset</span><span class="p">(</span><span class="n">_</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -485,7 +485,7 @@ this method instead, which is much faster.</p>
         </section>
         <section id="footer">
           <p>© 2016-2017 <a class="link" href="https://paw.cloud" target="_blank" rel="external">Paw</a> &amp; <a class="link" href="http://nunogrilo.com" target="_blank" rel="external">Nuno Grilo</a> under <a class="link" href="https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

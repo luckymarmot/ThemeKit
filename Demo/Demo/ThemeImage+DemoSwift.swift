@@ -14,7 +14,7 @@ extension ThemeImage {
     // MARK: DETAILS
     
     /// Notes details image
-    static var detailsImage: ThemeImage {
+    @objc static var detailsImage: ThemeImage {
         return ThemeImage.image(with: #function)
     }
     

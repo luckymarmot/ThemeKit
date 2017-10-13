@@ -25,7 +25,7 @@ extension String {
         let start = self.index(self.startIndex, offsetBy: r.lowerBound)
         let end = self.index(self.startIndex, offsetBy: r.upperBound)
         
-        return self[start...end]
+        return String(self[start...end])
     }
     
     /// Convenience function to get substring with NSRange.
@@ -34,7 +34,7 @@ extension String {
         let start = self.index(self.startIndex, offsetBy: withNSRange.location)
         let end = self.index(start, offsetBy: withNSRange.length)
         let range = Range<String.Index>(uncheckedBounds: (lower: start, upper: end))
-        return self.substring(with: range)
+        return String(self[range])
     }
     
     /// Convenience function to replace characters with NSRange.

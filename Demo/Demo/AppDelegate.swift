@@ -77,7 +77,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         for theme in ThemeManager.shared.themes {
             let item = NSMenuItem(title: theme.shortDisplayName, action: #selector(switchTheme(_:)), keyEquivalent: String(counter))
             item.representedObject = theme
-            item.state = (ThemeManager.shared.theme.identifier == theme.identifier) ? NSOnState : NSOffState
+            item.state = (ThemeManager.shared.theme.identifier == theme.identifier) ? .on : .off
             themeMenu.addItem(item)
             counter += 1
         }
@@ -87,7 +87,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Add slideshow
         let slideshowItem = NSMenuItem(title: "Slideshow", action: #selector(startStopThemeSlideshow), keyEquivalent: "0")
-        slideshowItem.state = slideshowTimerOn ? NSOnState : NSOffState
+        slideshowItem.state = slideshowTimerOn ? .on : .off
         themeMenu.addItem(slideshowItem)
     }
     
@@ -118,7 +118,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private static let slideshowThemeIndices = AppDelegate.slideshowAllThemeIndices
     
     /// Start/stop theme slideshow.
-    func startStopThemeSlideshow() {
+    @objc func startStopThemeSlideshow() {
         if slideshowTimerOn {
             slideshowTimer?.invalidate()
             slideshowTimer = nil
@@ -129,7 +129,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     /// Apply next slideshow theme.
-    func nextSlideshowTheme() {
+    @objc func nextSlideshowTheme() {
         let themes = ThemeManager.shared.themes
         guard themes.count > 0 else {
             startStopThemeSlideshow()
@@ -174,8 +174,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var tabs: [NSWindowController] = []
     
     @IBAction func newWindowForTab(_ sender: Any?) {
-        let storyBoard = NSStoryboard(name: "Main", bundle:nil)
-        if let windowController = storyBoard.instantiateController(withIdentifier: "WindowController") as? NSWindowController {
+        let storyBoard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle:nil)
+        if let windowController = storyBoard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "WindowController")) as? NSWindowController {
             windowController.showWindow(self)
         }
     }
@@ -204,14 +204,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var themeMenu: NSMenu!
     
     // Strong controllers references
-    weak var sidebarViewController: SidebarViewController?
+    @objc weak var sidebarViewController: SidebarViewController?
 
 }
 
 extension NSApplication {
     
-    static var sidebarViewController: SidebarViewController? {
-        if let appDelegate = NSApplication.shared().delegate as? AppDelegate {
+    @objc static var sidebarViewController: SidebarViewController? {
+        if let appDelegate = NSApplication.shared.delegate as? AppDelegate {
             return appDelegate.sidebarViewController
         }
         return nil

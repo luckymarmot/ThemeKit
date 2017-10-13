@@ -11,7 +11,7 @@ import ThemeKit
 
 class WindowController: NSWindowController {
     
-    public var themeKit: ThemeManager = ThemeManager.shared
+    @objc public var themeKit: ThemeManager = ThemeManager.shared
     
     override func windowDidLoad() {
         // Observe note selection change notifications
@@ -56,14 +56,14 @@ class WindowController: NSWindowController {
             
             // add constraints
             let constraintViews = ["view":overlayView]
-            titlebarView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[view]-0-|", options: [.directionLeadingToTrailing], metrics: nil, views: constraintViews))
-            titlebarView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[view]-0-|", options: [.directionLeadingToTrailing], metrics: nil, views: constraintViews))
+            titlebarView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[view]-0-|", options: [NSLayoutConstraint.FormatOptions.directionLeadingToTrailing], metrics: nil, views: constraintViews))
+            titlebarView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[view]-0-|", options: [NSLayoutConstraint.FormatOptions.directionLeadingToTrailing], metrics: nil, views: constraintViews))
             
             // refresh it when key flag changes
-            NotificationCenter.default.addObserver(forName: .NSWindowDidBecomeKey, object: window, queue: nil, using: { _ in
+            NotificationCenter.default.addObserver(forName: NSWindow.didBecomeKeyNotification, object: window, queue: nil, using: { _ in
                 overlayView.needsDisplay = true
             })
-            NotificationCenter.default.addObserver(forName: .NSWindowDidResignKey, object: window, queue: nil, using: { _ in
+            NotificationCenter.default.addObserver(forName: NSWindow.didResignKeyNotification, object: window, queue: nil, using: { _ in
                 overlayView.needsDisplay = true
             })
         }
@@ -82,12 +82,12 @@ class WindowController: NSWindowController {
     }
     
     /// Update window title with current note title.
-    func updateTitle(_ note: Note) {
+    @objc func updateTitle(_ note: Note) {
         self.window?.title = "\(note.title) - ThemeKit Demo"
     }
     
     /// Can edit current theme (must be a `UserTheme`).
-    var canEditTheme: Bool {
+    @objc var canEditTheme: Bool {
         return ThemeManager.shared.theme.isUserTheme
     }
     
@@ -101,7 +101,7 @@ class WindowController: NSWindowController {
                 let alert = NSAlert()
                 alert.messageText = "Theme file is not writable."
                 alert.informativeText = "If you're lunching Demo from the Downloads folder, move it to another place and try again."
-                alert.alertStyle = NSAlertStyle.critical
+                alert.alertStyle = NSAlert.Style.critical
                 alert.addButton(withTitle: "OK")
                 alert.runModal()
                 return
@@ -110,11 +110,11 @@ class WindowController: NSWindowController {
             // check if there is any app associted with `.theme` extension
             let userThemeCFURL:CFURL = userThemeURL as CFURL
             if let _ = LSCopyDefaultApplicationURLForURL(userThemeCFURL, .editor, nil) {
-                NSWorkspace.shared().open(userThemeURL)
+                NSWorkspace.shared.open(userThemeURL)
             }
             else {
                 // otherwise open with TextEdit
-                NSWorkspace.shared().openFile(userThemeURL.path, withApplication: "TextEdit", andDeactivate: true)
+                NSWorkspace.shared.openFile(userThemeURL.path, withApplication: "TextEdit", andDeactivate: true)
             }
             
         }

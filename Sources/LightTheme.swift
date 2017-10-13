@@ -13,7 +13,7 @@ import Foundation
 public class LightTheme: NSObject, Theme {
     
     /// Light theme identifier (static).
-    public static var identifier: String = "com.luckymarmot.ThemeKit.LightTheme"
+    @objc public static var identifier: String = "com.luckymarmot.ThemeKit.LightTheme"
     
     /// Unique theme identifier.
     public var identifier: String = LightTheme.identifier

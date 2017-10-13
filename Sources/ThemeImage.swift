@@ -142,7 +142,7 @@ open class ThemeImage : NSImage {
     
     /// `ThemeImage` image selector used as theme instance method for same
     /// selector or, if inexistent, as argument in the theme instance method `themeAsset(_:)`.
-    public var themeImageSelector: Selector? {
+    @objc public var themeImageSelector: Selector? {
         didSet {
             // recache image now and on theme change
             recacheImage()
@@ -151,7 +151,7 @@ open class ThemeImage : NSImage {
     }
     
     /// Resolved Image from current theme (dynamically changes with the current theme).
-    public var resolvedThemeImage: NSImage = NSImage(size: NSZeroSize)
+    @objc public var resolvedThemeImage: NSImage = NSImage(size: NSZeroSize)
     
     
     // MARK: -
@@ -231,9 +231,9 @@ open class ThemeImage : NSImage {
         
         let theme = ThemeManager.shared.effectiveTheme
         let viewAppearance = view.appearance
-        let aquaAppearance = NSAppearance(named: NSAppearanceNameAqua)
-        let lightAppearance = NSAppearance(named: NSAppearanceNameVibrantLight)
-        let darkAppearance = NSAppearance(named: NSAppearanceNameVibrantDark)
+        let aquaAppearance = NSAppearance(named: NSAppearance.Name.aqua)
+        let lightAppearance = NSAppearance(named: NSAppearance.Name.vibrantLight)
+        let darkAppearance = NSAppearance(named: NSAppearance.Name.vibrantDark)
         
         // using a dark theme but control is on a light surface => use light theme instead
         if theme.isDarkTheme &&
@@ -253,7 +253,7 @@ open class ThemeImage : NSImage {
     /// - parameter selector: A image selector.
     ///
     /// - returns: A `ThemeImage` instance.
-    convenience init(with selector: Selector) {
+    @objc convenience init(with selector: Selector) {
         self.init(size: NSZeroSize)
         
         // initialize properties
@@ -271,14 +271,14 @@ open class ThemeImage : NSImage {
     }
     
     /// Register to recache on theme changes.
-    func registerThemeChangeNotifications() {
+    @objc func registerThemeChangeNotifications() {
         NotificationCenter.default.removeObserver(self, name: .didChangeTheme, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(recacheImage), name: .didChangeTheme, object: nil)
     }
     
     /// Forces dynamic color resolution into `resolvedThemeImage` and cache it.
     /// You should not need to manually call this function.
-    open func recacheImage() {
+    @objc open func recacheImage() {
         // If it is a UserTheme we actually want to discard theme cached values
         if ThemeManager.shared.effectiveTheme.isUserTheme {
             ThemeImage.emptyCache()
@@ -293,13 +293,13 @@ open class ThemeImage : NSImage {
     
     /// Clear all caches.
     /// You should not need to manually call this function.
-    static open func emptyCache() {
+    @objc static open func emptyCache() {
         _cachedImages.removeAllObjects()
         _cachedThemeImages.removeAllObjects()
     }
     
     /// Fallback image for a specific theme and selector.
-    class func fallbackImage(for theme: Theme, selector: Selector) -> NSImage? {
+    @objc class func fallbackImage(for theme: Theme, selector: Selector) -> NSImage? {
         var fallbackImage: NSImage?
         
         // try with theme provided `fallbackImage` method
@@ -326,11 +326,11 @@ open class ThemeImage : NSImage {
         }
     }
     
-    override open func setName(_ string: String?) -> Bool {
+    override open func setName(_ string: NSImage.Name?) -> Bool {
         return resolvedThemeImage.setName(string)
     }
     
-    override open func name() -> String? {
+    override open func name() -> NSImage.Name? {
         return resolvedThemeImage.name()
     }
     
@@ -387,7 +387,7 @@ open class ThemeImage : NSImage {
         resolvedThemeImage.draw(in: rect, from: fromRect, operation: op, fraction: delta)
     }
     
-    override open func draw(in dstSpacePortionRect: NSRect, from srcSpacePortionRect: NSRect, operation op: NSCompositingOperation, fraction requestedAlpha: CGFloat, respectFlipped respectContextIsFlipped: Bool, hints: [String : Any]?) {
+    override open func draw(in dstSpacePortionRect: NSRect, from srcSpacePortionRect: NSRect, operation op: NSCompositingOperation, fraction requestedAlpha: CGFloat, respectFlipped respectContextIsFlipped: Bool, hints: [NSImageRep.HintKey : Any]?) {
         resolvedThemeImage.draw(in: dstSpacePortionRect, from: srcSpacePortionRect, operation: op, fraction: requestedAlpha, respectFlipped: respectContextIsFlipped, hints: hints)
     }
     
@@ -407,7 +407,7 @@ open class ThemeImage : NSImage {
         return resolvedThemeImage.tiffRepresentation
     }
     
-    override open func tiffRepresentation(using comp: NSTIFFCompression, factor: Float) -> Data? {
+    override open func tiffRepresentation(using comp: NSBitmapImageRep.TIFFCompression, factor: Float) -> Data? {
         return resolvedThemeImage.tiffRepresentation(using: comp, factor: factor)
     }
     
@@ -456,7 +456,7 @@ open class ThemeImage : NSImage {
         resolvedThemeImage.cancelIncrementalLoad()
     }
     
-    override open var cacheMode: NSImageCacheMode {
+    override open var cacheMode: NSImage.CacheMode {
         get {
             return resolvedThemeImage.cacheMode
         }
@@ -492,15 +492,15 @@ open class ThemeImage : NSImage {
         }
     }
     
-    override open func cgImage(forProposedRect proposedDestRect: UnsafeMutablePointer<NSRect>?, context referenceContext: NSGraphicsContext?, hints: [String : Any]?) -> CGImage? {
+    override open func cgImage(forProposedRect proposedDestRect: UnsafeMutablePointer<NSRect>?, context referenceContext: NSGraphicsContext?, hints: [NSImageRep.HintKey : Any]?) -> CGImage? {
         return resolvedThemeImage.cgImage(forProposedRect: proposedDestRect, context: referenceContext, hints: hints)
     }
     
-    override open func bestRepresentation(for rect: NSRect, context referenceContext: NSGraphicsContext?, hints: [String : Any]?) -> NSImageRep? {
+    override open func bestRepresentation(for rect: NSRect, context referenceContext: NSGraphicsContext?, hints: [NSImageRep.HintKey : Any]?) -> NSImageRep? {
         return resolvedThemeImage.bestRepresentation(for: rect, context: referenceContext, hints: hints)
     }
     
-    override open func hitTest(_ testRectDestSpace: NSRect, withDestinationRect imageRectDestSpace: NSRect, context: NSGraphicsContext?, hints: [String : Any]?, flipped: Bool) -> Bool {
+    override open func hitTest(_ testRectDestSpace: NSRect, withDestinationRect imageRectDestSpace: NSRect, context: NSGraphicsContext?, hints: [NSImageRep.HintKey : Any]?, flipped: Bool) -> Bool {
         return resolvedThemeImage.hitTest(testRectDestSpace, withDestinationRect: imageRectDestSpace, context: context, hints: hints, flipped: flipped)
     }
     
@@ -512,7 +512,7 @@ open class ThemeImage : NSImage {
         return resolvedThemeImage.layerContents(forContentsScale: layerContentsScale)
     }
     
-    override open var capInsets: EdgeInsets {
+    override open var capInsets: NSEdgeInsets {
         get {
             return resolvedThemeImage.capInsets
         }
@@ -521,7 +521,7 @@ open class ThemeImage : NSImage {
         }
     }
     
-    override open var resizingMode: NSImageResizingMode {
+    override open var resizingMode: NSImage.ResizingMode {
         get {
             return resolvedThemeImage.resizingMode
         }

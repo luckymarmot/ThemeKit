@@ -19,7 +19,7 @@ class DetailsViewController: NSViewController {
     @IBOutlet weak var characterCount: NSTextField!
     @IBOutlet weak var lastModifiedTxt: NSTextField!
     
-    var dateFormatter: DateFormatter?
+    @objc var dateFormatter: DateFormatter?
     
     override func viewDidLoad() {
         super.viewDidLoad()

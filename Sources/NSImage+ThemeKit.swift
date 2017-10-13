@@ -44,7 +44,7 @@ extension NSImage {
     
     /// Find the average color in image.
     /// Not the most accurate algorithm, but probably got enough for the purpose.
-    internal func averageColor() -> NSColor {
+    @objc internal func averageColor() -> NSColor {
         // setup a single-pixel image
         let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
         let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue | CGBitmapInfo.byteOrder32Big.rawValue)

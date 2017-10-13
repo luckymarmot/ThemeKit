@@ -13,7 +13,7 @@ import Foundation
 public class DarkTheme: NSObject, Theme {
     
     /// Dark theme identifier (static).
-    public static var identifier: String = "com.luckymarmot.ThemeKit.DarkTheme"
+    @objc public static var identifier: String = "com.luckymarmot.ThemeKit.DarkTheme"
     
     /// Unique theme identifier.
     public var identifier: String = DarkTheme.identifier;

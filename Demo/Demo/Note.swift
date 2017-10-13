@@ -12,26 +12,26 @@ import Foundation
 class Note: NSObject, NSCoding {
     
     /// Note title.
-    var title: String = ""
+    @objc var title: String = ""
     
     /// Note text.
-    var text: String = ""
+    @objc var text: String = ""
     
     /// Last modified date.
-    var lastModified: Date = Date()
+    @objc var lastModified: Date = Date()
     
     // Character count.
-    var textCharacterCount: Int {
+    @objc var textCharacterCount: Int {
         return text.characters.count
     }
     
     // Word count.
-    var textWordCount: Int {
+    @objc var textWordCount: Int {
         return text.components(separatedBy: " ").count
     }
     
     /// Initializer
-    init(title: String = "Untitled Note", text: String = "") {
+    @objc init(title: String = "Untitled Note", text: String = "") {
         self.title = title
         self.text = text
         self.lastModified = Date()

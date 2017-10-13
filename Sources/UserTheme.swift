@@ -87,7 +87,7 @@ public class UserTheme: NSObject, Theme {
     public var isDarkTheme: Bool = false
     
     /// File URL.
-    public var fileURL: URL?
+    @objc public var fileURL: URL?
     
     /// Dictionary with key/values pairs read from the .theme file
     private var _keyValues: NSMutableDictionary = NSMutableDictionary();
@@ -109,7 +109,7 @@ public class UserTheme: NSObject, Theme {
     /// - parameter themeFileURL: A theme file (`.theme`) URL.
     ///
     /// - returns: An instance of `UserTheme`.
-    internal init(_ themeFileURL: URL) {
+    @objc internal init(_ themeFileURL: URL) {
         super.init()
         
         // Load file
@@ -118,7 +118,7 @@ public class UserTheme: NSObject, Theme {
     }
     
     /// Reloads user theme from file.
-    public func reload() {
+    @objc public func reload() {
         if let url = fileURL {
             _keyValues.removeAllObjects()
             _evaluatedKeyValues.removeAllObjects()
@@ -134,7 +134,7 @@ public class UserTheme: NSObject, Theme {
     /// - parameter key: A color name, gradient name, image name or a theme string
     ///
     /// - returns: The theme value for the specified key.
-    public func themeAsset(_ key: String) -> Any? {
+    @objc public func themeAsset(_ key: String) -> Any? {
         var value = _evaluatedKeyValues[key]
         if value == nil,
             let evaluatedValue = _keyValues.evaluatedObject(key: key) {
@@ -152,7 +152,7 @@ public class UserTheme: NSObject, Theme {
     /// - parameter key: A color name, gradient name, image name or a theme string
     ///
     /// - returns: `true` if theme provides an asset for the given key; `false` otherwise.
-    public func hasThemeAsset(_ key: String) -> Bool {
+    @objc public func hasThemeAsset(_ key: String) -> Bool {
         return _keyValues[key] != nil
     }
     

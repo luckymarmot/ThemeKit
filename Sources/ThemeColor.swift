@@ -168,7 +168,7 @@ open class ThemeColor : NSColor {
     
     /// `ThemeColor` color selector used as theme instance method for same selector
     /// or, if inexistent, as argument in the theme instance method `themeAsset(_:)`.
-    public var themeColorSelector: Selector = #selector(getter: NSColor.clear) {
+    @objc public var themeColorSelector: Selector = #selector(getter: NSColor.clear) {
         didSet {
             // recache color now and on theme change
             recacheColor()
@@ -177,7 +177,7 @@ open class ThemeColor : NSColor {
     }
     
     /// Resolved color from current theme (dynamically changes with the current theme).
-    public lazy var resolvedThemeColor: NSColor = NSColor.clear
+    @objc public lazy var resolvedThemeColor: NSColor = NSColor.clear
     
     /// Theme color space (if specified).
     private var themeColorSpace: NSColorSpace? {
@@ -245,7 +245,7 @@ open class ThemeColor : NSColor {
             }
             
             // Store as Calibrated RGB if not a pattern image
-            if color?.colorSpaceName != NSPatternColorSpace {
+            if color?.colorSpaceName != NSColorSpaceName.pattern {
                 color = color?.usingColorSpace(.genericRGB)
             }
             
@@ -280,9 +280,9 @@ open class ThemeColor : NSColor {
         
         let theme = ThemeManager.shared.effectiveTheme
         let viewAppearance = view.appearance
-        let aquaAppearance = NSAppearance(named: NSAppearanceNameAqua)
-        let lightAppearance = NSAppearance(named: NSAppearanceNameVibrantLight)
-        let darkAppearance = NSAppearance(named: NSAppearanceNameVibrantDark)
+        let aquaAppearance = NSAppearance(named: NSAppearance.Name.aqua)
+        let lightAppearance = NSAppearance(named: NSAppearance.Name.vibrantLight)
+        let darkAppearance = NSAppearance(named: NSAppearance.Name.vibrantDark)
         
         // using a dark theme but control is on a light surface => use light theme instead
         if theme.isDarkTheme &&
@@ -303,7 +303,7 @@ open class ThemeColor : NSColor {
     /// - parameter colorSpace: An optional `NSColorSpace`.
     ///
     /// - returns: A `ThemeColor` instance in the specified colorspace.
-    class func color(with selector: Selector, colorSpace: NSColorSpace?) -> ThemeColor {
+    @objc class func color(with selector: Selector, colorSpace: NSColorSpace?) -> ThemeColor {
         let cacheKey = CacheKey(selector: selector, colorSpace: colorSpace)
         
         if let cachedColor = _cachedColors.object(forKey: cacheKey) {
@@ -322,7 +322,7 @@ open class ThemeColor : NSColor {
     /// - parameter colorSpace: An optional `NSColorSpace`.
     ///
     /// - returns: A `ThemeColor` instance in the specified colorspace.
-    convenience init(with selector: Selector, colorSpace: NSColorSpace?) {
+    @objc convenience init(with selector: Selector, colorSpace: NSColorSpace?) {
         self.init()
         
         // initialize properties
@@ -341,14 +341,14 @@ open class ThemeColor : NSColor {
     }
     
     /// Register to recache on theme changes.
-    func registerThemeChangeNotifications() {
+    @objc func registerThemeChangeNotifications() {
         NotificationCenter.default.removeObserver(self, name: .didChangeTheme, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(recacheColor), name: .didChangeTheme, object: nil)
     }
     
     /// Forces dynamic color resolution into `resolvedThemeColor` and cache it.
     /// You should not need to manually call this function.
-    open func recacheColor() {
+    @objc open func recacheColor() {
         // If it is a UserTheme we actually want to discard theme cached values
         if ThemeManager.shared.effectiveTheme.isUserTheme {
             ThemeColor.emptyCache()
@@ -365,18 +365,18 @@ open class ThemeColor : NSColor {
         }
         
         // Recache average color of pattern image, if appropriate
-        themePatternImageAverageColor = resolvedThemeColor.colorSpaceName == NSPatternColorSpace ? resolvedThemeColor.patternImage.averageColor() : NSColor.clear
+        themePatternImageAverageColor = resolvedThemeColor.colorSpaceName == NSColorSpaceName.pattern ? resolvedThemeColor.patternImage.averageColor() : NSColor.clear
     }
     
     /// Clear all caches.
     /// You should not need to manually call this function.
-    static open func emptyCache() {
+    @objc static open func emptyCache() {
         _cachedColors.removeAllObjects()
         _cachedThemeColors.removeAllObjects()
     }
     
     /// Fallback color for a specific theme and selector.
-    class func fallbackColor(for theme: Theme, selector: Selector) -> NSColor {
+    @objc class func fallbackColor(for theme: Theme, selector: Selector) -> NSColor {
         var fallbackColor: NSColor?
         let selectorString = NSStringFromSelector(selector)
         
@@ -425,28 +425,28 @@ open class ThemeColor : NSColor {
         return ThemeColor.color(with: themeColorSelector, colorSpace: space)
     }
     
-    override open func usingColorSpaceName(_ colorSpace: String?, device deviceDescription: [String : Any]?) -> NSColor? {
+    override open func usingColorSpaceName(_ colorSpace: NSColorSpaceName?, device deviceDescription: [NSDeviceDescriptionKey : Any]?) -> NSColor? {
         if colorSpace == self.colorSpaceName {
             return self
         }
         
         let newColorSpace: NSColorSpace
-        if colorSpace == NSCalibratedWhiteColorSpace {
+        if colorSpace == NSColorSpaceName.calibratedWhite {
             newColorSpace = .genericGray
         }
-        else if colorSpace == NSCalibratedRGBColorSpace {
+        else if colorSpace == NSColorSpaceName.calibratedRGB {
             newColorSpace = .genericRGB
         }
-        else if colorSpace == NSDeviceWhiteColorSpace {
+        else if colorSpace == NSColorSpaceName.deviceWhite {
             newColorSpace = .deviceGray
         }
-        else if colorSpace == NSDeviceRGBColorSpace {
+        else if colorSpace == NSColorSpaceName.deviceRGB {
             newColorSpace = .deviceRGB
         }
-        else if colorSpace == NSDeviceCMYKColorSpace {
+        else if colorSpace == NSColorSpaceName.deviceCMYK {
             newColorSpace = .deviceCMYK
         }
-        else if colorSpace == NSCustomColorSpace {
+        else if colorSpace == NSColorSpaceName.custom {
             newColorSpace = .genericRGB
         }
         else {
@@ -457,7 +457,7 @@ open class ThemeColor : NSColor {
         return ThemeColor.color(with: themeColorSelector, colorSpace: newColorSpace)
     }
     
-    override open var colorSpaceName: String {
+    @objc override open var colorSpaceName: NSColorSpaceName {
         return resolvedThemeColor.colorSpaceName
     }
     
@@ -470,12 +470,12 @@ open class ThemeColor : NSColor {
     }
     
     override open func getComponents(_ components: UnsafeMutablePointer<CGFloat>) {
-        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        let color = resolvedThemeColor.colorSpaceName != NSColorSpaceName.pattern ? resolvedThemeColor : themePatternImageAverageColor
         color.usingColorSpace(.genericRGB)?.getComponents(components)
     }
     
     override open var redComponent: CGFloat {
-        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        let color = resolvedThemeColor.colorSpaceName != NSColorSpaceName.pattern ? resolvedThemeColor : themePatternImageAverageColor
         if let rgbColor = color.usingColorSpace(.genericRGB) {
             return rgbColor.redComponent
         }
@@ -483,7 +483,7 @@ open class ThemeColor : NSColor {
     }
     
     override open var greenComponent: CGFloat {
-        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        let color = resolvedThemeColor.colorSpaceName != NSColorSpaceName.pattern ? resolvedThemeColor : themePatternImageAverageColor
         if let rgbColor = color.usingColorSpace(.genericRGB) {
             return rgbColor.greenComponent
         }
@@ -491,7 +491,7 @@ open class ThemeColor : NSColor {
     }
     
     override open var blueComponent: CGFloat {
-        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        let color = resolvedThemeColor.colorSpaceName != NSColorSpaceName.pattern ? resolvedThemeColor : themePatternImageAverageColor
         if let rgbColor = color.usingColorSpace(.genericRGB) {
             return rgbColor.blueComponent
         }
@@ -499,12 +499,12 @@ open class ThemeColor : NSColor {
     }
     
     override open func getRed(_ red: UnsafeMutablePointer<CGFloat>?, green: UnsafeMutablePointer<CGFloat>?, blue: UnsafeMutablePointer<CGFloat>?, alpha: UnsafeMutablePointer<CGFloat>?) {
-        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        let color = resolvedThemeColor.colorSpaceName != NSColorSpaceName.pattern ? resolvedThemeColor : themePatternImageAverageColor
         color.usingColorSpace(.genericRGB)?.getRed(red, green: green, blue: blue, alpha: alpha)
     }
     
     override open var cyanComponent: CGFloat {
-        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        let color = resolvedThemeColor.colorSpaceName != NSColorSpaceName.pattern ? resolvedThemeColor : themePatternImageAverageColor
         if let cmykColor = color.usingColorSpace(.genericCMYK) {
             return cmykColor.cyanComponent
         }
@@ -512,7 +512,7 @@ open class ThemeColor : NSColor {
     }
     
     override open var magentaComponent: CGFloat {
-        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        let color = resolvedThemeColor.colorSpaceName != NSColorSpaceName.pattern ? resolvedThemeColor : themePatternImageAverageColor
         if let cmykColor = color.usingColorSpace(.genericCMYK) {
             return cmykColor.magentaComponent
         }
@@ -520,7 +520,7 @@ open class ThemeColor : NSColor {
     }
     
     override open var yellowComponent: CGFloat {
-        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        let color = resolvedThemeColor.colorSpaceName != NSColorSpaceName.pattern ? resolvedThemeColor : themePatternImageAverageColor
         if let cmykColor = color.usingColorSpace(.genericCMYK) {
             return cmykColor.yellowComponent
         }
@@ -528,7 +528,7 @@ open class ThemeColor : NSColor {
     }
     
     override open var blackComponent: CGFloat {
-        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        let color = resolvedThemeColor.colorSpaceName != NSColorSpaceName.pattern ? resolvedThemeColor : themePatternImageAverageColor
         if let cmykColor = color.usingColorSpace(.genericCMYK) {
             return cmykColor.blackComponent
         }
@@ -536,12 +536,12 @@ open class ThemeColor : NSColor {
     }
     
     override open func getCyan(_ cyan: UnsafeMutablePointer<CGFloat>?, magenta: UnsafeMutablePointer<CGFloat>?, yellow: UnsafeMutablePointer<CGFloat>?, black: UnsafeMutablePointer<CGFloat>?, alpha: UnsafeMutablePointer<CGFloat>?) {
-        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        let color = resolvedThemeColor.colorSpaceName != NSColorSpaceName.pattern ? resolvedThemeColor : themePatternImageAverageColor
         color.usingColorSpace(.genericCMYK)?.getCyan(cyan, magenta: magenta, yellow: yellow, black: black, alpha: alpha)
     }
     
     override open var whiteComponent: CGFloat {
-        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        let color = resolvedThemeColor.colorSpaceName != NSColorSpaceName.pattern ? resolvedThemeColor : themePatternImageAverageColor
         if let grayColor = color.usingColorSpace(.genericGray) {
             return grayColor.whiteComponent
         }
@@ -549,12 +549,12 @@ open class ThemeColor : NSColor {
     }
     
     override open func getWhite(_ white: UnsafeMutablePointer<CGFloat>?, alpha: UnsafeMutablePointer<CGFloat>?) {
-        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        let color = resolvedThemeColor.colorSpaceName != NSColorSpaceName.pattern ? resolvedThemeColor : themePatternImageAverageColor
         color.usingColorSpace(.genericGray)?.getWhite(white, alpha: alpha)
     }
     
     override open var hueComponent: CGFloat {
-        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        let color = resolvedThemeColor.colorSpaceName != NSColorSpaceName.pattern ? resolvedThemeColor : themePatternImageAverageColor
         if let rgbColor = color.usingColorSpace(.genericRGB) {
             return rgbColor.hueComponent
         }
@@ -562,7 +562,7 @@ open class ThemeColor : NSColor {
     }
     
     override open var saturationComponent: CGFloat {
-        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        let color = resolvedThemeColor.colorSpaceName != NSColorSpaceName.pattern ? resolvedThemeColor : themePatternImageAverageColor
         if let rgbColor = color.usingColorSpace(.genericRGB) {
             return rgbColor.saturationComponent
         }
@@ -570,7 +570,7 @@ open class ThemeColor : NSColor {
     }
     
     override open var brightnessComponent: CGFloat {
-        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        let color = resolvedThemeColor.colorSpaceName != NSColorSpaceName.pattern ? resolvedThemeColor : themePatternImageAverageColor
         if let rgbColor = color.usingColorSpace(.genericRGB) {
             return rgbColor.brightnessComponent
         }
@@ -578,22 +578,22 @@ open class ThemeColor : NSColor {
     }
     
     override open func getHue(_ hue: UnsafeMutablePointer<CGFloat>?, saturation: UnsafeMutablePointer<CGFloat>?, brightness: UnsafeMutablePointer<CGFloat>?, alpha: UnsafeMutablePointer<CGFloat>?) {
-        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        let color = resolvedThemeColor.colorSpaceName != NSColorSpaceName.pattern ? resolvedThemeColor : themePatternImageAverageColor
         color.usingColorSpace(.genericRGB)?.getHue(hue, saturation: saturation, brightness: brightness, alpha: alpha)
     }
     
     override open func highlight(withLevel val: CGFloat) -> NSColor? {
-        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        let color = resolvedThemeColor.colorSpaceName != NSColorSpaceName.pattern ? resolvedThemeColor : themePatternImageAverageColor
         return color.highlight(withLevel: val)
     }
     
     override open func shadow(withLevel val: CGFloat) -> NSColor? {
-        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        let color = resolvedThemeColor.colorSpaceName != NSColorSpaceName.pattern ? resolvedThemeColor : themePatternImageAverageColor
         return color.shadow(withLevel: val)
     }
     
     override open func withAlphaComponent(_ alpha: CGFloat) -> NSColor {
-        let color = resolvedThemeColor.colorSpaceName != NSPatternColorSpace ? resolvedThemeColor : themePatternImageAverageColor
+        let color = resolvedThemeColor.colorSpaceName != NSColorSpaceName.pattern ? resolvedThemeColor : themePatternImageAverageColor
         return color.withAlphaComponent(alpha)
     }
     

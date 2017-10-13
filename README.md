@@ -64,7 +64,9 @@
 ## Installation
 There are multiple options to include *ThemeKit* on your project:
 
-- [CocoaPods](https://cocoapods.org): add to your `Podfile`:
+- **[CocoaPods](https://cocoapods.org)**
+
+  Add to your `Podfile`:
 
   ```Podfile
   use_frameworks!
@@ -72,7 +74,6 @@ There are multiple options to include *ThemeKit* on your project:
       pod 'macOSThemeKit', '~> 1.1.0'
   end
   ```
-  For **Swift 3.2**, use `pod 'macOSThemeKit', '1.0.0'` instead.
   
   When using CocoaPods, the ThemeKit module is named `macOSThemeKit`:
   
@@ -80,18 +81,29 @@ There are multiple options to include *ThemeKit* on your project:
   import macOSThemeKit
   ```
   
-	Please note that, because ThemeKit is (currently) written in Swift 3.2, if you are using Xcode 9, you will need to select the Swift 3.2 compiler (`SWIFT_VERSION`) for the `Pods` project.
   
-  
-- [Carthage](https://github.com/Carthage/Carthage):
+- **[Carthage](https://github.com/Carthage/Carthage)**
 
   ```
   github "luckymarmot/ThemeKit"
   ```
   
-- Manually:
-  - Either add `ThemeKit.framework` on your project
-  - Or, manually add source files from the `ThemeKit\` folder to your project
+  Then import ThemeKit module with:
+  
+  ```
+  import ThemeKit
+  ```
+  
+- **Manually**
+  - Either add `ThemeKit.framework` on your project, **or**, manually add source files from the `ThemeKit\` folder to your project
+  - If importing into a Objective-C project, you will need to include all the Swift related frameworks as well (as reported [here](https://github.com/luckymarmot/ThemeKit/issues/6))
+  
+  Then import ThemeKit module with:
+  
+  ```
+  import ThemeKit
+  ```
+  
 
 ## Usage
 

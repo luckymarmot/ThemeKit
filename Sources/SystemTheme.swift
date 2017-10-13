@@ -16,7 +16,7 @@ import Foundation
 public class SystemTheme: NSObject, Theme {
     
     /// System  theme identifier (static).
-    public static var identifier: String = "com.luckymarmot.ThemeKit.SystemTheme"
+    @objc public static var identifier: String = "com.luckymarmot.ThemeKit.SystemTheme"
     
     /// Unique theme identifier.
     public var identifier: String = SystemTheme.identifier;
@@ -36,7 +36,7 @@ public class SystemTheme: NSObject, Theme {
     public var isDarkTheme: Bool = SystemTheme.isAppleInterfaceThemeDark
     
     /// Checks if Apple UI theme is set to dark, as set on **System Preferences > General > Appearance**.
-    public static var isAppleInterfaceThemeDark: Bool = SystemTheme.isAppleInterfaceThemeDarkOnUserDefaults()
+    @objc public static var isAppleInterfaceThemeDark: Bool = SystemTheme.isAppleInterfaceThemeDarkOnUserDefaults()
     
     /// Calling `init()` is not allowed outside this library.
     /// Use `ThemeManager.systemTheme` instead.
@@ -48,7 +48,7 @@ public class SystemTheme: NSObject, Theme {
     }
     
     /// Apple UI Theme has changed.
-    func appleInterfaceThemeDidChange(_ notification: Notification) {
+    @objc func appleInterfaceThemeDidChange(_ notification: Notification) {
         isDarkTheme = SystemTheme.isAppleInterfaceThemeDarkOnUserDefaults()
         SystemTheme.isAppleInterfaceThemeDark = isDarkTheme
         NotificationCenter.default.post(name: .didChangeSystemTheme, object: nil)

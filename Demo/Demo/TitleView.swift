@@ -15,7 +15,7 @@ class TitleView: NSView, NSTextFieldDelegate {
     @IBOutlet weak var titleTextField: NSTextField!
     
     /// Weak reference to selected Note
-    weak var note: Note?
+    @objc weak var note: Note?
     
     override func awakeFromNib() {
         // Setup title text

@@ -31,7 +31,7 @@ public extension NSWindow {
     ///
     /// Additionaly, please note that system overriden colors (`NSColor.*`) will
     /// always use the global theme.
-    public var windowTheme: Theme? {
+    @objc public var windowTheme: Theme? {
         get {
             return objc_getAssociatedObject(self, &themeAssociationKey) as? Theme
         }
@@ -42,12 +42,12 @@ public extension NSWindow {
     }
     
     /// Returns the current effective theme (read-only).
-    public var windowEffectiveTheme: Theme {
+    @objc public var windowEffectiveTheme: Theme {
         return windowTheme ?? ThemeManager.shared.effectiveTheme
     }
     
     /// Returns the current effective appearance (read-only).
-    public var windowEffectiveThemeAppearance: NSAppearance? {
+    @objc public var windowEffectiveThemeAppearance: NSAppearance? {
         return windowEffectiveTheme.isLightTheme ? ThemeManager.shared.lightAppearance : ThemeManager.shared.darkAppearance
     }
     
@@ -56,7 +56,7 @@ public extension NSWindow {
     // MARK: Theming
     
     /// Theme window if needed.
-    public func theme() {
+    @objc public func theme() {
         if currentTheme == nil || currentTheme! != windowEffectiveTheme {
             // Keep record of currently applied theme
             currentTheme = windowEffectiveTheme
@@ -70,14 +70,14 @@ public extension NSWindow {
     }
     
     /// Theme window if compliant to ThemeManager.windowThemePolicy (and if needed).
-    public func themeIfCompliantWithWindowThemePolicy() {
+    @objc public func themeIfCompliantWithWindowThemePolicy() {
         if isCompliantWithWindowThemePolicy() {
             theme()
         }
     }
     
     /// Theme all windows compliant to ThemeManager.windowThemePolicy (and if needed).
-    public static func themeAllWindows() {
+    @objc public static func themeAllWindows() {
         for window in windowsCompliantWithWindowThemePolicy() {
             window.theme()
         }
@@ -88,7 +88,7 @@ public extension NSWindow {
     // MARK:- Window theme policy compliance
     
     /// Check if window is compliant with ThemeManager.windowThemePolicy.
-    internal func isCompliantWithWindowThemePolicy() -> Bool {
+    @objc internal func isCompliantWithWindowThemePolicy() -> Bool {
         switch ThemeManager.shared.windowThemePolicy {
             
         case .themeAllWindows:
@@ -116,21 +116,21 @@ public extension NSWindow {
     }
     
     /// List of all existing windows compliant to ThemeManager.windowThemePolicy.
-    internal static func windowsCompliantWithWindowThemePolicy() -> [NSWindow] {
+    @objc internal static func windowsCompliantWithWindowThemePolicy() -> [NSWindow] {
         var windows = [NSWindow]()
         
         switch ThemeManager.shared.windowThemePolicy {
             
         case .themeAllWindows:
-            windows = NSApplication.shared().windows
+            windows = NSApplication.shared.windows
             
         case .themeSomeWindows:
-            windows = NSApplication.shared().windows.filter({ (window) -> Bool in
+            windows = NSApplication.shared.windows.filter({ (window) -> Bool in
                 return window.isCompliantWithWindowThemePolicy()
             })
             
         case .doNotThemeSomeWindows:
-            windows = NSApplication.shared().windows.filter({ (window) -> Bool in
+            windows = NSApplication.shared.windows.filter({ (window) -> Bool in
                 return window.isCompliantWithWindowThemePolicy()
             })
             
@@ -142,7 +142,7 @@ public extension NSWindow {
     }
     
     /// Returns if current window is excluded from theming
-    internal var isExcludedFromTheming: Bool {
+    @objc internal var isExcludedFromTheming: Bool {
         return self is NSPanel
     }
     
@@ -150,25 +150,25 @@ public extension NSWindow {
     // MARK:- Window screenshots
     
     /// Take window screenshot.
-    internal func takeScreenshot() -> NSImage? {
+    @objc internal func takeScreenshot() -> NSImage? {
         guard let cgImage = CGWindowListCreateImage(CGRect.null, .optionIncludingWindow, CGWindowID(windowNumber), .boundsIgnoreFraming) else {
             return nil
         }
         
         let image = NSImage(cgImage: cgImage, size: frame.size)
-        image.cacheMode = NSImageCacheMode.never
+        image.cacheMode = NSImage.CacheMode.never
         image.size = frame.size
         return image
     }
     
     /// Create a window with a screenshot of current window.
-    internal func makeScreenshotWindow() -> NSWindow {
+    @objc internal func makeScreenshotWindow() -> NSWindow {
         // Create "image-window"
-        let window = NSWindow(contentRect: frame, styleMask: NSWindowStyleMask.borderless, backing: NSBackingStoreType.buffered, defer: true)
+        let window = NSWindow(contentRect: frame, styleMask: NSWindow.StyleMask.borderless, backing: NSWindow.BackingStoreType.buffered, defer: true)
         window.isOpaque = false
         window.backgroundColor = NSColor.clear
         window.ignoresMouseEvents = true
-        window.collectionBehavior = NSWindowCollectionBehavior.stationary
+        window.collectionBehavior = NSWindow.CollectionBehavior.stationary
         window.titlebarAppearsTransparent = true
         
         // Take window screenshot

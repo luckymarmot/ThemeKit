@@ -11,7 +11,7 @@ import Foundation
 extension NSObject {
     
     /// Swizzle instance methods.
-    internal class func swizzleInstanceMethod(cls: AnyClass?, selector originalSelector: Selector, withSelector swizzledSelector: Selector) {
+    @objc internal class func swizzleInstanceMethod(cls: AnyClass?, selector originalSelector: Selector, withSelector swizzledSelector: Selector) {
         guard cls != nil else {
             print("Unable to swizzle \(originalSelector): dynamic system color override will not be available.")
             return
@@ -22,38 +22,39 @@ extension NSObject {
         let swizzledMethod = class_getInstanceMethod(cls, swizzledSelector)
         
         // add new method
-        let didAddMethod = class_addMethod(cls, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod))
+        let didAddMethod = class_addMethod(cls, originalSelector, method_getImplementation(swizzledMethod!), method_getTypeEncoding(swizzledMethod!))
         
         // switch implementations
         if didAddMethod {
-            class_replaceMethod(cls, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod))
+            class_replaceMethod(cls, swizzledSelector, method_getImplementation(originalMethod!), method_getTypeEncoding(originalMethod!))
         } else {
-            method_exchangeImplementations(originalMethod, swizzledMethod)
+            method_exchangeImplementations(originalMethod!, swizzledMethod!)
         }
     }
     
     /// Returns class method names.
-    internal class func classMethodNames(for cls: AnyClass?) -> Array<String> {
+    @objc internal class func classMethodNames(for cls: AnyClass?) -> Array<String> {
         var results: Array<String> = []
         
         // retrieve class method list
         var count: UInt32 = 0
-        let methods : UnsafeMutablePointer<Method?> = class_copyMethodList(object_getClass(cls), &count)
+        if let methods : UnsafeMutablePointer<Method> = class_copyMethodList(object_getClass(cls), &count) {
         
-        // iterate class methods
-        for i in 0..<count {
-            let name = NSStringFromSelector(method_getName(methods[Int(i)]))
-            results.append(name)
+            // iterate class methods
+            for i in 0..<count {
+                let name = NSStringFromSelector(method_getName(methods[Int(i)]))
+                results.append(name)
+            }
+            
+            // release class methods list
+            free(methods)
         }
-        
-        // release class methods list
-        free(methods)
         
         return results
     }
     
     /// Returns class list.
-    internal static func classList() -> [AnyClass] {
+    @objc internal static func classList() -> [AnyClass] {
         var results: Array<AnyClass> = []
         
         // class count
@@ -61,7 +62,7 @@ extension NSObject {
         
         // retrieve class list
         let buffer = UnsafeMutablePointer<AnyClass?>.allocate(capacity: Int(expectedCount))
-        let realCount: Int32 = objc_getClassList(AutoreleasingUnsafeMutablePointer<AnyClass?>(buffer), expectedCount)
+        let realCount: Int32 = objc_getClassList(AutoreleasingUnsafeMutablePointer<AnyClass>(buffer), expectedCount)
         
         // iterate classes
         for i in 0..<realCount {
@@ -77,7 +78,7 @@ extension NSObject {
     }
     
     /// Returns classes implementing specified protocol.
-    internal static func classesImplementingProtocol(_ aProtocol: Protocol) -> [AnyClass] {
+    @objc internal static func classesImplementingProtocol(_ aProtocol: Protocol) -> [AnyClass] {
         let classes = classList()
         var results = [AnyClass]()
         

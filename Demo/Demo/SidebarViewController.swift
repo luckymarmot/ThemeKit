@@ -17,7 +17,7 @@ class SidebarViewController: NSViewController, NSOutlineViewDataSource, NSOutlin
         super.viewDidLoad()
         
         // Keep a reference on app delegate
-        if let appDelegate = NSApplication.shared().delegate as? AppDelegate {
+        if let appDelegate = NSApplication.shared.delegate as? AppDelegate {
             appDelegate.sidebarViewController = self
         }
         
@@ -25,8 +25,8 @@ class SidebarViewController: NSViewController, NSOutlineViewDataSource, NSOutlin
         loadNotes()
         
         // Save notes on quit & when inactive
-        NotificationCenter.default.addObserver(self, selector: #selector(saveNotes), name: .NSApplicationWillTerminate, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(saveNotes), name: .NSApplicationWillResignActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(saveNotes), name: NSApplication.willTerminateNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(saveNotes), name: NSApplication.willResignActiveNotification, object: nil)
         
         // Observe note title editing notifications
         NotificationCenter.default.addObserver(forName: .didEditNoteTitle, object: nil, queue: nil) { (notification) in
@@ -47,10 +47,10 @@ class SidebarViewController: NSViewController, NSOutlineViewDataSource, NSOutlin
     // MARK: Notes
     
     /// NSUserDefaults key
-    let userDefaultsKey: String = "notes"
+    @objc let userDefaultsKey: String = "notes"
     
     /// Notes model
-    var notes: [Note] = []
+    @objc var notes: [Note] = []
     
     /// Load notes
     private func loadNotes(reset: Bool = false) {
@@ -113,7 +113,7 @@ class SidebarViewController: NSViewController, NSOutlineViewDataSource, NSOutlin
             alert.addButton(withTitle: "Cancel")
             alert.alertStyle = .warning
             alert.beginSheetModal(for: window, completionHandler: { (modalResponse) in
-                if modalResponse == NSAlertFirstButtonReturn {
+                if modalResponse == NSApplication.ModalResponse.alertFirstButtonReturn {
                     // delete note
                     self.notes.remove(at: self.outlineView.selectedRow - 1)
                     self.outlineView.reloadData()
@@ -172,11 +172,11 @@ class SidebarViewController: NSViewController, NSOutlineViewDataSource, NSOutlin
         var cellView: NSTableCellView?
         
         if item is [Note] {
-            cellView = outlineView.make(withIdentifier: "HeaderCell", owner: self) as? NSTableCellView
+            cellView = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "HeaderCell"), owner: self) as? NSTableCellView
             cellView?.textField?.stringValue = "NOTES"
         }
         else {
-            cellView = outlineView.make(withIdentifier: "DataCell", owner: self) as? NSTableCellView
+            cellView = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "DataCell"), owner: self) as? NSTableCellView
             if let note = item as? Note {
                 cellView?.textField?.stringValue = note.title
             }

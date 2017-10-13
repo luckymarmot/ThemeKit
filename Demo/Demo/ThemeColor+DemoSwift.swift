@@ -14,29 +14,29 @@ extension ThemeColor {
     // MARK: WINDOW
     
     /// Active window title bar color
-    static var windowTitleBarActiveColor: ThemeColor {
+    @objc static var windowTitleBarActiveColor: ThemeColor {
         return ThemeColor.color(with: #function)
     }
     
     /// Inactive window title bar color
-    static var windowTitleBarInactiveColor: ThemeColor {
+    @objc static var windowTitleBarInactiveColor: ThemeColor {
         return ThemeColor.color(with: #function)
     }
     
     // MARK: CONTENT
     
     /// Notes content title text color
-    static var contentTitleColor: ThemeColor {
+    @objc static var contentTitleColor: ThemeColor {
         return ThemeColor.color(with: #function)
     }
     
     /// Notes text foreground color
-    static var contentTextColor: ThemeColor {
+    @objc static var contentTextColor: ThemeColor {
         return ThemeColor.color(with: #function)
     }
     
     /// Notes text background color
-    static var contentBackgroundColor: ThemeColor {
+    @objc static var contentBackgroundColor: ThemeColor {
         return ThemeColor.color(with: #function)
     }
     
@@ -44,12 +44,12 @@ extension ThemeColor {
     // MARK: DETAILS
     
     /// Notes details title text color
-    static var detailsTitleColor: ThemeColor {
+    @objc static var detailsTitleColor: ThemeColor {
         return ThemeColor.color(with: #function)
     }
     
     /// Notes details background color
-    static var detailsBackgroundColor: ThemeColor {
+    @objc static var detailsBackgroundColor: ThemeColor {
         return ThemeColor.color(with: #function)
     }
     

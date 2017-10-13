@@ -12,7 +12,7 @@ import ThemeKit
 class PaperTheme: NSObject, Theme {
     
     /// Light theme identifier (static).
-    public static var identifier: String = "com.luckymarmot.ThemeKit.PaperTheme"
+    @objc public static var identifier: String = "com.luckymarmot.ThemeKit.PaperTheme"
     
     /// Unique theme identifier.
     public var identifier: String = PaperTheme.identifier
@@ -36,7 +36,7 @@ class PaperTheme: NSObject, Theme {
     
     // MARK: WINDOW
     
-    var windowTitleBarActiveColor: NSColor {
+    @objc var windowTitleBarActiveColor: NSColor {
        if _windowTitleBarActiveColor == nil,
           let paperImage = self.paperImage {
             // darken paper image
@@ -52,7 +52,7 @@ class PaperTheme: NSObject, Theme {
     }
     private var _windowTitleBarActiveColor: NSColor?
     
-    var windowTitleBarInactiveColor: NSColor {
+    @objc var windowTitleBarInactiveColor: NSColor {
         guard let paperImage = self.paperImage else {
             return defaultFallbackBackgroundColor
         }
@@ -63,17 +63,17 @@ class PaperTheme: NSObject, Theme {
     // MARK: CONTENT
     
     /// Notes content title text color
-    var contentTitleColor: NSColor {
+    @objc var contentTitleColor: NSColor {
         return NSColor(calibratedRed: 0.15, green: 0.15, blue: 0.35, alpha: 1.0)
     }
     
     /// Notes text foreground color
-    var contentTextColor: NSColor {
+    @objc var contentTextColor: NSColor {
         return NSColor(calibratedRed: 0.1, green: 0.1, blue: 0.3, alpha: 1.0)
     }
     
     /// Notes text background color
-    var contentBackgroundColor: NSColor {
+    @objc var contentBackgroundColor: NSColor {
         if _contentBackgroundColor == nil,
            let paperImage = self.paperImage {
             // lighten paper image
@@ -90,7 +90,7 @@ class PaperTheme: NSObject, Theme {
     private var _contentBackgroundColor: NSColor?
     
     /// Rainbow gradient (used between title and text)
-    var rainbowGradient: NSGradient? {
+    @objc var rainbowGradient: NSGradient? {
         let blue = NSColor(calibratedRed: 0.18, green: 0.45, blue: 0.88, alpha: 1.0)
         let clear = NSColor(calibratedWhite: 1.0, alpha: 0.0)
         return NSGradient(colorsAndLocations: (blue, 0.0), (clear, 0.66))
@@ -100,12 +100,12 @@ class PaperTheme: NSObject, Theme {
     // MARK: DETAILS
     
     /// Notes details title text color
-    var detailsTitleColor: NSColor {
+    @objc var detailsTitleColor: NSColor {
         return contentTitleColor
     }
     
     /// Notes details background color
-    var detailsBackgroundColor: NSColor {
+    @objc var detailsBackgroundColor: NSColor {
         guard let paperImage = self.paperImage else {
             return defaultFallbackBackgroundColor
         }
@@ -113,22 +113,22 @@ class PaperTheme: NSObject, Theme {
     }
     
     /// Notes details image
-    var detailsImage: NSImage? {
-        return NSImage(named: "file_doc")
+    @objc var detailsImage: NSImage? {
+        return NSImage(named: NSImage.Name(rawValue: "file_doc"))
     }
     
     
     // MARK: SYSTEM OVERRIDE
     
-    var secondaryLabelColor: NSColor {
+    @objc var secondaryLabelColor: NSColor {
         return NSColor(calibratedRed: 0.18, green: 0.45, blue: 0.88, alpha: 1.0)
     }
     
     
     // MARK: SHARED
     
-    var paperImage: NSImage? {
-        return Bundle.main.image(forResource: "paper")
+    @objc var paperImage: NSImage? {
+        return Bundle.main.image(forResource: NSImage.Name(rawValue: "paper"))
     }
     
 }

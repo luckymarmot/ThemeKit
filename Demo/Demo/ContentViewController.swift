@@ -81,7 +81,7 @@ class ContentViewController: NSViewController, NSTextDelegate {
             
             self.view.addSubview(subview)
             subview.translatesAutoresizingMaskIntoConstraints = true
-            subview.autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
+            subview.autoresizingMask = [NSView.AutoresizingMask.width, NSView.AutoresizingMask.height]
             subview.frame = view.bounds
         }
     }
@@ -98,7 +98,7 @@ class ContentViewController: NSViewController, NSTextDelegate {
         
         // If in fullscreen, need to re-focus current window
         if let window = view.window {
-            let isWindowInFullScreen = window.styleMask.contains(.fullScreen) || window.className == "NSToolbarFullScreenWindow"
+            let isWindowInFullScreen = window.styleMask.contains(NSWindow.StyleMask.fullScreen) || window.className == "NSToolbarFullScreenWindow"
             if isWindowInFullScreen {
                 DispatchQueue.main.async {
                     window.makeKey()
@@ -112,9 +112,8 @@ class ContentViewController: NSViewController, NSTextDelegate {
     // MARK: NSTextDelegate
     
     public func textDidChange(_ notification: Notification) {
-        if let note = representedObject as? Note,
-            let text = contentTextView.string {
-            note.text = text
+        if let note = representedObject as? Note {
+            note.text = contentTextView.string
             note.lastModified = Date()
             NotificationCenter.default.post(name: .didEditNoteText, object: self, userInfo: ["note": note])
         }

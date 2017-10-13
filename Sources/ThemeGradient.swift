@@ -141,7 +141,7 @@ open class ThemeGradient : NSGradient {
     
     /// `ThemeGradient` gradient selector used as theme instance method for same
     /// selector or, if inexistent, as argument in the theme instance method `themeAsset(_:)`.
-    public var themeGradientSelector: Selector? {
+    @objc public var themeGradientSelector: Selector? {
         didSet {
             // recache gradient now and on theme change
             recacheGradient()
@@ -150,7 +150,7 @@ open class ThemeGradient : NSGradient {
     }
     
     /// Resolved gradient from current theme (dynamically changes with the current theme).
-    public var resolvedThemeGradient: NSGradient?
+    @objc public var resolvedThemeGradient: NSGradient?
     
     
     // MARK: -
@@ -226,9 +226,9 @@ open class ThemeGradient : NSGradient {
         
         let theme = ThemeManager.shared.effectiveTheme
         let viewAppearance = view.appearance
-        let aquaAppearance = NSAppearance(named: NSAppearanceNameAqua)
-        let lightAppearance = NSAppearance(named: NSAppearanceNameVibrantLight)
-        let darkAppearance = NSAppearance(named: NSAppearanceNameVibrantDark)
+        let aquaAppearance = NSAppearance(named: NSAppearance.Name.aqua)
+        let lightAppearance = NSAppearance(named: NSAppearance.Name.vibrantLight)
+        let darkAppearance = NSAppearance(named: NSAppearance.Name.vibrantDark)
         
         // using a dark theme but control is on a light surface => use light theme instead
         if theme.isDarkTheme &&
@@ -248,7 +248,7 @@ open class ThemeGradient : NSGradient {
     /// - parameter selector:   A gradient selector.
     ///
     /// - returns: A `ThemeGradient` instance.
-    init?(with selector: Selector) {
+    @objc init?(with selector: Selector) {
         // initialize properties
         themeGradientSelector = selector
         let defaultColor = ThemeManager.shared.effectiveTheme.defaultFallbackBackgroundColor
@@ -272,14 +272,14 @@ open class ThemeGradient : NSGradient {
     }
     
     /// Register to recache on theme changes.
-    func registerThemeChangeNotifications() {
+    @objc func registerThemeChangeNotifications() {
         NotificationCenter.default.removeObserver(self, name: .didChangeTheme, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(recacheGradient), name: .didChangeTheme, object: nil)
     }
     
     /// Forces dynamic gradient resolution into `resolvedThemeGradient` and cache it.
     /// You should not need to manually call this function.
-    open func recacheGradient() {
+    @objc open func recacheGradient() {
         // If it is a UserTheme we actually want to discard theme cached values
         if ThemeManager.shared.effectiveTheme.isUserTheme {
             ThemeGradient.emptyCache()
@@ -294,13 +294,13 @@ open class ThemeGradient : NSGradient {
     
     /// Clear all caches.
     /// You should not need to manually call this function.
-    static open func emptyCache() {
+    @objc static open func emptyCache() {
         _cachedGradients.removeAllObjects()
         _cachedThemeGradients.removeAllObjects()
     }
     
     /// Fallback gradient for a specific theme and selector.
-    class func fallbackGradient(for theme: Theme, selector: Selector) -> NSGradient? {
+    @objc class func fallbackGradient(for theme: Theme, selector: Selector) -> NSGradient? {
         var fallbackGradient: NSGradient?
         
         // try with theme provided `fallbackGradient` method
@@ -326,11 +326,11 @@ open class ThemeGradient : NSGradient {
         resolvedThemeGradient?.draw(in: path, angle: angle)
     }
     
-    override open func draw(from startingPoint: NSPoint, to endingPoint: NSPoint, options: NSGradientDrawingOptions = []) {
+    override open func draw(from startingPoint: NSPoint, to endingPoint: NSPoint, options: NSGradient.DrawingOptions = []) {
         resolvedThemeGradient?.draw(from: startingPoint, to: endingPoint, options: options)
     }
     
-    override open func draw(fromCenter startCenter: NSPoint, radius startRadius: CGFloat, toCenter endCenter: NSPoint, radius endRadius: CGFloat, options: NSGradientDrawingOptions = []) {
+    override open func draw(fromCenter startCenter: NSPoint, radius startRadius: CGFloat, toCenter endCenter: NSPoint, radius endRadius: CGFloat, options: NSGradient.DrawingOptions = []) {
         resolvedThemeGradient?.draw(fromCenter: startCenter, radius: startRadius, toCenter: endCenter, radius: endRadius, options: options)
     }
     

@@ -141,13 +141,13 @@ to add class methods for your colors. E.g.:</p>
 <p>In Objective-C:</p>
 <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">TKThemeColor</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
 
-<span class="err">+</span> <span class="err">(</span><span class="nc">TKThemeColor</span><span class="o">*</span><span class="p">)</span><span class="n">brandColor</span><span class="p">;</span>
+<span class="k">+</span> <span class="p">(</span><span class="n">TKThemeColor</span><span class="o">*</span><span class="p">)</span><span class="n">brandColor</span><span class="p">;</span>
 
 <span class="k">@end</span>
 
 <span class="k">@implementation</span> <span class="nc">TKThemeColor</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
 
-<span class="err">+</span> <span class="err">(</span><span class="nc">TKThemeColor</span><span class="o">*</span><span class="p">)</span><span class="n">brandColor</span> <span class="p">{</span>
+<span class="k">+</span> <span class="p">(</span><span class="n">TKThemeColor</span><span class="o">*</span><span class="p">)</span><span class="n">brandColor</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">[</span><span class="n">TKThemeColor</span> <span class="nf">colorWithSelector</span><span class="p">:</span><span class="n">_cmd</span><span class="p">];</span>
 <span class="p">}</span>
 
@@ -176,29 +176,29 @@ instance methods for each theme color class method defined on (1). E.g.:</p>
 </code></pre>
 
 <p>In Objective-C:</p>
-<pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">TKLightTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span> <span class="err">@</span><span class="nc">end</span>
+<pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">TKLightTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span> <span class="k">@end</span>
 
 <span class="k">@implementation</span> <span class="nc">TKLightTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
 
-   <span class="err">-</span> <span class="err">(</span><span class="nc">NSColor</span><span class="o">*</span><span class="p">)</span><span class="n">brandColor</span>
+   <span class="k">-</span> <span class="p">(</span><span class="n">NSColor</span><span class="o">*</span><span class="p">)</span><span class="n">brandColor</span>
    <span class="p">{</span>
        <span class="k">return</span> <span class="p">[</span><span class="n">NSColor</span> <span class="nf">orangeColor</span><span class="p">];</span>
    <span class="p">}</span>
 
 <span class="k">@end</span>
 
-<span class="k">@interface</span> <span class="nc">TKDarkTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span> <span class="err">@</span><span class="nc">end</span>
+<span class="k">@interface</span> <span class="nc">TKDarkTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span> <span class="k">@end</span>
 
 <span class="k">@implementation</span> <span class="nc">TKDarkTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
 
-   <span class="err">-</span> <span class="err">(</span><span class="nc">NSColor</span><span class="o">*</span><span class="p">)</span><span class="n">brandColor</span>
+   <span class="k">-</span> <span class="p">(</span><span class="n">NSColor</span><span class="o">*</span><span class="p">)</span><span class="n">brandColor</span>
    <span class="p">{</span>
        <span class="k">return</span> <span class="p">[</span><span class="n">NSColor</span> <span class="nf">whiteColor</span><span class="p">];</span>
    <span class="p">}</span>
 
 <span class="k">@end</span>
 </code></pre></li>
-<li><p>If supporting <code><a href="../Classes/UserTheme.html">UserTheme</a></code>&rsquo;s, <strong>define properties on user theme files</strong> (<code>.theme</code>)
+<li><p>If supporting <code><a href="../Classes/UserTheme.html">UserTheme</a></code>&lsquo;s, <strong>define properties on user theme files</strong> (<code>.theme</code>)
 for each theme color class method defined on (1). E.g.:</p>
 <pre class="highlight swift"><code><span class="n">displayName</span> <span class="o">=</span> <span class="kt">Sample</span> <span class="kt">User</span> <span class="kt">Theme</span>
 <span class="n">identifier</span> <span class="o">=</span> <span class="n">com</span><span class="o">.</span><span class="n">luckymarmot</span><span class="o">.</span><span class="kt">ThemeKit</span><span class="o">.</span><span class="kt">SampleUserTheme</span>
@@ -217,10 +217,10 @@ from <code><a href="../Protocols/Theme.html">Theme</a></code> subclasses will be
 In sum, calling <code>NSColor.labelColor</code> will return theme-aware colors.</p>
 
 <p>You can get the full list of available/overridable color methods (class methods)
-calling <code><a href="../Extensions/NSColor.html#/s:ZFE8ThemeKitCSo7NSColor16colorMethodNamesFT_GSaSS_">NSColor.colorMethodNames()</a></code>.</p>
+calling <code><a href="../Extensions/NSColor.html#/c:@CM@ThemeKit@@objc(cs)NSColor(cm)colorMethodNames">NSColor.colorMethodNames()</a></code>.</p>
 
 <p>At any time, you can check if a system color is being overriden by current theme
-by checking the <code><a href="../Extensions/NSColor.html#/s:vE8ThemeKitCSo7NSColor16isThemeOverridenSb">NSColor.isThemeOverriden</a></code> property (e.g., <code>NSColor.labelColor.isThemeOverriden</code>).</p>
+by checking the <code><a href="../Extensions/NSColor.html#/c:@CM@ThemeKit@@objc(cs)NSColor(py)isThemeOverriden">NSColor.isThemeOverriden</a></code> property (e.g., <code>NSColor.labelColor.isThemeOverriden</code>).</p>
 
 <p>When a theme does not override a system color, the original system color will be
 used instead. E.g., you have overrided <code>ThemeColor.labelColor</code>, but currently 
@@ -250,9 +250,9 @@ These too, can be customized per theme.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC8ThemeKit10ThemeColor18themeColorSelectorV10ObjectiveC8Selector"></a>
+                    <a name="/c:@M@ThemeKit@objc(cs)TKThemeColor(py)themeColorSelector"></a>
                     <a name="//apple_ref/swift/Property/themeColorSelector" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC8ThemeKit10ThemeColor18themeColorSelectorV10ObjectiveC8Selector">themeColorSelector</a>
+                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKThemeColor(py)themeColorSelector">themeColorSelector</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -268,7 +268,7 @@ or, if inexistent, as argument in the theme instance method <code>themeAsset(_:)
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">themeColorSelector</span><span class="p">:</span> <span class="kt">Selector</span> <span class="o">=</span> <span class="err">#</span><span class="nf">selector</span><span class="p">(</span><span class="nv">getter</span><span class="p">:</span> <span class="kt">NSColor</span><span class="o">.</span><span class="n">clear</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">themeColorSelector</span><span class="p">:</span> <span class="kt">Selector</span> <span class="o">=</span> <span class="kd">#selector(</span><span class="nf">getter: NSColor.clear</span><span class="kd">)</span></code></pre>
 
                         </div>
                       </div>
@@ -281,9 +281,9 @@ or, if inexistent, as argument in the theme instance method <code>themeAsset(_:)
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC8ThemeKit10ThemeColor18resolvedThemeColorCSo7NSColor"></a>
+                    <a name="/c:@M@ThemeKit@objc(cs)TKThemeColor(py)resolvedThemeColor"></a>
                     <a name="//apple_ref/swift/Property/resolvedThemeColor" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC8ThemeKit10ThemeColor18resolvedThemeColorCSo7NSColor">resolvedThemeColor</a>
+                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKThemeColor(py)resolvedThemeColor">resolvedThemeColor</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -298,7 +298,7 @@ or, if inexistent, as argument in the theme instance method <code>themeAsset(_:)
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">lazy</span> <span class="k">var</span> <span class="nv">resolvedThemeColor</span><span class="p">:</span> <span class="kt">NSColor</span> <span class="o">=</span> <span class="kt">NSColor</span><span class="o">.</span><span class="n">clear</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">lazy</span> <span class="k">var</span> <span class="nv">resolvedThemeColor</span><span class="p">:</span> <span class="kt">NSColor</span> <span class="o">=</span> <span class="kt">NSColor</span><span class="o">.</span><span class="n">clear</span></code></pre>
 
                         </div>
                       </div>
@@ -322,9 +322,9 @@ or, if inexistent, as argument in the theme instance method <code>themeAsset(_:)
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFC8ThemeKit10ThemeColor5colorFT4withV10ObjectiveC8Selector_S0_"></a>
+                    <a name="/c:@M@ThemeKit@objc(cs)TKThemeColor(cm)colorWithSelector:"></a>
                     <a name="//apple_ref/swift/Method/color(with:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC8ThemeKit10ThemeColor5colorFT4withV10ObjectiveC8Selector_S0_">color(with:)</a>
+                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKThemeColor(cm)colorWithSelector:">color(with:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -378,9 +378,9 @@ if unavailable, the result of calling <code>themeAsset(_:)</code> on the current
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFC8ThemeKit10ThemeColor5colorFT3forPS_5Theme_8selectorV10ObjectiveC8Selector_CSo7NSColor"></a>
+                    <a name="/c:@M@ThemeKit@objc(cs)TKThemeColor(cm)colorForTheme:selector:"></a>
                     <a name="//apple_ref/swift/Method/color(for:selector:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC8ThemeKit10ThemeColor5colorFT3forPS_5Theme_8selectorV10ObjectiveC8Selector_CSo7NSColor">color(for:selector:)</a>
+                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKThemeColor(cm)colorForTheme:selector:">color(for:selector:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -411,7 +411,7 @@ if unavailable, the result of calling <code>themeAsset(_:)</code> on the current
                               </td>
                               <td>
                                 <div>
-                                  <p>A <code>Theme</code> instance.</p>
+                                  <p>A <code><a href="../Protocols/Theme.html">Theme</a></code> instance.</p>
                                 </div>
                               </td>
                             </tr>
@@ -443,9 +443,9 @@ if unavailable, the result of calling <code>themeAsset(_:)</code> on the current
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFC8ThemeKit10ThemeColor5colorFT3forCSo6NSView8selectorV10ObjectiveC8Selector_CSo7NSColor"></a>
+                    <a name="/c:@M@ThemeKit@objc(cs)TKThemeColor(cm)colorForView:selector:"></a>
                     <a name="//apple_ref/swift/Method/color(for:selector:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC8ThemeKit10ThemeColor5colorFT3forCSo6NSView8selectorV10ObjectiveC8Selector_CSo7NSColor">color(for:selector:)</a>
+                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKThemeColor(cm)colorForView:selector:">color(for:selector:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -456,7 +456,7 @@ if unavailable, the result of calling <code>themeAsset(_:)</code> on the current
                         <p>Current theme color, but respecting view appearance and any window
 specific theme (if set).</p>
 
-<p>If a <code><a href="../Extensions/NSWindow.html#/s:vE8ThemeKitCSo8NSWindow11windowThemeGSqPS_5Theme__">NSWindow.windowTheme</a></code> was set, it will be used instead.
+<p>If a <code><a href="../Extensions/NSWindow.html#/c:@CM@ThemeKit@@objc(cs)NSWindow(py)windowTheme">NSWindow.windowTheme</a></code> was set, it will be used instead.
 Some views may be using a different appearance than the theme appearance.
 In thoses cases, color won&rsquo;t be resolved using current theme, but from 
 either <code>lightTheme</code> or <code>darkTheme</code>, depending of whether view appearance
@@ -515,9 +515,9 @@ is light or dark, respectively.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC8ThemeKit10ThemeColor12recacheColorFT_T_"></a>
+                    <a name="/c:@M@ThemeKit@objc(cs)TKThemeColor(im)recacheColor"></a>
                     <a name="//apple_ref/swift/Method/recacheColor()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC8ThemeKit10ThemeColor12recacheColorFT_T_">recacheColor()</a>
+                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKThemeColor(im)recacheColor">recacheColor()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -525,7 +525,7 @@ is light or dark, respectively.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Forces dynamic color resolution into <code><a href="../Classes/ThemeColor.html#/s:vC8ThemeKit10ThemeColor18resolvedThemeColorCSo7NSColor">resolvedThemeColor</a></code> and cache it.
+                        <p>Forces dynamic color resolution into <code><a href="../Classes/ThemeColor.html#/c:@M@ThemeKit@objc(cs)TKThemeColor(py)resolvedThemeColor">resolvedThemeColor</a></code> and cache it.
 You should not need to manually call this function.</p>
 
                       </div>
@@ -533,7 +533,7 @@ You should not need to manually call this function.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">recacheColor</span><span class="p">()</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="n">open</span> <span class="kd">func</span> <span class="nf">recacheColor</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
@@ -546,9 +546,9 @@ You should not need to manually call this function.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFC8ThemeKit10ThemeColor10emptyCacheFT_T_"></a>
+                    <a name="/c:@M@ThemeKit@objc(cs)TKThemeColor(cm)emptyCache"></a>
                     <a name="//apple_ref/swift/Method/emptyCache()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC8ThemeKit10ThemeColor10emptyCacheFT_T_">emptyCache()</a>
+                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKThemeColor(cm)emptyCache">emptyCache()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -564,7 +564,7 @@ You should not need to manually call this function.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">static</span> <span class="n">open</span> <span class="kd">func</span> <span class="nf">emptyCache</span><span class="p">()</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">static</span> <span class="n">open</span> <span class="kd">func</span> <span class="nf">emptyCache</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
@@ -580,7 +580,7 @@ You should not need to manually call this function.</p>
         </section>
         <section id="footer">
           <p>© 2016-2017 <a class="link" href="https://paw.cloud" target="_blank" rel="external">Paw</a> &amp; <a class="link" href="http://nunogrilo.com" target="_blank" rel="external">Nuno Grilo</a> under <a class="link" href="https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

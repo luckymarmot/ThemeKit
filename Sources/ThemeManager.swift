@@ -36,21 +36,21 @@ public class ThemeManager: NSObject {
         NSColor.swizzleNSColor()
         
         // Observe and theme new windows (before being displayed onscreen)
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.NSWindowDidUpdate, object: nil, queue: nil) { (notification) in
+        NotificationCenter.default.addObserver(forName: NSWindow.didUpdateNotification, object: nil, queue: nil) { (notification) in
             if let window = notification.object as? NSWindow {
                 window.themeIfCompliantWithWindowThemePolicy()
             }
         }
 
         // Observe current theme on User Defaults
-        NSUserDefaultsController.shared().addObserver(self, forKeyPath: themeChangeKVOKeyPath, options: NSKeyValueObservingOptions(rawValue: 0), context: nil)
+        NSUserDefaultsController.shared.addObserver(self, forKeyPath: themeChangeKVOKeyPath, options: NSKeyValueObservingOptions(rawValue: 0), context: nil)
         
         // Observe current system theme (macOS Apple Interface Theme)
         NotificationCenter.default.addObserver(self, selector: #selector(systemThemeDidChange(_:)), name: .didChangeSystemTheme, object: nil)
     }
     
     deinit {
-        NSUserDefaultsController.shared().removeObserver(self, forKeyPath: themeChangeKVOKeyPath)
+        NSUserDefaultsController.shared.removeObserver(self, forKeyPath: themeChangeKVOKeyPath)
     }
     
     
@@ -61,7 +61,7 @@ public class ThemeManager: NSObject {
     ///
     /// This property is KVO compliant. Value is stored on user defaults under key
     /// `userDefaultsThemeKey`.
-    public var theme: Theme {
+    @objc public var theme: Theme {
         get {
             return _theme ?? ThemeManager.defaultTheme
         }
@@ -90,7 +90,7 @@ public class ThemeManager: NSObject {
     /// `theme`, as if current theme is set to `SystemTheme`, effective theme
     /// will be either `lightTheme` or `darkTheme`, respecting user preference at
     /// **System Preferences > General > Appearance**.
-    public var effectiveTheme: Theme {
+    @objc public var effectiveTheme: Theme {
         return theme.effectiveTheme
     }
     
@@ -104,7 +104,7 @@ public class ThemeManager: NSObject {
     ///
     /// This property is KVO compliant and will change when changes occur on user
     /// themes folder.
-    public var themes: [Theme] {
+    @objc public var themes: [Theme] {
         if cachedThemes == nil {
             var available = [Theme]()
             
@@ -139,7 +139,7 @@ public class ThemeManager: NSObject {
     }
     
     /// List all user themes (`UserTheme` class, loaded from `.theme` files)
-    public var userThemes: [Theme] {
+    @objc public var userThemes: [Theme] {
         if cachedUserThemes == nil {
             var available = [Theme]()
             
@@ -165,28 +165,28 @@ public class ThemeManager: NSObject {
     ///
     /// This property can be changed so that `SystemTheme` resolves to this theme
     /// instead of the default `LightTheme`.
-    public static var lightTheme: Theme = LightTheme()
+    @objc public static var lightTheme: Theme = LightTheme()
     
     /// Convenience method for accessing the dark theme.
     ///
     /// This property can be changed so that `SystemTheme` resolves to this theme
     /// instead of the default `DarkTheme`.
-    public static var darkTheme: Theme = DarkTheme()
+    @objc public static var darkTheme: Theme = DarkTheme()
     
     /// Convenience method for accessing the theme that dynamically changes to
     /// `ThemeManager.lightTheme` or `ThemeManager.darkTheme`, respecting user preference
     /// at **System Preferences > General > Appearance**.
-    public static let systemTheme = SystemTheme()
+    @objc public static let systemTheme = SystemTheme()
     
     /// Set/get default theme to be used on the first run (default: `ThemeManager.systemTheme`).
-    public static var defaultTheme: Theme = ThemeManager.systemTheme
+    @objc public static var defaultTheme: Theme = ThemeManager.systemTheme
     
     /// Get the theme with specified identifier.
     ///
     /// - parameter identifier: The unique `Theme.identifier` string.
     ///
     /// - returns: The `Theme` instance with the given identifier.
-    public func theme(withIdentifier identifier: String?) -> Theme? {
+    @objc public func theme(withIdentifier identifier: String?) -> Theme? {
         if let themeIdentifier: String = identifier {
             for theme in themes {
                 if theme.identifier == themeIdentifier {
@@ -200,13 +200,13 @@ public class ThemeManager: NSObject {
     /// User defaults key for current `theme`.
     ///
     /// Current `theme.identifier` will be stored under the `"ThemeKitTheme"` `NSUserDefaults` key.
-    static public let userDefaultsThemeKey = "ThemeKitTheme"
+    @objc static public let userDefaultsThemeKey = "ThemeKitTheme"
     
     /// Apply last applied theme, or default, if none.
     ///
     /// Get last applied theme from user defaults and load it. If no theme was
     /// previously applied, load the default theme (`ThemeManager.defaultTheme`).
-    public func applyLastOrDefaultTheme() {
+    @objc public func applyLastOrDefaultTheme() {
         let userDefaultsTheme = theme(withIdentifier: UserDefaults.standard.string(forKey: ThemeManager.userDefaultsThemeKey))
         (userDefaultsTheme ?? ThemeManager.defaultTheme).apply()
     }
@@ -215,7 +215,7 @@ public class ThemeManager: NSObject {
     ///
     /// Normally you should not need to invoke this method, as this will
     /// force-apply the same theme.
-    public func reApplyCurrentTheme() {
+    @objc public func reApplyCurrentTheme() {
         applyTheme(theme)
     }
     
@@ -249,7 +249,7 @@ public class ThemeManager: NSObject {
     ///
     /// You can also bundle these files with your application bundle, if you 
     /// don't want them to be changed.
-    public var userThemesFolderURL: URL? {
+    @objc public var userThemesFolderURL: URL? {
         didSet {
             // Clean up previous
             _userThemesFolderSource?.cancel()
@@ -340,18 +340,18 @@ public class ThemeManager: NSObject {
     // MARK: Appearances
     
     /// Appearance in use for effective theme.
-    public var effectiveThemeAppearance: NSAppearance {
-        return (effectiveTheme.isLightTheme ? lightAppearance : darkAppearance) ?? NSAppearance.current()
+    @objc public var effectiveThemeAppearance: NSAppearance {
+        return (effectiveTheme.isLightTheme ? lightAppearance : darkAppearance) ?? NSAppearance.current
     }
     
     /// Convenience method to get the light appearance.
-    public var lightAppearance: NSAppearance? {
-        return NSAppearance(named: NSAppearanceNameVibrantLight)
+    @objc public var lightAppearance: NSAppearance? {
+        return NSAppearance(named: NSAppearance.Name.vibrantLight)
     }
     
     /// Convenience method to get the dark appearance.
-    public var darkAppearance: NSAppearance? {
-        return NSAppearance(named: NSAppearanceNameVibrantDark)
+    @objc public var darkAppearance: NSAppearance? {
+        return NSAppearance(named: NSAppearance.Name.vibrantDark)
     }
     
     // MARK: -
@@ -523,7 +523,7 @@ public class ThemeManager: NSObject {
                 
                 // Setup animation
                 NSAnimationContext.beginGrouping()
-                let ctx = NSAnimationContext.current()
+                let ctx = NSAnimationContext.current
                 ctx.duration = 0.3
                 ctx.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
                 ctx.completionHandler = {() -> Void in
@@ -552,13 +552,13 @@ public class ThemeManager: NSObject {
     // MARK: Notifications
     
     /// ThemeKit notification sent when current theme is about to change.
-    public static let willChangeThemeNotification = Notification.Name.willChangeTheme
+    @objc public static let willChangeThemeNotification = Notification.Name.willChangeTheme
     
     /// ThemeKit notification sent when current theme did change.
-    public static let didChangeThemeNotification = Notification.Name.didChangeTheme
+    @objc public static let didChangeThemeNotification = Notification.Name.didChangeTheme
     
     /// ThemeKit notification sent when system theme did change (System Preference > General > Appearance).
-    public static let didChangeSystemThemeNotification = Notification.Name.didChangeSystemTheme
+    @objc public static let didChangeSystemThemeNotification = Notification.Name.didChangeSystemTheme
     
 }
 

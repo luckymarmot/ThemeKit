@@ -11,7 +11,7 @@ import Foundation
 extension Thread {
     
     /// Make sure code block is executed on main thread.
-    class func onMain(block: @escaping () -> Void) {
+    @objc class func onMain(block: @escaping () -> Void) {
         if Thread.isMainThread {
             block()
         }

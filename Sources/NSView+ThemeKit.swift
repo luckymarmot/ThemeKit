@@ -11,7 +11,7 @@ import Foundation
 extension NSView {
     
     /// Returns the first subview that matches specified class.
-    func deepSubview(withClassName className: String) -> NSView? {
+    @objc func deepSubview(withClassName className: String) -> NSView? {
         
         // search level below (view subviews)
         for subview: NSView in self.subviews {

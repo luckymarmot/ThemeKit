@@ -15,7 +15,7 @@ class TitleBarOverlayView: NSView {
     override func draw(_ dirtyRect: NSRect) {
         let theme = ThemeManager.shared.theme
         let windowIsActive = window?.isKeyWindow ?? false
-        let isWindowInFullScreen = window?.styleMask.contains(.fullScreen) ?? false
+        let isWindowInFullScreen = window?.styleMask.contains(NSWindow.StyleMask.fullScreen) ?? false
                                 || (window?.className ?? "") == "NSToolbarFullScreenWindow"
         
         if (windowIsActive || isWindowInFullScreen),

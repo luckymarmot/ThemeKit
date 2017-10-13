@@ -17,7 +17,7 @@ extension NSColor {
     // MARK: Color override
     
     /// Swizzle NSColor in case we are replacing system colors by themable colors.
-    static func swizzleNSColor() {
+    @objc static func swizzleNSColor() {
         swizzleNSColorOnce
     }
     
@@ -34,10 +34,10 @@ extension NSColor {
     }()
     
     /// Check if color is being overriden in a ThemeColor extension.
-    public var isThemeOverriden: Bool {
+    @objc public var isThemeOverriden: Bool {
         
         // check if `NSColor` provides this color
-        let selector = Selector(colorNameComponent)
+        let selector = Selector(colorNameComponent.rawValue)
         let nsColorMethod = class_getClassMethod(NSColor.classForCoder(), selector)
         guard nsColorMethod != nil else {
             return false
@@ -48,12 +48,12 @@ extension NSColor {
         
         // `UserTheme`: check `hasThemeAsset(_:)` method
         if let userTheme = theme as? UserTheme {
-            return userTheme.hasThemeAsset(colorNameComponent)
+            return userTheme.hasThemeAsset(colorNameComponent.rawValue)
         }
             
         // native themes: look up for an instance method
         else {
-            let themeClass: AnyClass = object_getClass(theme)
+            let themeClass: AnyClass = object_getClass(theme)!
             let themeColorMethod = class_getInstanceMethod(themeClass, selector)
             return themeColorMethod != nil && nsColorMethod != themeColorMethod
         }
@@ -61,7 +61,7 @@ extension NSColor {
     
     /// Get all `NSColor` color methods.
     /// Overridable class methods (can be overriden in `ThemeColor` extension).
-    public class func colorMethodNames() -> [String] {
+    @objc public class func colorMethodNames() -> [String] {
         let nsColorMethods = NSObject.classMethodNames(for: NSColor.classForCoder()).filter { (methodName) -> Bool in
             return methodName.hasSuffix("Color")
         }
@@ -91,38 +91,38 @@ extension NSColor {
     }
     
     // ThemeKit.set() replacement to use theme-aware color
-    public func themeKitSet() {
+    @objc public func themeKitSet() {
         // call original .set() function
         themeKitSet()
 
         // check if the user provides an alternative color
         if isThemeOverriden {
             // call ThemeColor.set() function
-            ThemeColor.color(with: colorNameComponent).set()
+            ThemeColor.color(with: Selector(colorNameComponent.rawValue)).set()
         }
     }
 
     // ThemeKit.setFill() replacement to use theme-aware color
-    public func themeKitSetFill() {
+    @objc public func themeKitSetFill() {
         // call original .setFill() function
         themeKitSetFill()
 
         // check if the user provides an alternative color
         if isThemeOverriden {
             // call ThemeColor.setFill() function
-            ThemeColor.color(with: colorNameComponent).setFill()
+            ThemeColor.color(with: Selector(colorNameComponent.rawValue)).setFill()
         }
     }
 
     // ThemeKit.setStroke() replacement to use theme-aware color
-    public func themeKitSetStroke() {
+    @objc public func themeKitSetStroke() {
         // call original .setStroke() function
         themeKitSetStroke()
 
         // check if the user provides an alternative color
         if isThemeOverriden {
             // call ThemeColor.setStroke() function
-            ThemeColor.color(with: colorNameComponent).setStroke()
+            ThemeColor.color(with: Selector(colorNameComponent.rawValue)).setStroke()
         }
     }
     

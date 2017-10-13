@@ -104,9 +104,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:C8ThemeKit10ThemeColor"></a>
+                    <a name="/c:@M@ThemeKit@objc(cs)TKThemeColor"></a>
                     <a name="//apple_ref/swift/Class/ThemeColor" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C8ThemeKit10ThemeColor">ThemeColor</a>
+                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKThemeColor">ThemeColor</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -152,13 +152,13 @@ to add class methods for your colors. E.g.:</p>
 <p>In Objective-C:</p>
 <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">TKThemeColor</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
 
-<span class="err">+</span> <span class="err">(</span><span class="nc">TKThemeColor</span><span class="o">*</span><span class="p">)</span><span class="n">brandColor</span><span class="p">;</span>
+<span class="k">+</span> <span class="p">(</span><span class="n">TKThemeColor</span><span class="o">*</span><span class="p">)</span><span class="n">brandColor</span><span class="p">;</span>
 
 <span class="k">@end</span>
 
 <span class="k">@implementation</span> <span class="nc">TKThemeColor</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
 
-<span class="err">+</span> <span class="err">(</span><span class="nc">TKThemeColor</span><span class="o">*</span><span class="p">)</span><span class="n">brandColor</span> <span class="p">{</span>
+<span class="k">+</span> <span class="p">(</span><span class="n">TKThemeColor</span><span class="o">*</span><span class="p">)</span><span class="n">brandColor</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">[</span><span class="n">TKThemeColor</span> <span class="nf">colorWithSelector</span><span class="p">:</span><span class="n">_cmd</span><span class="p">];</span>
 <span class="p">}</span>
 
@@ -187,29 +187,29 @@ instance methods for each theme color class method defined on (1). E.g.:</p>
 </code></pre>
 
 <p>In Objective-C:</p>
-<pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">TKLightTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span> <span class="err">@</span><span class="nc">end</span>
+<pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">TKLightTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span> <span class="k">@end</span>
 
 <span class="k">@implementation</span> <span class="nc">TKLightTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
 
-   <span class="err">-</span> <span class="err">(</span><span class="nc">NSColor</span><span class="o">*</span><span class="p">)</span><span class="n">brandColor</span>
+   <span class="k">-</span> <span class="p">(</span><span class="n">NSColor</span><span class="o">*</span><span class="p">)</span><span class="n">brandColor</span>
    <span class="p">{</span>
        <span class="k">return</span> <span class="p">[</span><span class="n">NSColor</span> <span class="nf">orangeColor</span><span class="p">];</span>
    <span class="p">}</span>
 
 <span class="k">@end</span>
 
-<span class="k">@interface</span> <span class="nc">TKDarkTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span> <span class="err">@</span><span class="nc">end</span>
+<span class="k">@interface</span> <span class="nc">TKDarkTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span> <span class="k">@end</span>
 
 <span class="k">@implementation</span> <span class="nc">TKDarkTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
 
-   <span class="err">-</span> <span class="err">(</span><span class="nc">NSColor</span><span class="o">*</span><span class="p">)</span><span class="n">brandColor</span>
+   <span class="k">-</span> <span class="p">(</span><span class="n">NSColor</span><span class="o">*</span><span class="p">)</span><span class="n">brandColor</span>
    <span class="p">{</span>
        <span class="k">return</span> <span class="p">[</span><span class="n">NSColor</span> <span class="nf">whiteColor</span><span class="p">];</span>
    <span class="p">}</span>
 
 <span class="k">@end</span>
 </code></pre></li>
-<li><p>If supporting <code><a href="Classes/UserTheme.html">UserTheme</a></code>&rsquo;s, <strong>define properties on user theme files</strong> (<code>.theme</code>)
+<li><p>If supporting <code><a href="Classes/UserTheme.html">UserTheme</a></code>&lsquo;s, <strong>define properties on user theme files</strong> (<code>.theme</code>)
 for each theme color class method defined on (1). E.g.:</p>
 <pre class="highlight swift"><code><span class="n">displayName</span> <span class="o">=</span> <span class="kt">Sample</span> <span class="kt">User</span> <span class="kt">Theme</span>
 <span class="n">identifier</span> <span class="o">=</span> <span class="n">com</span><span class="o">.</span><span class="n">luckymarmot</span><span class="o">.</span><span class="kt">ThemeKit</span><span class="o">.</span><span class="kt">SampleUserTheme</span>
@@ -228,10 +228,10 @@ from <code><a href="Protocols/Theme.html">Theme</a></code> subclasses will be us
 In sum, calling <code>NSColor.labelColor</code> will return theme-aware colors.</p>
 
 <p>You can get the full list of available/overridable color methods (class methods)
-calling <code><a href="Extensions/NSColor.html#/s:ZFE8ThemeKitCSo7NSColor16colorMethodNamesFT_GSaSS_">NSColor.colorMethodNames()</a></code>.</p>
+calling <code><a href="Extensions/NSColor.html#/c:@CM@ThemeKit@@objc(cs)NSColor(cm)colorMethodNames">NSColor.colorMethodNames()</a></code>.</p>
 
 <p>At any time, you can check if a system color is being overriden by current theme
-by checking the <code><a href="Extensions/NSColor.html#/s:vE8ThemeKitCSo7NSColor16isThemeOverridenSb">NSColor.isThemeOverriden</a></code> property (e.g., <code>NSColor.labelColor.isThemeOverriden</code>).</p>
+by checking the <code><a href="Extensions/NSColor.html#/c:@CM@ThemeKit@@objc(cs)NSColor(py)isThemeOverriden">NSColor.isThemeOverriden</a></code> property (e.g., <code>NSColor.labelColor.isThemeOverriden</code>).</p>
 
 <p>When a theme does not override a system color, the original system color will be
 used instead. E.g., you have overrided <code>ThemeColor.labelColor</code>, but currently 
@@ -270,9 +270,9 @@ These too, can be customized per theme.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:C8ThemeKit13ThemeGradient"></a>
+                    <a name="/c:@M@ThemeKit@objc(cs)TKThemeGradient"></a>
                     <a name="//apple_ref/swift/Class/ThemeGradient" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C8ThemeKit13ThemeGradient">ThemeGradient</a>
+                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKThemeGradient">ThemeGradient</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -312,13 +312,13 @@ Objective-C) to add class methods for your gradients. E.g.:</p>
 <p>In Objective-C:</p>
 <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">TKThemeGradient</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
 
-<span class="err">+</span> <span class="err">(</span><span class="nc">TKThemeGradient</span><span class="o">*</span><span class="p">)</span><span class="n">brandGradient</span><span class="p">;</span>
+<span class="k">+</span> <span class="p">(</span><span class="n">TKThemeGradient</span><span class="o">*</span><span class="p">)</span><span class="n">brandGradient</span><span class="p">;</span>
 
 <span class="k">@end</span>
 
 <span class="k">@implementation</span> <span class="nc">TKThemeGradient</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
 
-<span class="err">+</span> <span class="err">(</span><span class="nc">TKThemeGradient</span><span class="o">*</span><span class="p">)</span><span class="n">brandGradient</span> <span class="p">{</span>
+<span class="k">+</span> <span class="p">(</span><span class="n">TKThemeGradient</span><span class="o">*</span><span class="p">)</span><span class="n">brandGradient</span> <span class="p">{</span>
    <span class="k">return</span> <span class="p">[</span><span class="n">TKThemeGradient</span> <span class="nf">gradientWithSelector</span><span class="p">:</span><span class="n">_cmd</span><span class="p">];</span>
 <span class="p">}</span>
 
@@ -347,29 +347,29 @@ instance methods for each theme gradient class method defined on (1). E.g.:</p>
 </code></pre>
 
 <p>In Objective-C:</p>
-<pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">TKLightTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span> <span class="err">@</span><span class="nc">end</span>
+<pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">TKLightTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span> <span class="k">@end</span>
 
 <span class="k">@implementation</span> <span class="nc">TKLightTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
 
-<span class="err">-</span> <span class="err">(</span><span class="nc">NSGradient</span><span class="o">*</span><span class="p">)</span><span class="n">brandGradient</span>
+<span class="k">-</span> <span class="p">(</span><span class="n">NSGradient</span><span class="o">*</span><span class="p">)</span><span class="n">brandGradient</span>
 <span class="p">{</span>
    <span class="k">return</span> <span class="p">[[</span><span class="n">NSGradient</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithStartingColor</span><span class="p">:[</span><span class="n">NSColor</span> <span class="nf">whiteColor</span><span class="p">]</span> <span class="nf">endingColor</span><span class="p">:[</span><span class="n">NSColor</span> <span class="nf">blackColor</span><span class="p">]];</span>
 <span class="p">}</span>
 
 <span class="k">@end</span>
 
-<span class="k">@interface</span> <span class="nc">TKDarkTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span> <span class="err">@</span><span class="nc">end</span>
+<span class="k">@interface</span> <span class="nc">TKDarkTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span> <span class="k">@end</span>
 
 <span class="k">@implementation</span> <span class="nc">TKDarkTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
 
-<span class="err">-</span> <span class="err">(</span><span class="nc">NSGradient</span><span class="o">*</span><span class="p">)</span><span class="n">brandGradient</span>
+<span class="k">-</span> <span class="p">(</span><span class="n">NSGradient</span><span class="o">*</span><span class="p">)</span><span class="n">brandGradient</span>
 <span class="p">{</span>
    <span class="k">return</span> <span class="p">[[</span><span class="n">NSGradient</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithStartingColor</span><span class="p">:[</span><span class="n">NSColor</span> <span class="nf">blackColor</span><span class="p">]</span> <span class="nf">endingColor</span><span class="p">:[</span><span class="n">NSColor</span> <span class="nf">whiteColor</span><span class="p">]];</span>
 <span class="p">}</span>
 
 <span class="k">@end</span>
 </code></pre></li>
-<li><p>If supporting <code><a href="Classes/UserTheme.html">UserTheme</a></code>&rsquo;s, <strong>define properties on user theme files</strong> (<code>.theme</code>)
+<li><p>If supporting <code><a href="Classes/UserTheme.html">UserTheme</a></code>&lsquo;s, <strong>define properties on user theme files</strong> (<code>.theme</code>)
 for each theme gradient class method defined on (1). E.g.:</p>
 <pre class="highlight plaintext"><code>displayName = Sample User Theme
 identifier = com.luckymarmot.ThemeKit.SampleUserTheme
@@ -409,9 +409,9 @@ brandGradient = linear-gradient($orangeSky, rgb(200, 140, 60))
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:C8ThemeKit10ThemeImage"></a>
+                    <a name="/c:@M@ThemeKit@objc(cs)TKThemeImage"></a>
                     <a name="//apple_ref/swift/Class/ThemeImage" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C8ThemeKit10ThemeImage">ThemeImage</a>
+                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKThemeImage">ThemeImage</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -451,13 +451,13 @@ Objective-C) to add class methods for your images. E.g.:</p>
 <p>In Objective-C:</p>
 <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">TKThemeImage</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
 
-<span class="err">+</span> <span class="err">(</span><span class="nc">TKThemeImage</span><span class="o">*</span><span class="p">)</span><span class="n">logoImage</span><span class="p">;</span>
+<span class="k">+</span> <span class="p">(</span><span class="n">TKThemeImage</span><span class="o">*</span><span class="p">)</span><span class="n">logoImage</span><span class="p">;</span>
 
 <span class="k">@end</span>
 
 <span class="k">@implementation</span> <span class="nc">TKThemeImage</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
 
-<span class="err">+</span> <span class="err">(</span><span class="nc">TKThemeImage</span><span class="o">*</span><span class="p">)</span><span class="n">logoImage</span> <span class="p">{</span>
+<span class="k">+</span> <span class="p">(</span><span class="n">TKThemeImage</span><span class="o">*</span><span class="p">)</span><span class="n">logoImage</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">TKThemeImage</span> <span class="nf">imageWithSelector</span><span class="p">:</span><span class="n">_cmd</span><span class="p">];</span>
 <span class="p">}</span>
 
@@ -486,29 +486,29 @@ extension DarkTheme {
 </code></pre>
 
 <p>In Objective-C:</p>
-<pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">TKLightTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span> <span class="err">@</span><span class="nc">end</span>
+<pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">TKLightTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span> <span class="k">@end</span>
 
 <span class="k">@implementation</span> <span class="nc">TKLightTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
 
-<span class="err">-</span> <span class="err">(</span><span class="nc">NSImage</span><span class="o">*</span><span class="p">)</span><span class="n">logoImage</span>
+<span class="k">-</span> <span class="p">(</span><span class="n">NSImage</span><span class="o">*</span><span class="p">)</span><span class="n">logoImage</span>
 <span class="p">{</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">NSImage</span> <span class="nf">imageNamed</span><span class="p">:</span><span class="s">@"MyLightLogo"</span><span class="p">];</span>
 <span class="p">}</span>
 
 <span class="k">@end</span>
 
-<span class="k">@interface</span> <span class="nc">TKDarkTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span> <span class="err">@</span><span class="nc">end</span>
+<span class="k">@interface</span> <span class="nc">TKDarkTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span> <span class="k">@end</span>
 
 <span class="k">@implementation</span> <span class="nc">TKDarkTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
 
-<span class="err">-</span> <span class="err">(</span><span class="nc">NSImage</span><span class="o">*</span><span class="p">)</span><span class="n">logoImage</span>
+<span class="k">-</span> <span class="p">(</span><span class="n">NSImage</span><span class="o">*</span><span class="p">)</span><span class="n">logoImage</span>
 <span class="p">{</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">NSImage</span> <span class="nf">alloc</span><span class="p">]</span> <span class="n">initWithContentsOfFile</span><span class="o">:</span><span class="s">@"somewhere/MyDarkLogo.png"</span><span class="p">];</span>
 <span class="p">}</span>
 
 <span class="k">@end</span>
 </code></pre></li>
-<li><p>If supporting <code><a href="Classes/UserTheme.html">UserTheme</a></code>&rsquo;s, <strong>define properties on user theme files</strong> (<code>.theme</code>)
+<li><p>If supporting <code><a href="Classes/UserTheme.html">UserTheme</a></code>&lsquo;s, <strong>define properties on user theme files</strong> (<code>.theme</code>)
 for each theme image class method defined on (1). E.g.:</p>
 <pre class="highlight plaintext"><code>displayName = Sample User Theme
 identifier = com.luckymarmot.ThemeKit.SampleUserTheme
@@ -547,7 +547,7 @@ logoImage = image(named:MyLogo)
         </section>
         <section id="footer">
           <p>© 2016-2017 <a class="link" href="https://paw.cloud" target="_blank" rel="external">Paw</a> &amp; <a class="link" href="http://nunogrilo.com" target="_blank" rel="external">Nuno Grilo</a> under <a class="link" href="https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

@@ -14,7 +14,7 @@ extension ThemeGradient {
     // MARK: CONTENT
     
     /// Rainbow gradient (used between title and text)
-    static var rainbowGradient: ThemeGradient? {
+    @objc static var rainbowGradient: ThemeGradient? {
         return ThemeGradient.gradient(with: #function)
     }
     

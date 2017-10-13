@@ -13,7 +13,7 @@ extension NSDictionary {
     // MARK: `NSRegularExpression` Initialization
     
     /// Regular expression for user theme variables ($var)
-    static var varsRegExpr: NSRegularExpression? {
+    @objc static var varsRegExpr: NSRegularExpression? {
         do {
             return try NSRegularExpression(pattern: "(\\$[a-zA-Z0-9_\\-\\.]+)+", options: .caseInsensitive)
         }
@@ -24,7 +24,7 @@ extension NSDictionary {
     }
     
     /// Regular expression for user theme colors
-    static var colorRegExpr: NSRegularExpression? {
+    @objc static var colorRegExpr: NSRegularExpression? {
         do {
             return try NSRegularExpression(pattern: "(?:rgba?)?[\\s]?[\\(]?[\\s+]?(\\d+)[(\\s)|(,)]+[\\s+]?(\\d+)[(\\s)|(,)]+[\\s+]?(\\d+)[(\\s)|(,)]+[\\s+]?([0-1]?(?:\\.\\d+)?)", options: .caseInsensitive)
         }
@@ -35,7 +35,7 @@ extension NSDictionary {
     }
     
     /// Regular expression for user theme gradients
-    static var linearGradRegExpr: NSRegularExpression? {
+    @objc static var linearGradRegExpr: NSRegularExpression? {
         do {
             return try NSRegularExpression(pattern: "linear-gradient\\(\\s*((?:rgba?)?[\\s]?[\\(]?[\\s+]?(\\d+)[(\\s)|(,)]+[\\s+]?(\\d+)[(\\s)|(,)]+[\\s+]?(\\d+)[(\\s)|(,)]*[\\s+]?([0-1]?(?:\\.\\d+)?)\\))\\s*,\\s*((?:rgba?)?[\\s]?[\\(]?[\\s+]?(\\d+)[(\\s)|(,)]+[\\s+]?(\\d+)[(\\s)|(,)]+[\\s+]?(\\d+)[(\\s)|(,)]*[\\s+]?([0-1]?(?:\\.\\d+)?)\\))\\s*\\)", options: .caseInsensitive)
         }
@@ -46,7 +46,7 @@ extension NSDictionary {
     }
     
     /// Regular expression for user theme pattern images (NSColor)
-    static var patternRegExpr: NSRegularExpression? {
+    @objc static var patternRegExpr: NSRegularExpression? {
         do {
             return try NSRegularExpression(pattern: "pattern\\(((named):[\\s]*([\\w-\\. ]+)|(file):[\\s]*([\\w-\\. \\/]+))\\)", options: .caseInsensitive)
         }
@@ -57,7 +57,7 @@ extension NSDictionary {
     }
     
     /// Regular expression for user theme images
-    static var imageRegExpr: NSRegularExpression? {
+    @objc static var imageRegExpr: NSRegularExpression? {
         do {
             return try NSRegularExpression(pattern: "image\\(((named):[\\s]*([\\w-\\. ]+)|(file):[\\s]*([\\w-\\. \\/]+))\\)", options: .caseInsensitive)
         }
@@ -71,7 +71,7 @@ extension NSDictionary {
     // MARK: Evaluation
     
     /// Evaluate object for the specified key as theme asset (`NSColor`, `NSGradient`, `NSImage`, ...).
-    func evaluatedObject(key: String) -> AnyObject? {
+    @objc func evaluatedObject(key: String) -> AnyObject? {
         // Resolve any variables
         let stringValue = evaluatedString(key: key)
         
@@ -92,7 +92,7 @@ extension NSDictionary {
         var evaluatedStringValue = stringValue
         var rangeOffset = 0
         NSDictionary.varsRegExpr?.enumerateMatches(in: stringValue, options: NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSMakeRange(0, stringValue.characters.count), using: { (match, flags, stop) in
-            if let matchRange = match?.rangeAt(1) {
+            if let matchRange = match?.range(at: 1) {
                 var range = matchRange
                 range.location += rangeOffset
                 
@@ -133,17 +133,17 @@ extension NSDictionary {
             match.numberOfRanges == 11 {
             
             // Starting color
-            let red1 = (Float(stringValue.substring(withNSRange: match.rangeAt(2))) ?? 255) / 255
-            let green1 = (Float(stringValue.substring(withNSRange: match.rangeAt(3))) ?? 255) / 255
-            let blue1 = (Float(stringValue.substring(withNSRange: match.rangeAt(4))) ?? 255) / 255
-            let alpha1 = Float(stringValue.substring(withNSRange: match.rangeAt(5))) ?? 1.0
+            let red1 = (Float(stringValue.substring(withNSRange: match.range(at: 2))) ?? 255) / 255
+            let green1 = (Float(stringValue.substring(withNSRange: match.range(at: 3))) ?? 255) / 255
+            let blue1 = (Float(stringValue.substring(withNSRange: match.range(at: 4))) ?? 255) / 255
+            let alpha1 = Float(stringValue.substring(withNSRange: match.range(at: 5))) ?? 1.0
             let color1 = NSColor(red: CGFloat(red1), green: CGFloat(green1), blue: CGFloat(blue1), alpha: CGFloat(alpha1))
 
             // Ending color
-            let red2 = (Float(stringValue.substring(withNSRange: match.rangeAt(7))) ?? 255) / 255
-            let green2 = (Float(stringValue.substring(withNSRange: match.rangeAt(8))) ?? 255) / 255
-            let blue2 = (Float(stringValue.substring(withNSRange: match.rangeAt(9))) ?? 255) / 255
-            let alpha2 = Float(stringValue.substring(withNSRange: match.rangeAt(10))) ?? 1.0
+            let red2 = (Float(stringValue.substring(withNSRange: match.range(at: 7))) ?? 255) / 255
+            let green2 = (Float(stringValue.substring(withNSRange: match.range(at: 8))) ?? 255) / 255
+            let blue2 = (Float(stringValue.substring(withNSRange: match.range(at: 9))) ?? 255) / 255
+            let alpha2 = Float(stringValue.substring(withNSRange: match.range(at: 10))) ?? 1.0
             let color2 = NSColor(red: CGFloat(red2), green: CGFloat(green2), blue: CGFloat(blue2), alpha: CGFloat(alpha2))
             
             // Gradient
@@ -155,10 +155,10 @@ extension NSDictionary {
             let match = NSDictionary.colorRegExpr?.firstMatch(in: stringValue, options:NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSMakeRange(0, stringValue.characters.count)),
             match.numberOfRanges == 5 {
             
-            let red = (Float(stringValue.substring(withNSRange: match.rangeAt(1))) ?? 255) / 255
-            let green = (Float(stringValue.substring(withNSRange: match.rangeAt(2))) ?? 255) / 255
-            let blue = (Float(stringValue.substring(withNSRange: match.rangeAt(3))) ?? 255) / 255
-            let alpha = Float(stringValue.substring(withNSRange: match.rangeAt(4))) ?? 1.0
+            let red = (Float(stringValue.substring(withNSRange: match.range(at: 1))) ?? 255) / 255
+            let green = (Float(stringValue.substring(withNSRange: match.range(at: 2))) ?? 255) / 255
+            let blue = (Float(stringValue.substring(withNSRange: match.range(at: 3))) ?? 255) / 255
+            let alpha = Float(stringValue.substring(withNSRange: match.range(at: 4))) ?? 1.0
             
             // Color
             evaluatedObject = NSColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: CGFloat(alpha))
@@ -169,15 +169,15 @@ extension NSDictionary {
             let match = NSDictionary.patternRegExpr?.firstMatch(in: stringValue, options:NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSMakeRange(0, stringValue.characters.count)),
             match.numberOfRanges == 6 {
                 
-            let isNamedType = stringValue.substring(withNSRange: match.rangeAt(2)) == "named"
-            let imageName = stringValue.substring(withNSRange: match.rangeAt(3))
-            let isFileType = stringValue.substring(withNSRange: match.rangeAt(4)) == "file"
-            let imageFileName = stringValue.substring(withNSRange: match.rangeAt(5))
+            let isNamedType = stringValue.substring(withNSRange: match.range(at: 2)) == "named"
+            let imageName = stringValue.substring(withNSRange: match.range(at: 3))
+            let isFileType = stringValue.substring(withNSRange: match.range(at: 4)) == "file"
+            let imageFileName = stringValue.substring(withNSRange: match.range(at: 5))
                 
             // Pattern image
             var pattern: NSImage
             if isNamedType {
-                pattern = NSImage(named: imageName) ?? NSImage(size: NSZeroSize)
+                pattern = NSImage(named: NSImage.Name(rawValue: imageName)) ?? NSImage(size: NSZeroSize)
             }
             else if isFileType, let imageURL = ThemeManager.shared.userThemesFolderURL?.appendingPathComponent(imageFileName) {
                 pattern = NSImage(contentsOf: imageURL) ?? NSImage(size: NSZeroSize)
@@ -193,14 +193,14 @@ extension NSDictionary {
             let match = NSDictionary.imageRegExpr?.firstMatch(in: stringValue, options:NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSMakeRange(0, stringValue.characters.count)),
             match.numberOfRanges == 6 {
             
-            let isNamedType = stringValue.substring(withNSRange: match.rangeAt(2)) == "named"
-            let imageName = stringValue.substring(withNSRange: match.rangeAt(3))
-            let isFileType = stringValue.substring(withNSRange: match.rangeAt(4)) == "file"
-            let imageFileName = stringValue.substring(withNSRange: match.rangeAt(5))
+            let isNamedType = stringValue.substring(withNSRange: match.range(at: 2)) == "named"
+            let imageName = stringValue.substring(withNSRange: match.range(at: 3))
+            let isFileType = stringValue.substring(withNSRange: match.range(at: 4)) == "file"
+            let imageFileName = stringValue.substring(withNSRange: match.range(at: 5))
             
             // Image
             if isNamedType {
-                evaluatedObject = NSImage(named: imageName) ?? NSImage(size: NSZeroSize)
+                evaluatedObject = NSImage(named: NSImage.Name(rawValue: imageName)) ?? NSImage(size: NSZeroSize)
             }
             else if isFileType, let imageURL = ThemeManager.shared.userThemesFolderURL?.appendingPathComponent(imageFileName) {
                 evaluatedObject = NSImage(contentsOf: imageURL) ?? NSImage(size: NSZeroSize)

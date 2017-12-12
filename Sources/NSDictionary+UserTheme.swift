@@ -91,7 +91,7 @@ extension NSDictionary {
         // Resolve any variables
         var evaluatedStringValue = stringValue
         var rangeOffset = 0
-        NSDictionary.varsRegExpr?.enumerateMatches(in: stringValue, options: NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSMakeRange(0, stringValue.characters.count), using: { (match, flags, stop) in
+        NSDictionary.varsRegExpr?.enumerateMatches(in: stringValue, options: NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSMakeRange(0, stringValue.count), using: { (match, flags, stop) in
             if let matchRange = match?.range(at: 1) {
                 var range = matchRange
                 range.location += rangeOffset
@@ -99,7 +99,7 @@ extension NSDictionary {
                 // Extract variable
                 let start = range.location + 1
                 let end = start + range.length - 2
-                guard start < evaluatedStringValue.characters.count && end < evaluatedStringValue.characters.count else { return }
+                guard start < evaluatedStringValue.count && end < evaluatedStringValue.count else { return }
                 let variable = evaluatedStringValue[start..<end]
                 
                 // Evaluated value
@@ -107,7 +107,7 @@ extension NSDictionary {
                     evaluatedStringValue = evaluatedStringValue.replacingCharacters(inNSRange: range, with: variableValue)
                     
                     // Move offset forward
-                    rangeOffset = variableValue.characters.count - range.length
+                    rangeOffset = variableValue.count - range.length
                 }
                 else {
                     // Move offset forward
@@ -129,7 +129,7 @@ extension NSDictionary {
         var evaluatedObject: AnyObject? = value
             
         // linear-gradient(color1, color2)
-        if let match = NSDictionary.linearGradRegExpr?.firstMatch(in: stringValue, options:NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSMakeRange(0, stringValue.characters.count)),
+        if let match = NSDictionary.linearGradRegExpr?.firstMatch(in: stringValue, options:NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSMakeRange(0, stringValue.count)),
             match.numberOfRanges == 11 {
             
             // Starting color
@@ -152,7 +152,7 @@ extension NSDictionary {
         
         // rgb/rgba color
         if evaluatedObject is String,
-            let match = NSDictionary.colorRegExpr?.firstMatch(in: stringValue, options:NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSMakeRange(0, stringValue.characters.count)),
+            let match = NSDictionary.colorRegExpr?.firstMatch(in: stringValue, options:NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSMakeRange(0, stringValue.count)),
             match.numberOfRanges == 5 {
             
             let red = (Float(stringValue.substring(withNSRange: match.range(at: 1))) ?? 255) / 255
@@ -166,7 +166,7 @@ extension NSDictionary {
         
         // pattern
         if evaluatedObject is String,
-            let match = NSDictionary.patternRegExpr?.firstMatch(in: stringValue, options:NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSMakeRange(0, stringValue.characters.count)),
+            let match = NSDictionary.patternRegExpr?.firstMatch(in: stringValue, options:NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSMakeRange(0, stringValue.count)),
             match.numberOfRanges == 6 {
                 
             let isNamedType = stringValue.substring(withNSRange: match.range(at: 2)) == "named"
@@ -190,7 +190,7 @@ extension NSDictionary {
         
         // image
         if evaluatedObject is String,
-            let match = NSDictionary.imageRegExpr?.firstMatch(in: stringValue, options:NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSMakeRange(0, stringValue.characters.count)),
+            let match = NSDictionary.imageRegExpr?.firstMatch(in: stringValue, options:NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSMakeRange(0, stringValue.count)),
             match.numberOfRanges == 6 {
             
             let isNamedType = stringValue.substring(withNSRange: match.range(at: 2)) == "named"

@@ -30,7 +30,7 @@ extension String {
     
     /// Convenience function to get substring with NSRange.
     internal func substring(withNSRange: NSRange) -> String {
-        guard withNSRange.location < self.characters.count else { return "" }
+        guard withNSRange.location < self.count else { return "" }
         let start = self.index(self.startIndex, offsetBy: withNSRange.location)
         let end = self.index(start, offsetBy: withNSRange.length)
         let range = Range<String.Index>(uncheckedBounds: (lower: start, upper: end))
@@ -39,7 +39,7 @@ extension String {
     
     /// Convenience function to replace characters with NSRange.
     internal func replacingCharacters(inNSRange: NSRange, with: String) -> String {
-        guard inNSRange.location < self.characters.count else { return "" }
+        guard inNSRange.location < self.count else { return "" }
         let start = self.index(self.startIndex, offsetBy: inNSRange.location)
         let end = self.index(start, offsetBy: inNSRange.length)
         let range = Range<String.Index>(uncheckedBounds: (lower: start, upper: end))

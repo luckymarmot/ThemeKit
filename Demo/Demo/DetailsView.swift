@@ -10,16 +10,16 @@ import Cocoa
 import ThemeKit
 
 class DetailsView: NSView {
-    
+
     /// Drawing code
     override func draw(_ dirtyRect: NSRect) {
         // Fill with details background
         ThemeColor.detailsBackgroundColor.set()
         NSBezierPath(rect: bounds).fill()
-        
+
         // Draw theme details image
-        let imageSize = NSMakeSize(48, 48)
-        ThemeImage.detailsImage.draw(in: NSMakeRect((NSWidth(bounds) - imageSize.width) / 2, NSHeight(bounds) - 56, imageSize.width, imageSize.height))
+        let imageSize = NSSize(width: 48, height: 48)
+        ThemeImage.detailsImage.draw(in: NSMakeRect((bounds.width - imageSize.width) / 2, bounds.height - 56, imageSize.width, imageSize.height))
     }
-    
+
 }

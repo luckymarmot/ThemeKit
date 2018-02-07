@@ -10,12 +10,12 @@ import Foundation
 import ThemeKit
 
 extension ThemeGradient {
-    
+
     // MARK: CONTENT
-    
+
     /// Rainbow gradient (used between title and text)
     @objc static var rainbowGradient: ThemeGradient? {
         return ThemeGradient.gradient(with: #function)
     }
-    
+
 }

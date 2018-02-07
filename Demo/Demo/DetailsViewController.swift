@@ -10,7 +10,7 @@ import Cocoa
 import ThemeKit
 
 class DetailsViewController: NSViewController {
-    
+
     // IBOutlets
     @IBOutlet weak var containerView: NSView!
     @IBOutlet weak var detailsTitleTxt: NSTextField!
@@ -18,24 +18,24 @@ class DetailsViewController: NSViewController {
     @IBOutlet weak var wordCountTxt: NSTextField!
     @IBOutlet weak var characterCount: NSTextField!
     @IBOutlet weak var lastModifiedTxt: NSTextField!
-    
+
     @objc var dateFormatter: DateFormatter?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Setup colors
         detailsTitleTxt.textColor = ThemeColor.detailsTitleColor
         fakeControlsTitleTxt.textColor = ThemeColor.detailsTitleColor
-        
+
         // Setup date formatter
         dateFormatter = DateFormatter()
         dateFormatter?.dateStyle = .medium
         dateFormatter?.timeStyle = .none
-        
+
         // Hide stuff until we have a selected note
         containerView.isHidden = true
-        
+
         // Observe note selection change notifications
         NotificationCenter.default.addObserver(forName: .didChangeNoteSelection, object: nil, queue: nil) { (notification) in
             let obj = notification.object
@@ -44,7 +44,7 @@ class DetailsViewController: NSViewController {
                 self.representedObject = notification.userInfo?["note"]
             }
         }
-        
+
         // Observe note text edit notifications
         NotificationCenter.default.addObserver(forName: .didEditNoteText, object: nil, queue: nil) { (notification) in
             let obj = notification.object
@@ -54,7 +54,7 @@ class DetailsViewController: NSViewController {
             }
         }
     }
-    
+
     override var representedObject: Any? {
         didSet {
             if let note = representedObject as? Note {
@@ -62,11 +62,10 @@ class DetailsViewController: NSViewController {
                 wordCountTxt.stringValue = String(note.textWordCount)
                 characterCount.stringValue = String(note.textCharacterCount)
                 lastModifiedTxt.stringValue = dateFormatter?.string(from: note.lastModified) ?? "-"
-            }
-            else {
+            } else {
                 containerView.isHidden = true
             }
         }
     }
-    
+
 }

@@ -21,20 +21,20 @@ import QuartzCore
  */
 @objc(TKThemeManager)
 public class ThemeManager: NSObject {
-    
+
     /// ThemeManager shared manager.
     @objc(sharedManager)
     public static let shared = ThemeManager()
-    
+
     // MARK: -
     // MARK: Initialization & Cleanup
-    
+
     private override init() {
         super.init()
-        
+
         // Initialize custom NSColor code (swizzle NSColor, if needed)
         NSColor.swizzleNSColor()
-        
+
         // Observe and theme new windows (before being displayed onscreen)
         NotificationCenter.default.addObserver(forName: NSWindow.didUpdateNotification, object: nil, queue: nil) { (notification) in
             if let window = notification.object as? NSWindow {
@@ -44,16 +44,15 @@ public class ThemeManager: NSObject {
 
         // Observe current theme on User Defaults
         NSUserDefaultsController.shared.addObserver(self, forKeyPath: themeChangeKVOKeyPath, options: NSKeyValueObservingOptions(rawValue: 0), context: nil)
-        
+
         // Observe current system theme (macOS Apple Interface Theme)
         NotificationCenter.default.addObserver(self, selector: #selector(systemThemeDidChange(_:)), name: .didChangeSystemTheme, object: nil)
     }
-    
+
     deinit {
         NSUserDefaultsController.shared.removeObserver(self, forKeyPath: themeChangeKVOKeyPath)
     }
-    
-    
+
     // MARK: -
     // MARK: Themes
 
@@ -70,7 +69,7 @@ public class ThemeManager: NSObject {
             if _theme == nil || newTheme.effectiveTheme != _theme! || newTheme.effectiveTheme.isUserTheme {
                 applyTheme(newTheme)
             }
-            
+
             // Store identifier on user defaults
             if newTheme.identifier != UserDefaults.standard.string(forKey: ThemeManager.userDefaultsThemeKey) {
                 _storingThemeOnUserDefaults = true
@@ -83,7 +82,7 @@ public class ThemeManager: NSObject {
     private var _theme: Theme?
     /// Internal variable set when storing theme on user defaults, to prevent infinte loops.
     private var _storingThemeOnUserDefaults: Bool = false
-    
+
     /// Returns the current effective theme (read-only).
     ///
     /// This property is KVO compliant. This can return a different result than
@@ -93,7 +92,7 @@ public class ThemeManager: NSObject {
     @objc public var effectiveTheme: Theme {
         return theme.effectiveTheme
     }
-    
+
     /// List all available themes:
     ///
     /// - Built-in `lightTheme`
@@ -107,7 +106,7 @@ public class ThemeManager: NSObject {
     @objc public var themes: [Theme] {
         if cachedThemes == nil {
             var available = [Theme]()
-            
+
             // Append theme to the list, reloading if user theme
             func appendTheme(_ theme: Theme) {
                 if theme.isUserTheme, let userTheme = theme as? UserTheme {
@@ -115,12 +114,12 @@ public class ThemeManager: NSObject {
                 }
                 available.append(theme)
             }
-            
+
             // Builtin themes
             appendTheme(ThemeManager.lightTheme)
             appendTheme(ThemeManager.darkTheme)
             appendTheme(ThemeManager.systemTheme)
-            
+
             // Developer native themes (conforming to NSObject, Theme)
             for cls in NSObject.classesImplementingProtocol(Theme.self) {
                 if cls !== LightTheme.self && cls !== DarkTheme.self && cls !== SystemTheme.self && cls !== UserTheme.self,
@@ -129,58 +128,58 @@ public class ThemeManager: NSObject {
                     available.append(theme)
                 }
             }
-            
+
             // User provided themes
             available.append(contentsOf: userThemes)
-            
+
             cachedThemes = available
         }
         return cachedThemes ?? []
     }
-    
+
     /// List all user themes (`UserTheme` class, loaded from `.theme` files)
     @objc public var userThemes: [Theme] {
         if cachedUserThemes == nil {
             var available = [Theme]()
-            
+
             // User provided themes
             for filename in userThemesFileNames {
                 if let themeFileURL = userThemesFolderURL?.appendingPathComponent(filename) {
                     available.append(UserTheme(themeFileURL))
                 }
             }
-            
+
             cachedUserThemes = available
         }
         return cachedUserThemes ?? []
     }
-    
+
     /// Cached themes list (private use).
     private var cachedThemes: [Theme]?
-    
+
     /// Cached user themes list (private use).
     private var cachedUserThemes: [Theme]?
-    
+
     /// Convenience method for accessing the light theme.
     ///
     /// This property can be changed so that `SystemTheme` resolves to this theme
     /// instead of the default `LightTheme`.
     @objc public static var lightTheme: Theme = LightTheme()
-    
+
     /// Convenience method for accessing the dark theme.
     ///
     /// This property can be changed so that `SystemTheme` resolves to this theme
     /// instead of the default `DarkTheme`.
     @objc public static var darkTheme: Theme = DarkTheme()
-    
+
     /// Convenience method for accessing the theme that dynamically changes to
     /// `ThemeManager.lightTheme` or `ThemeManager.darkTheme`, respecting user preference
     /// at **System Preferences > General > Appearance**.
     @objc public static let systemTheme = SystemTheme()
-    
+
     /// Set/get default theme to be used on the first run (default: `ThemeManager.systemTheme`).
     @objc public static var defaultTheme: Theme = ThemeManager.systemTheme
-    
+
     /// Get the theme with specified identifier.
     ///
     /// - parameter identifier: The unique `Theme.identifier` string.
@@ -188,20 +187,18 @@ public class ThemeManager: NSObject {
     /// - returns: The `Theme` instance with the given identifier.
     @objc public func theme(withIdentifier identifier: String?) -> Theme? {
         if let themeIdentifier: String = identifier {
-            for theme in themes {
-                if theme.identifier == themeIdentifier {
-                    return theme
-                }
+            for theme in themes where theme.identifier == themeIdentifier {
+                return theme
             }
         }
         return nil
     }
-    
+
     /// User defaults key for current `theme`.
     ///
     /// Current `theme.identifier` will be stored under the `"ThemeKitTheme"` `NSUserDefaults` key.
     @objc static public let userDefaultsThemeKey = "ThemeKitTheme"
-    
+
     /// Apply last applied theme, or default, if none.
     ///
     /// Get last applied theme from user defaults and load it. If no theme was
@@ -210,7 +207,7 @@ public class ThemeManager: NSObject {
         let userDefaultsTheme = theme(withIdentifier: UserDefaults.standard.string(forKey: ThemeManager.userDefaultsThemeKey))
         (userDefaultsTheme ?? ThemeManager.defaultTheme).apply()
     }
-    
+
     /// Force-apply current `theme`.
     ///
     /// Normally you should not need to invoke this method, as this will
@@ -218,7 +215,7 @@ public class ThemeManager: NSObject {
     @objc public func reApplyCurrentTheme() {
         applyTheme(theme)
     }
-    
+
     /// Apple Interface theme has changed.
     ///
     /// - parameter notification: A `.didChangeSystemTheme` notification.
@@ -227,11 +224,10 @@ public class ThemeManager: NSObject {
             applyTheme(theme)
         }
     }
-    
-    
+
     // MARK: -
     // MARK: User Themes (`.theme` files)
-    
+
     /// Location of user provided themes (.theme files).
     ///
     /// Ideally, this should be on a shared location, like `Application Support/{app_bundle_id}/Themes`
@@ -253,7 +249,7 @@ public class ThemeManager: NSObject {
         didSet {
             // Clean up previous
             _userThemesFolderSource?.cancel()
-            
+
             // Observe User Themes folder via CGD dispatch sources
             if let url = userThemesFolderURL, url != oldValue {
                 // Create folder if needed
@@ -264,25 +260,25 @@ public class ThemeManager: NSObject {
                     userThemesFolderURL = nil
                     return
                 }
-                
+
                 // Initialize file descriptor
                 let fileDescriptor = open((url.path as NSString).fileSystemRepresentation, O_EVTONLY)
                 guard fileDescriptor >= 0 else { return }
-                
+
                 // Initialize dispatch queue
                 _userThemesFolderQueue = DispatchQueue(label: "com.luckymarmot.ThemeKit.UserThemesFolderQueue")
-                
+
                 // Watch file descriptor for writes
                 _userThemesFolderSource = DispatchSource.makeFileSystemObjectSource(fileDescriptor: fileDescriptor, eventMask: DispatchSource.FileSystemEvent.write)
                 _userThemesFolderSource?.setEventHandler(handler: {
                     self.userThemesFolderChangedContent()
                 })
-                
+
                 // Clean up when dispatch source is cancelled
                 _userThemesFolderSource?.setCancelHandler {
                     close(fileDescriptor)
                 }
-                
+
                 // Start watching
                 willChangeValue(forKey: #keyPath(themes))
                 willChangeValue(forKey: #keyPath(userThemes))
@@ -291,7 +287,7 @@ public class ThemeManager: NSObject {
                 _userThemesFolderSource?.resume()
                 didChangeValue(forKey: #keyPath(userThemes))
                 didChangeValue(forKey: #keyPath(themes))
-                
+
                 // Re-apply current theme if user theme
                 if theme.effectiveTheme.isUserTheme {
                     reApplyCurrentTheme()
@@ -299,7 +295,7 @@ public class ThemeManager: NSObject {
             }
         }
     }
-    
+
     /// List of user themes file names.
     private var userThemesFileNames: [String] {
         guard let url = userThemesFolderURL, FileManager.default.fileExists(atPath: url.path, isDirectory: nil) else {
@@ -313,50 +309,49 @@ public class ThemeManager: NSObject {
         }
         return []
     }
-    
+
     /// Dispatch queue for monitoring the user themes folder.
     private var _userThemesFolderQueue: DispatchQueue?
-    
+
     /// Filesustem dispatch source for monitoring the user themes folder.
     private var _userThemesFolderSource: DispatchSourceFileSystemObject?
-    
+
     /// Called when themes folder has file changes --> refresh modified user theme (if current).
     private func userThemesFolderChangedContent() {
         willChangeValue(forKey: #keyPath(themes))
         willChangeValue(forKey: #keyPath(userThemes))
         cachedThemes = nil
         cachedUserThemes = nil
-        
+
         if effectiveTheme.isUserTheme {
             applyLastOrDefaultTheme()
         }
-    
+
         didChangeValue(forKey: #keyPath(userThemes))
         didChangeValue(forKey: #keyPath(themes))
     }
-    
-    
+
     // MARK: -
     // MARK: Appearances
-    
+
     /// Appearance in use for effective theme.
     @objc public var effectiveThemeAppearance: NSAppearance {
         return (effectiveTheme.isLightTheme ? lightAppearance : darkAppearance) ?? NSAppearance.current
     }
-    
+
     /// Convenience method to get the light appearance.
     @objc public var lightAppearance: NSAppearance? {
         return NSAppearance(named: NSAppearance.Name.vibrantLight)
     }
-    
+
     /// Convenience method to get the dark appearance.
     @objc public var darkAppearance: NSAppearance? {
         return NSAppearance(named: NSAppearance.Name.vibrantDark)
     }
-    
+
     // MARK: -
     // MARK: Window Theming Policy
-    
+
     /// Window theme policies that define which windows should be automatically themed, if any.
     ///
     /// Swift
@@ -414,42 +409,41 @@ public class ThemeManager: NSObject {
         /// Do not theme any window.
         case doNotThemeWindows
     }
-    
+
     /// Current window theme policy.
     public var windowThemePolicy: WindowThemePolicy = .themeAllWindows
-    
-    
+
     // MARK: -
     // MARK: Theme Switching
-    
+
     /// Keypath for string `values.ThemeKitTheme`.
     private var themeChangeKVOKeyPath: String = "values.\(ThemeManager.userDefaultsThemeKey)"
-    
+
     // Called when theme is changed on `NSUserDefaults`.
-    public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         guard keyPath == themeChangeKVOKeyPath && !_storingThemeOnUserDefaults else { return }
-        
+
         // Theme selected on user defaults
         let userDefaultsThemeIdentifier = UserDefaults.standard.string(forKey: ThemeManager.userDefaultsThemeKey)
-        
+
         // Theme was changed on user defaults -> apply
         if userDefaultsThemeIdentifier != theme.identifier {
             applyLastOrDefaultTheme()
         }
     }
-    
+
     /// Screenshot-windows used during theme animated transition.
     private var themeTransitionWindows: Set<NSWindow> = Set()
-    
+
     /// Apply a new `theme`.
     private func applyTheme(_ newTheme: Theme) {
-        
+
         // Make theme effective
         func makeThemeEffective(_ newTheme: Theme) {
             // Determine new theme
             let oldEffectiveTheme: Theme = effectiveTheme
             let newEffectiveTheme: Theme = newTheme.effectiveTheme
-            
+
             // Apply & Propagate changes
             func applyAndPropagate(_ newTheme: Theme) {
                 Thread.onMain {
@@ -460,22 +454,22 @@ public class ThemeManager: NSObject {
                         self.willChangeValue(forKey: #keyPath(effectiveTheme))
                     }
                     NotificationCenter.default.post(name: .willChangeTheme, object: newTheme)
-                    
+
                     // Change effective theme
                     self._theme = newTheme
-                    
+
                     // Did change!
                     self.didChangeValue(forKey: #keyPath(theme))
                     if changingEffectiveAppearance {
                         self.didChangeValue(forKey: #keyPath(effectiveTheme))
                     }
                     NotificationCenter.default.post(name: .didChangeTheme, object: newTheme)
-                    
+
                     // Theme all windows compliant to current `windowThemePolicy`
                     NSWindow.themeAllWindows()
                 }
             }
-            
+
             // If we are switching light-to-light or dark-to-dark themes, macOS won't
             // refresh appearance on controls => need to 'tilt' appearance to force refresh!
             // Additionally, we are "force refreshing" on initial theming and
@@ -484,11 +478,11 @@ public class ThemeManager: NSObject {
                 // Switch to "inverted" theme (light -> dark, dark -> light)
                 applyAndPropagate(oldEffectiveTheme.isLightTheme ? ThemeManager.darkTheme : ThemeManager.lightTheme)
             }
-            
+
             // Switch to new theme
             applyAndPropagate(newTheme)
         }
-        
+
         // Animate theme transition
         Thread.onMain {
             // Find windows to animate
@@ -498,9 +492,9 @@ public class ThemeManager: NSObject {
                 makeThemeEffective(newTheme)
                 return
             }
-            
+
             // Create transition windows off-screen
-            var transitionWindows = [Int : NSWindow]()
+            var transitionWindows = [Int: NSWindow]()
             for window in windows {
                 let windowNumber = window.windowNumber
                 /* Make sure the window has a number, and that it's not one of our
@@ -511,7 +505,7 @@ public class ThemeManager: NSObject {
                     self.themeTransitionWindows.insert(transitionWindow)
                 }
             }
-            
+
             // Show (if we have at least one window to animate)
             if transitionWindows.count > 0 {
                 // Show them all (hidden)
@@ -520,7 +514,7 @@ public class ThemeManager: NSObject {
                     let parentWindow = NSApp.window(withWindowNumber: windowNumber)
                     parentWindow?.addChildWindow(transitionWindow, ordered: .above)
                 }
-                
+
                 // Setup animation
                 NSAnimationContext.beginGrouping()
                 let ctx = NSAnimationContext.current
@@ -546,19 +540,17 @@ public class ThemeManager: NSObject {
             makeThemeEffective(newTheme)
         }
     }
-    
-    
-    // MARK:-
+
+    // MARK: -
     // MARK: Notifications
-    
+
     /// ThemeKit notification sent when current theme is about to change.
     @objc public static let willChangeThemeNotification = Notification.Name.willChangeTheme
-    
+
     /// ThemeKit notification sent when current theme did change.
     @objc public static let didChangeThemeNotification = Notification.Name.didChangeTheme
-    
+
     /// ThemeKit notification sent when system theme did change (System Preference > General > Appearance).
     @objc public static let didChangeSystemThemeNotification = Notification.Name.didChangeSystemTheme
-    
-}
 
+}

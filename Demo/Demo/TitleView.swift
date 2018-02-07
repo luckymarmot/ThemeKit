@@ -10,13 +10,13 @@ import Cocoa
 import ThemeKit
 
 class TitleView: NSView, NSTextFieldDelegate {
-    
+
     /// Our text field
     @IBOutlet weak var titleTextField: NSTextField!
-    
+
     /// Weak reference to selected Note
     @objc weak var note: Note?
-    
+
     override func awakeFromNib() {
         // Setup title text
         titleTextField.textColor = ThemeColor.contentTitleColor
@@ -28,56 +28,55 @@ class TitleView: NSView, NSTextFieldDelegate {
             font = NSFont.systemFont(ofSize: 24)
         }
         titleTextField.font = font
-        
+
         // Observe note selection change notifications
         NotificationCenter.default.addObserver(forName: .didChangeNoteSelection, object: nil, queue: nil) { (notification) in
             let obj = notification.object
             if let viewController = obj as? NSViewController,
                 viewController.view.window == self.window,
                 let note = notification.userInfo?["note"] as? Note {
-                
+
                 self.note = note
                 self.titleTextField.stringValue = note.title
             }
         }
-        
+
         // Observe note title change notifications
-        NotificationCenter.default.addObserver(forName: .didEditNoteTitle, object: nil, queue: nil) { (notification) in
+        NotificationCenter.default.addObserver(forName: .didEditNoteTitle, object: nil, queue: nil) { (_) in
             if let note = self.note {
                 self.titleTextField.stringValue = note.title
             }
         }
     }
-    
+
     /// Drawing code
     override func draw(_ dirtyRect: NSRect) {
         guard note?.title != nil else {
             return
         }
-        
+
         // Fill with content background
         ThemeColor.contentBackgroundColor.set()
         NSBezierPath(rect: bounds).fill()
-        
+
         // Draw gradient
-        let gradientFrame = NSMakeRect(4, 0, NSWidth(bounds) - 8, 4)
+        let gradientFrame = NSMakeRect(4, 0, bounds.width - 8, 4)
         if let gradient = ThemeGradient.rainbowGradient {
             gradient.draw(in: gradientFrame, angle: 0)
         }
-        
+
     }
-    
-    
+
     // MARK: -
     // MARK: NSTextDelegate
-    
+
     override func controlTextDidChange(_ obj: Notification) {
         guard let note = self.note else {
             return
         }
         note.title = titleTextField.stringValue
         note.lastModified = Date()
-        NotificationCenter.default.post(name: .didEditNoteTitle, object: self, userInfo: ["note" : note])
+        NotificationCenter.default.post(name: .didEditNoteTitle, object: self, userInfo: ["note": note])
     }
-    
+
 }

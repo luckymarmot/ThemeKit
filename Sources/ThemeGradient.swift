@@ -134,11 +134,11 @@ private var _cachedThemeGradients: NSCache<NSNumber, NSGradient> = NSCache()
  Please check `ThemeColor` for theme-aware colors and `ThemeImage` for theme-aware images.
  */
 @objc(TKThemeGradient)
-open class ThemeGradient : NSGradient {
-    
+open class ThemeGradient: NSGradient {
+
     // MARK: -
     // MARK: Properties
-    
+
     /// `ThemeGradient` gradient selector used as theme instance method for same
     /// selector or, if inexistent, as argument in the theme instance method `themeAsset(_:)`.
     @objc public var themeGradientSelector: Selector? {
@@ -148,14 +148,13 @@ open class ThemeGradient : NSGradient {
             registerThemeChangeNotifications()
         }
     }
-    
+
     /// Resolved gradient from current theme (dynamically changes with the current theme).
     @objc public var resolvedThemeGradient: NSGradient?
-    
-    
+
     // MARK: -
     // MARK: Creating Gradients
-    
+
     /// Create a new ThemeGradient instance for the specified selector.
     ///
     /// - parameter selector: Selector for color method.
@@ -164,17 +163,16 @@ open class ThemeGradient : NSGradient {
     @objc(gradientWithSelector:)
     public class func gradient(with selector: Selector) -> ThemeGradient? {
         let cacheKey = CacheKey(selector: selector)
-        
+
         if let cachedGradient = _cachedGradients.object(forKey: cacheKey) {
             return cachedGradient
-        }
-        else if let gradient = ThemeGradient(with: selector) {
+        } else if let gradient = ThemeGradient(with: selector) {
             _cachedGradients.setObject(gradient, forKey: cacheKey)
             return gradient
         }
         return nil
     }
-    
+
     /// Gradient for a specific theme.
     ///
     /// - parameter theme:    A `Theme` instance.
@@ -185,25 +183,25 @@ open class ThemeGradient : NSGradient {
     public class func gradient(for theme: Theme, selector: Selector) -> NSGradient? {
         let cacheKey = CacheKey(selector: selector, theme: theme)
         var gradient = _cachedThemeGradients.object(forKey: cacheKey)
-        
+
         if gradient == nil {
             // Theme provides this asset?
             gradient = theme.themeAsset(NSStringFromSelector(selector)) as? NSGradient
-            
+
             // Otherwise, use fallback gradient
             if gradient == nil {
                 gradient = fallbackGradient(for: theme, selector: selector)
             }
-            
+
             // Cache it
             if let themeGradient = gradient {
                 _cachedThemeGradients.setObject(themeGradient, forKey: cacheKey)
             }
         }
-        
+
         return gradient
     }
-    
+
     /// Current theme gradient, but respecting view appearance and any window
     /// specific theme (if set).
     ///
@@ -223,26 +221,25 @@ open class ThemeGradient : NSGradient {
         if let windowTheme = view.window?.windowTheme {
             return ThemeGradient.gradient(for: windowTheme, selector: selector)
         }
-        
+
         let theme = ThemeManager.shared.effectiveTheme
         let viewAppearance = view.appearance
         let aquaAppearance = NSAppearance(named: NSAppearance.Name.aqua)
         let lightAppearance = NSAppearance(named: NSAppearance.Name.vibrantLight)
         let darkAppearance = NSAppearance(named: NSAppearance.Name.vibrantDark)
-        
+
         // using a dark theme but control is on a light surface => use light theme instead
         if theme.isDarkTheme &&
             (viewAppearance == lightAppearance || viewAppearance == aquaAppearance) {
             return ThemeGradient.gradient(for: ThemeManager.lightTheme, selector: selector)
-        }
-        else if theme.isLightTheme && viewAppearance == darkAppearance {
+        } else if theme.isLightTheme && viewAppearance == darkAppearance {
             return ThemeGradient.gradient(for: ThemeManager.darkTheme, selector: selector)
         }
-        
+
         // otherwise, return current theme gradient
         return ThemeGradient.gradient(with: selector)
     }
-    
+
     /// Returns a new `ThemeGradient` for the given selector.
     ///
     /// - parameter selector:   A gradient selector.
@@ -253,30 +250,30 @@ open class ThemeGradient : NSGradient {
         themeGradientSelector = selector
         let defaultColor = ThemeManager.shared.effectiveTheme.defaultFallbackBackgroundColor
         resolvedThemeGradient = NSGradient(starting: defaultColor, ending: defaultColor)
-        
+
         super.init(colors: [defaultColor, defaultColor], atLocations: [0.0, 1.0], colorSpace: NSColorSpace.genericRGB)
-        
+
         // cache gradient
         recacheGradient()
-        
+
         // recache on theme change
         registerThemeChangeNotifications()
     }
-    
+
     required public init(coder decoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     deinit {
         NotificationCenter.default.removeObserver(self, name: .didChangeTheme, object: nil)
     }
-    
+
     /// Register to recache on theme changes.
     @objc func registerThemeChangeNotifications() {
         NotificationCenter.default.removeObserver(self, name: .didChangeTheme, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(recacheGradient), name: .didChangeTheme, object: nil)
     }
-    
+
     /// Forces dynamic gradient resolution into `resolvedThemeGradient` and cache it.
     /// You should not need to manually call this function.
     @objc open func recacheGradient() {
@@ -284,25 +281,25 @@ open class ThemeGradient : NSGradient {
         if ThemeManager.shared.effectiveTheme.isUserTheme {
             ThemeGradient.emptyCache()
         }
-        
+
         // Recache resolved color
         if let selector = themeGradientSelector,
             let newGradient = ThemeGradient.gradient(for: ThemeManager.shared.effectiveTheme, selector: selector) {
             resolvedThemeGradient = newGradient
         }
     }
-    
+
     /// Clear all caches.
     /// You should not need to manually call this function.
     @objc static open func emptyCache() {
         _cachedGradients.removeAllObjects()
         _cachedThemeGradients.removeAllObjects()
     }
-    
+
     /// Fallback gradient for a specific theme and selector.
     @objc class func fallbackGradient(for theme: Theme, selector: Selector) -> NSGradient? {
         var fallbackGradient: NSGradient?
-        
+
         // try with theme provided `fallbackGradient` method
         if let themeFallbackGradient = theme.fallbackGradient as? NSGradient {
             fallbackGradient = themeFallbackGradient
@@ -314,46 +311,45 @@ open class ThemeGradient : NSGradient {
         // otherwise just use default fallback gradient
         return fallbackGradient ?? theme.defaultFallbackGradient
     }
-    
-    
-    // MARK:- NSGradient Overrides
-    
+
+    // MARK: - NSGradient Overrides
+
     override open func draw(in rect: NSRect, angle: CGFloat) {
         resolvedThemeGradient?.draw(in: rect, angle: angle)
     }
-    
+
     override open func draw(in path: NSBezierPath, angle: CGFloat) {
         resolvedThemeGradient?.draw(in: path, angle: angle)
     }
-    
+
     override open func draw(from startingPoint: NSPoint, to endingPoint: NSPoint, options: NSGradient.DrawingOptions = []) {
         resolvedThemeGradient?.draw(from: startingPoint, to: endingPoint, options: options)
     }
-    
+
     override open func draw(fromCenter startCenter: NSPoint, radius startRadius: CGFloat, toCenter endCenter: NSPoint, radius endRadius: CGFloat, options: NSGradient.DrawingOptions = []) {
         resolvedThemeGradient?.draw(fromCenter: startCenter, radius: startRadius, toCenter: endCenter, radius: endRadius, options: options)
     }
-    
+
     override open func draw(in rect: NSRect, relativeCenterPosition: NSPoint) {
         resolvedThemeGradient?.draw(in: rect, relativeCenterPosition: relativeCenterPosition)
     }
-    
+
     override open func draw(in path: NSBezierPath, relativeCenterPosition: NSPoint) {
         resolvedThemeGradient?.draw(in: path, relativeCenterPosition: relativeCenterPosition)
     }
-    
+
     override open var colorSpace: NSColorSpace {
         return resolvedThemeGradient?.colorSpace ?? .genericRGB
     }
-    
+
     override open var numberOfColorStops: Int {
         return resolvedThemeGradient?.numberOfColorStops ?? 0
     }
-    
+
     override open func getColor(_ color: AutoreleasingUnsafeMutablePointer<NSColor>?, location: UnsafeMutablePointer<CGFloat>?, at index: Int) {
         resolvedThemeGradient?.getColor(color, location: location, at: index)
     }
-    
+
     override open func interpolatedColor(atLocation location: CGFloat) -> NSColor {
         return resolvedThemeGradient?.interpolatedColor(atLocation: location) ?? NSColor.clear
     }

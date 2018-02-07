@@ -10,12 +10,12 @@ import Foundation
 import ThemeKit
 
 extension ThemeImage {
-    
+
     // MARK: DETAILS
-    
+
     /// Notes details image
     @objc static var detailsImage: ThemeImage {
         return ThemeImage.image(with: #function)
     }
-    
+
 }

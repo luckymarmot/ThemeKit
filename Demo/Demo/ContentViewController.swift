@@ -10,19 +10,19 @@ import Cocoa
 import ThemeKit
 
 class ContentViewController: NSViewController, NSTextDelegate {
-    
+
     /// Our content view
     @IBOutlet var contentView: NSView!
-    
+
     /// Our text view
     @IBOutlet var contentTextView: NSTextView!
-    
+
     /// Our placeholder view when no note is selected.
     @IBOutlet var noSelectionPlaceholder: NSView!
- 
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Setup our Text View
         contentTextView.textColor = ThemeColor.contentTextColor
         contentTextView.backgroundColor = ThemeColor.contentBackgroundColor
@@ -36,13 +36,13 @@ class ContentViewController: NSViewController, NSTextDelegate {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 4.4
         contentTextView.defaultParagraphStyle = paragraphStyle
-        
+
         // Setup our clipping view background color (text view parent)
         if let clipView = contentTextView.enclosingScrollView?.contentView {
             clipView.backgroundColor = ThemeColor.contentBackgroundColor
             clipView.drawsBackground = true
         }
-        
+
         // Observe note selection change notifications
         NotificationCenter.default.addObserver(forName: .didChangeNoteSelection, object: nil, queue: nil) { (notification) in
             let obj = notification.object
@@ -51,51 +51,49 @@ class ContentViewController: NSViewController, NSTextDelegate {
                 self.representedObject = notification.userInfo?["note"]
             }
         }
-        
+
         // Fix white scrollbar view when in dark theme and scrollbars are set to
         // always be shown on *System Preferences > General*.
         if let scrollView = contentTextView.enclosingScrollView {
             scrollView.backgroundColor = ThemeColor.contentBackgroundColor
             scrollView.wantsLayer = true
         }
-        
+
         // Observe theme changes
         NotificationCenter.default.addObserver(self, selector: #selector(didChangeTheme(_:)), name: .didChangeTheme, object: nil)
     }
-    
+
     override var representedObject: Any? {
         didSet {
             var subview: NSView
-            
+
             if let note = representedObject as? Note {
                 contentTextView.string = note.text
                 contentTextView.scrollToBeginningOfDocument(self)
                 noSelectionPlaceholder.removeFromSuperview()
                 subview = contentView
-            }
-            else {
+            } else {
                 contentTextView.string = ""
                 contentView.removeFromSuperview()
                 subview = noSelectionPlaceholder
             }
-            
+
             self.view.addSubview(subview)
             subview.translatesAutoresizingMaskIntoConstraints = true
             subview.autoresizingMask = [NSView.AutoresizingMask.width, NSView.AutoresizingMask.height]
             subview.frame = view.bounds
         }
     }
-    
-    
-    // MARK:-
+
+    // MARK: -
     // MARK: Theme related
-    
+
     @objc private func didChangeTheme(_ notification: Notification? = nil) {
         // Update `NSScroller` background color based on current theme
         DispatchQueue.main.async {
             self.contentTextView.enclosingScrollView?.verticalScroller?.layer?.backgroundColor = ThemeColor.contentBackgroundColor.cgColor
         }
-        
+
         // If in fullscreen, need to re-focus current window
         if let window = view.window {
             let isWindowInFullScreen = window.styleMask.contains(NSWindow.StyleMask.fullScreen) || window.className == "NSToolbarFullScreenWindow"
@@ -106,11 +104,10 @@ class ContentViewController: NSViewController, NSTextDelegate {
             }
         }
     }
-    
-    
+
     // MARK: -
     // MARK: NSTextDelegate
-    
+
     public func textDidChange(_ notification: Notification) {
         if let note = representedObject as? Note {
             note.text = contentTextView.string
@@ -118,5 +115,5 @@ class ContentViewController: NSViewController, NSTextDelegate {
             NotificationCenter.default.post(name: .didEditNoteText, object: self, userInfo: ["note": note])
         }
     }
-    
+
 }

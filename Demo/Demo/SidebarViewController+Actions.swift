@@ -9,34 +9,33 @@
 import Cocoa
 
 extension NSViewController {
-    
+
     @IBAction func addNote(_ sender: NSButton) {
         NSApplication.sidebarViewController?.addNote(sender)
     }
-    
+
     @IBAction func deleteNote(_ sender: NSButton) {
         NSApplication.sidebarViewController?.deleteNote(sender)
     }
-    
+
     @IBAction func resetNotes(_ sender: Any) {
         NSApplication.sidebarViewController?.resetNotes(sender)
     }
-    
+
 }
 
-
 extension NSWindowController {
-    
+
     @IBAction func addNote(_ sender: NSButton) {
         NSApplication.sidebarViewController?.addNote(sender)
     }
-    
+
     @IBAction func deleteNote(_ sender: NSButton) {
         NSApplication.sidebarViewController?.deleteNote(sender)
     }
-    
+
     @IBAction func resetNotes(_ sender: Any) {
         NSApplication.sidebarViewController?.resetNotes(sender)
     }
-    
+
 }

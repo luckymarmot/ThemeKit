@@ -9,60 +9,59 @@
 import Cocoa
 
 class SidebarViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate, NSTextFieldDelegate {
-    
+
     /// Our outline view
     @IBOutlet var outlineView: NSOutlineView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Keep a reference on app delegate
         if let appDelegate = NSApplication.shared.delegate as? AppDelegate {
             appDelegate.sidebarViewController = self
         }
-        
+
         // Load last notes
         loadNotes()
-        
+
         // Save notes on quit & when inactive
         NotificationCenter.default.addObserver(self, selector: #selector(saveNotes), name: NSApplication.willTerminateNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(saveNotes), name: NSApplication.willResignActiveNotification, object: nil)
-        
+
         // Observe note title editing notifications
-        NotificationCenter.default.addObserver(forName: .didEditNoteTitle, object: nil, queue: nil) { (notification) in
+        NotificationCenter.default.addObserver(forName: .didEditNoteTitle, object: nil, queue: nil) { (_) in
             self.outlineView.reloadData()
         }
     }
-    
+
     override func viewWillAppear() {
         // Expand root node
         outlineView.expandItem(nil, expandChildren: true)
-        
+
         // Select 1st Note
         outlineView.selectRowIndexes(IndexSet(integer: 1), byExtendingSelection: false)
     }
-    
-    
+
     // MARK: -
     // MARK: Notes
-    
+
     /// NSUserDefaults key
     @objc let userDefaultsKey: String = "notes"
-    
+
     /// Notes model
     @objc var notes: [Note] = []
-    
+
     /// Load notes
     private func loadNotes(reset: Bool = false) {
         var newNotes: [Note]?
         let userDefaultsNotes = UserDefaults.standard.object(forKey: userDefaultsKey)
-        
+
         if !reset, let pastNotes = userDefaultsNotes as? Data {
             // Load past notes
             let unarchivedObject = NSKeyedUnarchiver.unarchiveObject(with: pastNotes)
             newNotes = unarchivedObject is [Note] ? unarchivedObject as? [Note] : nil
         }
-        
+
         if newNotes == nil {
             // Add some sample Notes to our model
             newNotes = [
@@ -71,37 +70,37 @@ class SidebarViewController: NSViewController, NSOutlineViewDataSource, NSOutlin
                 Note(title: "Superfruits", text: "- Apples\n- Bananas\n- Grapefruit\n- Blueberries\n- Cantaloupe\n- Cherries\n- Citrus fruits\n- Cranberries\n- Dragon fruit\n- Grapes\n- Blackberries\n- Kiwi\n- Oranges\n- Plums\n- Pomegranate\n- Strawberries\n- Avocados\n- Tomatoes\n- Papayas\n- Raspberries\n- Pumpkin\n- Watermelon\n- Pineapple")
             ]
         }
-        
+
         if let nonEmptyNotes = newNotes {
             notes = nonEmptyNotes
         }
     }
-    
+
     /// Reset to original notes
-    @IBAction override func resetNotes(_ sender: Any){
+    @IBAction override func resetNotes(_ sender: Any) {
         loadNotes(reset: true)
         outlineView.reloadData()
         outlineView.expandItem(nil, expandChildren: true)
         outlineView.selectRowIndexes(IndexSet(integer: notes.count), byExtendingSelection: false)
     }
-    
+
     /// Save notes
     @objc private func saveNotes() {
         let archivedData = NSKeyedArchiver.archivedData(withRootObject: notes)
         UserDefaults.standard.set(archivedData, forKey: userDefaultsKey)
         UserDefaults.standard.synchronize()
     }
-    
+
     /// Add a new note
-    @IBAction override func addNote(_ sender: NSButton){
+    @IBAction override func addNote(_ sender: NSButton) {
         notes.append(Note())
         outlineView.reloadData()
         outlineView.expandItem(nil, expandChildren: true)
         outlineView.selectRowIndexes(IndexSet(integer: notes.count), byExtendingSelection: false)
     }
-    
+
     /// Delete a note
-    @IBAction override func deleteNote(_ sender: NSButton){
+    @IBAction override func deleteNote(_ sender: NSButton) {
         if outlineView.selectedRow > 0 && outlineView.selectedRow <= notes.count,
             let note = outlineView.item(atRow: outlineView.selectedRow) as? Note,
             let window = view.window {
@@ -123,59 +122,54 @@ class SidebarViewController: NSViewController, NSOutlineViewDataSource, NSOutlin
             })
         }
     }
-    
-    
+
     // MARK: -
     // MARK: NSOutlineViewDelegate
-    
+
     func outlineViewSelectionDidChange(_ notification: Notification) {
         var userInfo: [String: Note]?
-        
+
         if let note = outlineView.item(atRow: outlineView.selectedRow) as? Note {
             // selected a new note
-            userInfo = ["note" : note]
-        }
-        else {
+            userInfo = ["note": note]
+        } else {
             // cleared selection or selected header
         }
-        
+
         NotificationCenter.default.post(name: .didChangeNoteSelection, object: self, userInfo: userInfo)
     }
-    
-    
+
     // MARK: -
     // MARK: NSOutlineViewDataSource
-    
+
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         if item == nil {
-            return 1;
-        }
-        else if item is [Note] {
+            return 1
+        } else if item is [Note] {
             return notes.count
         }
-        return 0;
+        return 0
     }
-    
+
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
         return item is [Note] ? true : false
     }
-    
+
     func outlineView(_ outlineView: NSOutlineView, isGroupItem item: Any) -> Bool {
         return (item is [Note])
     }
-    
+
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         return item == nil ? notes as Any : notes[index]
     }
-    
+
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
         var cellView: NSTableCellView?
-        
+
         if item is [Note] {
             cellView = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "HeaderCell"), owner: self) as? NSTableCellView
             cellView?.textField?.stringValue = "NOTES"
-        }
-        else {
+        } else {
             cellView = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "DataCell"), owner: self) as? NSTableCellView
             if let note = item as? Note {
                 cellView?.textField?.stringValue = note.title
@@ -183,28 +177,26 @@ class SidebarViewController: NSViewController, NSOutlineViewDataSource, NSOutlin
             cellView?.textField?.textColor = NSColor.labelColor
             cellView?.textField?.delegate = self
         }
-        
+
         return cellView
     }
-    
+
     func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
         return item is [Note] ? false : true
     }
-    
+
     func outlineView(_ outlineView: NSOutlineView, shouldEdit tableColumn: NSTableColumn?, item: Any) -> Bool {
         return item is [Note] ? false : true
     }
 
-    
     // MARK: -
     // MARK: NSTextDelegate
-    
+
     public func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
-        if let note = (control.superview as? NSTableCellView)?.objectValue as? Note
-         , let newTitle = (control as? NSTextField)?.objectValue as? String {
+        if let note = (control.superview as? NSTableCellView)?.objectValue as? Note, let newTitle = (control as? NSTextField)?.objectValue as? String {
             note.title = newTitle
             note.lastModified = Date()
-            NotificationCenter.default.post(name: .didEditNoteTitle, object: self, userInfo: ["note" : note])
+            NotificationCenter.default.post(name: .didEditNoteTitle, object: self, userInfo: ["note": note])
         }
         return true
     }

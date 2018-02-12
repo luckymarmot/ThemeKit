@@ -41,7 +41,7 @@
 import Cocoa
 
 extension NSImage {
-    
+
     /// Find the average color in image.
     /// Not the most accurate algorithm, but probably got enough for the purpose.
     @objc internal func averageColor() -> NSColor {
@@ -53,24 +53,24 @@ extension NSImage {
             let cgImage = self.cgImage(forProposedRect: nil, context: NSGraphicsContext(cgContext: context, flipped: false), hints: nil) else {
             return NSColor.white
         }
-        
+
         // draw the image into a 1x1 image
         context.draw(cgImage, in: CGRect(x: 0, y: 0, width: 1, height: 1))
-        
+
         // extract byte colors from single-pixel image
         let red = bitmapData.load(fromByteOffset: 0, as: UInt8.self)
         let green = bitmapData.load(fromByteOffset: 1, as: UInt8.self)
         let blue = bitmapData.load(fromByteOffset: 2, as: UInt8.self)
         let alpha = bitmapData.load(fromByteOffset: 3, as: UInt8.self)
-        
+
         // build "average color"
         let modifier = alpha > 0 ? CGFloat(alpha) / 255.0 : 1.0
         let redFloat: CGFloat = CGFloat(red) * modifier / 255.0
         let greenFloat: CGFloat = CGFloat(green) * modifier / 255.0
         let blueFloat: CGFloat = CGFloat(blue) * modifier / 255.0
         let alphaFloat: CGFloat = CGFloat(alpha) / 255.0
-        
+
         return NSColor(red: redFloat, green: greenFloat, blue: blueFloat, alpha: alphaFloat)
     }
-    
+
 }

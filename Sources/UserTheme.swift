@@ -76,33 +76,33 @@ import Foundation
 public class UserTheme: NSObject, Theme {
     /// Unique theme identifier.
     public var identifier: String = "{Theme-Not-Loaded}"
-    
+
     /// Theme display name.
     public var displayName: String = "Theme Not Loaded"
-    
+
     /// Theme short display name.
     public var shortDisplayName: String = "Not Loaded"
-    
+
     /// Is this a dark theme?
     public var isDarkTheme: Bool = false
-    
+
     /// File URL.
     @objc public var fileURL: URL?
-    
+
     /// Dictionary with key/values pairs read from the .theme file
-    private var _keyValues: NSMutableDictionary = NSMutableDictionary();
-    
+    private var _keyValues: NSMutableDictionary = NSMutableDictionary()
+
     /// Dictionary with evaluated key/values pairs read from the .theme file
-    private var _evaluatedKeyValues: NSMutableDictionary = NSMutableDictionary();
-    
+    private var _evaluatedKeyValues: NSMutableDictionary = NSMutableDictionary()
+
     // MARK: -
     // MARK: Initialization
-    
+
     /// `init()` is disabled.
     private override init() {
         super.init()
     }
-    
+
     /// Calling `init(_:)` is not allowed outside this library.
     /// Use `ThemeManager.shared.theme(:_)` instead.
     ///
@@ -111,12 +111,12 @@ public class UserTheme: NSObject, Theme {
     /// - returns: An instance of `UserTheme`.
     @objc internal init(_ themeFileURL: URL) {
         super.init()
-        
+
         // Load file
         fileURL = themeFileURL
         loadThemeFile(from: themeFileURL)
     }
-    
+
     /// Reloads user theme from file.
     @objc public func reload() {
         if let url = fileURL {
@@ -125,10 +125,10 @@ public class UserTheme: NSObject, Theme {
             loadThemeFile(from: url)
         }
     }
-    
+
     // MARK: -
     // MARK: Theme Assets
-    
+
     /// Theme asset for the specified key. Supported assets are `NSColor`, `NSGradient`, `NSImage` and `NSString`.
     ///
     /// - parameter key: A color name, gradient name, image name or a theme string
@@ -143,7 +143,7 @@ public class UserTheme: NSObject, Theme {
         }
         return value
     }
-    
+
     /// Checks if a theme asset is provided for the given key.
     ///
     /// Do not check for theme asset availability with `themeAsset(_:)`, use
@@ -155,33 +155,32 @@ public class UserTheme: NSObject, Theme {
     @objc public func hasThemeAsset(_ key: String) -> Bool {
         return _keyValues[key] != nil
     }
-    
-    
+
     // MARK: -
     // MARK: File
-    
+
     /// Load theme file
     ///
     /// - parameter from: A theme file (`.theme`) URL.
     private func loadThemeFile(from: URL) {
         // Load contents from theme file
         if let themeContents = try? String(contentsOf: from, encoding: String.Encoding.utf8) {
-        
+
             // Split content into lines
             var lineCharset = CharacterSet(charactersIn: ";")
             lineCharset.formUnion(CharacterSet.newlines)
-            let lines:[String] = themeContents.components(separatedBy: lineCharset)
-            
+            let lines: [String] = themeContents.components(separatedBy: lineCharset)
+
             // Parse lines
             for line in lines {
                 // Trim
                 let trimmedLine = line.trimmingCharacters(in: CharacterSet.whitespaces)
-                
+
                 // Skip comments
                 if trimmedLine.hasPrefix("#") || trimmedLine.hasPrefix("//") {
                     continue
                 }
-                
+
                 // Assign theme key-values (lazy evaluation)
                 let assignment = trimmedLine.components(separatedBy: "=")
                 if assignment.count == 2 {
@@ -190,44 +189,40 @@ public class UserTheme: NSObject, Theme {
                     _keyValues.setObject(value, forKey: key as NSString)
                 }
             }
-            
+
             // Initialize properties with evaluated values from file
-            
+
             // Identifier
             if let identifierString = themeAsset("identifier") as? String {
                 identifier = identifierString
-            }
-            else {
+            } else {
                 identifier = "{identifier: is mising}"
             }
-            
+
             // Display Name
             if let displayNameString = themeAsset("displayName") as? String {
                 displayName = displayNameString
-            }
-            else {
+            } else {
                 displayName = "{displayName: is mising}"
             }
-            
+
             // Short Display Name
             if let shortDisplayNameString = themeAsset("shortDisplayName") as? String {
                 shortDisplayName = shortDisplayNameString
-            }
-            else {
+            } else {
                 shortDisplayName = "{shortDisplayName: is mising}"
             }
-            
+
             // Dark?
             if let isDarkThemeString = themeAsset("darkTheme") as? String {
                 isDarkTheme = NSString(string: isDarkThemeString).boolValue
-            }
-            else {
+            } else {
                 isDarkTheme = false
             }
         }
     }
-    
-    override public var description : String {
+
+    override public var description: String {
         return "<\(UserTheme.self): \(themeDescription(self))>"
     }
 }

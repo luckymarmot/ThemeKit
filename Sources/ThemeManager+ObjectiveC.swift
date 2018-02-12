@@ -9,7 +9,7 @@
 import Foundation
 
 public extension ThemeManager {
-    
+
     /// Window theme policies that define which windows should be automatically themed, if any (Objective-C variant, only).
     @objc(TKThemeManagerWindowThemePolicy)
     public enum TKThemeManagerWindowThemePolicy: Int {
@@ -22,22 +22,22 @@ public extension ThemeManager {
         /// Do not theme any window.
         case doNotThemeWindows
     }
-    
+
     /// Current window theme policy.
     @objc(windowThemePolicy)
     public var objc_windowThemePolicy: TKThemeManagerWindowThemePolicy {
         get {
             switch windowThemePolicy {
-                
+
             case .themeAllWindows:
                 return .themeAllWindows
-                
+
             case .themeSomeWindows:
                 return .themeSomeWindows
-                
+
             case .doNotThemeSomeWindows:
                 return .doNotThemeSomeWindows
-                
+
             case .doNotThemeWindows:
                 return .doNotThemeWindows
             }
@@ -55,22 +55,22 @@ public extension ThemeManager {
             }
         }
     }
-    
+
     /// Windows classes to be excluded from theming with the `TKThemeManagerWindowThemePolicyDoNotThemeSomeWindows`.
     @objc(notThemableWindowClasses)
     public var notThemableWindowClasses: [AnyClass]? {
         get {
             switch windowThemePolicy {
-                
+
             case .themeAllWindows:
                 return nil
-                
+
             case .themeSomeWindows:
                 return []
-                
+
             case .doNotThemeSomeWindows(let windowClasses):
                 return windowClasses
-                
+
             case .doNotThemeWindows:
                 return []
             }
@@ -80,34 +80,32 @@ public extension ThemeManager {
                 if newValue.count > 0 {
                     // theme some if value > 0
                     windowThemePolicy = .doNotThemeSomeWindows(windowClasses: newValue)
-                }
-                else {
+                } else {
                     // theme none if value is 0
                     windowThemePolicy = .doNotThemeWindows
                 }
-            }
-            else {
+            } else {
                 // theme all windows if value is nil
                 windowThemePolicy = .themeAllWindows
             }
         }
     }
-    
+
     /// Windows classes to be themed with the `TKThemeManagerWindowThemePolicyThemeSomeWindows`.
     @objc(themableWindowClasses)
     public var themableWindowClasses: [AnyClass]? {
         get {
             switch windowThemePolicy {
-                
+
             case .themeAllWindows:
                 return nil
-                
+
             case .themeSomeWindows(let windowClasses):
                 return windowClasses
-                
+
             case .doNotThemeSomeWindows:
                 return []
-                
+
             case .doNotThemeWindows:
                 return []
             }
@@ -117,17 +115,15 @@ public extension ThemeManager {
                 if newValue.count > 0 {
                     // theme some if value > 0
                     windowThemePolicy = .themeSomeWindows(windowClasses: newValue)
-                }
-                else {
+                } else {
                     // theme none if value is 0
                     windowThemePolicy = .doNotThemeWindows
                 }
-            }
-            else {
+            } else {
                 // theme all windows if value is nil
                 windowThemePolicy = .themeAllWindows
             }
         }
     }
-    
+
 }

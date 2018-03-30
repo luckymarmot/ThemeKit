@@ -72,7 +72,7 @@ extension NSObject {
         }
 
         // release buffer
-        buffer.deallocate(capacity: Int(expectedCount))
+        buffer.deallocate()
 
         return results
     }

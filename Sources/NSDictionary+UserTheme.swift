@@ -86,7 +86,7 @@ extension NSDictionary {
         var rangeOffset = 0
         NSDictionary.varsRegExpr?.enumerateMatches(in: stringValue,
                                                    options: NSRegularExpression.MatchingOptions(rawValue: UInt(0)),
-                                                   range: NSMakeRange(0, stringValue.count),
+                                                   range: NSRange(location: 0, length: stringValue.count),
                                                    using: { (match, _, _) in
             if let matchRange = match?.range(at: 1) {
                 var range = matchRange
@@ -124,7 +124,7 @@ extension NSDictionary {
         var evaluatedObject: AnyObject? = value
 
         // linear-gradient(color1, color2)
-        if let match = NSDictionary.linearGradRegExpr?.firstMatch(in: stringValue, options: NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSMakeRange(0, stringValue.count)),
+        if let match = NSDictionary.linearGradRegExpr?.firstMatch(in: stringValue, options: NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSRange(location: 0, length: stringValue.count)),
             match.numberOfRanges == 11 {
 
             // Starting color
@@ -147,7 +147,7 @@ extension NSDictionary {
 
         // rgb/rgba color
         if evaluatedObject is String,
-            let match = NSDictionary.colorRegExpr?.firstMatch(in: stringValue, options: NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSMakeRange(0, stringValue.count)),
+            let match = NSDictionary.colorRegExpr?.firstMatch(in: stringValue, options: NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSRange(location: 0, length: stringValue.count)),
             match.numberOfRanges == 5 {
 
             let red = (Float(stringValue.substring(withNSRange: match.range(at: 1))) ?? 255) / 255
@@ -161,7 +161,7 @@ extension NSDictionary {
 
         // pattern
         if evaluatedObject is String,
-            let match = NSDictionary.patternRegExpr?.firstMatch(in: stringValue, options: NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSMakeRange(0, stringValue.count)),
+            let match = NSDictionary.patternRegExpr?.firstMatch(in: stringValue, options: NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSRange(location: 0, length: stringValue.count)),
             match.numberOfRanges == 6 {
 
             let isNamedType = stringValue.substring(withNSRange: match.range(at: 2)) == "named"
@@ -183,7 +183,7 @@ extension NSDictionary {
 
         // image
         if evaluatedObject is String,
-            let match = NSDictionary.imageRegExpr?.firstMatch(in: stringValue, options: NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSMakeRange(0, stringValue.count)),
+            let match = NSDictionary.imageRegExpr?.firstMatch(in: stringValue, options: NSRegularExpression.MatchingOptions(rawValue: UInt(0)), range: NSRange(location: 0, length: stringValue.count)),
             match.numberOfRanges == 6 {
 
             let isNamedType = stringValue.substring(withNSRange: match.range(at: 2)) == "named"

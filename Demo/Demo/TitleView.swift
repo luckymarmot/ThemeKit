@@ -60,7 +60,7 @@ class TitleView: NSView, NSTextFieldDelegate {
         NSBezierPath(rect: bounds).fill()
 
         // Draw gradient
-        let gradientFrame = NSMakeRect(4, 0, bounds.width - 8, 4)
+        let gradientFrame = NSRect(x: 4, y: 0, width: bounds.width - 8, height: 4)
         if let gradient = ThemeGradient.rainbowGradient {
             gradient.draw(in: gradientFrame, angle: 0)
         }

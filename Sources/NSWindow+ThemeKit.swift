@@ -168,7 +168,7 @@ public extension NSWindow {
         if let screenshot = takeScreenshot(),
             let parentView = window.contentView {
             // Add image view
-            let imageView = NSImageView(frame: NSMakeRect(0, 0, screenshot.size.width, screenshot.size.height))
+            let imageView = NSImageView(frame: NSRect(x: 0, y: 0, width: screenshot.size.width, height: screenshot.size.height))
             imageView.image = screenshot
             parentView.addSubview(imageView)
         }

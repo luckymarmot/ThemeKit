@@ -19,7 +19,7 @@ class DetailsView: NSView {
 
         // Draw theme details image
         let imageSize = NSSize(width: 48, height: 48)
-        ThemeImage.detailsImage.draw(in: NSMakeRect((bounds.width - imageSize.width) / 2, bounds.height - 56, imageSize.width, imageSize.height))
+        ThemeImage.detailsImage.draw(in: NSRect(x: (bounds.width - imageSize.width) / 2, y: bounds.height - 56, width: imageSize.width, height: imageSize.height))
     }
 
 }

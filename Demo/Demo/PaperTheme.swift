@@ -42,7 +42,7 @@ class PaperTheme: NSObject, Theme {
             // darken paper image
             paperImage.lockFocus()
             NSColor.init(white: 0.0, alpha: 0.05).setFill()
-            NSBezierPath(rect: NSMakeRect(0, 0, paperImage.size.width, paperImage.size.height)).fill()
+            NSBezierPath(rect: NSRect(x: 0, y: 0, width: paperImage.size.width, height: paperImage.size.height)).fill()
             paperImage.unlockFocus()
 
             _windowTitleBarActiveColor = NSColor(patternImage: paperImage)
@@ -78,7 +78,7 @@ class PaperTheme: NSObject, Theme {
             // lighten paper image
             paperImage.lockFocus()
             NSColor.init(white: 1.0, alpha: 0.5).setFill()
-            NSBezierPath(rect: NSMakeRect(0, 0, paperImage.size.width, paperImage.size.height)).fill()
+            NSBezierPath(rect: NSRect(x: 0, y: 0, width: paperImage.size.width, height: paperImage.size.height)).fill()
             paperImage.unlockFocus()
 
             _contentBackgroundColor = NSColor(patternImage: paperImage)

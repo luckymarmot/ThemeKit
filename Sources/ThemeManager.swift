@@ -25,6 +25,7 @@ public class ThemeManager: NSObject {
     /// ThemeManager shared manager.
     @objc(sharedManager)
     public static let shared = ThemeManager()
+    private var obj: NSObjectProtocol?
 
     // MARK: -
     // MARK: Initialization & Cleanup
@@ -36,7 +37,7 @@ public class ThemeManager: NSObject {
         NSColor.swizzleNSColor()
 
         // Observe and theme new windows (before being displayed onscreen)
-        NotificationCenter.default.addObserver(forName: NSWindow.didUpdateNotification, object: nil, queue: nil) { (notification) in
+        self.obj = NotificationCenter.default.addObserver(forName: NSWindow.didUpdateNotification, object: nil, queue: nil) { (notification) in
             if let window = notification.object as? NSWindow {
                 window.themeIfCompliantWithWindowThemePolicy()
             }
@@ -50,6 +51,9 @@ public class ThemeManager: NSObject {
     }
 
     deinit {
+        if let object = self.obj {
+          NotificationCenter.default.removeObserver(object)
+        }
         NSUserDefaultsController.shared.removeObserver(self, forKeyPath: themeChangeKVOKeyPath)
     }
 

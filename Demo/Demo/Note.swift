@@ -22,7 +22,7 @@ class Note: NSObject, NSCoding {
 
     // Character count.
     @objc var textCharacterCount: Int {
-        return text.characters.count
+        return text.count
     }
 
     // Word count.

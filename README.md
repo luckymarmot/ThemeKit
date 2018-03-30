@@ -4,14 +4,14 @@
 
 ![macOS](https://img.shields.io/badge/os-macOS%2010.10%2B-green.svg?style=flat)
 ![Swift3](https://img.shields.io/badge/swift-4-green.svg?style=flat)
-![Release](https://img.shields.io/badge/release-1.1.1-blue.svg?style=flat)
+![Release](https://img.shields.io/badge/release-1.2.0-blue.svg?style=flat)
 ![MIT](https://img.shields.io/badge/license-MIT-lightgray.svg)
 ![CocoaPods](https://img.shields.io/badge/dep-CocoaPods-orange.svg)
 ![Carthage](https://img.shields.io/badge/dep-Carthage-orange.svg)
 
 ## Summary
 
-*ThemeKit* is a lightweight theming library completely written in Swift that provides theming capabilities to both Swift 4 and Objective-C macOS applications.
+*ThemeKit* is a lightweight theming library completely written in Swift that provides theming capabilities to both Swift and Objective-C macOS applications.
 
 *ThemeKit* is brought to you with ❤️ by [Nuno Grilo](http://nunogrilo.com) and the [Paw](https://paw.cloud) [team](https://github.com/orgs/luckymarmot/people).
 
@@ -45,7 +45,7 @@
 
 ## Features
 
-- Written in Swift 4
+- Written in Swift 4.1
 - Optional configuration, none required
 - Neglected performance impact
 - Automatically theme windows (configurable)
@@ -62,6 +62,13 @@
   - Optional override of `NSColor` named colors (e.g., `labelColor`) to dynamically change with the theme
 
 ## Installation
+
+|ThemeKit Version|Swift Version|
+|----------------|-------------|
+|1.0.0           |      3.0    |
+|1.1.0           |      4.0    |
+|1.2.0           |      4.1    |
+
 There are multiple options to include *ThemeKit* on your project:
 
 - **[CocoaPods](https://cocoapods.org)**
@@ -71,7 +78,7 @@ There are multiple options to include *ThemeKit* on your project:
   ```Podfile
   use_frameworks!
   target '[YOUR APP TARGET]' do
-      pod 'macOSThemeKit', '~> 1.1.0'
+      pod 'macOSThemeKit', '~> 1.2.0'
   end
   ```
   

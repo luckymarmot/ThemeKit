@@ -444,6 +444,10 @@ Yes, you can! Implement your own custom controls drawing using [Theme-aware Asse
 
 In case needed (for example, if drawing is being cached), you can observe when theme changes to refresh the UI or to perform any theme related operation. Check *"Observing theme changes"* on [Usage](#usage) section above.
 
+### **NSTableView cells are getting a background color after being themed!**
+Please check [this issue](https://github.com/luckymarmot/ThemeKit/issues/18). This theming issue only affects view-based `NSTableView`s, when placed on sheets, on macOS < 10.14. Please check [this comment](https://github.com/luckymarmot/ThemeKit/issues/18#issuecomment-396553982) for a brief explanation on how to fix it, and a small project demonstrating the issue and the fix.
+
+
 ### **Scrollbars appear all white on dark themes!**
 If the user opts for always showing the scrollbars on *System Preferences*, scrollbars may render all white on dark themes. To bypass this, we need to observe for theme changes and change its background color directly. E.g.,
 

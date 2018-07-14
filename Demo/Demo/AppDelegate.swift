@@ -49,7 +49,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // 2.4 Set default theme (default: macOS theme `ThemeManager.systemTheme`)
         ThemeManager.defaultTheme = ThemeManager.lightTheme
 
-        // 2.5 Apply last applied theme, or the default one
+        // 2.5 Animate theme transitions? (default = true)
+        //ThemeManager.shared.animateThemeTransitions = false
+
+        // 2.6 Apply last applied theme, or the default one
         ThemeManager.shared.applyLastOrDefaultTheme()
 
     }

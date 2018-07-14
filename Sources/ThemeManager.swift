@@ -420,6 +420,9 @@ public class ThemeManager: NSObject {
     // MARK: -
     // MARK: Theme Switching
 
+    /// Animate theme transitions?
+    public var animateThemeTransitions: Bool = true
+
     /// Keypath for string `values.ThemeKitTheme`.
     private var themeChangeKVOKeyPath: String = "values.\(ThemeManager.userDefaultsThemeKey)"
 
@@ -487,57 +490,59 @@ public class ThemeManager: NSObject {
             applyAndPropagate(newTheme)
         }
 
-        // Animate theme transition
-        Thread.onMain {
-            // Find windows to animate
-            let windows = NSWindow.windowsCompliantWithWindowThemePolicy()
-            guard windows.count > 0 else {
-                // Change theme without animation
-                makeThemeEffective(newTheme)
-                return
-            }
-
-            // Create transition windows off-screen
-            var transitionWindows = [Int: NSWindow]()
-            for window in windows {
-                let windowNumber = window.windowNumber
-                /* Make sure the window has a number, and that it's not one of our
-                 * existing transition windows */
-                if windowNumber > 0 && !self.themeTransitionWindows.contains(window) {
-                    let transitionWindow = window.makeScreenshotWindow()
-                    transitionWindows[windowNumber] = transitionWindow
-                    self.themeTransitionWindows.insert(transitionWindow)
-                }
-            }
-
-            // Show (if we have at least one window to animate)
-            if transitionWindows.count > 0 {
-                // Show them all (hidden)
-                for (windowNumber, transitionWindow) in transitionWindows {
-                    transitionWindow.alphaValue = 0.0
-                    let parentWindow = NSApp.window(withWindowNumber: windowNumber)
-                    parentWindow?.addChildWindow(transitionWindow, ordered: .above)
+        Thread.onMain { [unowned self] in
+            // Animate theme transition
+            if self.animateThemeTransitions {
+                // Find windows to animate
+                let windows = NSWindow.windowsCompliantWithWindowThemePolicy()
+                guard windows.count > 0 else {
+                    // Change theme without animation
+                    makeThemeEffective(newTheme)
+                    return
                 }
 
-                // Setup animation
-                NSAnimationContext.beginGrouping()
-                let ctx = NSAnimationContext.current
-                ctx.duration = 0.3
-                ctx.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-                ctx.completionHandler = {() -> Void in
-                    for transitionWindow in transitionWindows.values {
-                        transitionWindow.orderOut(self)
-                        self.themeTransitionWindows.remove(transitionWindow)
+                // Create transition windows off-screen
+                var transitionWindows = [Int: NSWindow]()
+                for window in windows {
+                    let windowNumber = window.windowNumber
+                    /* Make sure the window has a number, and that it's not one of our
+                     * existing transition windows */
+                    if windowNumber > 0 && !self.themeTransitionWindows.contains(window) {
+                        let transitionWindow = window.makeScreenshotWindow()
+                        transitionWindows[windowNumber] = transitionWindow
+                        self.themeTransitionWindows.insert(transitionWindow)
                     }
                 }
 
-                // Show them all and fade out
-                for transitionWindow in transitionWindows.values {
-                    transitionWindow.alphaValue = 1.0
-                    transitionWindow.animator().alphaValue = 0.0
-                }
-                NSAnimationContext.endGrouping()
+                // Show (if we have at least one window to animate)
+                if transitionWindows.count > 0 {
+                    // Show them all (hidden)
+                    for (windowNumber, transitionWindow) in transitionWindows {
+                        transitionWindow.alphaValue = 0.0
+                        let parentWindow = NSApp.window(withWindowNumber: windowNumber)
+                        parentWindow?.addChildWindow(transitionWindow, ordered: .above)
+                    }
 
+                    // Setup animation
+                    NSAnimationContext.beginGrouping()
+                    let ctx = NSAnimationContext.current
+                    ctx.duration = 0.3
+                    ctx.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                    ctx.completionHandler = {() -> Void in
+                        for transitionWindow in transitionWindows.values {
+                            transitionWindow.orderOut(self)
+                            self.themeTransitionWindows.remove(transitionWindow)
+                        }
+                    }
+
+                    // Show them all and fade out
+                    for transitionWindow in transitionWindows.values {
+                        transitionWindow.alphaValue = 1.0
+                        transitionWindow.animator().alphaValue = 0.0
+                    }
+                    NSAnimationContext.endGrouping()
+
+                }
             }
 
             // Actually change theme

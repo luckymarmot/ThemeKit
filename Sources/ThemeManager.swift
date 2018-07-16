@@ -421,7 +421,7 @@ public class ThemeManager: NSObject {
     // MARK: Theme Switching
 
     /// Animate theme transitions?
-    public var animateThemeTransitions: Bool = true
+    @objc public var animateThemeTransitions: Bool = true
 
     /// Keypath for string `values.ThemeKitTheme`.
     private var themeChangeKVOKeyPath: String = "values.\(ThemeManager.userDefaultsThemeKey)"

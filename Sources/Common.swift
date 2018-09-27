@@ -19,6 +19,15 @@ func CacheKey(selector: Selector, theme: Theme?) -> NSNumber {
 }
 
 func CacheKey(selector: Selector, colorSpace: NSColorSpace?, theme: Theme?) -> NSNumber {
-    let hashValue = selector.hashValue + (colorSpace == nil ? 0 : (colorSpace!.hashValue << 4)) + (theme == nil ? 0 : (theme!.hash << 8))
+    var colorSpaceHash: Int = 0
+    var themeHash: Int = 0
+    
+    if let _ = colorSpace {
+        colorSpaceHash = (colorSpace!.hashValue << 4)
+    }
+    if let _ = theme {
+        themeHash = (theme!.hash << 8)
+    }
+    let hashValue = selector.hashValue + colorSpaceHash + themeHash
     return NSNumber(value: hashValue)
 }

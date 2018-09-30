@@ -576,7 +576,7 @@
     },
     {
       "file": "/Users/nfgrilo/Projects/luckymarmot/ThemeKit/Sources/ThemeManager.swift",
-      "line": 430,
+      "line": 458,
       "symbol": "ThemeManager.observeValue(forKeyPath:of:change:context:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

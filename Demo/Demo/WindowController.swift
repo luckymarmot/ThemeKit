@@ -73,7 +73,7 @@ class WindowController: NSWindowController {
     private var titlebarView: NSView? {
         if let themeFrame = self.window?.contentView?.superview {
             for subview in themeFrame.subviews where subview.className == "NSTitlebarContainerView" {
-                return subview.subviews.first
+                return subview.subviews.first { $0.className == "NSTitlebarView" }
             }
         }
         return nil

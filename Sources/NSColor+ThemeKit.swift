@@ -96,7 +96,7 @@ extension NSColor {
         themeKitSet()
 
         // check if the user provides an alternative color
-        if isThemeOverriden {
+        if ThemeManager.shared.isEnabled && isThemeOverriden {
             // call ThemeColor.set() function
             ThemeColor.color(with: Selector(colorNameComponent)).set()
         }
@@ -108,7 +108,7 @@ extension NSColor {
         themeKitSetFill()
 
         // check if the user provides an alternative color
-        if isThemeOverriden {
+        if ThemeManager.shared.isEnabled && isThemeOverriden {
             // call ThemeColor.setFill() function
             ThemeColor.color(with: Selector(colorNameComponent)).setFill()
         }
@@ -120,7 +120,7 @@ extension NSColor {
         themeKitSetStroke()
 
         // check if the user provides an alternative color
-        if isThemeOverriden {
+        if ThemeManager.shared.isEnabled && isThemeOverriden {
             // call ThemeColor.setStroke() function
             ThemeColor.color(with: Selector(colorNameComponent)).setStroke()
         }

@@ -17,6 +17,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationWillFinishLaunching(_ notification: Notification) {
 
+        /* 0. Enable/disable theming capabilities. */
+        //ThemeManager.shared.isEnabled = false
+
         /* 1. Simpler usage: switch between light and dark theme directly. */
 
         //ThemeManager.lightTheme.apply()

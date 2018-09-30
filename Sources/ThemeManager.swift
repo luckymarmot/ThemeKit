@@ -33,29 +33,53 @@ public class ThemeManager: NSObject {
     private override init() {
         super.init()
 
-        // Initialize custom NSColor code (swizzle NSColor, if needed)
-        NSColor.swizzleNSColor()
-
-        // Observe and theme new windows (before being displayed onscreen)
-        self.obj = NotificationCenter.default.addObserver(forName: NSWindow.didUpdateNotification, object: nil, queue: nil) { (notification) in
-            if let window = notification.object as? NSWindow {
-                window.themeIfCompliantWithWindowThemePolicy()
-            }
-        }
-
-        // Observe current theme on User Defaults
-        NSUserDefaultsController.shared.addObserver(self, forKeyPath: themeChangeKVOKeyPath, options: NSKeyValueObservingOptions(rawValue: 0), context: nil)
-
-        // Observe current system theme (macOS Apple Interface Theme)
-        NotificationCenter.default.addObserver(self, selector: #selector(systemThemeDidChange(_:)), name: .didChangeSystemTheme, object: nil)
+        isEnabled = true
     }
 
     deinit {
-        if let object = self.obj {
-          NotificationCenter.default.removeObserver(object)
-        }
-        NSUserDefaultsController.shared.removeObserver(self, forKeyPath: themeChangeKVOKeyPath)
+        isEnabled = false
     }
+
+    /// Enables or disables ThemeKit functionality.
+    @objc public var isEnabled: Bool {
+        get {
+            return _isEnabled ?? false
+        }
+        set {
+            guard _isEnabled != newValue else { return }
+            _isEnabled = newValue
+
+            // enable
+            if newValue {
+                // Initialize custom NSColor code (swizzle NSColor, if needed - done only once)
+                NSColor.swizzleNSColor()
+
+                // Observe and theme new windows (before being displayed onscreen)
+                self.obj = NotificationCenter.default.addObserver(forName: NSWindow.didUpdateNotification, object: nil, queue: nil) { (notification) in
+                    if let window = notification.object as? NSWindow {
+                        window.themeIfCompliantWithWindowThemePolicy()
+                    }
+                }
+
+                // Observe current theme on User Defaults
+                NSUserDefaultsController.shared.addObserver(self, forKeyPath: themeChangeKVOKeyPath, options: NSKeyValueObservingOptions(rawValue: 0), context: nil)
+
+                // Observe current system theme (macOS Apple Interface Theme)
+                NotificationCenter.default.addObserver(self, selector: #selector(systemThemeDidChange(_:)), name: .didChangeSystemTheme, object: nil)
+            }
+
+            // disable
+            else {
+                if let object = self.obj {
+                    NotificationCenter.default.removeObserver(object)
+                }
+                NSUserDefaultsController.shared.removeObserver(self, forKeyPath: themeChangeKVOKeyPath)
+                NotificationCenter.default.removeObserver(self, name: .didChangeSystemTheme, object: nil)
+            }
+        }
+    }
+    /// Internal storage for `isEnabled` property.
+    private var _isEnabled: Bool?
 
     // MARK: -
     // MARK: Themes
@@ -69,6 +93,8 @@ public class ThemeManager: NSObject {
             return _theme ?? ThemeManager.defaultTheme
         }
         set(newTheme) {
+            guard isEnabled else { return }
+
             // Apply theme
             if _theme == nil || newTheme.effectiveTheme != _theme! || newTheme.effectiveTheme.isUserTheme {
                 applyTheme(newTheme)
@@ -208,6 +234,8 @@ public class ThemeManager: NSObject {
     /// Get last applied theme from user defaults and load it. If no theme was
     /// previously applied, load the default theme (`ThemeManager.defaultTheme`).
     @objc public func applyLastOrDefaultTheme() {
+        guard isEnabled else { return }
+
         let userDefaultsTheme = theme(withIdentifier: UserDefaults.standard.string(forKey: ThemeManager.userDefaultsThemeKey))
         (userDefaultsTheme ?? ThemeManager.defaultTheme).apply()
     }
@@ -444,6 +472,7 @@ public class ThemeManager: NSObject {
 
     /// Apply a new `theme`.
     private func applyTheme(_ newTheme: Theme) {
+        guard isEnabled else { return }
 
         // Make theme effective
         func makeThemeEffective(_ newTheme: Theme) {

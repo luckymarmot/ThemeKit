@@ -171,8 +171,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var tabs: [NSWindowController] = []
 
     @IBAction func newWindowForTab(_ sender: Any?) {
-        let storyBoard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
-        if let windowController = storyBoard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "WindowController")) as? NSWindowController {
+        let storyBoard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
+        if let windowController = storyBoard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("WindowController")) as? NSWindowController {
             windowController.showWindow(self)
         }
     }

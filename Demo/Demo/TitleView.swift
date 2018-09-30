@@ -70,7 +70,7 @@ class TitleView: NSView, NSTextFieldDelegate {
     // MARK: -
     // MARK: NSTextDelegate
 
-    override func controlTextDidChange(_ obj: Notification) {
+    func controlTextDidChange(_ obj: Notification) {
         guard let note = self.note else {
             return
         }

@@ -291,7 +291,7 @@ open class ThemeGradient: NSGradient {
 
     /// Clear all caches.
     /// You should not need to manually call this function.
-    @objc static open func emptyCache() {
+    @objc class open func emptyCache() {
         _cachedGradients.removeAllObjects()
         _cachedThemeGradients.removeAllObjects()
     }

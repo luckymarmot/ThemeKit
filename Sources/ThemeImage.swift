@@ -288,7 +288,7 @@ open class ThemeImage: NSImage {
 
     /// Clear all caches.
     /// You should not need to manually call this function.
-    @objc static open func emptyCache() {
+    @objc class open func emptyCache() {
         _cachedImages.removeAllObjects()
         _cachedThemeImages.removeAllObjects()
     }

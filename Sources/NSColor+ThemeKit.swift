@@ -37,7 +37,7 @@ extension NSColor {
     @objc public var isThemeOverriden: Bool {
 
         // check if `NSColor` provides this color
-        let selector = Selector(colorNameComponent.rawValue)
+        let selector = Selector(colorNameComponent)
         let nsColorMethod = class_getClassMethod(NSColor.classForCoder(), selector)
         guard nsColorMethod != nil else {
             return false
@@ -48,7 +48,7 @@ extension NSColor {
 
         // `UserTheme`: check `hasThemeAsset(_:)` method
         if let userTheme = theme as? UserTheme {
-            return userTheme.hasThemeAsset(colorNameComponent.rawValue)
+            return userTheme.hasThemeAsset(colorNameComponent)
         }
 
         // native themes: look up for an instance method
@@ -98,7 +98,7 @@ extension NSColor {
         // check if the user provides an alternative color
         if isThemeOverriden {
             // call ThemeColor.set() function
-            ThemeColor.color(with: Selector(colorNameComponent.rawValue)).set()
+            ThemeColor.color(with: Selector(colorNameComponent)).set()
         }
     }
 
@@ -110,7 +110,7 @@ extension NSColor {
         // check if the user provides an alternative color
         if isThemeOverriden {
             // call ThemeColor.setFill() function
-            ThemeColor.color(with: Selector(colorNameComponent.rawValue)).setFill()
+            ThemeColor.color(with: Selector(colorNameComponent)).setFill()
         }
     }
 
@@ -122,7 +122,7 @@ extension NSColor {
         // check if the user provides an alternative color
         if isThemeOverriden {
             // call ThemeColor.setStroke() function
-            ThemeColor.color(with: Selector(colorNameComponent.rawValue)).setStroke()
+            ThemeColor.color(with: Selector(colorNameComponent)).setStroke()
         }
     }
 

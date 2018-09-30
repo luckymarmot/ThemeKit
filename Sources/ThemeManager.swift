@@ -527,7 +527,7 @@ public class ThemeManager: NSObject {
                     NSAnimationContext.beginGrouping()
                     let ctx = NSAnimationContext.current
                     ctx.duration = 0.3
-                    ctx.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                    ctx.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
                     ctx.completionHandler = {() -> Void in
                         for transitionWindow in transitionWindows.values {
                             transitionWindow.orderOut(self)

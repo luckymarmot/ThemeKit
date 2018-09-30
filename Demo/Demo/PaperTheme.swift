@@ -112,7 +112,7 @@ class PaperTheme: NSObject, Theme {
 
     /// Notes details image
     @objc var detailsImage: NSImage? {
-        return NSImage(named: NSImage.Name(rawValue: "file_doc"))
+        return NSImage(named: NSImage.Name("file_doc"))
     }
 
     // MARK: SYSTEM OVERRIDE
@@ -124,7 +124,7 @@ class PaperTheme: NSObject, Theme {
     // MARK: SHARED
 
     @objc var paperImage: NSImage? {
-        return Bundle.main.image(forResource: NSImage.Name(rawValue: "paper"))
+        return Bundle.main.image(forResource: NSImage.Name("paper"))
     }
 
 }

@@ -47,7 +47,7 @@ extension DarkTheme {
 
     /// Notes details image
     @objc var detailsImage: NSImage? {
-        return NSImage(named: NSImage.Name(rawValue: "moon"))
+        return NSImage(named: NSImage.Name("moon"))
     }
 
 }

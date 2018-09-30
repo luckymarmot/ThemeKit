@@ -47,7 +47,7 @@ extension LightTheme {
 
     /// Notes details image
     @objc var detailsImage: NSImage? {
-        return NSImage(named: NSImage.Name(rawValue: "sun"))
+        return NSImage(named: NSImage.Name("sun"))
     }
 
 }

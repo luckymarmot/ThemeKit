@@ -366,7 +366,7 @@ open class ThemeColor: NSColor {
 
     /// Clear all caches.
     /// You should not need to manually call this function.
-    @objc static open func emptyCache() {
+    @objc class open func emptyCache() {
         _cachedColors.removeAllObjects()
         _cachedThemeColors.removeAllObjects()
     }

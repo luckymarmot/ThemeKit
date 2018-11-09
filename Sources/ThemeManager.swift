@@ -373,12 +373,16 @@ public class ThemeManager: NSObject {
 
     /// Convenience method to get the light appearance.
     @objc public var lightAppearance: NSAppearance? {
-        return NSAppearance(named: NSAppearance.Name.vibrantLight)
+        return NSAppearance(named: .aqua)
     }
 
     /// Convenience method to get the dark appearance.
     @objc public var darkAppearance: NSAppearance? {
-        return NSAppearance(named: NSAppearance.Name.vibrantDark)
+        if #available(OSX 10.14, *) {
+            return NSAppearance(named: .darkAqua)
+        } else {
+            return NSAppearance(named: .vibrantDark)
+        }
     }
 
     // MARK: -

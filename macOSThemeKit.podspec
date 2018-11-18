@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'macOSThemeKit'
-  s.version      = '1.2.3'
+  s.version      = '1.3.0'
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.summary      = 'macOS Theming Framework'
   s.homepage     = 'https://github.com/luckymarmot/ThemeKit'

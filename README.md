@@ -4,7 +4,7 @@
 
 ![macOS](https://img.shields.io/badge/os-macOS%2010.10%2B-green.svg?style=flat)
 ![Swift4](https://img.shields.io/badge/swift-4.2-green.svg?style=flat)
-![Release](https://img.shields.io/badge/release-1.2.3-blue.svg?style=flat)
+![Release](https://img.shields.io/badge/release-1.3.0-blue.svg?style=flat)
 ![MIT](https://img.shields.io/badge/license-MIT-lightgray.svg)
 ![CocoaPods](https://img.shields.io/badge/dep-CocoaPods-orange.svg)
 ![Carthage](https://img.shields.io/badge/dep-Carthage-orange.svg)

@@ -18,22 +18,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillFinishLaunching(_ notification: Notification) {
 
         /* 0. Enable/disable theming capabilities. */
-        //ThemeManager.shared.isEnabled = false
+        // ThemeManager.shared.isEnabled = false
 
         /* 1. Simpler usage: switch between light and dark theme directly. */
 
-        //ThemeManager.lightTheme.apply()
-        //ThemeManager.darkTheme.apply()
-        //ThemeManager.systemTheme.apply()
+        // ThemeManager.lightTheme.apply()
+        // ThemeManager.darkTheme.apply()
+        // ThemeManager.systemTheme.apply()
 
         /* 2. Advanced usage: define window theme policy & enable user themes.
          * Themes will be selected using popup bound to user defaults. */
 
         // 2.1 Setup window theme policy
         ThemeManager.shared.windowThemePolicy = .themeAllWindows
-        //ThemeManager.shared.windowThemePolicy = .themeSomeWindows(windowClasses: [MyCustomWindow.self])
-        //ThemeManager.shared.windowThemePolicy = .doNotThemeSomeWindows(windowClasses: [NSPanel.self])
-        //ThemeManager.shared.windowThemePolicy = .doNotThemeWindows
+        // ThemeManager.shared.windowThemePolicy = .themeSomeWindows(windowClasses: [MyCustomWindow.self])
+        // ThemeManager.shared.windowThemePolicy = .doNotThemeSomeWindows(windowClasses: [NSPanel.self])
+        // ThemeManager.shared.windowThemePolicy = .doNotThemeWindows
 
         // 2.2 User themes folder
         if let bundleResourcePath = Bundle.main.resourcePath {
@@ -42,18 +42,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         // 2.3 You can define the default light and dark theme, used for `ThemeManager.systemTheme`
-        //if let paperTheme = ThemeManager.shared.theme(withIdentifier: PaperTheme.identifier) {
+        // if let paperTheme = ThemeManager.shared.theme(withIdentifier: PaperTheme.identifier) {
         //    ThemeManager.lightTheme = paperTheme
-        //}
-        //if let purpleGreenTheme = ThemeManager.shared.theme(withIdentifier: "com.luckymarmot.ThemeKit.PurpleGreen") {
+        // }
+        // if let purpleGreenTheme = ThemeManager.shared.theme(withIdentifier: "com.luckymarmot.ThemeKit.PurpleGreen") {
         //    ThemeManager.darkTheme = purpleGreenTheme
-        //}
+        // }
 
         // 2.4 Set default theme (default: macOS theme `ThemeManager.systemTheme`)
         ThemeManager.defaultTheme = ThemeManager.lightTheme
 
         // 2.5 Animate theme transitions? (default = true)
-        //ThemeManager.shared.animateThemeTransitions = false
+        // ThemeManager.shared.animateThemeTransitions = false
 
         // 2.6 Apply last applied theme, or the default one
         ThemeManager.shared.applyLastOrDefaultTheme()

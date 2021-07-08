@@ -31,7 +31,7 @@ public extension NSWindow {
     ///
     /// Additionaly, please note that system overriden colors (`NSColor.*`) will
     /// always use the global theme.
-    @objc public var windowTheme: Theme? {
+    @objc var windowTheme: Theme? {
         get {
             return objc_getAssociatedObject(self, &themeAssociationKey) as? Theme
         }
@@ -42,12 +42,12 @@ public extension NSWindow {
     }
 
     /// Returns the current effective theme (read-only).
-    @objc public var windowEffectiveTheme: Theme {
+    @objc var windowEffectiveTheme: Theme {
         return windowTheme ?? ThemeManager.shared.effectiveTheme
     }
 
     /// Returns the current effective appearance (read-only).
-    @objc public var windowEffectiveThemeAppearance: NSAppearance? {
+    @objc var windowEffectiveThemeAppearance: NSAppearance? {
         return windowEffectiveTheme.isLightTheme ? ThemeManager.shared.lightAppearance : ThemeManager.shared.darkAppearance
     }
 
@@ -55,7 +55,7 @@ public extension NSWindow {
     // MARK: Theming
 
     /// Theme window if needed.
-    @objc public func theme() {
+    @objc func theme() {
         if currentTheme == nil || currentTheme! != windowEffectiveTheme {
             // Keep record of currently applied theme
             currentTheme = windowEffectiveTheme
@@ -69,14 +69,14 @@ public extension NSWindow {
     }
 
     /// Theme window if compliant to ThemeManager.windowThemePolicy (and if needed).
-    @objc public func themeIfCompliantWithWindowThemePolicy() {
+    @objc func themeIfCompliantWithWindowThemePolicy() {
         if isCompliantWithWindowThemePolicy() {
             theme()
         }
     }
 
     /// Theme all windows compliant to ThemeManager.windowThemePolicy (and if needed).
-    @objc public static func themeAllWindows() {
+    @objc static func themeAllWindows() {
         for window in windowsCompliantWithWindowThemePolicy() {
             window.theme()
         }

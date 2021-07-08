@@ -12,7 +12,7 @@ public extension ThemeManager {
 
     /// Window theme policies that define which windows should be automatically themed, if any (Objective-C variant, only).
     @objc(TKThemeManagerWindowThemePolicy)
-    public enum TKThemeManagerWindowThemePolicy: Int {
+    enum TKThemeManagerWindowThemePolicy: Int {
         /// Theme all application windows (default).
         case themeAllWindows
         /// Only theme windows of the specified classes.
@@ -25,7 +25,7 @@ public extension ThemeManager {
 
     /// Current window theme policy.
     @objc(windowThemePolicy)
-    public var objc_windowThemePolicy: TKThemeManagerWindowThemePolicy {
+    var objc_windowThemePolicy: TKThemeManagerWindowThemePolicy {
         get {
             switch windowThemePolicy {
 
@@ -58,7 +58,7 @@ public extension ThemeManager {
 
     /// Windows classes to be excluded from theming with the `TKThemeManagerWindowThemePolicyDoNotThemeSomeWindows`.
     @objc(notThemableWindowClasses)
-    public var notThemableWindowClasses: [AnyClass]? {
+    var notThemableWindowClasses: [AnyClass]? {
         get {
             switch windowThemePolicy {
 
@@ -93,7 +93,7 @@ public extension ThemeManager {
 
     /// Windows classes to be themed with the `TKThemeManagerWindowThemePolicyThemeSomeWindows`.
     @objc(themableWindowClasses)
-    public var themableWindowClasses: [AnyClass]? {
+    var themableWindowClasses: [AnyClass]? {
         get {
             switch windowThemePolicy {
 

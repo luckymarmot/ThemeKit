@@ -74,7 +74,7 @@ public extension Theme {
     /// ```objc
     /// !aTheme.isDarkTheme
     /// ```
-    public var isLightTheme: Bool {
+    var isLightTheme: Bool {
         return !isDarkTheme
     }
 
@@ -87,7 +87,7 @@ public extension Theme {
     /// ```objc
     /// [aTheme.identifier isEqualToString:TKSystemTheme.identifier]
     /// ```
-    public var isSystemTheme: Bool {
+    var isSystemTheme: Bool {
         return identifier == SystemTheme.identifier
     }
 
@@ -98,7 +98,7 @@ public extension Theme {
     /// ```objc
     /// [aTheme isKindOfClass:[TKUserTheme class]]
     /// ```
-    public var isUserTheme: Bool {
+    var isUserTheme: Bool {
         return self is UserTheme
     }
 
@@ -109,7 +109,7 @@ public extension Theme {
     /// ```objc
     /// [[TKThemeManager sharedManager] setTheme:aTheme]
     /// ```
-    public func apply() {
+    func apply() {
         ThemeManager.shared.theme = self
     }
 
@@ -122,7 +122,7 @@ public extension Theme {
     /// - parameter key: A color name, gradient name, image name or a theme string
     ///
     /// - returns: The theme value for the specified key.
-    public func themeAsset(_ key: String) -> Any? {
+    func themeAsset(_ key: String) -> Any? {
         // Because `Theme` is an @objc protocol, we cannot define this method on
         // the protocol and a provide a default implementation on this extension,
         // plus another on `UserTheme`. This is a workaround to accomplish it.
@@ -148,7 +148,7 @@ public extension Theme {
     /// - parameter key: A color name, gradient name, image name or a theme string
     ///
     /// - returns: `true` if theme provides an asset for the given key; `false` otherwise.
-    public func hasThemeAsset(_ key: String) -> Bool {
+    func hasThemeAsset(_ key: String) -> Bool {
         return themeAsset(key) != nil
     }
 
@@ -219,7 +219,7 @@ public extension Theme {
     }
 
     /// Theme description.
-    public func themeDescription(_ theme: Theme) -> String {
+    func themeDescription(_ theme: Theme) -> String {
         return "\"\(displayName)\" [\(identifier)]\(isDarkTheme ? " (Dark)" : "")"
     }
 }

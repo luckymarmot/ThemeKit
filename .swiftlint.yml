@@ -1,6 +1,6 @@
 disabled_rules:
   - block_based_kvo
-  - variable_name
+  - identifier_name
   - cyclomatic_complexity
   - function_body_length
   - file_length

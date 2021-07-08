@@ -184,22 +184,23 @@
 		286DE7BF1D92DF8F00767E00 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = "Paw Inc.";
 				TargetAttributes = {
 					286DE7C71D92DF8F00767E00 = {
 						CreatedOnToolsVersion = 8.0;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1250;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
 			buildConfigurationList = 286DE7C21D92DF8F00767E00 /* Build configuration list for PBXProject "ThemeKit" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 286DE7BE1D92DF8F00767E00;
 			productRefGroup = 286DE7C91D92DF8F00767E00 /* Products */;
@@ -403,6 +404,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -424,6 +426,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.luckymarmot.ThemeKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

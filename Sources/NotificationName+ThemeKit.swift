@@ -14,13 +14,13 @@ import Foundation
 public extension Notification.Name {
 
     /// ThemeKit notification sent when current theme is about to change.
-    public static let willChangeTheme = Notification.Name("ThemeKitWillChangeThemeNotification")
+    static let willChangeTheme = Notification.Name("ThemeKitWillChangeThemeNotification")
 
     /// ThemeKit notification sent when current theme did change.
-    public static let didChangeTheme = Notification.Name("ThemeKitDidChangeThemeNotification")
+    static let didChangeTheme = Notification.Name("ThemeKitDidChangeThemeNotification")
 
     /// ThemeKit notification sent when system theme did change (System Preference > General > Appearance).
-    public static let didChangeSystemTheme = Notification.Name("ThemeKitDidChangeSystemThemeNotification")
+    static let didChangeSystemTheme = Notification.Name("ThemeKitDidChangeSystemThemeNotification")
 
     /// Convenience property for the system notification sent when System Preference for dark mode changes.
     static let didChangeAppleInterfaceTheme = Notification.Name("AppleInterfaceThemeChangedNotification")

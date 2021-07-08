@@ -8,15 +8,23 @@
     <script src="../../js/jquery.min.js" defer></script>
     <script src="../../js/jazzy.js" defer></script>
     
+    <script src="../../js/lunr.min.js" defer></script>
+    <script src="../../js/typeahead.jquery.js" defer></script>
+    <script src="../../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Enum/WindowThemePolicy" class="dashAnchor"></a>
     <a title="WindowThemePolicy Enumeration Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../../index.html">ThemeKit Docs</a></p>
+        <p><a href="../../index.html">ThemeKit 1.4.0 Docs</a></p>
         <p class="header-right"><a href="https://github.com/luckymarmot/ThemeKit"><img src="../../img/gh.png"/>View on GitHub</a></p>
-        <p class="header-right"><a href="dash-feed://http%3A%2F%2Fthemekit%2Enunogrilo%2Ecom%2Fdocsets%2FThemeKit%2Exml"><img src="../../img/dash.png"/>Install in Dash</a></p>
+        <p class="header-right"><a href="dash-feed://http%3A%2F%2Fthemekit.nunogrilo.com%2Fdocsets%2FThemeKit.xml"><img src="../../img/dash.png"/>Install in Dash</a></p>
+        <p class="header-right">
+          <form role="search" action="../../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -67,7 +75,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../../Theme Assets.html">Theme Assets</a>
+            <a href="../../Theme%20Assets.html">Theme Assets</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../../Classes/ThemeColor.html">ThemeColor</a>
@@ -99,7 +107,8 @@
             <h1>WindowThemePolicy</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">WindowThemePolicy</span></code></pre>
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">WindowThemePolicy</span></code></pre>
 
                 </div>
               </div>
@@ -116,7 +125,7 @@
 </ul>
 
 <p>E.g.:</p>
-<pre class="highlight plaintext"><code>ThemeManager.shared.windowThemePolicy = .themeSomeWindows(windowClasses: [CustomWindow.self])
+<pre class="highlight swift"><code><span class="kt">ThemeManager</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="n">windowThemePolicy</span> <span class="o">=</span> <span class="o">.</span><span class="nf">themeSomeWindows</span><span class="p">(</span><span class="nv">windowClasses</span><span class="p">:</span> <span class="p">[</span><span class="kt">CustomWindow</span><span class="o">.</span><span class="k">self</span><span class="p">])</span>
 </code></pre>
 <h2 id='objective-c' class='heading'>Objective-C</h2>
 
@@ -130,8 +139,8 @@
 </ul>
 
 <p>Example:</p>
-<pre class="highlight plaintext"><code>[TKThemeManager sharedManager].windowThemePolicy = TKThemeManagerWindowThemePolicyThemeSomeWindows;
-[TKThemeManager sharedManager].themableWindowClasses = @[[CustomWindow class]];
+<pre class="highlight swift"><code><span class="p">[</span><span class="kt">TKThemeManager</span> <span class="n">sharedManager</span><span class="p">]</span><span class="o">.</span><span class="n">windowThemePolicy</span> <span class="o">=</span> <span class="kt">TKThemeManagerWindowThemePolicyThemeSomeWindows</span><span class="p">;</span>
+<span class="p">[</span><span class="kt">TKThemeManager</span> <span class="n">sharedManager</span><span class="p">]</span><span class="o">.</span><span class="n">themableWindowClasses</span> <span class="o">=</span> <span class="err">@</span><span class="p">[[</span><span class="kt">CustomWindow</span> <span class="kd">class</span><span class="p">]];</span>
 </code></pre>
 <h2 id='nswindow-extension' class='heading'>NSWindow Extension</h2>
 
@@ -150,6 +159,9 @@
 <p>Theme all windows compliant to ThemeManager.windowThemePolicy (and if appearance needs update).</p></li>
 </ul>
 
+              <div class="slightly-smaller">
+                <a href="https://github.com/luckymarmot/ThemeKit/blob/master/Sources/ThemeManager.swift#L438-L447">Show on GitHub</a>
+              </div>
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -174,7 +186,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">themeAllWindows</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">themeAllWindows</span></code></pre>
 
                         </div>
                       </div>
@@ -184,16 +196,12 @@
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
                     <a name="/s:8ThemeKit0A7ManagerC06WindowA6PolicyO16themeSomeWindowsyAESayyXlXpG_tcAEmF"></a>
                     <a name="//apple_ref/swift/Element/themeSomeWindows(windowClasses:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8ThemeKit0A7ManagerC06WindowA6PolicyO16themeSomeWindowsyAESayyXlXpG_tcAEmF">themeSomeWindows(windowClasses:)</a>
+                    <a class="token" href="#/s:8ThemeKit0A7ManagerC06WindowA6PolicyO16themeSomeWindowsyAESayyXlXpG_tcAEmF">themeSomeWindows(windowClasses:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -208,7 +216,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">themeSomeWindows</span><span class="p">(</span><span class="nv">windowClasses</span><span class="p">:</span> <span class="p">[</span><span class="kt">AnyClass</span><span class="p">])</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="nf">themeSomeWindows</span><span class="p">(</span><span class="nv">windowClasses</span><span class="p">:</span> <span class="p">[</span><span class="kt">AnyClass</span><span class="p">])</span></code></pre>
 
                         </div>
                       </div>
@@ -218,16 +226,12 @@
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
                     <a name="/s:8ThemeKit0A7ManagerC06WindowA6PolicyO05doNotA11SomeWindowsyAESayyXlXpG_tcAEmF"></a>
                     <a name="//apple_ref/swift/Element/doNotThemeSomeWindows(windowClasses:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8ThemeKit0A7ManagerC06WindowA6PolicyO05doNotA11SomeWindowsyAESayyXlXpG_tcAEmF">doNotThemeSomeWindows(windowClasses:)</a>
+                    <a class="token" href="#/s:8ThemeKit0A7ManagerC06WindowA6PolicyO05doNotA11SomeWindowsyAESayyXlXpG_tcAEmF">doNotThemeSomeWindows(windowClasses:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -242,7 +246,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">doNotThemeSomeWindows</span><span class="p">(</span><span class="nv">windowClasses</span><span class="p">:</span> <span class="p">[</span><span class="kt">AnyClass</span><span class="p">])</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="nf">doNotThemeSomeWindows</span><span class="p">(</span><span class="nv">windowClasses</span><span class="p">:</span> <span class="p">[</span><span class="kt">AnyClass</span><span class="p">])</span></code></pre>
 
                         </div>
                       </div>
@@ -252,10 +256,6 @@
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -276,7 +276,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">doNotThemeWindows</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">doNotThemeWindows</span></code></pre>
 
                         </div>
                       </div>
@@ -292,7 +292,7 @@
         </section>
         <section id="footer">
           <p>© 2016-2017 <a class="link" href="https://paw.cloud" target="_blank" rel="external">Paw</a> &amp; <a class="link" href="http://nunogrilo.com" target="_blank" rel="external">Nuno Grilo</a> under <a class="link" href="https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.7</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

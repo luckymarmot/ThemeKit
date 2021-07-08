@@ -8,15 +8,23 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Extension/NSWindow" class="dashAnchor"></a>
     <a title="NSWindow Extension Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">ThemeKit Docs</a></p>
+        <p><a href="../index.html">ThemeKit 1.4.0 Docs</a></p>
         <p class="header-right"><a href="https://github.com/luckymarmot/ThemeKit"><img src="../img/gh.png"/>View on GitHub</a></p>
-        <p class="header-right"><a href="dash-feed://http%3A%2F%2Fthemekit%2Enunogrilo%2Ecom%2Fdocsets%2FThemeKit%2Exml"><img src="../img/dash.png"/>Install in Dash</a></p>
+        <p class="header-right"><a href="dash-feed://http%3A%2F%2Fthemekit.nunogrilo.com%2Fdocsets%2FThemeKit.xml"><img src="../img/dash.png"/>Install in Dash</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -67,7 +75,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Theme Assets.html">Theme Assets</a>
+            <a href="../Theme%20Assets.html">Theme Assets</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Classes/ThemeColor.html">ThemeColor</a>
@@ -97,6 +105,13 @@
         <section>
           <section class="section">
             <h1>NSWindow</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">extension</span> <span class="kt">NSWindow</span></code></pre>
+
+                </div>
+              </div>
             <p><code>NSWindow</code> ThemeKit extension.</p>
 
           </section>
@@ -105,9 +120,11 @@
               <div class="task-name-container">
                 <a name="/Properties"></a>
                 <a name="//apple_ref/swift/Section/Properties" class="dashAnchor"></a>
-                <a href="#/Properties">
-                  <h3 class="section-name">Properties</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Properties"></a>
+                  <h3 class="section-name"><p>Properties</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -146,7 +163,8 @@ always use the global theme.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">windowTheme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="k">var</span> <span class="nv">windowTheme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -176,7 +194,8 @@ always use the global theme.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">windowEffectiveTheme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="k">var</span> <span class="nv">windowEffectiveTheme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -206,7 +225,8 @@ always use the global theme.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">windowEffectiveThemeAppearance</span><span class="p">:</span> <span class="kt">NSAppearance</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="k">var</span> <span class="nv">windowEffectiveThemeAppearance</span><span class="p">:</span> <span class="kt">NSAppearance</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -222,9 +242,11 @@ always use the global theme.</p>
               <div class="task-name-container">
                 <a name="/Theming"></a>
                 <a name="//apple_ref/swift/Section/Theming" class="dashAnchor"></a>
-                <a href="#/Theming">
-                  <h3 class="section-name">Theming</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Theming"></a>
+                  <h3 class="section-name"><p>Theming</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -247,7 +269,8 @@ always use the global theme.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">theme</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">func</span> <span class="nf">theme</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
@@ -277,7 +300,8 @@ always use the global theme.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">themeIfCompliantWithWindowThemePolicy</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">func</span> <span class="nf">themeIfCompliantWithWindowThemePolicy</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
@@ -307,7 +331,8 @@ always use the global theme.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">themeAllWindows</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">static</span> <span class="kd">func</span> <span class="nf">themeAllWindows</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
@@ -323,7 +348,7 @@ always use the global theme.</p>
         </section>
         <section id="footer">
           <p>© 2016-2017 <a class="link" href="https://paw.cloud" target="_blank" rel="external">Paw</a> &amp; <a class="link" href="http://nunogrilo.com" target="_blank" rel="external">Nuno Grilo</a> under <a class="link" href="https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.7</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

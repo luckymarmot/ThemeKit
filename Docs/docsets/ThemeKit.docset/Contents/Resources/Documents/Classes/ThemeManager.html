@@ -8,15 +8,23 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Class/ThemeManager" class="dashAnchor"></a>
     <a title="ThemeManager Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">ThemeKit Docs</a></p>
+        <p><a href="../index.html">ThemeKit 1.4.0 Docs</a></p>
         <p class="header-right"><a href="https://github.com/luckymarmot/ThemeKit"><img src="../img/gh.png"/>View on GitHub</a></p>
-        <p class="header-right"><a href="dash-feed://http%3A%2F%2Fthemekit%2Enunogrilo%2Ecom%2Fdocsets%2FThemeKit%2Exml"><img src="../img/dash.png"/>Install in Dash</a></p>
+        <p class="header-right"><a href="dash-feed://http%3A%2F%2Fthemekit.nunogrilo.com%2Fdocsets%2FThemeKit.xml"><img src="../img/dash.png"/>Install in Dash</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -67,7 +75,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Theme Assets.html">Theme Assets</a>
+            <a href="../Theme%20Assets.html">Theme Assets</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Classes/ThemeColor.html">ThemeColor</a>
@@ -99,7 +107,9 @@
             <h1>ThemeManager</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ThemeManager</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+                  
+                  <pre class="highlight swift"><code><span class="kd">@objc</span><span class="p">(</span><span class="kt">TKThemeManager</span><span class="p">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kt">ThemeManager</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
 
                 </div>
               </div>
@@ -113,6 +123,9 @@ such as:</p>
 <li>Define <code>ThemeKit</code> behaviour</li>
 </ul>
 
+              <div class="slightly-smaller">
+                <a href="https://github.com/luckymarmot/ThemeKit/blob/master/Sources/ThemeManager.swift#L23-L598">Show on GitHub</a>
+              </div>
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -137,7 +150,8 @@ such as:</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">shared</span> <span class="o">=</span> <span class="kt">ThemeManager</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span><span class="p">(</span><span class="n">sharedManager</span><span class="p">)</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">shared</span><span class="p">:</span> <span class="kt">ThemeManager</span></code></pre>
 
                         </div>
                       </div>
@@ -151,11 +165,13 @@ such as:</p>
             </div>
             <div class="task-group">
               <div class="task-name-container">
-                <a name="/Initialization%20&amp;%20Cleanup"></a>
+                <a name="/Initialization%20%26%20Cleanup"></a>
                 <a name="//apple_ref/swift/Section/Initialization &amp; Cleanup" class="dashAnchor"></a>
-                <a href="#/Initialization%20&amp;%20Cleanup">
-                  <h3 class="section-name">Initialization &amp; Cleanup</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Initialization%20%26%20Cleanup"></a>
+                  <h3 class="section-name"><p>Initialization &amp; Cleanup</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -178,7 +194,8 @@ such as:</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">isEnabled</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">isEnabled</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -194,9 +211,11 @@ such as:</p>
               <div class="task-name-container">
                 <a name="/Themes"></a>
                 <a name="//apple_ref/swift/Section/Themes" class="dashAnchor"></a>
-                <a href="#/Themes">
-                  <h3 class="section-name">Themes</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Themes"></a>
+                  <h3 class="section-name"><p>Themes</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -222,7 +241,8 @@ such as:</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">theme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">theme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -257,7 +277,8 @@ will be either <code><a href="../Classes/ThemeManager.html#/c:@M@ThemeKit@objc(c
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">effectiveTheme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">effectiveTheme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -298,7 +319,8 @@ themes folder.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">themes</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/Theme.html">Theme</a></span><span class="p">]</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">themes</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/Theme.html">Theme</a></span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -328,7 +350,8 @@ themes folder.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">userThemes</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/Theme.html">Theme</a></span><span class="p">]</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">userThemes</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/Theme.html">Theme</a></span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -361,7 +384,8 @@ instead of the default <code><a href="../Classes/LightTheme.html">LightTheme</a>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">lightTheme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span> <span class="o">=</span> <span class="kt"><a href="../Classes/LightTheme.html">LightTheme</a></span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">lightTheme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span></code></pre>
 
                         </div>
                       </div>
@@ -394,7 +418,8 @@ instead of the default <code><a href="../Classes/DarkTheme.html">DarkTheme</a></
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">darkTheme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span> <span class="o">=</span> <span class="kt"><a href="../Classes/DarkTheme.html">DarkTheme</a></span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">darkTheme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span></code></pre>
 
                         </div>
                       </div>
@@ -426,7 +451,8 @@ at <strong>System Preferences &gt; General &gt; Appearance</strong>.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">systemTheme</span> <span class="o">=</span> <span class="kt"><a href="../Classes/SystemTheme.html">SystemTheme</a></span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">systemTheme</span><span class="p">:</span> <span class="kt"><a href="../Classes/SystemTheme.html">SystemTheme</a></span></code></pre>
 
                         </div>
                       </div>
@@ -456,7 +482,8 @@ at <strong>System Preferences &gt; General &gt; Appearance</strong>.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultTheme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span> <span class="o">=</span> <span class="kt">ThemeManager</span><span class="o">.</span><span class="n"><a href="../Classes/ThemeManager.html#/c:@M@ThemeKit@objc(cs)TKThemeManager(cpy)systemTheme">systemTheme</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultTheme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span></code></pre>
 
                         </div>
                       </div>
@@ -471,7 +498,7 @@ at <strong>System Preferences &gt; General &gt; Appearance</strong>.</p>
                     <code>
                     <a name="/c:@M@ThemeKit@objc(cs)TKThemeManager(im)themeWithIdentifier:"></a>
                     <a name="//apple_ref/swift/Method/theme(withIdentifier:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKThemeManager(im)themeWithIdentifier:">theme(withIdentifier:)</a>
+                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKThemeManager(im)themeWithIdentifier:">theme(withIdentifier:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -486,7 +513,8 @@ at <strong>System Preferences &gt; General &gt; Appearance</strong>.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">theme</span><span class="p">(</span><span class="n">withIdentifier</span> <span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">theme</span><span class="p">(</span><span class="n">withIdentifier</span> <span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -541,7 +569,8 @@ at <strong>System Preferences &gt; General &gt; Appearance</strong>.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">static</span> <span class="kd">public</span> <span class="k">let</span> <span class="nv">userDefaultsThemeKey</span> <span class="o">=</span> <span class="s">"ThemeKitTheme"</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">userDefaultsThemeKey</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
@@ -574,7 +603,8 @@ previously applied, load the default theme (<code><a href="../Classes/ThemeManag
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">applyLastOrDefaultTheme</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">applyLastOrDefaultTheme</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
@@ -607,7 +637,8 @@ force-apply the same theme.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">reApplyCurrentTheme</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">reApplyCurrentTheme</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
@@ -621,11 +652,13 @@ force-apply the same theme.</p>
             </div>
             <div class="task-group">
               <div class="task-name-container">
-                <a name="/User%20Themes%20(%60.theme%60%20files)"></a>
+                <a name="/User%20Themes%20%28%60.theme%60%20files%29"></a>
                 <a name="//apple_ref/swift/Section/User Themes (`.theme` files)" class="dashAnchor"></a>
-                <a href="#/User%20Themes%20(%60.theme%60%20files)">
-                  <h3 class="section-name">User Themes (`.theme` files)</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/User%20Themes%20%28%60.theme%60%20files%29"></a>
+                  <h3 class="section-name"><p>User Themes (<code><a href="../Classes/ThemeManager.html#/c:@M@ThemeKit@objc(cs)TKThemeManager(py)theme">.theme</a></code> files)</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -662,7 +695,8 @@ don&rsquo;t want them to be changed.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">userThemesFolderURL</span><span class="p">:</span> <span class="kt">URL</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">userThemesFolderURL</span><span class="p">:</span> <span class="kt">URL</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -678,9 +712,11 @@ don&rsquo;t want them to be changed.</p>
               <div class="task-name-container">
                 <a name="/Appearances"></a>
                 <a name="//apple_ref/swift/Section/Appearances" class="dashAnchor"></a>
-                <a href="#/Appearances">
-                  <h3 class="section-name">Appearances</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Appearances"></a>
+                  <h3 class="section-name"><p>Appearances</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -703,7 +739,8 @@ don&rsquo;t want them to be changed.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">effectiveThemeAppearance</span><span class="p">:</span> <span class="kt">NSAppearance</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">effectiveThemeAppearance</span><span class="p">:</span> <span class="kt">NSAppearance</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -733,7 +770,8 @@ don&rsquo;t want them to be changed.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">lightAppearance</span><span class="p">:</span> <span class="kt">NSAppearance</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">lightAppearance</span><span class="p">:</span> <span class="kt">NSAppearance</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -763,7 +801,8 @@ don&rsquo;t want them to be changed.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">darkAppearance</span><span class="p">:</span> <span class="kt">NSAppearance</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">darkAppearance</span><span class="p">:</span> <span class="kt">NSAppearance</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -779,9 +818,11 @@ don&rsquo;t want them to be changed.</p>
               <div class="task-name-container">
                 <a name="/Window%20Theming%20Policy"></a>
                 <a name="//apple_ref/swift/Section/Window Theming Policy" class="dashAnchor"></a>
-                <a href="#/Window%20Theming%20Policy">
-                  <h3 class="section-name">Window Theming Policy</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Window%20Theming%20Policy"></a>
+                  <h3 class="section-name"><p>Window Theming Policy</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -810,7 +851,7 @@ don&rsquo;t want them to be changed.</p>
 </ul>
 
 <p>E.g.:</p>
-<pre class="highlight plaintext"><code>ThemeManager.shared.windowThemePolicy = .themeSomeWindows(windowClasses: [CustomWindow.self])
+<pre class="highlight swift"><code><span class="kt">ThemeManager</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="n">windowThemePolicy</span> <span class="o">=</span> <span class="o">.</span><span class="nf">themeSomeWindows</span><span class="p">(</span><span class="nv">windowClasses</span><span class="p">:</span> <span class="p">[</span><span class="kt">CustomWindow</span><span class="o">.</span><span class="k">self</span><span class="p">])</span>
 </code></pre>
 <h2 id='objective-c' class='heading'>Objective-C</h2>
 
@@ -824,8 +865,8 @@ don&rsquo;t want them to be changed.</p>
 </ul>
 
 <p>Example:</p>
-<pre class="highlight plaintext"><code>[TKThemeManager sharedManager].windowThemePolicy = TKThemeManagerWindowThemePolicyThemeSomeWindows;
-[TKThemeManager sharedManager].themableWindowClasses = @[[CustomWindow class]];
+<pre class="highlight swift"><code><span class="p">[</span><span class="kt">TKThemeManager</span> <span class="n">sharedManager</span><span class="p">]</span><span class="o">.</span><span class="n">windowThemePolicy</span> <span class="o">=</span> <span class="kt">TKThemeManagerWindowThemePolicyThemeSomeWindows</span><span class="p">;</span>
+<span class="p">[</span><span class="kt">TKThemeManager</span> <span class="n">sharedManager</span><span class="p">]</span><span class="o">.</span><span class="n">themableWindowClasses</span> <span class="o">=</span> <span class="err">@</span><span class="p">[[</span><span class="kt">CustomWindow</span> <span class="kd">class</span><span class="p">]];</span>
 </code></pre>
 <h2 id='nswindow-extension' class='heading'>NSWindow Extension</h2>
 
@@ -850,7 +891,7 @@ don&rsquo;t want them to be changed.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">WindowThemePolicy</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">WindowThemePolicy</span></code></pre>
 
                         </div>
                       </div>
@@ -880,7 +921,7 @@ don&rsquo;t want them to be changed.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">windowThemePolicy</span><span class="p">:</span> <span class="kt"><a href="../Classes/ThemeManager/WindowThemePolicy.html">WindowThemePolicy</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">themeAllWindows</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">windowThemePolicy</span><span class="p">:</span> <span class="kt"><a href="../Classes/ThemeManager/WindowThemePolicy.html">WindowThemePolicy</a></span></code></pre>
 
                         </div>
                       </div>
@@ -896,9 +937,11 @@ don&rsquo;t want them to be changed.</p>
               <div class="task-name-container">
                 <a name="/Theme%20Switching"></a>
                 <a name="//apple_ref/swift/Section/Theme Switching" class="dashAnchor"></a>
-                <a href="#/Theme%20Switching">
-                  <h3 class="section-name">Theme Switching</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Theme%20Switching"></a>
+                  <h3 class="section-name"><p>Theme Switching</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -921,7 +964,8 @@ don&rsquo;t want them to be changed.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">animateThemeTransitions</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">animateThemeTransitions</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -937,9 +981,11 @@ don&rsquo;t want them to be changed.</p>
               <div class="task-name-container">
                 <a name="/Notifications"></a>
                 <a name="//apple_ref/swift/Section/Notifications" class="dashAnchor"></a>
-                <a href="#/Notifications">
-                  <h3 class="section-name">Notifications</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Notifications"></a>
+                  <h3 class="section-name"><p>Notifications</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -962,7 +1008,8 @@ don&rsquo;t want them to be changed.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">willChangeThemeNotification</span> <span class="o">=</span> <span class="kt">Notification</span><span class="o">.</span><span class="kt">Name</span><span class="o">.</span><span class="n">willChangeTheme</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">willChangeThemeNotification</span><span class="p">:</span> <span class="kt">Notification</span><span class="o">.</span><span class="kt">Name</span></code></pre>
 
                         </div>
                       </div>
@@ -992,7 +1039,8 @@ don&rsquo;t want them to be changed.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">didChangeThemeNotification</span> <span class="o">=</span> <span class="kt">Notification</span><span class="o">.</span><span class="kt">Name</span><span class="o">.</span><span class="n">didChangeTheme</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">didChangeThemeNotification</span><span class="p">:</span> <span class="kt">Notification</span><span class="o">.</span><span class="kt">Name</span></code></pre>
 
                         </div>
                       </div>
@@ -1022,7 +1070,8 @@ don&rsquo;t want them to be changed.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">didChangeSystemThemeNotification</span> <span class="o">=</span> <span class="kt">Notification</span><span class="o">.</span><span class="kt">Name</span><span class="o">.</span><span class="n">didChangeSystemTheme</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">didChangeSystemThemeNotification</span><span class="p">:</span> <span class="kt">Notification</span><span class="o">.</span><span class="kt">Name</span></code></pre>
 
                         </div>
                       </div>
@@ -1038,7 +1087,7 @@ don&rsquo;t want them to be changed.</p>
         </section>
         <section id="footer">
           <p>© 2016-2017 <a class="link" href="https://paw.cloud" target="_blank" rel="external">Paw</a> &amp; <a class="link" href="http://nunogrilo.com" target="_blank" rel="external">Nuno Grilo</a> under <a class="link" href="https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.7</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

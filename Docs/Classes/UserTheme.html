@@ -8,15 +8,23 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Class/UserTheme" class="dashAnchor"></a>
     <a title="UserTheme Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">ThemeKit Docs</a></p>
+        <p><a href="../index.html">ThemeKit 1.4.0 Docs</a></p>
         <p class="header-right"><a href="https://github.com/luckymarmot/ThemeKit"><img src="../img/gh.png"/>View on GitHub</a></p>
-        <p class="header-right"><a href="dash-feed://http%3A%2F%2Fthemekit%2Enunogrilo%2Ecom%2Fdocsets%2FThemeKit%2Exml"><img src="../img/dash.png"/>Install in Dash</a></p>
+        <p class="header-right"><a href="dash-feed://http%3A%2F%2Fthemekit.nunogrilo.com%2Fdocsets%2FThemeKit.xml"><img src="../img/dash.png"/>Install in Dash</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -67,7 +75,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Theme Assets.html">Theme Assets</a>
+            <a href="../Theme%20Assets.html">Theme Assets</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Classes/ThemeColor.html">ThemeColor</a>
@@ -99,7 +107,9 @@
             <h1>UserTheme</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">UserTheme</span><span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span></code></pre>
+                  
+                  <pre class="highlight swift"><code><span class="kd">@objc</span><span class="p">(</span><span class="kt">TKUserTheme</span><span class="p">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kt">UserTheme</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span></code></pre>
 
                 </div>
               </div>
@@ -136,26 +146,26 @@
 <span class="c1"># define a new color for `NSColor.labelColor` (overriding)</span>
 <span class="n">labelColor</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mi">111</span><span class="p">)</span>
 <span class="c1"># define gradient for `ThemeGradient.brandGradient`</span>
-<span class="n">brandGradient</span> <span class="o">=</span> <span class="n">linear</span><span class="o">-</span><span class="n">gradient</span><span class="p">(</span><span class="vg">$orange</span><span class="p">.</span><span class="nf">sky</span><span class="p">,</span> <span class="n">rgba</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">1</span><span class="o">.</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">brandGradient</span> <span class="o">=</span> <span class="n">linear</span><span class="o">-</span><span class="n">gradient</span><span class="p">(</span><span class="vg">$orange</span><span class="p">.</span><span class="nf">sky</span><span class="p">,</span> <span class="n">rgba</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
 
 <span class="sr">//</span> <span class="o">*********************</span> <span class="no">Images</span> <span class="o">&amp;</span> <span class="no">Patterns</span> <span class="o">**********************</span> <span class="sr">//</span>
 <span class="c1"># define pattern image from named image "paper" for color `ThemeColor.contentBackgroundColor`</span>
 <span class="n">contentBackgroundColor</span> <span class="o">=</span> <span class="n">pattern</span><span class="p">(</span><span class="n">named</span><span class="ss">:paper</span><span class="p">)</span>
 <span class="c1"># define pattern image from filesystem (relative to user themes folder) for color `ThemeColor.bottomBackgroundColor`</span>
-<span class="n">bottomBackgroundColor</span> <span class="o">=</span> <span class="n">pattern</span><span class="p">(</span><span class="n">file</span><span class="p">:.</span><span class="nf">.</span><span class="o">/</span><span class="n">some</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">some</span><span class="o">-</span><span class="n">file</span><span class="p">.</span><span class="nf">png</span><span class="p">)</span>
+<span class="n">bottomBackgroundColor</span> <span class="o">=</span> <span class="n">pattern</span><span class="p">(</span><span class="n">file</span><span class="p">:</span><span class="o">..</span><span class="sr">/some/</span><span class="n">path</span><span class="o">/</span><span class="n">some</span><span class="o">-</span><span class="n">file</span><span class="p">.</span><span class="nf">png</span><span class="p">)</span>
 <span class="c1"># use named image "apple"</span>
 <span class="n">namedImage</span> <span class="o">=</span> <span class="n">image</span><span class="p">(</span><span class="n">named</span><span class="ss">:apple</span><span class="p">)</span>
 <span class="c1"># use image from filesystem (relative to user themes folder)</span>
-<span class="n">fileImage</span> <span class="o">=</span> <span class="n">image</span><span class="p">(</span><span class="n">file</span><span class="p">:.</span><span class="nf">.</span><span class="o">/</span><span class="n">some</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">some</span><span class="o">-</span><span class="n">file</span><span class="p">.</span><span class="nf">jpg</span><span class="p">)</span>
+<span class="n">fileImage</span> <span class="o">=</span> <span class="n">image</span><span class="p">(</span><span class="n">file</span><span class="p">:</span><span class="o">..</span><span class="sr">/some/</span><span class="n">path</span><span class="o">/</span><span class="n">some</span><span class="o">-</span><span class="n">file</span><span class="p">.</span><span class="nf">jpg</span><span class="p">)</span>
 
 <span class="sr">//</span> <span class="o">***********************</span> <span class="no">Common</span> <span class="no">Colors</span> <span class="o">************************</span> <span class="sr">//</span>
 <span class="n">blue</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">170</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
 <span class="n">orange</span><span class="p">.</span><span class="nf">sky</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="o">.</span><span class="mi">5</span><span class="p">)</span>
 
 <span class="sr">//</span> <span class="o">**********************</span> <span class="no">Fallback</span> <span class="no">Assets</span> <span class="o">***********************</span> <span class="sr">//</span>
-<span class="n">fallbackForegroundColor</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">1</span><span class="o">.</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">fallbackForegroundColor</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
 <span class="n">fallbackBackgroundColor</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">190</span><span class="p">)</span>
-<span class="n">fallbackGradient</span> <span class="o">=</span> <span class="n">linear</span><span class="o">-</span><span class="n">gradient</span><span class="p">(</span><span class="vg">$blue</span><span class="p">,</span> <span class="n">rgba</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">1</span><span class="o">.</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">fallbackGradient</span> <span class="o">=</span> <span class="n">linear</span><span class="o">-</span><span class="n">gradient</span><span class="p">(</span><span class="vg">$blue</span><span class="p">,</span> <span class="n">rgba</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
 </code></pre>
 
 <p>With the exception of system overrided named colors (e.g., <code>labelColor</code>), which
@@ -164,6 +174,9 @@ on theme file will default to <code>-fallbackForegroundColor</code>, <code>-fall
 <code>-fallbackGradient</code> and <code>-fallbackImage</code>, for foreground color, background color,
 gradients and images, respectively.</p>
 
+              <div class="slightly-smaller">
+                <a href="https://github.com/luckymarmot/ThemeKit/blob/master/Sources/UserTheme.swift#L76-L228">Show on GitHub</a>
+              </div>
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -188,7 +201,7 @@ gradients and images, respectively.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"{Theme-Not-Loaded}"</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
@@ -218,7 +231,7 @@ gradients and images, respectively.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">displayName</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"Theme Not Loaded"</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">displayName</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
@@ -248,7 +261,7 @@ gradients and images, respectively.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">shortDisplayName</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"Not Loaded"</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">shortDisplayName</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
@@ -278,7 +291,7 @@ gradients and images, respectively.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isDarkTheme</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isDarkTheme</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -308,7 +321,8 @@ gradients and images, respectively.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">fileURL</span><span class="p">:</span> <span class="kt">URL</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">fileURL</span><span class="p">:</span> <span class="kt">URL</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -324,9 +338,11 @@ gradients and images, respectively.</p>
               <div class="task-name-container">
                 <a name="/Initialization"></a>
                 <a name="//apple_ref/swift/Section/Initialization" class="dashAnchor"></a>
-                <a href="#/Initialization">
-                  <h3 class="section-name">Initialization</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Initialization"></a>
+                  <h3 class="section-name"><p>Initialization</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -349,7 +365,8 @@ gradients and images, respectively.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">reload</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">reload</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
@@ -365,9 +382,11 @@ gradients and images, respectively.</p>
               <div class="task-name-container">
                 <a name="/Theme%20Assets"></a>
                 <a name="//apple_ref/swift/Section/Theme Assets" class="dashAnchor"></a>
-                <a href="#/Theme%20Assets">
-                  <h3 class="section-name">Theme Assets</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Theme%20Assets"></a>
+                  <h3 class="section-name"><p>Theme Assets</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -375,7 +394,7 @@ gradients and images, respectively.</p>
                     <code>
                     <a name="/c:@M@ThemeKit@objc(cs)TKUserTheme(im)themeAsset:"></a>
                     <a name="//apple_ref/swift/Method/themeAsset(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKUserTheme(im)themeAsset:">themeAsset(_:)</a>
+                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKUserTheme(im)themeAsset:">themeAsset(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -390,7 +409,8 @@ gradients and images, respectively.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">themeAsset</span><span class="p">(</span><span class="n">_</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">themeAsset</span><span class="p">(</span><span class="n">_</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -428,7 +448,7 @@ gradients and images, respectively.</p>
                     <code>
                     <a name="/c:@M@ThemeKit@objc(cs)TKUserTheme(im)hasThemeAsset:"></a>
                     <a name="//apple_ref/swift/Method/hasThemeAsset(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKUserTheme(im)hasThemeAsset:">hasThemeAsset(_:)</a>
+                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKUserTheme(im)hasThemeAsset:">hasThemeAsset(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -446,7 +466,8 @@ this method instead, which is much faster.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">hasThemeAsset</span><span class="p">(</span><span class="n">_</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">hasThemeAsset</span><span class="p">(</span><span class="n">_</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -485,7 +506,7 @@ this method instead, which is much faster.</p>
         </section>
         <section id="footer">
           <p>© 2016-2017 <a class="link" href="https://paw.cloud" target="_blank" rel="external">Paw</a> &amp; <a class="link" href="http://nunogrilo.com" target="_blank" rel="external">Nuno Grilo</a> under <a class="link" href="https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.7</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

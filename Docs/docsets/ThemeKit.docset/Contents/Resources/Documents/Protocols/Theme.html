@@ -8,15 +8,23 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Protocol/Theme" class="dashAnchor"></a>
     <a title="Theme Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">ThemeKit Docs</a></p>
+        <p><a href="../index.html">ThemeKit 1.4.0 Docs</a></p>
         <p class="header-right"><a href="https://github.com/luckymarmot/ThemeKit"><img src="../img/gh.png"/>View on GitHub</a></p>
-        <p class="header-right"><a href="dash-feed://http%3A%2F%2Fthemekit%2Enunogrilo%2Ecom%2Fdocsets%2FThemeKit%2Exml"><img src="../img/dash.png"/>Install in Dash</a></p>
+        <p class="header-right"><a href="dash-feed://http%3A%2F%2Fthemekit.nunogrilo.com%2Fdocsets%2FThemeKit.xml"><img src="../img/dash.png"/>Install in Dash</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -67,7 +75,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Theme Assets.html">Theme Assets</a>
+            <a href="../Theme%20Assets.html">Theme Assets</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Classes/ThemeColor.html">ThemeColor</a>
@@ -99,7 +107,9 @@
             <h1>Theme</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Theme</span><span class="p">:</span> <span class="kt">NSObjectProtocol</span></code></pre>
+                  
+                  <pre class="highlight swift"><code><span class="kd">@objc</span><span class="p">(</span><span class="kt">TKTheme</span><span class="p">)</span>
+<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Theme</span> <span class="p">:</span> <span class="kt">NSObjectProtocol</span></code></pre>
 
                 </div>
               </div>
@@ -124,15 +134,20 @@ themes by:</p>
 
 <p>Please check the provided <em>Demo.app</em> project for sample implementations of both.</p>
 
+              <div class="slightly-smaller">
+                <a href="https://github.com/luckymarmot/ThemeKit/blob/master/Sources/Theme.swift#L31-L61">Show on GitHub</a>
+              </div>
           </section>
           <section class="section task-group-section">
             <div class="task-group">
               <div class="task-name-container">
                 <a name="/Required%20Properties"></a>
                 <a name="//apple_ref/swift/Section/Required Properties" class="dashAnchor"></a>
-                <a href="#/Required%20Properties">
-                  <h3 class="section-name">Required Properties</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Required%20Properties"></a>
+                  <h3 class="section-name"><p>Required Properties</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -155,7 +170,7 @@ themes by:</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -185,7 +200,7 @@ themes by:</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">displayName</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">displayName</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -215,7 +230,7 @@ themes by:</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">shortDisplayName</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">shortDisplayName</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -245,7 +260,7 @@ themes by:</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">isDarkTheme</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">isDarkTheme</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -259,11 +274,13 @@ themes by:</p>
             </div>
             <div class="task-group">
               <div class="task-name-container">
-                <a name="/Optional%20Methods/Properties"></a>
+                <a name="/Optional%20Methods%2FProperties"></a>
                 <a name="//apple_ref/swift/Section/Optional Methods/Properties" class="dashAnchor"></a>
-                <a href="#/Optional%20Methods/Properties">
-                  <h3 class="section-name">Optional Methods/Properties</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Optional%20Methods%2FProperties"></a>
+                  <h3 class="section-name"><p>Optional Methods/Properties</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -287,7 +304,8 @@ by the theme.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">optional</span> <span class="k">var</span> <span class="nv">fallbackForegroundColor</span><span class="p">:</span> <span class="kt">NSColor</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="k">var</span> <span class="nv">fallbackForegroundColor</span><span class="p">:</span> <span class="kt">NSColor</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -318,7 +336,8 @@ contains <code>Background</code> in its name) is not provided by the theme.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">optional</span> <span class="k">var</span> <span class="nv">fallbackBackgroundColor</span><span class="p">:</span> <span class="kt">NSColor</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="k">var</span> <span class="nv">fallbackBackgroundColor</span><span class="p">:</span> <span class="kt">NSColor</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -348,7 +367,8 @@ contains <code>Background</code> in its name) is not provided by the theme.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">optional</span> <span class="k">var</span> <span class="nv">fallbackGradient</span><span class="p">:</span> <span class="kt">NSGradient</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="k">var</span> <span class="nv">fallbackGradient</span><span class="p">:</span> <span class="kt">NSGradient</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -378,7 +398,8 @@ contains <code>Background</code> in its name) is not provided by the theme.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">optional</span> <span class="k">var</span> <span class="nv">fallbackImage</span><span class="p">:</span> <span class="kt">NSImage</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="k">var</span> <span class="nv">fallbackImage</span><span class="p">:</span> <span class="kt">NSImage</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -392,11 +413,13 @@ contains <code>Background</code> in its name) is not provided by the theme.</p>
             </div>
             <div class="task-group">
               <div class="task-name-container">
-                <a name="/Convenient%20Methods/Properties%20(Swift%20only)"></a>
+                <a name="/Convenient%20Methods%2FProperties%20%28Swift%20only%29"></a>
                 <a name="//apple_ref/swift/Section/Convenient Methods/Properties (Swift only)" class="dashAnchor"></a>
-                <a href="#/Convenient%20Methods/Properties%20(Swift%20only)">
-                  <h3 class="section-name">Convenient Methods/Properties (Swift only)</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Convenient%20Methods%2FProperties%20%28Swift%20only%29"></a>
+                  <h3 class="section-name"><p>Convenient Methods/Properties (Swift only)</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -426,7 +449,7 @@ contains <code>Background</code> in its name) is not provided by the theme.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isLightTheme</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">isLightTheme</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -465,7 +488,7 @@ contains <code>Background</code> in its name) is not provided by the theme.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isSystemTheme</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">isSystemTheme</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -502,7 +525,7 @@ contains <code>Background</code> in its name) is not provided by the theme.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isUserTheme</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">isUserTheme</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -539,7 +562,7 @@ contains <code>Background</code> in its name) is not provided by the theme.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">apply</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">apply</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
@@ -554,7 +577,7 @@ contains <code>Background</code> in its name) is not provided by the theme.</p>
                     <code>
                     <a name="/s:8ThemeKit0A0PAAE10themeAssetyypSgSSF"></a>
                     <a name="//apple_ref/swift/Method/themeAsset(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8ThemeKit0A0PAAE10themeAssetyypSgSSF">themeAsset(_:)</a>
+                    <a class="token" href="#/s:8ThemeKit0A0PAAE10themeAssetyypSgSSF">themeAsset(_:<wbr>)</a>
                     </code>
                       <span class="declaration-note">
                         Extension method
@@ -576,7 +599,7 @@ contains <code>Background</code> in its name) is not provided by the theme.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">themeAsset</span><span class="p">(</span><span class="n">_</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">themeAsset</span><span class="p">(</span><span class="n">_</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -614,7 +637,7 @@ contains <code>Background</code> in its name) is not provided by the theme.</p>
                     <code>
                     <a name="/s:8ThemeKit0A0PAAE03hasA5AssetySbSSF"></a>
                     <a name="//apple_ref/swift/Method/hasThemeAsset(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8ThemeKit0A0PAAE03hasA5AssetySbSSF">hasThemeAsset(_:)</a>
+                    <a class="token" href="#/s:8ThemeKit0A0PAAE03hasA5AssetySbSSF">hasThemeAsset(_:<wbr>)</a>
                     </code>
                       <span class="declaration-note">
                         Extension method
@@ -636,7 +659,7 @@ contains <code>Background</code> in its name) is not provided by the theme.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">hasThemeAsset</span><span class="p">(</span><span class="n">_</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">hasThemeAsset</span><span class="p">(</span><span class="n">_</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -697,7 +720,7 @@ no <code><a href="../Protocols/Theme.html#/c:@M@ThemeKit@objc(pl)TKTheme(py)fall
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">defaultFallbackForegroundColor</span><span class="p">:</span> <span class="kt">NSColor</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">defaultFallbackForegroundColor</span><span class="p">:</span> <span class="kt">NSColor</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -736,7 +759,7 @@ is a color method that contains <code>Background</code> in its name).</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">defaultFallbackBackgroundColor</span><span class="p">:</span> <span class="kt">NSColor</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">defaultFallbackBackgroundColor</span><span class="p">:</span> <span class="kt">NSColor</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -774,7 +797,7 @@ no <code><a href="../Protocols/Theme.html#/c:@M@ThemeKit@objc(pl)TKTheme(py)fall
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">defaultFallbackGradient</span><span class="p">:</span> <span class="kt">NSGradient</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">defaultFallbackGradient</span><span class="p">:</span> <span class="kt">NSGradient</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -812,7 +835,7 @@ no image was specified by the theme.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">defaultFallbackImage</span><span class="p">:</span> <span class="kt">NSImage</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">defaultFallbackImage</span><span class="p">:</span> <span class="kt">NSImage</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -851,7 +874,7 @@ system theme, respecting <strong>System Preferences &gt; General &gt; Appearance
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">effectiveTheme</span><span class="p">:</span> <span class="kt">Theme</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">effectiveTheme</span><span class="p">:</span> <span class="kt">Theme</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -866,7 +889,7 @@ system theme, respecting <strong>System Preferences &gt; General &gt; Appearance
                     <code>
                     <a name="/s:8ThemeKit0A0PAAE16themeDescriptionySSAaB_pF"></a>
                     <a name="//apple_ref/swift/Method/themeDescription(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8ThemeKit0A0PAAE16themeDescriptionySSAaB_pF">themeDescription(_:)</a>
+                    <a class="token" href="#/s:8ThemeKit0A0PAAE16themeDescriptionySSAaB_pF">themeDescription(_:<wbr>)</a>
                     </code>
                       <span class="declaration-note">
                         Extension method
@@ -884,7 +907,7 @@ system theme, respecting <strong>System Preferences &gt; General &gt; Appearance
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">themeDescription</span><span class="p">(</span><span class="n">_</span> <span class="nv">theme</span><span class="p">:</span> <span class="kt">Theme</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">themeDescription</span><span class="p">(</span><span class="n">_</span> <span class="nv">theme</span><span class="p">:</span> <span class="kt">Theme</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
@@ -900,7 +923,7 @@ system theme, respecting <strong>System Preferences &gt; General &gt; Appearance
         </section>
         <section id="footer">
           <p>© 2016-2017 <a class="link" href="https://paw.cloud" target="_blank" rel="external">Paw</a> &amp; <a class="link" href="http://nunogrilo.com" target="_blank" rel="external">Nuno Grilo</a> under <a class="link" href="https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.7</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

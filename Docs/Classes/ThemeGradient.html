@@ -8,15 +8,23 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Class/ThemeGradient" class="dashAnchor"></a>
     <a title="ThemeGradient Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">ThemeKit Docs</a></p>
+        <p><a href="../index.html">ThemeKit 1.4.0 Docs</a></p>
         <p class="header-right"><a href="https://github.com/luckymarmot/ThemeKit"><img src="../img/gh.png"/>View on GitHub</a></p>
-        <p class="header-right"><a href="dash-feed://http%3A%2F%2Fthemekit%2Enunogrilo%2Ecom%2Fdocsets%2FThemeKit%2Exml"><img src="../img/dash.png"/>Install in Dash</a></p>
+        <p class="header-right"><a href="dash-feed://http%3A%2F%2Fthemekit.nunogrilo.com%2Fdocsets%2FThemeKit.xml"><img src="../img/dash.png"/>Install in Dash</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -67,7 +75,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Theme Assets.html">Theme Assets</a>
+            <a href="../Theme%20Assets.html">Theme Assets</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Classes/ThemeColor.html">ThemeColor</a>
@@ -99,7 +107,9 @@
             <h1>ThemeGradient</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">ThemeGradient</span><span class="p">:</span> <span class="kt">NSGradient</span></code></pre>
+                  
+                  <pre class="highlight swift"><code><span class="kd">@objc</span><span class="p">(</span><span class="kt">TKThemeGradient</span><span class="p">)</span>
+<span class="kd">open</span> <span class="kd">class</span> <span class="kt">ThemeGradient</span> <span class="p">:</span> <span class="kt">NSGradient</span></code></pre>
 
                 </div>
               </div>
@@ -108,7 +118,7 @@ whenever a new theme is make current.</p>
 
 <p>Theme-aware means you don&rsquo;t need to check any conditions when choosing which
 gradient to draw. E.g.:</p>
-<pre class="highlight plaintext"><code>ThemeGradient.rainbowGradient.draw(in: bounds, angle: 0)
+<pre class="highlight swift"><code><span class="kt">ThemeGradient</span><span class="o">.</span><span class="n">rainbowGradient</span><span class="o">.</span><span class="nf">draw</span><span class="p">(</span><span class="nv">in</span><span class="p">:</span> <span class="n">bounds</span><span class="p">,</span> <span class="nv">angle</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
 </code></pre>
 
 <p>The drawing code will draw with different gradient depending on the selected 
@@ -123,83 +133,83 @@ UI after changing the current theme.</p>
 Objective-C) to add class methods for your gradients. E.g.:</p>
 
 <p>In Swift:</p>
-<pre class="highlight plaintext"><code>extension ThemeGradient {
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">ThemeGradient</span> <span class="p">{</span>
 
-    static var brandGradient: ThemeGradient {
-       return ThemeGradient.gradient(with: #function)
-    }
+    <span class="kd">static</span> <span class="k">var</span> <span class="nv">brandGradient</span><span class="p">:</span> <span class="kt">ThemeGradient</span> <span class="p">{</span>
+       <span class="k">return</span> <span class="kt">ThemeGradient</span><span class="o">.</span><span class="nf">gradient</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="kd">#function</span><span class="p">)</span>
+    <span class="p">}</span>
 
-}
+<span class="p">}</span>
 </code></pre>
 
 <p>In Objective-C:</p>
-<pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">TKThemeGradient</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
+<pre class="highlight swift"><code><span class="kd">@interface</span> <span class="kt">TKThemeGradient</span> <span class="p">(</span><span class="kt">Demo</span><span class="p">)</span>
 
-<span class="k">+</span> <span class="p">(</span><span class="n">TKThemeGradient</span><span class="o">*</span><span class="p">)</span><span class="n">brandGradient</span><span class="p">;</span>
+<span class="o">+</span> <span class="p">(</span><span class="kt">TKThemeGradient</span><span class="o">*</span><span class="p">)</span><span class="n">brandGradient</span><span class="p">;</span>
 
-<span class="k">@end</span>
+<span class="kd">@end</span>
 
-<span class="k">@implementation</span> <span class="nc">TKThemeGradient</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
+<span class="kd">@implementation</span> <span class="kt">TKThemeGradient</span> <span class="p">(</span><span class="kt">Demo</span><span class="p">)</span>
 
-<span class="k">+</span> <span class="p">(</span><span class="n">TKThemeGradient</span><span class="o">*</span><span class="p">)</span><span class="n">brandGradient</span> <span class="p">{</span>
-   <span class="k">return</span> <span class="p">[</span><span class="n">TKThemeGradient</span> <span class="nf">gradientWithSelector</span><span class="p">:</span><span class="n">_cmd</span><span class="p">];</span>
+<span class="o">+</span> <span class="p">(</span><span class="kt">TKThemeGradient</span><span class="o">*</span><span class="p">)</span><span class="n">brandGradient</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="p">[</span><span class="kt">TKThemeGradient</span> <span class="nv">gradientWithSelector</span><span class="p">:</span><span class="n">_cmd</span><span class="p">];</span>
 <span class="p">}</span>
 
-<span class="k">@end</span>
+<span class="kd">@end</span>
 </code></pre></li>
 <li><p><strong>Add Class Extensions on any <code><a href="../Protocols/Theme.html">Theme</a></code> you want to support</strong> (e.g., <code><a href="../Classes/LightTheme.html">LightTheme</a></code>
 and <code><a href="../Classes/DarkTheme.html">DarkTheme</a></code> - <code>TKLightTheme</code> and <code>TKDarkTheme</code> on Objective-C) to provide
 instance methods for each theme gradient class method defined on (1). E.g.:</p>
 
 <p>In Swift:</p>
-<pre class="highlight plaintext"><code>extension LightTheme {
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">LightTheme</span> <span class="p">{</span>
 
-    var brandGradient: NSGradient {
-       return NSGradient(starting: NSColor.white, ending: NSColor.black)
-    }
+    <span class="k">var</span> <span class="nv">brandGradient</span><span class="p">:</span> <span class="kt">NSGradient</span> <span class="p">{</span>
+       <span class="k">return</span> <span class="kt">NSGradient</span><span class="p">(</span><span class="nv">starting</span><span class="p">:</span> <span class="kt">NSColor</span><span class="o">.</span><span class="n">white</span><span class="p">,</span> <span class="nv">ending</span><span class="p">:</span> <span class="kt">NSColor</span><span class="o">.</span><span class="n">black</span><span class="p">)</span>
+    <span class="p">}</span>
 
-    }
+    <span class="p">}</span>
 
-    extension DarkTheme {
+    <span class="kd">extension</span> <span class="kt">DarkTheme</span> <span class="p">{</span>
 
-    var brandGradient: NSGradient {
-       return NSGradient(starting: NSColor.black, ending: NSColor.white)
-    }
+    <span class="k">var</span> <span class="nv">brandGradient</span><span class="p">:</span> <span class="kt">NSGradient</span> <span class="p">{</span>
+       <span class="k">return</span> <span class="kt">NSGradient</span><span class="p">(</span><span class="nv">starting</span><span class="p">:</span> <span class="kt">NSColor</span><span class="o">.</span><span class="n">black</span><span class="p">,</span> <span class="nv">ending</span><span class="p">:</span> <span class="kt">NSColor</span><span class="o">.</span><span class="n">white</span><span class="p">)</span>
+    <span class="p">}</span>
 
-}
+<span class="p">}</span>
 </code></pre>
 
 <p>In Objective-C:</p>
-<pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">TKLightTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span> <span class="k">@end</span>
+<pre class="highlight swift"><code><span class="kd">@interface</span> <span class="kt">TKLightTheme</span> <span class="p">(</span><span class="kt">Demo</span><span class="p">)</span> <span class="kd">@end</span>
 
-<span class="k">@implementation</span> <span class="nc">TKLightTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
+<span class="kd">@implementation</span> <span class="kt">TKLightTheme</span> <span class="p">(</span><span class="kt">Demo</span><span class="p">)</span>
 
-<span class="k">-</span> <span class="p">(</span><span class="n">NSGradient</span><span class="o">*</span><span class="p">)</span><span class="n">brandGradient</span>
+<span class="o">-</span> <span class="p">(</span><span class="kt">NSGradient</span><span class="o">*</span><span class="p">)</span><span class="n">brandGradient</span>
 <span class="p">{</span>
-   <span class="k">return</span> <span class="p">[[</span><span class="n">NSGradient</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithStartingColor</span><span class="p">:[</span><span class="n">NSColor</span> <span class="nf">whiteColor</span><span class="p">]</span> <span class="nf">endingColor</span><span class="p">:[</span><span class="n">NSColor</span> <span class="nf">blackColor</span><span class="p">]];</span>
+   <span class="k">return</span> <span class="p">[[</span><span class="kt">NSGradient</span> <span class="n">alloc</span><span class="p">]</span> <span class="nv">initWithStartingColor</span><span class="p">:[</span><span class="kt">NSColor</span> <span class="n">whiteColor</span><span class="p">]</span> <span class="nv">endingColor</span><span class="p">:[</span><span class="kt">NSColor</span> <span class="n">blackColor</span><span class="p">]];</span>
 <span class="p">}</span>
 
-<span class="k">@end</span>
+<span class="kd">@end</span>
 
-<span class="k">@interface</span> <span class="nc">TKDarkTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span> <span class="k">@end</span>
+<span class="kd">@interface</span> <span class="kt">TKDarkTheme</span> <span class="p">(</span><span class="kt">Demo</span><span class="p">)</span> <span class="kd">@end</span>
 
-<span class="k">@implementation</span> <span class="nc">TKDarkTheme</span> <span class="p">(</span><span class="nl">Demo</span><span class="p">)</span>
+<span class="kd">@implementation</span> <span class="kt">TKDarkTheme</span> <span class="p">(</span><span class="kt">Demo</span><span class="p">)</span>
 
-<span class="k">-</span> <span class="p">(</span><span class="n">NSGradient</span><span class="o">*</span><span class="p">)</span><span class="n">brandGradient</span>
+<span class="o">-</span> <span class="p">(</span><span class="kt">NSGradient</span><span class="o">*</span><span class="p">)</span><span class="n">brandGradient</span>
 <span class="p">{</span>
-   <span class="k">return</span> <span class="p">[[</span><span class="n">NSGradient</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithStartingColor</span><span class="p">:[</span><span class="n">NSColor</span> <span class="nf">blackColor</span><span class="p">]</span> <span class="nf">endingColor</span><span class="p">:[</span><span class="n">NSColor</span> <span class="nf">whiteColor</span><span class="p">]];</span>
+   <span class="k">return</span> <span class="p">[[</span><span class="kt">NSGradient</span> <span class="n">alloc</span><span class="p">]</span> <span class="nv">initWithStartingColor</span><span class="p">:[</span><span class="kt">NSColor</span> <span class="n">blackColor</span><span class="p">]</span> <span class="nv">endingColor</span><span class="p">:[</span><span class="kt">NSColor</span> <span class="n">whiteColor</span><span class="p">]];</span>
 <span class="p">}</span>
 
-<span class="k">@end</span>
+<span class="kd">@end</span>
 </code></pre></li>
 <li><p>If supporting <code><a href="../Classes/UserTheme.html">UserTheme</a></code>&lsquo;s, <strong>define properties on user theme files</strong> (<code>.theme</code>)
 for each theme gradient class method defined on (1). E.g.:</p>
-<pre class="highlight plaintext"><code>displayName = Sample User Theme
-identifier = com.luckymarmot.ThemeKit.SampleUserTheme
-darkTheme = false
+<pre class="highlight swift"><code><span class="n">displayName</span> <span class="o">=</span> <span class="kt">Sample</span> <span class="kt">User</span> <span class="kt">Theme</span>
+<span class="n">identifier</span> <span class="o">=</span> <span class="n">com</span><span class="o">.</span><span class="n">luckymarmot</span><span class="o">.</span><span class="kt">ThemeKit</span><span class="o">.</span><span class="kt">SampleUserTheme</span>
+<span class="n">darkTheme</span> <span class="o">=</span> <span class="kc">false</span>
 
-orangeSky = rgb(160, 90, 45, .5)
-brandGradient = linear-gradient($orangeSky, rgb(200, 140, 60))
+<span class="n">orangeSky</span> <span class="o">=</span> <span class="nf">rgb</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="o">.</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">brandGradient</span> <span class="o">=</span> <span class="n">linear</span><span class="o">-</span><span class="nf">gradient</span><span class="p">(</span><span class="err">$</span><span class="n">orangeSky</span><span class="p">,</span> <span class="nf">rgb</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">60</span><span class="p">))</span>
 </code></pre></li>
 </ol>
 <h2 id='fallback-colors' class='heading'>Fallback colors</h2>
@@ -209,15 +219,20 @@ brandGradient = linear-gradient($orangeSky, rgb(200, 140, 60))
 
 <p>Please check <code><a href="../Classes/ThemeColor.html">ThemeColor</a></code> for theme-aware colors and <code><a href="../Classes/ThemeImage.html">ThemeImage</a></code> for theme-aware images.</p>
 
+              <div class="slightly-smaller">
+                <a href="https://github.com/luckymarmot/ThemeKit/blob/master/Sources/ThemeGradient.swift#L137-L356">Show on GitHub</a>
+              </div>
           </section>
           <section class="section task-group-section">
             <div class="task-group">
               <div class="task-name-container">
                 <a name="/Properties"></a>
                 <a name="//apple_ref/swift/Section/Properties" class="dashAnchor"></a>
-                <a href="#/Properties">
-                  <h3 class="section-name">Properties</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Properties"></a>
+                  <h3 class="section-name"><p>Properties</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -241,7 +256,8 @@ selector or, if inexistent, as argument in the theme instance method <code>theme
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">themeGradientSelector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">themeGradientSelector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -271,7 +287,8 @@ selector or, if inexistent, as argument in the theme instance method <code>theme
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">resolvedThemeGradient</span><span class="p">:</span> <span class="kt">NSGradient</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">resolvedThemeGradient</span><span class="p">:</span> <span class="kt">NSGradient</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -287,9 +304,11 @@ selector or, if inexistent, as argument in the theme instance method <code>theme
               <div class="task-name-container">
                 <a name="/Creating%20Gradients"></a>
                 <a name="//apple_ref/swift/Section/Creating Gradients" class="dashAnchor"></a>
-                <a href="#/Creating%20Gradients">
-                  <h3 class="section-name">Creating Gradients</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Creating%20Gradients"></a>
+                  <h3 class="section-name"><p>Creating Gradients</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -297,7 +316,7 @@ selector or, if inexistent, as argument in the theme instance method <code>theme
                     <code>
                     <a name="/c:@M@ThemeKit@objc(cs)TKThemeGradient(cm)gradientWithSelector:"></a>
                     <a name="//apple_ref/swift/Method/gradient(with:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKThemeGradient(cm)gradientWithSelector:">gradient(with:)</a>
+                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKThemeGradient(cm)gradientWithSelector:">gradient(with:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -312,7 +331,8 @@ selector or, if inexistent, as argument in the theme instance method <code>theme
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">gradient</span><span class="p">(</span><span class="n">with</span> <span class="nv">selector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">ThemeGradient</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span><span class="p">(</span><span class="nv">gradientWithSelector</span><span class="p">:)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">gradient</span><span class="p">(</span><span class="n">with</span> <span class="nv">selector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">ThemeGradient</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -350,7 +370,7 @@ selector or, if inexistent, as argument in the theme instance method <code>theme
                     <code>
                     <a name="/c:@M@ThemeKit@objc(cs)TKThemeGradient(cm)gradientForTheme:selector:"></a>
                     <a name="//apple_ref/swift/Method/gradient(for:selector:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKThemeGradient(cm)gradientForTheme:selector:">gradient(for:selector:)</a>
+                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKThemeGradient(cm)gradientForTheme:selector:">gradient(for:<wbr>selector:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -365,7 +385,8 @@ selector or, if inexistent, as argument in the theme instance method <code>theme
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">gradient</span><span class="p">(</span><span class="k">for</span> <span class="nv">theme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">NSGradient</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span><span class="p">(</span><span class="nv">gradientForTheme</span><span class="p">:</span><span class="nv">selector</span><span class="p">:)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">gradient</span><span class="p">(</span><span class="k">for</span> <span class="nv">theme</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Theme.html">Theme</a></span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">NSGradient</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -415,7 +436,7 @@ selector or, if inexistent, as argument in the theme instance method <code>theme
                     <code>
                     <a name="/c:@M@ThemeKit@objc(cs)TKThemeGradient(cm)gradientForView:selector:"></a>
                     <a name="//apple_ref/swift/Method/gradient(for:selector:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKThemeGradient(cm)gradientForView:selector:">gradient(for:selector:)</a>
+                    <a class="token" href="#/c:@M@ThemeKit@objc(cs)TKThemeGradient(cm)gradientForView:selector:">gradient(for:<wbr>selector:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -437,7 +458,8 @@ is light or dark, respectively.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">gradient</span><span class="p">(</span><span class="k">for</span> <span class="nv">view</span><span class="p">:</span> <span class="kt">NSView</span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">NSGradient</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span><span class="p">(</span><span class="nv">gradientForView</span><span class="p">:</span><span class="nv">selector</span><span class="p">:)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">gradient</span><span class="p">(</span><span class="k">for</span> <span class="nv">view</span><span class="p">:</span> <span class="kt">NSView</span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kt">Selector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">NSGradient</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -503,7 +525,8 @@ You should not need to manually call this function.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="n">open</span> <span class="kd">func</span> <span class="nf">recacheGradient</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">recacheGradient</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
@@ -534,7 +557,8 @@ You should not need to manually call this function.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">class</span> <span class="n">open</span> <span class="kd">func</span> <span class="nf">emptyCache</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">emptyCache</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
@@ -550,7 +574,7 @@ You should not need to manually call this function.</p>
         </section>
         <section id="footer">
           <p>© 2016-2017 <a class="link" href="https://paw.cloud" target="_blank" rel="external">Paw</a> &amp; <a class="link" href="http://nunogrilo.com" target="_blank" rel="external">Nuno Grilo</a> under <a class="link" href="https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.7</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

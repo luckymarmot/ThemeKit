@@ -8,14 +8,22 @@
     <script src="js/jquery.min.js" defer></script>
     <script src="js/jazzy.js" defer></script>
     
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a title="ThemeKit  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">ThemeKit Docs</a></p>
+        <p><a href="index.html">ThemeKit 1.4.0 Docs</a></p>
         <p class="header-right"><a href="https://github.com/luckymarmot/ThemeKit"><img src="img/gh.png"/>View on GitHub</a></p>
-        <p class="header-right"><a href="dash-feed://http%3A%2F%2Fthemekit%2Enunogrilo%2Ecom%2Fdocsets%2FThemeKit%2Exml"><img src="img/dash.png"/>Install in Dash</a></p>
+        <p class="header-right"><a href="dash-feed://http%3A%2F%2Fthemekit.nunogrilo.com%2Fdocsets%2FThemeKit.xml"><img src="img/dash.png"/>Install in Dash</a></p>
+        <p class="header-right">
+          <form role="search" action="search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -66,7 +74,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="Theme Assets.html">Theme Assets</a>
+            <a href="Theme%20Assets.html">Theme Assets</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="Classes/ThemeColor.html">ThemeColor</a>
@@ -101,8 +109,8 @@
 </p>
 
 <p><img src="https://img.shields.io/badge/os-macOS%2010.10%2B-green.svg?style=flat" alt="macOS">
-<img src="https://img.shields.io/badge/swift-4.2-green.svg?style=flat" alt="Swift4">
-<img src="https://img.shields.io/badge/release-1.3.0-blue.svg?style=flat" alt="Release">
+<img src="https://img.shields.io/badge/swift-5.4.1-green.svg?style=flat" alt="Swift4">
+<img src="https://img.shields.io/badge/release-1.4.0-blue.svg?style=flat" alt="Release">
 <img src="https://img.shields.io/badge/license-MIT-lightgray.svg" alt="MIT">
 <img src="https://img.shields.io/badge/dep-CocoaPods-orange.svg" alt="CocoaPods">
 <img src="https://img.shields.io/badge/dep-Carthage-orange.svg" alt="Carthage"></p>
@@ -162,7 +170,7 @@
 <ul>
 <li><a href="http://themekit.nunogrilo.com/Classes/LightTheme.html"><code><a href="Classes/LightTheme.html">LightTheme</a></code></a> (default macOS appearance)</li>
 <li><a href="http://themekit.nunogrilo.com/Classes/DarkTheme.html"><code><a href="Classes/DarkTheme.html">DarkTheme</a></code></a></li>
-<li><a href="http://themekit.nunogrilo.com/Classes/SystemTheme.html"><code><a href="Classes/SystemTheme.html">SystemTheme</a></code></a> (default theme). Dynamically resolves to <code><a href="Classes/ThemeManager.html#/c:@M@ThemeKit@objc(cs)TKThemeManager(cpy)lightTheme">ThemeManager.lightTheme</a></code> or <code><a href="Classes/ThemeManager.html#/c:@M@ThemeKit@objc(cs)TKThemeManager(cpy)darkTheme">ThemeManager.darkTheme</a></code>, depending on the <em><q>System Preferences > General > Appearance</q></em>.</li>
+<li><a href="http://themekit.nunogrilo.com/Classes/SystemTheme.html"><code><a href="Classes/SystemTheme.html">SystemTheme</a></code></a> (default theme). Dynamically resolves to <code><a href="Classes/ThemeManager.html#/c:@M@ThemeKit@objc(cs)TKThemeManager(cpy)lightTheme">ThemeManager.lightTheme</a></code> or <code><a href="Classes/ThemeManager.html#/c:@M@ThemeKit@objc(cs)TKThemeManager(cpy)darkTheme">ThemeManager.darkTheme</a></code>, depending on the <em>&ldquo;System Preferences &gt; General &gt; Appearance&rdquo;</em>.</li>
 <li>Support for custom themes (<a href="http://themekit.nunogrilo.com/Protocols/Theme.html"><code><a href="Protocols/Theme.html">Theme</a></code></a>)</li>
 <li>Support for user-defined themes (<a href="http://themekit.nunogrilo.com/Classes/UserTheme.html"><code><a href="Classes/UserTheme.html">UserTheme</a></code></a>)</li>
 </ul></li>
@@ -262,8 +270,8 @@
 <h5 id='in-objective-c' class='heading'>In Objective-C:</h5>
 <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">applicationWillFinishLaunching</span><span class="p">:(</span><span class="n">NSNotification</span> <span class="o">*</span><span class="p">)</span><span class="nv">aNotification</span> <span class="p">{</span>
 
-    <span class="c1">// Apply the dark theme
-</span>    <span class="n">TKDarkTheme</span> <span class="o">*</span><span class="n">darkTheme</span> <span class="o">=</span> <span class="n">TKThemeManager</span><span class="p">.</span><span class="n">darkTheme</span><span class="p">;</span>
+    <span class="c1">// Apply the dark theme</span>
+    <span class="n">TKDarkTheme</span> <span class="o">*</span><span class="n">darkTheme</span> <span class="o">=</span> <span class="n">TKThemeManager</span><span class="p">.</span><span class="n">darkTheme</span><span class="p">;</span>
     <span class="p">[[</span><span class="n">TKThemeManager</span> <span class="nf">sharedManager</span><span class="p">]</span> <span class="nf">setTheme</span><span class="p">:</span><span class="n">darkTheme</span><span class="p">];</span>
 
 <span class="p">}</span>
@@ -305,33 +313,33 @@
 <h5 id='in-objective-c' class='heading'>In Objective-C:</h5>
 <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">applicationWillFinishLaunching</span><span class="p">:(</span><span class="n">NSNotification</span> <span class="o">*</span><span class="p">)</span><span class="nv">aNotification</span> <span class="p">{</span>
 
-    <span class="c1">/// Define default theme.
-</span>    <span class="c1">/// Used on first run. Default: `SystemTheme`.
-</span>    <span class="c1">/// Note: `SystemTheme` is a special theme that resolves to `ThemeManager.lightTheme` or `ThemeManager.darkTheme`,
-</span>    <span class="c1">/// depending on the macOS preference at 'System Preferences &gt; General &gt; Appearance'.
-</span>    <span class="p">[</span><span class="n">TKThemeManager</span> <span class="nf">setDefaultTheme</span><span class="p">:</span><span class="n">TKThemeManager</span><span class="p">.</span><span class="n">lightTheme</span><span class="p">];</span>
+    <span class="c1">/// Define default theme.</span>
+    <span class="c1">/// Used on first run. Default: `SystemTheme`.</span>
+    <span class="c1">/// Note: `SystemTheme` is a special theme that resolves to `ThemeManager.lightTheme` or `ThemeManager.darkTheme`,</span>
+    <span class="c1">/// depending on the macOS preference at 'System Preferences &gt; General &gt; Appearance'.</span>
+    <span class="p">[</span><span class="n">TKThemeManager</span> <span class="nf">setDefaultTheme</span><span class="p">:</span><span class="n">TKThemeManager</span><span class="p">.</span><span class="n">lightTheme</span><span class="p">];</span>
 
-    <span class="c1">/// Define window theme policy.
-</span>    <span class="p">[</span><span class="n">TKThemeManager</span> <span class="nf">sharedManager</span><span class="p">].</span><span class="n">windowThemePolicy</span> <span class="o">=</span> <span class="n">TKThemeManagerWindowThemePolicyThemeAllWindows</span><span class="p">;</span>
-    <span class="c1">//[TKThemeManager sharedManager].windowThemePolicy = TKThemeManagerWindowThemePolicyThemeSomeWindows;
-</span>    <span class="c1">//[TKThemeManager sharedManager].themableWindowClasses = @[[MyWindow class]];
-</span>    <span class="c1">//[TKThemeManager sharedManager].windowThemePolicy = TKThemeManagerWindowThemePolicyDoNotThemeSomeWindows;
-</span>    <span class="c1">//[TKThemeManager sharedManager].notThemableWindowClasses = @[[NSPanel class]];
-</span>    <span class="c1">//[TKThemeManager sharedManager].windowThemePolicy = TKThemeManagerWindowThemePolicyDoNotThemeWindows;
-</span>
-    <span class="c1">/// Enable &amp; configure user themes.
-</span>    <span class="c1">/// Will use folder `(...)/Application Support/{your_app_bundle_id}/Themes`.
-</span>    <span class="n">NSArray</span><span class="o">&lt;</span><span class="n">NSString</span><span class="o">*&gt;*</span> <span class="n">applicationSupportURLs</span> <span class="o">=</span> <span class="n">NSSearchPathForDirectoriesInDomains</span><span class="p">(</span><span class="n">NSApplicationSupportDirectory</span><span class="p">,</span> <span class="n">NSUserDomainMask</span><span class="p">,</span> <span class="nb">YES</span><span class="p">);</span>
+    <span class="c1">/// Define window theme policy.</span>
+    <span class="p">[</span><span class="n">TKThemeManager</span> <span class="nf">sharedManager</span><span class="p">].</span><span class="n">windowThemePolicy</span> <span class="o">=</span> <span class="n">TKThemeManagerWindowThemePolicyThemeAllWindows</span><span class="p">;</span>
+    <span class="c1">//[TKThemeManager sharedManager].windowThemePolicy = TKThemeManagerWindowThemePolicyThemeSomeWindows;</span>
+    <span class="c1">//[TKThemeManager sharedManager].themableWindowClasses = @[[MyWindow class]];</span>
+    <span class="c1">//[TKThemeManager sharedManager].windowThemePolicy = TKThemeManagerWindowThemePolicyDoNotThemeSomeWindows;</span>
+    <span class="c1">//[TKThemeManager sharedManager].notThemableWindowClasses = @[[NSPanel class]];</span>
+    <span class="c1">//[TKThemeManager sharedManager].windowThemePolicy = TKThemeManagerWindowThemePolicyDoNotThemeWindows;</span>
+
+    <span class="c1">/// Enable &amp; configure user themes.</span>
+    <span class="c1">/// Will use folder `(...)/Application Support/{your_app_bundle_id}/Themes`.</span>
+    <span class="n">NSArray</span><span class="o">&lt;</span><span class="n">NSString</span><span class="o">*&gt;*</span> <span class="n">applicationSupportURLs</span> <span class="o">=</span> <span class="n">NSSearchPathForDirectoriesInDomains</span><span class="p">(</span><span class="n">NSApplicationSupportDirectory</span><span class="p">,</span> <span class="n">NSUserDomainMask</span><span class="p">,</span> <span class="nb">YES</span><span class="p">);</span>
     <span class="n">NSURL</span><span class="o">*</span> <span class="n">thisAppSupportURL</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSURL</span> <span class="nf">fileURLWithPath</span><span class="p">:</span><span class="n">applicationSupportURLs</span><span class="p">.</span><span class="n">firstObject</span><span class="p">]</span> <span class="nf">URLByAppendingPathComponent</span><span class="p">:[</span><span class="n">NSBundle</span> <span class="nf">mainBundle</span><span class="p">].</span><span class="n">bundleIdentifier</span><span class="p">];</span>
     <span class="n">NSURL</span><span class="o">*</span> <span class="n">userThemesFolderURL</span> <span class="o">=</span> <span class="p">[</span><span class="n">thisAppSupportURL</span> <span class="nf">URLByAppendingPathComponent</span><span class="p">:</span><span class="s">@"Themes"</span><span class="p">];</span>
     <span class="p">[</span><span class="n">TKThemeManager</span> <span class="nf">sharedManager</span><span class="p">].</span><span class="n">userThemesFolderURL</span> <span class="o">=</span> <span class="n">userThemesFolderURL</span><span class="p">;</span>
 
-    <span class="c1">/// Change the default light and dark theme, used when `SystemTheme` is selected.
-</span>    <span class="c1">//TKThemeManager.lightTheme = [[TKThemeManager sharedManager] themeWithIdentifier:PaperTheme.identifier];
-</span>    <span class="c1">//TKThemeManager.darkTheme = [[TKThemeManager sharedManager] themeWithIdentifier:@"com.luckymarmot.ThemeKit.PurpleGreen"];
-</span>
-    <span class="c1">/// Apply last applied theme (or the default theme, if no previous one)
-</span>    <span class="p">[[</span><span class="n">TKThemeManager</span> <span class="nf">sharedManager</span><span class="p">]</span> <span class="nf">applyLastOrDefaultTheme</span><span class="p">];</span>
+    <span class="c1">/// Change the default light and dark theme, used when `SystemTheme` is selected.</span>
+    <span class="c1">//TKThemeManager.lightTheme = [[TKThemeManager sharedManager] themeWithIdentifier:PaperTheme.identifier];</span>
+    <span class="c1">//TKThemeManager.darkTheme = [[TKThemeManager sharedManager] themeWithIdentifier:@"com.luckymarmot.ThemeKit.PurpleGreen"];</span>
+
+    <span class="c1">/// Apply last applied theme (or the default theme, if no previous one)</span>
+    <span class="p">[[</span><span class="n">TKThemeManager</span> <span class="nf">sharedManager</span><span class="p">]</span> <span class="nf">applyLastOrDefaultTheme</span><span class="p">];</span>
 
 <span class="p">}</span>
 </code></pre>
@@ -498,26 +506,26 @@ Please note that when using window specific themes, only the associated <code>NS
 <span class="c1"># define a new color for `NSColor.labelColor` (overriding)</span>
 <span class="n">labelColor</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mi">111</span><span class="p">)</span>
 <span class="c1"># define gradient for `ThemeGradient.brandGradient`</span>
-<span class="n">brandGradient</span> <span class="o">=</span> <span class="n">linear</span><span class="o">-</span><span class="n">gradient</span><span class="p">(</span><span class="vg">$orange</span><span class="p">.</span><span class="nf">sky</span><span class="p">,</span> <span class="n">rgba</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">1</span><span class="o">.</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">brandGradient</span> <span class="o">=</span> <span class="n">linear</span><span class="o">-</span><span class="n">gradient</span><span class="p">(</span><span class="vg">$orange</span><span class="p">.</span><span class="nf">sky</span><span class="p">,</span> <span class="n">rgba</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
 
 <span class="sr">//</span> <span class="o">*********************</span> <span class="no">Images</span> <span class="o">&amp;</span> <span class="no">Patterns</span> <span class="o">**********************</span> <span class="sr">//</span>
 <span class="c1"># define pattern image from named image "paper" for color `ThemeColor.contentBackgroundColor`</span>
 <span class="n">contentBackgroundColor</span> <span class="o">=</span> <span class="n">pattern</span><span class="p">(</span><span class="n">named</span><span class="ss">:paper</span><span class="p">)</span>
 <span class="c1"># define pattern image from filesystem (relative to user themes folder) for color `ThemeColor.bottomBackgroundColor`</span>
-<span class="n">bottomBackgroundColor</span> <span class="o">=</span> <span class="n">pattern</span><span class="p">(</span><span class="n">file</span><span class="p">:.</span><span class="nf">.</span><span class="o">/</span><span class="n">some</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">some</span><span class="o">-</span><span class="n">file</span><span class="p">.</span><span class="nf">png</span><span class="p">)</span>
+<span class="n">bottomBackgroundColor</span> <span class="o">=</span> <span class="n">pattern</span><span class="p">(</span><span class="n">file</span><span class="p">:</span><span class="o">..</span><span class="sr">/some/</span><span class="n">path</span><span class="o">/</span><span class="n">some</span><span class="o">-</span><span class="n">file</span><span class="p">.</span><span class="nf">png</span><span class="p">)</span>
 <span class="c1"># define image using named image "apple"</span>
 <span class="n">namedImage</span> <span class="o">=</span> <span class="n">image</span><span class="p">(</span><span class="n">named</span><span class="ss">:apple</span><span class="p">)</span>
 <span class="c1"># define image using from filesystem (relative to user themes folder)</span>
-<span class="n">fileImage</span> <span class="o">=</span> <span class="n">image</span><span class="p">(</span><span class="n">file</span><span class="p">:.</span><span class="nf">.</span><span class="o">/</span><span class="n">some</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">some</span><span class="o">-</span><span class="n">file</span><span class="p">.</span><span class="nf">jpg</span><span class="p">)</span>
+<span class="n">fileImage</span> <span class="o">=</span> <span class="n">image</span><span class="p">(</span><span class="n">file</span><span class="p">:</span><span class="o">..</span><span class="sr">/some/</span><span class="n">path</span><span class="o">/</span><span class="n">some</span><span class="o">-</span><span class="n">file</span><span class="p">.</span><span class="nf">jpg</span><span class="p">)</span>
 
 <span class="sr">//</span> <span class="o">***********************</span> <span class="no">Common</span> <span class="no">Colors</span> <span class="o">************************</span> <span class="sr">//</span>
 <span class="n">blue</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">170</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
 <span class="n">orange</span><span class="p">.</span><span class="nf">sky</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="o">.</span><span class="mi">5</span><span class="p">)</span>
 
 <span class="sr">//</span> <span class="o">**********************</span> <span class="no">Fallback</span> <span class="no">Assets</span> <span class="o">***********************</span> <span class="sr">//</span>
-<span class="n">fallbackForegroundColor</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">1</span><span class="o">.</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">fallbackForegroundColor</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
 <span class="n">fallbackBackgroundColor</span> <span class="o">=</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">190</span><span class="p">)</span>
-<span class="n">fallbackGradient</span> <span class="o">=</span> <span class="n">linear</span><span class="o">-</span><span class="n">gradient</span><span class="p">(</span><span class="vg">$blue</span><span class="p">,</span> <span class="n">rgba</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">1</span><span class="o">.</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">fallbackGradient</span> <span class="o">=</span> <span class="n">linear</span><span class="o">-</span><span class="n">gradient</span><span class="p">(</span><span class="vg">$blue</span><span class="p">,</span> <span class="n">rgba</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
 
 </code></pre>
 
@@ -546,7 +554,7 @@ Basically, a <a href="https://github.com/luckymarmot/ThemeKit/blob/master/Demo/D
 
 <p>Yes, you can! Implement your own custom controls drawing using <a href="#theme-aware-assets">Theme-aware Assets</a> (<code><a href="Classes/ThemeColor.html">ThemeColor</a></code> and <code><a href="Classes/ThemeGradient.html">ThemeGradient</a></code>) so that your controls drawing will always adapt to your current theme&hellip; automatically!</p>
 
-<p>In case needed (for example, if drawing is being cached), you can observe when theme changes to refresh the UI or to perform any theme related operation. Check <em><q>Observing theme changes</q></em> on <a href="#usage">Usage</a> section above.</p>
+<p>In case needed (for example, if drawing is being cached), you can observe when theme changes to refresh the UI or to perform any theme related operation. Check <em>&ldquo;Observing theme changes&rdquo;</em> on <a href="#usage">Usage</a> section above.</p>
 <h3 id='strong-nstableview-cells-are-getting-a-background-color-after-being-themed-strong' class='heading'><strong>NSTableView cells are getting a background color after being themed!</strong></h3>
 
 <p>Please check <a href="https://github.com/luckymarmot/ThemeKit/issues/18">this issue</a>. This theming issue only affects view-based <code>NSTableView</code>s, when placed on sheets, on macOS &lt; 10.14. Please check <a href="https://github.com/luckymarmot/ThemeKit/issues/18#issuecomment-396553982">this comment</a> for a brief explanation on how to fix it, and a small project demonstrating the issue and the fix.</p>
@@ -613,7 +621,7 @@ control.backgroundColor = NSColor.black
         </section>
         <section id="footer">
           <p>© 2016-2017 <a class="link" href="https://paw.cloud" target="_blank" rel="external">Paw</a> &amp; <a class="link" href="http://nunogrilo.com" target="_blank" rel="external">Nuno Grilo</a> under <a class="link" href="https://github.com/luckymarmot/ThemeKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.7</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
